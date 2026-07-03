@@ -124,6 +124,54 @@
         </div>
       </section>
 
+      <section class="check-band" id="sound-check" aria-labelledby="sound-check-title">
+        <div class="section-head">
+          <p class="eyebrow">第二章检查</p>
+          <h2 id="sound-check-title">你能听懂声音背后的物理了吗？</h2>
+          <p>完成下面 6 题，检查自己是否抓住“振动、介质、特性、利用和噪声控制”这条主线。</p>
+        </div>
+        <form class="quiz" id="soundQuiz">
+          <fieldset class="quiz-card">
+            <legend>1. 声音是由物体的什么产生的？</legend>
+            <label><input type="radio" name="s1" value="a" /> 振动</label>
+            <label><input type="radio" name="s1" value="b" /> 反光</label>
+            <label><input type="radio" name="s1" value="c" /> 熔化</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>2. 下列哪种说法正确？</legend>
+            <label><input type="radio" name="s2" value="a" /> 真空也能传声</label>
+            <label><input type="radio" name="s2" value="b" /> 声音传播需要介质</label>
+            <label><input type="radio" name="s2" value="c" /> 只有空气能传声</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>3. 频率主要决定声音的哪一特性？</legend>
+            <label><input type="radio" name="s3" value="a" /> 音调</label>
+            <label><input type="radio" name="s3" value="b" /> 响度</label>
+            <label><input type="radio" name="s3" value="c" /> 速度</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>4. 振幅越大，声音通常会怎样？</legend>
+            <label><input type="radio" name="s4" value="a" /> 响度越大</label>
+            <label><input type="radio" name="s4" value="b" /> 音色一定改变</label>
+            <label><input type="radio" name="s4" value="c" /> 不能传播</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>5. B 超、声呐、倒车雷达主要利用声传递什么？</legend>
+            <label><input type="radio" name="s5" value="a" /> 信息</label>
+            <label><input type="radio" name="s5" value="b" /> 质量</label>
+            <label><input type="radio" name="s5" value="c" /> 温度</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>6. 道路两侧安装隔音板属于哪种噪声控制方式？</legend>
+            <label><input type="radio" name="s6" value="a" /> 防止噪声产生</label>
+            <label><input type="radio" name="s6" value="b" /> 阻断噪声传播</label>
+            <label><input type="radio" name="s6" value="c" /> 防止噪声进入耳朵</label>
+          </fieldset>
+          <button class="primary-action quiz-submit" type="submit">提交第二章检查</button>
+          <div class="quiz-result" id="soundQuizResult" aria-live="polite"></div>
+        </form>
+      </section>
+
 
     </main>
 
@@ -132,6 +180,7 @@
     </footer>
 
     <script src="../scripts/common.js"></script>
+    <script src="../scripts/quiz.js"></script>
     <script src="../scripts/chapter2-sound.js"></script>
   </body>
 </html>

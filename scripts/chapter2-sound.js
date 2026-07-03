@@ -101,5 +101,28 @@ noiseButtons.forEach((button) => {
   button.addEventListener("click", () => setNoise(button.dataset.noise));
 });
 
+setupQuiz({
+  formSelector: "#soundQuiz",
+  resultSelector: "#soundQuizResult",
+  answers: {
+    s1: "a",
+    s2: "b",
+    s3: "a",
+    s4: "a",
+    s5: "a",
+    s6: "b",
+  },
+  hints: {
+    s1: "第 1 题回看“声音的产生”：声音由物体振动产生。",
+    s2: "第 2 题回看“声音的传播”：声音传播需要介质，真空不能传声。",
+    s3: "第 3 题回看“音调”：频率越高，音调越高。",
+    s4: "第 4 题回看“响度”：振幅越大，响度通常越大。",
+    s5: "第 5 题回看“声与信息”：B 超、声呐、倒车雷达都利用声传递信息。",
+    s6: "第 6 题回看“噪声控制”：隔音板是在传播过程中减弱噪声。",
+  },
+  badges: (score) => score === 6 ? "第二章掌握很稳" : score >= 4 ? "第二章基本过关" : "建议回看声音实验",
+  successMessage: "很好。你已经能用振动、介质、频率、振幅和噪声控制来解释声现象。",
+});
+
 drawWave();
 updateEcho();

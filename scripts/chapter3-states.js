@@ -131,6 +131,29 @@ function drawGraph(type = "crystal") {
 }
 
 setupQuiz({
+  formSelector: "#statesQuiz",
+  resultSelector: "#statesQuizResult",
+  answers: {
+    p1: "a",
+    p2: "b",
+    p3: "a",
+    p4: "a",
+    p5: "a",
+    p6: "a",
+  },
+  hints: {
+    p1: "第 1 题回看“温度”：温度表示物体的冷热程度。",
+    p2: "第 2 题回看“温度计的使用”：读数时视线要与液面相平。",
+    p3: "第 3 题回看“熔化和凝固”：固态冰变液态水是熔化。",
+    p4: "第 4 题回看“水的沸腾”：沸腾后继续吸热，温度保持在沸点附近。",
+    p5: "第 5 题回看“蒸发”：蒸发是汽化的一种形式，汽化吸热。",
+    p6: "第 6 题回看“升华和凝华”：霜通常是水蒸气凝华形成。",
+  },
+  badges: (score) => score === 6 ? "第三章掌握很稳" : score >= 4 ? "第三章基本过关" : "建议回看物态变化地图",
+  successMessage: "很好。你已经能把温度、状态变化、吸热放热和生活现象联系起来。",
+});
+
+setupQuiz({
   formSelector: "#halfQuiz",
   resultSelector: "#halfQuizResult",
   answers: {
