@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>八年级物理上册预习站 - 第一章机械运动</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="回到顶部">
+        <span class="brand-mark">v</span>
+        <span>物理预习站</span>
+      </a>
+      <nav class="chapter-nav" aria-label="章节导航">
+        <a href="#map">探索地图</a>
+        <a href="#measure">测量</a>
+        <a href="#motion">运动</a>
+        <a href="#speed">速度</a>
+        <a href="#lab">实验</a>
+        <a href="#check">检查</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="assets/chapter1-hero.png" alt="学生在实验室用小车、刻度尺和秒表研究机械运动" />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <p class="eyebrow">八年级物理上册 · 第一章</p>
+          <h1 id="hero-title">
+            <span>机械运动：</span>
+            <span>从“看见变化”</span>
+            <span>到“测出快慢”</span>
+          </h1>
+          <p class="hero-copy">
+            本章预习目标不是背公式，而是学会用尺、表和数据描述运动。你将判断谁在运动，测量长度和时间，并用速度解释生活中的快慢。
+          </p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#map">开始预习</a>
+            <a class="secondary-action" href="#check">直接挑战检查</a>
+          </div>
+        </div>
+        <div class="hero-peek" aria-hidden="true">
+          <span>4 个知识站</span>
+          <span>3 个互动实验</span>
+          <span>1 次预习检查</span>
+        </div>
+      </section>
+
+      <section class="intro-band" id="map" aria-labelledby="map-title">
+        <div class="section-head">
+          <p class="eyebrow">探索地图</p>
+          <h2 id="map-title">第一章要解决哪些问题？</h2>
+          <p>教材第一章围绕“长度和时间的测量、运动的描述、运动的快慢、速度的测量”展开。预习时先抓住这四个问题，课堂上会轻松很多。</p>
+        </div>
+        <div class="quest-grid">
+          <article class="quest-card">
+            <span class="quest-number">01</span>
+            <h3>怎样测才可靠？</h3>
+            <p>刻度尺要看分度值，读数要估读到下一位；秒表读数也要注意单位和量程。</p>
+          </article>
+          <article class="quest-card">
+            <span class="quest-number">02</span>
+            <h3>谁在运动？</h3>
+            <p>运动和静止取决于参照物。换一个参照物，判断结果可能完全不同。</p>
+          </article>
+          <article class="quest-card">
+            <span class="quest-number">03</span>
+            <h3>怎样比较快慢？</h3>
+            <p>相同时间比路程，相同路程比时间；更通用的方法是计算速度。</p>
+          </article>
+          <article class="quest-card">
+            <span class="quest-number">04</span>
+            <h3>怎样测出速度？</h3>
+            <p>测量路程和时间，再用 v = s / t。实验中要减少误差，多次测量更可靠。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="learning-band" id="measure" aria-labelledby="measure-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 1 节</p>
+          <h2 id="measure-title">长度和时间的测量</h2>
+          <p>物理学习从“会测量”开始。数字不是随便写的，它要能说明工具精度和观察结果。</p>
+        </div>
+        <div class="two-column">
+          <div class="knowledge-panel">
+            <h3>预习抓手</h3>
+            <ul class="clean-list">
+              <li><strong>单位：</strong>长度常用 m、dm、cm、mm；时间常用 h、min、s。</li>
+              <li><strong>分度值：</strong>相邻两条刻度线表示的长度，是读数精度的关键。</li>
+              <li><strong>估读：</strong>用刻度尺读数时，通常要估读到分度值的下一位。</li>
+              <li><strong>误差：</strong>测量值和真实值之间总会有差别，多次测量取平均值可减小误差。</li>
+            </ul>
+          </div>
+          <div class="interactive-panel ruler-panel" aria-label="刻度尺读数互动">
+            <div class="panel-topline">
+              <h3>读数练习</h3>
+              <span class="tag">观察分度值</span>
+            </div>
+            <div class="ruler-demo">
+              <div class="ruler-track" aria-hidden="true">
+                <span class="tick long"></span>
+                <span class="tick"></span>
+                <span class="tick"></span>
+                <span class="tick"></span>
+                <span class="tick"></span>
+                <span class="tick long"></span>
+                <span class="tick"></span>
+                <span class="tick"></span>
+                <span class="tick"></span>
+                <span class="tick"></span>
+                <span class="tick long"></span>
+              </div>
+              <div class="object-bar" id="objectBar"></div>
+            </div>
+            <label class="slider-label" for="lengthSlider">
+              物体右端位置
+              <output id="lengthOutput">6.4 cm</output>
+            </label>
+            <input id="lengthSlider" type="range" min="32" max="88" value="64" />
+            <p class="feedback" id="lengthFeedback">读数时先看清 1 小格是多少，再估读最后一位。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="motion" aria-labelledby="motion-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 2 节</p>
+          <h2 id="motion-title">运动的描述</h2>
+          <p>如果物体相对于参照物的位置发生变化，我们就说它是运动的。判断前先问：以谁为标准？</p>
+        </div>
+        <div class="reference-lab">
+          <div class="scene-card">
+            <div class="road-scene" aria-hidden="true">
+              <div class="road-sky"></div>
+              <div class="road"></div>
+              <div class="bus">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="tree"></div>
+              <div class="student"></div>
+            </div>
+          </div>
+          <div class="reference-controls">
+            <h3>换参照物，结论会变吗？</h3>
+            <p>想象你坐在公交车里，同桌也坐在旁边，路边树木不断后退。</p>
+            <div class="segmented" role="group" aria-label="选择参照物">
+              <button class="segment is-active" type="button" data-reference="road">以地面为参照物</button>
+              <button class="segment" type="button" data-reference="bus">以公交车为参照物</button>
+            </div>
+            <div class="result-box" id="referenceResult">
+              以地面为参照物：公交车和车上学生都在运动，路边树木通常可看作静止。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band" id="speed" aria-labelledby="speed-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 3 节</p>
+          <h2 id="speed-title">运动的快慢</h2>
+          <p>速度表示物体运动的快慢。公式是 v = s / t，读作“速度等于路程除以时间”。</p>
+        </div>
+        <div class="speed-lab">
+          <div class="track-panel">
+            <div class="panel-topline">
+              <h3>小车速度模拟器</h3>
+              <span class="tag">v = s / t</span>
+            </div>
+            <div class="motion-track" aria-label="小车运动轨道">
+              <div class="track-markers">
+                <span>0 m</span>
+                <span>20 m</span>
+                <span>40 m</span>
+                <span>60 m</span>
+                <span>80 m</span>
+                <span>100 m</span>
+              </div>
+              <div class="track-line"></div>
+              <div class="car" id="car" aria-hidden="true">
+                <span class="car-body"></span>
+                <span class="wheel left"></span>
+                <span class="wheel right"></span>
+              </div>
+            </div>
+            <button class="primary-action small" id="runCar" type="button">运行小车</button>
+          </div>
+          <div class="calculator-panel">
+            <label class="slider-label" for="distanceSlider">
+              路程 s
+              <output id="distanceOutput">60 m</output>
+            </label>
+            <input id="distanceSlider" type="range" min="10" max="100" value="60" step="5" />
+            <label class="slider-label" for="timeSlider">
+              时间 t
+              <output id="timeOutput">12 s</output>
+            </label>
+            <input id="timeSlider" type="range" min="2" max="30" value="12" step="1" />
+            <div class="speed-result">
+              <span>速度 v</span>
+              <strong id="speedOutput">5.0 m/s</strong>
+            </div>
+            <p id="speedFeedback" class="feedback">速度越大，表示单位时间内通过的路程越长。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="lab" aria-labelledby="lab-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 4 节</p>
+          <h2 id="lab-title">速度的测量</h2>
+          <p>实验的关键是“测路程、测时间、算速度、看误差”。先设计表格，再做实验，数据才有用。</p>
+        </div>
+        <div class="lab-grid">
+          <article class="lab-step">
+            <span>1</span>
+            <h3>确定路程</h3>
+            <p>用刻度尺或卷尺标出起点、终点，记录小车通过的距离 s。</p>
+          </article>
+          <article class="lab-step">
+            <span>2</span>
+            <h3>记录时间</h3>
+            <p>小车到达终点时停止计时。反应快慢会带来误差，可多次测量。</p>
+          </article>
+          <article class="lab-step">
+            <span>3</span>
+            <h3>计算速度</h3>
+            <p>把每次的 s 和 t 代入 v = s / t，再比较平均速度是否稳定。</p>
+          </article>
+        </div>
+        <div class="data-table-panel">
+          <div class="panel-topline">
+            <h3>实验数据小表</h3>
+            <span class="tag">自动计算</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>次数</th>
+                  <th>路程 s/m</th>
+                  <th>时间 t/s</th>
+                  <th>速度 v/(m/s)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td><input class="data-input" value="0.6" inputmode="decimal" aria-label="第一次路程" /></td>
+                  <td><input class="data-input" value="2.0" inputmode="decimal" aria-label="第一次时间" /></td>
+                  <td class="calc-cell">0.30</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td><input class="data-input" value="0.6" inputmode="decimal" aria-label="第二次路程" /></td>
+                  <td><input class="data-input" value="1.8" inputmode="decimal" aria-label="第二次时间" /></td>
+                  <td class="calc-cell">0.33</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td><input class="data-input" value="0.6" inputmode="decimal" aria-label="第三次路程" /></td>
+                  <td><input class="data-input" value="2.1" inputmode="decimal" aria-label="第三次时间" /></td>
+                  <td class="calc-cell">0.29</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="feedback" id="averageFeedback">三次平均速度约为 0.31 m/s。数据接近，说明实验比较稳定。</p>
+        </div>
+      </section>
+
+      <section class="check-band" id="check" aria-labelledby="check-title">
+        <div class="section-head">
+          <p class="eyebrow">预习检查</p>
+          <h2 id="check-title">你真的准备好进入课堂了吗？</h2>
+          <p>完成下面 5 题。答错也没关系，反馈会告诉你该回到哪里再看一眼。</p>
+        </div>
+        <form class="quiz" id="quiz">
+          <fieldset class="quiz-card">
+            <legend>1. 用刻度尺测物体长度时，首先要看什么？</legend>
+            <label><input type="radio" name="q1" value="a" /> 物体颜色</label>
+            <label><input type="radio" name="q1" value="b" /> 刻度尺的分度值</label>
+            <label><input type="radio" name="q1" value="c" /> 测量者身高</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>2. 坐在行驶的公交车上，若以公交车为参照物，旁边同学通常是？</legend>
+            <label><input type="radio" name="q2" value="a" /> 静止的</label>
+            <label><input type="radio" name="q2" value="b" /> 向前运动的</label>
+            <label><input type="radio" name="q2" value="c" /> 向后运动的</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>3. 甲 10 s 跑 50 m，乙 8 s 跑 48 m，谁更快？</legend>
+            <label><input type="radio" name="q3" value="a" /> 甲</label>
+            <label><input type="radio" name="q3" value="b" /> 乙</label>
+            <label><input type="radio" name="q3" value="c" /> 一样快</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>4. 速度公式 v = s / t 中，s 表示什么？</legend>
+            <label><input type="radio" name="q4" value="a" /> 时间</label>
+            <label><input type="radio" name="q4" value="b" /> 路程</label>
+            <label><input type="radio" name="q4" value="c" /> 质量</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>5. 为了减小测量误差，下面哪种做法更合适？</legend>
+            <label><input type="radio" name="q5" value="a" /> 只测一次，写得快一些</label>
+            <label><input type="radio" name="q5" value="b" /> 多次测量并求平均值</label>
+            <label><input type="radio" name="q5" value="c" /> 随便估一个接近的数</label>
+          </fieldset>
+          <button class="primary-action quiz-submit" type="submit">提交检查</button>
+          <div class="quiz-result" id="quizResult" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>第一章机械运动预习原型 · 内容依据人教版八年级物理上册章节结构整理</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
