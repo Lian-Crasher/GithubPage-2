@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第二章 声现象 - 八年级物理预习站</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body data-page="sound">
+    <header class="topbar">
+      <a class="brand" href="../index.html#top" aria-label="回到首页">
+        <span class="brand-mark">v</span>
+        <span>物理预习站</span>
+      </a>
+      <nav class="chapter-nav" aria-label="章节导航">
+        <a href="../index.html#map" data-nav="home">探索地图</a>
+        <a href="../chapters/chapter1-motion.html" data-nav="motion">机械运动</a>
+        <a href="../chapters/chapter2-sound.html" data-nav="sound" class="is-active">声现象</a>
+        <a href="../chapters/chapter3-states.html" data-nav="states">物态变化</a>
+        <a href="../chapters/chapter3-states.html#half-check" data-nav="check">阶段检查</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="chapter-showcase sound-showcase" id="chapter-sound" aria-labelledby="sound-title">
+        <img src="../assets/chapter2-sound.png" alt="学生在实验室用音叉、波形屏幕和乐器探索声音现象" />
+        <div class="showcase-copy">
+          <p class="eyebrow">第二章 · 声现象</p>
+          <h2 id="sound-title">声音不是“飘过来”的，它是一场振动的接力</h2>
+          <p>教材第二章从声音的产生与传播开始，继续研究音调、响度、音色，再进入超声、次声、噪声控制和隔音房间模型。预习时盯住一句话：先找声源怎样振动，再找声音怎样传播，最后看它带来了信息还是能量。</p>
+        </div>
+      </section>
+
+      <section class="learning-band" id="sound-origin" aria-labelledby="sound-origin-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 1-2 节</p>
+          <h2 id="sound-origin-title">声音的产生、传播与三大特性</h2>
+          <p>声音由物体振动产生，传播需要介质；频率决定音调，振幅影响响度，材料和结构形成不同音色。</p>
+        </div>
+        <div class="sound-grid">
+          <div class="knowledge-panel">
+            <h3>预习抓手</h3>
+            <ul class="clean-list">
+              <li><strong>振动：</strong>橡皮筋、声带、音叉、鼓面发声时都在振动。</li>
+              <li><strong>介质：</strong>气体、液体、固体都能传声；真空不能传声。</li>
+              <li><strong>频率：</strong>振动越快，频率越高，声音的音调越高。</li>
+              <li><strong>振幅：</strong>振动幅度越大，响度通常越大；距离越远听到的声音越小。</li>
+              <li><strong>音色：</strong>不同乐器材料、结构不同，即使同一音高也能被分辨。</li>
+            </ul>
+          </div>
+          <div class="interactive-panel wave-panel">
+            <div class="panel-topline">
+              <h3>波形观察器</h3>
+              <span class="tag">频率 × 振幅</span>
+            </div>
+            <canvas id="waveCanvas" width="720" height="260" aria-label="声音波形画布"></canvas>
+            <label class="slider-label" for="frequencySlider">
+              频率
+              <output id="frequencyOutput">440 Hz</output>
+            </label>
+            <input id="frequencySlider" type="range" min="120" max="900" value="440" step="20" />
+            <label class="slider-label" for="amplitudeSlider">
+              振幅
+              <output id="amplitudeOutput">50%</output>
+            </label>
+            <input id="amplitudeSlider" type="range" min="20" max="90" value="50" step="5" />
+            <p class="feedback" id="waveFeedback">频率变高时，波形更密；振幅变大时，波峰和波谷更高更低。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="sound-use" aria-labelledby="sound-use-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 3-5 节</p>
+          <h2 id="sound-use-title">声可以传递信息，也可以传递能量</h2>
+          <p>蝙蝠、倒车雷达、声呐、B 超利用回声和反射获得信息；超声清洗和碎石说明声波也能传递能量。噪声控制要从声源、传播过程和人耳三个环节入手。</p>
+        </div>
+        <div class="application-grid">
+          <article class="app-card">
+            <span class="app-icon">i</span>
+            <h3>传递信息</h3>
+            <p>声呐测海深、B 超成像、听诊器诊断，都在利用声音携带的信息。</p>
+          </article>
+          <article class="app-card">
+            <span class="app-icon">e</span>
+            <h3>传递能量</h3>
+            <p>扬声器让烛焰颤动、超声清洗污垢、超声碎石，都说明声能产生作用。</p>
+          </article>
+          <article class="app-card">
+            <span class="app-icon">dB</span>
+            <h3>控制噪声</h3>
+            <p>消声器、隔音板、耳罩分别对应防止产生、阻断传播、防止入耳。</p>
+          </article>
+        </div>
+        <div class="two-column sound-tools">
+          <div class="interactive-panel echo-panel">
+            <div class="panel-topline">
+              <h3>回声测距</h3>
+              <span class="tag">s = vt / 2</span>
+            </div>
+            <label class="slider-label" for="echoTimeSlider">
+              听到回声的总时间
+              <output id="echoTimeOutput">1.5 s</output>
+            </label>
+            <input id="echoTimeSlider" type="range" min="0.4" max="5" value="1.5" step="0.1" />
+            <div class="big-result">
+              <span>距障碍物约</span>
+              <strong id="echoDistanceOutput">255 m</strong>
+            </div>
+            <p class="feedback">声音往返了一次，所以距离不是 340 × t，而是 340 × t ÷ 2。</p>
+          </div>
+          <div class="interactive-panel noise-panel">
+            <div class="panel-topline">
+              <h3>噪声控制配对</h3>
+              <span class="tag">三道防线</span>
+            </div>
+            <div class="choice-row" role="group" aria-label="选择噪声控制措施">
+              <button type="button" class="choice-button is-active" data-noise="source">摩托车消声器</button>
+              <button type="button" class="choice-button" data-noise="path">道路隔音板</button>
+              <button type="button" class="choice-button" data-noise="ear">防噪声耳罩</button>
+            </div>
+            <div class="result-box" id="noiseResult">摩托车消声器：在声源处减弱噪声，也就是尽量防止噪声产生。</div>
+          </div>
+        </div>
+      </section>
+
+
+    </main>
+
+    <footer class="footer">
+      <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
+    </footer>
+
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/chapter2-sound.js"></script>
+  </body>
+</html>
