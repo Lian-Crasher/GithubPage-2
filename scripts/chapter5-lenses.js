@@ -81,23 +81,28 @@ function drawLens(type = "convex") {
 function updateImageRule() {
   const u = Number(objectDistanceSlider.value);
   const f = 10;
+  const scale = 1.4;
   objectDistanceOutput.textContent = `${u} cm`;
-  objectArrow.style.left = `${Math.max(5, 50 - u)}%`;
+  objectArrow.style.left = `${Math.max(5, 50 - u * scale)}%`;
   imageArrow.style.display = "block";
 
   if (u > 20) {
-    imageArrow.style.left = "69%";
-    imageArrow.style.height = "46px";
+    const v = (u * f) / (u - f);
+    const magnification = v / u;
+    imageArrow.style.left = `${Math.min(93, 50 + v * scale)}%`;
+    imageArrow.style.height = `${Math.max(34, 82 * magnification)}px`;
     imageArrow.classList.add("inverted");
     imageRuleResult.textContent = "物体在 2f 以外：成倒立、缩小的实像，照相机常利用这一规律。";
   } else if (u === 20) {
-    imageArrow.style.left = "85%";
+    imageArrow.style.left = `${50 + 20 * scale}%`;
     imageArrow.style.height = "82px";
     imageArrow.classList.add("inverted");
     imageRuleResult.textContent = "物体在 2f 处：成倒立、等大的实像，像距也约为 2f。";
   } else if (u > f) {
-    imageArrow.style.left = "78%";
-    imageArrow.style.height = "118px";
+    const v = (u * f) / (u - f);
+    const magnification = v / u;
+    imageArrow.style.left = `${Math.min(93, 50 + v * scale)}%`;
+    imageArrow.style.height = `${Math.min(128, 82 * magnification)}px`;
     imageArrow.classList.add("inverted");
     imageRuleResult.textContent = "物体在 f 和 2f 之间：成倒立、放大的实像，投影仪常利用这一规律。";
   } else if (u === f) {
@@ -105,8 +110,10 @@ function updateImageRule() {
     imageArrow.classList.remove("inverted");
     imageRuleResult.textContent = "物体在焦点处：折射光近似平行射出，光屏上不能得到清晰的像。";
   } else {
-    imageArrow.style.left = "18%";
-    imageArrow.style.height = "118px";
+    const virtualV = (u * f) / (u - f);
+    const magnification = Math.abs(virtualV / u);
+    imageArrow.style.left = `${Math.max(8, 50 + virtualV * scale)}%`;
+    imageArrow.style.height = `${Math.min(128, 82 * magnification)}px`;
     imageArrow.classList.remove("inverted");
     imageRuleResult.textContent = "物体在焦点以内：成正立、放大的虚像，放大镜常利用这一规律。";
   }

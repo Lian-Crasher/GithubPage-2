@@ -889,13 +889,73 @@ th {
 }
 
 .mini-graph,
-.ray-sketch {
+.ray-sketch,
+.exam-diagram {
   position: relative;
   height: 150px;
   overflow: hidden;
   background: #f7fcff;
   border: 1px solid #cde1eb;
   border-radius: 8px;
+}
+
+.exam-diagram {
+  display: block;
+  width: 100%;
+}
+
+.diagram-surface,
+.diagram-interface {
+  stroke: #8ca5b5;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.diagram-interface {
+  stroke: #72bfd4;
+}
+
+.diagram-normal,
+.diagram-dash {
+  stroke: #9db7c5;
+  stroke-width: 2;
+  stroke-dasharray: 7 7;
+}
+
+.diagram-ray {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.diagram-ray.coral {
+  stroke: #ef6f61;
+}
+
+.diagram-ray.cyan {
+  stroke: #1aa6b7;
+}
+
+.diagram-water {
+  fill: rgba(136, 205, 224, 0.22);
+}
+
+.diagram-mirror {
+  stroke: #8ca5b5;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.diagram-measure {
+  stroke: #f4d978;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.diagram-label {
+  fill: #526b7d;
+  font-size: 13px;
+  font-weight: 900;
 }
 
 .mini-graph .axis {
@@ -1370,19 +1430,19 @@ th {
 }
 
 .left-f {
-  left: calc(50% - 25%);
+  left: calc(50% - 14%);
 }
 
 .left-2f {
-  left: calc(50% - 39%);
+  left: calc(50% - 28%);
 }
 
 .right-f {
-  left: calc(50% + 21%);
+  left: calc(50% + 14%);
 }
 
 .right-2f {
-  left: calc(50% + 35%);
+  left: calc(50% + 28%);
 }
 
 .object-arrow,

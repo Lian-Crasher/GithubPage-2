@@ -137,32 +137,62 @@
         </div>
         <div class="exam-grid">
           <article class="exam-card">
-            <div class="ray-sketch reflection-sketch" aria-hidden="true">
-              <span class="surface"></span>
-              <span class="normal"></span>
-              <span class="ray in"></span>
-              <span class="ray out"></span>
-            </div>
+            <svg class="exam-diagram" viewBox="0 0 320 160" role="img" aria-label="光的反射作图示意">
+              <defs>
+                <marker id="arrow-coral" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#ef6f61"></path>
+                </marker>
+                <marker id="arrow-cyan" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#1aa6b7"></path>
+                </marker>
+              </defs>
+              <line x1="36" y1="104" x2="284" y2="104" class="diagram-surface"></line>
+              <line x1="160" y1="24" x2="160" y2="144" class="diagram-normal"></line>
+              <line x1="72" y1="34" x2="160" y2="104" class="diagram-ray coral" marker-end="url(#arrow-coral)"></line>
+              <line x1="160" y1="104" x2="248" y2="34" class="diagram-ray cyan" marker-end="url(#arrow-cyan)"></line>
+              <text x="168" y="34" class="diagram-label">法线</text>
+              <text x="52" y="30" class="diagram-label">入射光线</text>
+              <text x="218" y="30" class="diagram-label">反射光线</text>
+            </svg>
             <h3>反射作图</h3>
             <p>入射角和反射角都从法线量起，不是从镜面量起；入射光线靠近法线，反射光线也靠近法线。</p>
           </article>
           <article class="exam-card">
-            <div class="ray-sketch refraction-sketch" aria-hidden="true">
-              <span class="water-line"></span>
-              <span class="normal"></span>
-              <span class="ray water"></span>
-              <span class="ray air"></span>
-            </div>
+            <svg class="exam-diagram" viewBox="0 0 320 160" role="img" aria-label="光从水斜射入空气时远离法线">
+              <defs>
+                <marker id="arrow-water" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#ef6f61"></path>
+                </marker>
+                <marker id="arrow-air" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#1aa6b7"></path>
+                </marker>
+              </defs>
+              <rect x="28" y="86" width="264" height="54" class="diagram-water"></rect>
+              <line x1="36" y1="86" x2="284" y2="86" class="diagram-interface"></line>
+              <line x1="160" y1="22" x2="160" y2="140" class="diagram-normal"></line>
+              <line x1="98" y1="132" x2="160" y2="86" class="diagram-ray coral" marker-end="url(#arrow-water)"></line>
+              <line x1="160" y1="86" x2="258" y2="34" class="diagram-ray cyan" marker-end="url(#arrow-air)"></line>
+              <text x="42" y="50" class="diagram-label">空气</text>
+              <text x="42" y="124" class="diagram-label">水</text>
+              <text x="168" y="34" class="diagram-label">法线</text>
+              <text x="218" y="50" class="diagram-label">远离法线</text>
+            </svg>
             <h3>水到空气折射</h3>
             <p>光从水中斜射入空气时，折射光线远离法线，折射角大于入射角。</p>
           </article>
           <article class="exam-card">
-            <div class="ray-sketch mirror-image-sketch" aria-hidden="true">
-              <span class="mirror-line"></span>
-              <span class="object-dot"></span>
-              <span class="image-dot"></span>
-              <span class="measure-line"></span>
-            </div>
+            <svg class="exam-diagram" viewBox="0 0 320 160" role="img" aria-label="平面镜成像物像关于镜面对称">
+              <line x1="160" y1="22" x2="160" y2="138" class="diagram-mirror"></line>
+              <line x1="76" y1="82" x2="244" y2="82" class="diagram-dash"></line>
+              <circle cx="76" cy="82" r="11" fill="#ef6f61"></circle>
+              <circle cx="244" cy="82" r="11" fill="#1aa6b7" opacity="0.72"></circle>
+              <line x1="76" y1="116" x2="160" y2="116" class="diagram-measure"></line>
+              <line x1="160" y1="116" x2="244" y2="116" class="diagram-measure"></line>
+              <text x="68" y="62" class="diagram-label">物</text>
+              <text x="234" y="62" class="diagram-label">像</text>
+              <text x="170" y="34" class="diagram-label">玻璃板</text>
+              <text x="98" y="136" class="diagram-label">距离相等</text>
+            </svg>
             <h3>平面镜实验</h3>
             <p>用玻璃板是为了确定像的位置；像和物关于镜面对称，虚像不能成在光屏上。</p>
           </article>
