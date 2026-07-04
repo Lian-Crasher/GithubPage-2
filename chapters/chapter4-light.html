@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第四章 光现象 - 八年级物理预习站</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body data-page="light">
+    <header class="topbar">
+      <a class="brand" href="../index.html#top" aria-label="回到首页">
+        <span class="brand-mark">v</span>
+        <span>物理预习站</span>
+      </a>
+      <nav class="chapter-nav" aria-label="章节导航">
+        <a href="../index.html#map" data-nav="home">探索地图</a>
+        <a href="../chapters/chapter1-motion.html" data-nav="motion">机械运动</a>
+        <a href="../chapters/chapter2-sound.html" data-nav="sound">声现象</a>
+        <a href="../chapters/chapter3-states.html" data-nav="states">物态变化</a>
+        <a href="../chapters/chapter4-light.html" data-nav="light" class="is-active">光现象</a>
+        <a href="../chapters/chapter5-lenses.html" data-nav="lenses">透镜应用</a>
+        <a href="../chapters/chapter6-density.html" data-nav="density">质量密度</a>
+        <a href="../chapters/chapter6-density.html#final-check" data-nav="check">综合检查</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="chapter-showcase light-showcase" id="chapter-light" aria-labelledby="light-title">
+        <img src="../assets/chapter4-light.png?v=3" alt="光源、反射镜和三棱镜组成的光现象实验示意图" />
+        <div class="showcase-copy">
+          <p class="eyebrow">第四章 · 光现象</p>
+          <h2 id="light-title">影子、镜子、彩虹，都是光在走路</h2>
+          <p>这一章把“看见”拆成可观察的证据：光怎样直线传播，反射时角度怎样相等，折射为什么让筷子看起来弯了，白光又怎样分解成不同颜色。</p>
+        </div>
+      </section>
+
+      <section class="learning-band" id="straight-light" aria-labelledby="straight-light-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 1 节</p>
+          <h2 id="straight-light-title">光的直线传播：先找光源，再画光路</h2>
+          <p>光在同种均匀介质中沿直线传播。影子、小孔成像、日食月食都能用“光线被挡住或通过小孔”来解释。</p>
+        </div>
+        <div class="two-column">
+          <div class="knowledge-panel">
+            <h3>预习抓手</h3>
+            <ul class="clean-list">
+              <li><strong>光源：</strong>能够自行发光的物体叫光源，如太阳、点亮的灯。</li>
+              <li><strong>光线：</strong>用带箭头的直线表示光的传播路径和方向。</li>
+              <li><strong>小孔成像：</strong>像是倒立的，因为上方光线穿过小孔后到达下方。</li>
+              <li><strong>光速：</strong>真空中的光速约为 3.0 × 10<sup>8</sup> m/s。</li>
+            </ul>
+          </div>
+          <div class="interactive-panel ray-panel">
+            <div class="panel-topline">
+              <h3>影子实验台</h3>
+              <span class="tag">直线传播</span>
+            </div>
+            <div class="shadow-stage" aria-hidden="true">
+              <div class="lamp"></div>
+              <div class="light-beam"></div>
+              <div class="blocker" id="shadowBlocker"></div>
+              <div class="screen"></div>
+              <div class="shadow" id="shadowShape"></div>
+            </div>
+            <label class="slider-label" for="blockerSlider">
+              挡板离光源距离
+              <output id="blockerOutput">45%</output>
+            </label>
+            <input id="blockerSlider" type="range" min="24" max="70" value="45" />
+            <p class="feedback" id="shadowFeedback">挡板越靠近光源，屏上的影子越大。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="reflection" aria-labelledby="reflection-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 2 节</p>
+          <h2 id="reflection-title">光的反射：入射角等于反射角</h2>
+          <p>反射时，入射光线、反射光线和法线在同一平面内；反射角等于入射角。平面镜成像的像与物关于镜面对称。</p>
+        </div>
+        <div class="reflection-lab">
+          <div class="interactive-panel mirror-panel">
+            <div class="panel-topline">
+              <h3>反射角观察器</h3>
+              <span class="tag">i = r</span>
+            </div>
+            <canvas id="mirrorCanvas" width="720" height="360" aria-label="光的反射示意画布"></canvas>
+            <label class="slider-label" for="angleSlider">
+              入射角
+              <output id="angleOutput">35°</output>
+            </label>
+            <input id="angleSlider" type="range" min="10" max="70" value="35" />
+            <p class="feedback" id="angleFeedback">反射角也为 35°，两个角都要从法线开始量。</p>
+          </div>
+          <div class="knowledge-panel mirror-rules">
+            <h3>镜面成像四句话</h3>
+            <ul class="clean-list">
+              <li>像和物大小相等。</li>
+              <li>像和物到镜面的距离相等。</li>
+              <li>像和物的连线与镜面垂直。</li>
+              <li>平面镜成的是虚像，不能用光屏承接。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band" id="refraction" aria-labelledby="refraction-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 3-5 节</p>
+          <h2 id="refraction-title">折射、色散与看见物体</h2>
+          <p>光从一种介质斜射入另一种介质时传播方向通常会改变。三棱镜能把白光分解成多种色光，物体的颜色与它反射或透过的色光有关。</p>
+        </div>
+        <div class="application-grid">
+          <article class="app-card">
+            <span class="app-icon">n</span>
+            <h3>折射现象</h3>
+            <p>筷子插入水中看起来弯折，池水看起来变浅，都与光从水进入空气时折射有关。</p>
+          </article>
+          <article class="app-card">
+            <span class="app-icon">RGB</span>
+            <h3>光的色散</h3>
+            <p>白光通过三棱镜后分解成彩色光带，说明白光不是单一颜色的光。</p>
+          </article>
+          <article class="app-card">
+            <span class="app-icon">eye</span>
+            <h3>物体颜色</h3>
+            <p>不透明物体的颜色由它反射的色光决定；透明物体的颜色由它透过的色光决定。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="check-band" id="light-check" aria-labelledby="light-check-title">
+        <div class="section-head">
+          <p class="eyebrow">第四章检查</p>
+          <h2 id="light-check-title">你能用光路解释生活现象了吗？</h2>
+          <p>完成下面 6 题，检查自己是否抓住直线传播、反射、折射和色散的核心。</p>
+        </div>
+        <form class="quiz" id="lightQuiz">
+          <fieldset class="quiz-card">
+            <legend>1. 光在同种均匀介质中通常怎样传播？</legend>
+            <label><input type="radio" name="l1" value="a" /> 沿直线传播</label>
+            <label><input type="radio" name="l1" value="b" /> 一定绕圈传播</label>
+            <label><input type="radio" name="l1" value="c" /> 只能向下传播</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>2. 小孔成像通常形成什么样的像？</legend>
+            <label><input type="radio" name="l2" value="a" /> 正立的虚像</label>
+            <label><input type="radio" name="l2" value="b" /> 倒立的实像</label>
+            <label><input type="radio" name="l2" value="c" /> 没有方向的像</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>3. 光反射时，反射角和入射角的关系是？</legend>
+            <label><input type="radio" name="l3" value="a" /> 反射角等于入射角</label>
+            <label><input type="radio" name="l3" value="b" /> 反射角一定更大</label>
+            <label><input type="radio" name="l3" value="c" /> 两者无关</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>4. 平面镜所成的像一般是什么像？</legend>
+            <label><input type="radio" name="l4" value="a" /> 虚像</label>
+            <label><input type="radio" name="l4" value="b" /> 一定是实像</label>
+            <label><input type="radio" name="l4" value="c" /> 只能比物体小</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>5. 筷子插入水中看起来弯折，主要因为发生了什么？</legend>
+            <label><input type="radio" name="l5" value="a" /> 光的折射</label>
+            <label><input type="radio" name="l5" value="b" /> 光的吸收</label>
+            <label><input type="radio" name="l5" value="c" /> 声的反射</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>6. 三棱镜把白光分成彩色光带，这叫作什么？</legend>
+            <label><input type="radio" name="l6" value="a" /> 色散</label>
+            <label><input type="radio" name="l6" value="b" /> 凝华</label>
+            <label><input type="radio" name="l6" value="c" /> 蒸发</label>
+          </fieldset>
+          <button class="primary-action quiz-submit" type="submit">提交第四章检查</button>
+          <div class="quiz-result" id="lightQuizResult" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
+    </footer>
+
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/quiz.js"></script>
+    <script src="../scripts/chapter4-light.js"></script>
+  </body>
+</html>

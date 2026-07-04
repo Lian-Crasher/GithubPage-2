@@ -17,16 +17,20 @@
         <a href="../chapters/chapter1-motion.html" data-nav="motion" class="is-active">机械运动</a>
         <a href="../chapters/chapter2-sound.html" data-nav="sound">声现象</a>
         <a href="../chapters/chapter3-states.html" data-nav="states">物态变化</a>
-        <a href="../chapters/chapter3-states.html#half-check" data-nav="check">阶段检查</a>
+        <a href="../chapters/chapter4-light.html" data-nav="light">光现象</a>
+        <a href="../chapters/chapter5-lenses.html" data-nav="lenses">透镜应用</a>
+        <a href="../chapters/chapter6-density.html" data-nav="density">质量密度</a>
+        <a href="../chapters/chapter6-density.html#final-check" data-nav="check">综合检查</a>
       </nav>
     </header>
 
     <main id="top">
-      <section class="chapter-divider" id="chapter-motion" aria-labelledby="motion-chapter-title">
-        <div class="chapter-divider-text">
-          <p class="eyebrow">第一章</p>
+      <section class="chapter-showcase motion-showcase" id="chapter-motion" aria-labelledby="motion-chapter-title">
+        <img src="../assets/chapter1-motion.png?v=3" alt="小车、刻度尺和秒表组成的机械运动实验示意图" />
+        <div class="showcase-copy">
+          <p class="eyebrow">第一章 · 机械运动</p>
           <h2 id="motion-chapter-title">机械运动：用数据描述变化</h2>
-          <p>这一章保留原来的完整互动体验：长度、时间、参照物、速度和平均速度测量。</p>
+          <p>第一章从测量开始：长度、时间、参照物、速度和平均速度实验会共同告诉你，物理不是“感觉一下”，而是用证据描述变化。</p>
         </div>
       </section>
 
@@ -49,30 +53,18 @@
           <div class="interactive-panel ruler-panel" aria-label="刻度尺读数互动">
             <div class="panel-topline">
               <h3>读数练习</h3>
-              <span class="tag">观察分度值</span>
+              <span class="tag">分度值 1 mm</span>
             </div>
             <div class="ruler-demo">
-              <div class="ruler-track" aria-hidden="true">
-                <span class="tick long"></span>
-                <span class="tick"></span>
-                <span class="tick"></span>
-                <span class="tick"></span>
-                <span class="tick"></span>
-                <span class="tick long"></span>
-                <span class="tick"></span>
-                <span class="tick"></span>
-                <span class="tick"></span>
-                <span class="tick"></span>
-                <span class="tick long"></span>
-              </div>
+              <div class="ruler-track" id="rulerTrack" aria-hidden="true"></div>
               <div class="object-bar" id="objectBar"></div>
             </div>
             <label class="slider-label" for="lengthSlider">
               物体右端位置
-              <output id="lengthOutput">6.4 cm</output>
+              <output id="lengthOutput">6.4 cm（64 mm）</output>
             </label>
-            <input id="lengthSlider" type="range" min="32" max="88" value="64" />
-            <p class="feedback" id="lengthFeedback">读数时先看清 1 小格是多少，再估读最后一位。</p>
+            <input id="lengthSlider" type="range" min="20" max="96" value="64" step="1" />
+            <p class="feedback" id="lengthFeedback">右端越过 6 cm 后第 4 个小格，所以读数是 6.4 cm。</p>
           </div>
         </div>
       </section>

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第六章 质量与密度 - 八年级物理预习站</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body data-page="density">
+    <header class="topbar">
+      <a class="brand" href="../index.html#top" aria-label="回到首页">
+        <span class="brand-mark">v</span>
+        <span>物理预习站</span>
+      </a>
+      <nav class="chapter-nav" aria-label="章节导航">
+        <a href="../index.html#map" data-nav="home">探索地图</a>
+        <a href="../chapters/chapter1-motion.html" data-nav="motion">机械运动</a>
+        <a href="../chapters/chapter2-sound.html" data-nav="sound">声现象</a>
+        <a href="../chapters/chapter3-states.html" data-nav="states">物态变化</a>
+        <a href="../chapters/chapter4-light.html" data-nav="light">光现象</a>
+        <a href="../chapters/chapter5-lenses.html" data-nav="lenses">透镜应用</a>
+        <a href="../chapters/chapter6-density.html" data-nav="density" class="is-active">质量密度</a>
+        <a href="../chapters/chapter6-density.html#final-check" data-nav="check">综合检查</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="chapter-showcase density-showcase" id="chapter-density" aria-labelledby="density-title">
+        <img src="../assets/chapter6-density.png?v=3" alt="天平、量筒和金属块组成的质量与密度实验示意图" />
+        <div class="showcase-copy">
+          <p class="eyebrow">第六章 · 质量与密度</p>
+          <h2 id="density-title">同样大小的物体，为什么“手感”不一样？</h2>
+          <p>第六章把质量、体积和密度连接起来。你会用天平测质量，用量筒测体积，用 ρ = m / V 判断物质，也会意识到实验顺序会影响测量误差。</p>
+        </div>
+      </section>
+
+      <section class="learning-band" id="mass" aria-labelledby="mass-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 1 节</p>
+          <h2 id="mass-title">质量：物体所含物质的多少</h2>
+          <p>质量是物体本身的一种属性，位置、形状、状态改变时质量通常不变。实验室常用天平测质量。</p>
+        </div>
+        <div class="two-column">
+          <div class="knowledge-panel">
+            <h3>天平使用顺序</h3>
+            <ol class="step-list">
+              <li><strong>放平：</strong>把天平放在水平桌面上，游码拨到零刻线。</li>
+              <li><strong>调平：</strong>调节平衡螺母，使指针指在分度盘中央。</li>
+              <li><strong>左物右码：</strong>物体放左盘，砝码放右盘，最后移动游码。</li>
+              <li><strong>读数：</strong>物体质量 = 砝码总质量 + 游码示数。</li>
+            </ol>
+          </div>
+          <div class="interactive-panel balance-panel">
+            <div class="panel-topline">
+              <h3>天平读数练习</h3>
+              <span class="tag">左物右码</span>
+            </div>
+            <div class="balance-stage" aria-hidden="true">
+              <div class="balance-beam"></div>
+              <div class="balance-stand"></div>
+              <div class="balance-pan left"><span class="cube"></span></div>
+              <div class="balance-pan right"><span id="weightsLabel">50 g + 20 g</span></div>
+            </div>
+            <label class="slider-label" for="riderSlider">
+              游码示数
+              <output id="riderOutput">2.4 g</output>
+            </label>
+            <input id="riderSlider" type="range" min="0" max="5" value="2.4" step="0.1" />
+            <div class="big-result">
+              <span>物体质量</span>
+              <strong id="massOutput">72.4 g</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="density-formula" aria-labelledby="density-formula-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 2-3 节</p>
+          <h2 id="density-formula-title">密度：质量和体积的比值</h2>
+          <p>密度反映物质的一种特性，公式是 ρ = m / V。相同体积时密度大的物体质量更大；相同质量时密度大的物体体积更小。</p>
+        </div>
+        <div class="density-lab">
+          <div class="interactive-panel density-calc">
+            <div class="panel-topline">
+              <h3>密度计算器</h3>
+              <span class="tag">ρ = m / V</span>
+            </div>
+            <label class="slider-label" for="massSlider">
+              质量 m
+              <output id="massCalcOutput">156 g</output>
+            </label>
+            <input id="massSlider" type="range" min="20" max="300" value="156" step="2" />
+            <label class="slider-label" for="volumeSlider">
+              体积 V
+              <output id="volumeOutput">20 cm³</output>
+            </label>
+            <input id="volumeSlider" type="range" min="5" max="120" value="20" step="1" />
+            <div class="speed-result">
+              <span>密度 ρ</span>
+              <strong id="densityOutput">7.80 g/cm³</strong>
+            </div>
+            <p class="feedback" id="densityFeedback">这个数值接近铁的密度，说明物体可能含有铁或钢。</p>
+          </div>
+          <div class="knowledge-panel">
+            <h3>常见密度印象</h3>
+            <ul class="clean-list">
+              <li><strong>水：</strong>约 1.0 g/cm³，是估算密度时常用的参照。</li>
+              <li><strong>铝：</strong>约 2.7 g/cm³，比铁轻，常用于轻量结构。</li>
+              <li><strong>铁：</strong>约 7.9 g/cm³，同体积下明显更重。</li>
+              <li><strong>单位换算：</strong>1 g/cm³ = 1.0 × 10³ kg/m³。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band" id="measure-density" aria-labelledby="measure-density-title">
+        <div class="section-head compact">
+          <p class="eyebrow">实验方法</p>
+          <h2 id="measure-density-title">测密度：先测质量，还是先测体积？</h2>
+          <p>固体密度通常用天平测质量、量筒排水测体积；液体密度要注意容器中残留液体造成的误差。</p>
+        </div>
+        <div class="lab-grid">
+          <article class="lab-step">
+            <span>1</span>
+            <h3>测质量</h3>
+            <p>用调好的天平测出金属块质量 m，记录单位。</p>
+          </article>
+          <article class="lab-step">
+            <span>2</span>
+            <h3>测体积</h3>
+            <p>量筒中先读 V1，放入物体后读 V2，物体体积 V = V2 - V1。</p>
+          </article>
+          <article class="lab-step">
+            <span>3</span>
+            <h3>算密度</h3>
+            <p>代入 ρ = m / V，并和常见物质密度表比较。</p>
+          </article>
+        </div>
+        <div class="data-table-panel">
+          <div class="panel-topline">
+            <h3>排水法小表</h3>
+            <span class="tag">自动计算</span>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>质量 m/g</th>
+                  <th>水面 V1/cm³</th>
+                  <th>水面 V2/cm³</th>
+                  <th>体积 V/cm³</th>
+                  <th>密度 ρ/(g/cm³)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input class="data-input density-input" value="78" inputmode="decimal" aria-label="物体质量" /></td>
+                  <td><input class="data-input density-input" value="40" inputmode="decimal" aria-label="放入前体积" /></td>
+                  <td><input class="data-input density-input" value="50" inputmode="decimal" aria-label="放入后体积" /></td>
+                  <td class="calc-cell" id="solidVolumeCell">10.0</td>
+                  <td class="calc-cell" id="solidDensityCell">7.80</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="feedback" id="solidDensityFeedback">体积为 10.0 cm³，密度约为 7.80 g/cm³。</p>
+        </div>
+      </section>
+
+      <section class="check-band" id="density-check" aria-labelledby="density-check-title">
+        <div class="section-head">
+          <p class="eyebrow">第六章检查</p>
+          <h2 id="density-check-title">你能用密度判断物质了吗？</h2>
+          <p>完成下面 6 题，检查质量、天平、密度公式和实验方法。</p>
+        </div>
+        <form class="quiz" id="densityQuiz">
+          <fieldset class="quiz-card">
+            <legend>1. 质量表示物体所含什么的多少？</legend>
+            <label><input type="radio" name="d1" value="a" /> 物质</label>
+            <label><input type="radio" name="d1" value="b" /> 热量</label>
+            <label><input type="radio" name="d1" value="c" /> 颜色</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>2. 使用天平时，通常应怎样放置物体和砝码？</legend>
+            <label><input type="radio" name="d2" value="a" /> 左物右码</label>
+            <label><input type="radio" name="d2" value="b" /> 左码右物</label>
+            <label><input type="radio" name="d2" value="c" /> 两边随意</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>3. 密度公式正确的是哪一个？</legend>
+            <label><input type="radio" name="d3" value="a" /> ρ = m / V</label>
+            <label><input type="radio" name="d3" value="b" /> ρ = V / m</label>
+            <label><input type="radio" name="d3" value="c" /> ρ = m × V</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>4. 质量 80 g、体积 10 cm³ 的物体，密度是多少？</legend>
+            <label><input type="radio" name="d4" value="a" /> 8 g/cm³</label>
+            <label><input type="radio" name="d4" value="b" /> 0.125 g/cm³</label>
+            <label><input type="radio" name="d4" value="c" /> 90 g/cm³</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>5. 用量筒排水法测不规则固体体积时，体积等于什么？</legend>
+            <label><input type="radio" name="d5" value="a" /> V2 - V1</label>
+            <label><input type="radio" name="d5" value="b" /> V1 + V2</label>
+            <label><input type="radio" name="d5" value="c" /> m / V</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>6. 1 g/cm³ 等于多少 kg/m³？</legend>
+            <label><input type="radio" name="d6" value="a" /> 1000 kg/m³</label>
+            <label><input type="radio" name="d6" value="b" /> 1 kg/m³</label>
+            <label><input type="radio" name="d6" value="c" /> 0.001 kg/m³</label>
+          </fieldset>
+          <button class="primary-action quiz-submit" type="submit">提交第六章检查</button>
+          <div class="quiz-result" id="densityQuizResult" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section class="check-band half-check" id="final-check" aria-labelledby="final-check-title">
+        <div class="section-head">
+          <p class="eyebrow">综合检查</p>
+          <h2 id="final-check-title">上册预习收官挑战</h2>
+          <p>这 10 题覆盖六章主线。做完后可以按反馈回到对应章节查漏补缺。</p>
+        </div>
+        <form class="quiz" id="finalQuiz">
+          <fieldset class="quiz-card">
+            <legend>1. 判断物体运动还是静止，首先要选什么？</legend>
+            <label><input type="radio" name="f1" value="a" /> 参照物</label>
+            <label><input type="radio" name="f1" value="b" /> 颜色</label>
+            <label><input type="radio" name="f1" value="c" /> 温度</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>2. 声音传播需要什么？</legend>
+            <label><input type="radio" name="f2" value="a" /> 介质</label>
+            <label><input type="radio" name="f2" value="b" /> 真空</label>
+            <label><input type="radio" name="f2" value="c" /> 镜子</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>3. 水蒸气直接变成霜属于什么物态变化？</legend>
+            <label><input type="radio" name="f3" value="a" /> 凝华</label>
+            <label><input type="radio" name="f3" value="b" /> 熔化</label>
+            <label><input type="radio" name="f3" value="c" /> 汽化</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>4. 平面镜成像中，像和物到镜面的距离怎样？</legend>
+            <label><input type="radio" name="f4" value="a" /> 相等</label>
+            <label><input type="radio" name="f4" value="b" /> 像一定更远</label>
+            <label><input type="radio" name="f4" value="c" /> 无规律</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>5. 凸透镜对平行光的作用是什么？</legend>
+            <label><input type="radio" name="f5" value="a" /> 会聚</label>
+            <label><input type="radio" name="f5" value="b" /> 发散</label>
+            <label><input type="radio" name="f5" value="c" /> 消声</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>6. 近视眼通常用什么透镜矫正？</legend>
+            <label><input type="radio" name="f6" value="a" /> 凹透镜</label>
+            <label><input type="radio" name="f6" value="b" /> 凸透镜</label>
+            <label><input type="radio" name="f6" value="c" /> 平面镜</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>7. 密度公式是？</legend>
+            <label><input type="radio" name="f7" value="a" /> ρ = m / V</label>
+            <label><input type="radio" name="f7" value="b" /> ρ = s / t</label>
+            <label><input type="radio" name="f7" value="c" /> ρ = V / m</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>8. 速度公式 v = s / t 中，t 表示什么？</legend>
+            <label><input type="radio" name="f8" value="a" /> 时间</label>
+            <label><input type="radio" name="f8" value="b" /> 路程</label>
+            <label><input type="radio" name="f8" value="c" /> 密度</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>9. 白光通过三棱镜分解成彩色光带叫作什么？</legend>
+            <label><input type="radio" name="f9" value="a" /> 色散</label>
+            <label><input type="radio" name="f9" value="b" /> 液化</label>
+            <label><input type="radio" name="f9" value="c" /> 噪声</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>10. 用排水法测体积时，物体体积等于？</legend>
+            <label><input type="radio" name="f10" value="a" /> 放入后读数减放入前读数</label>
+            <label><input type="radio" name="f10" value="b" /> 两次读数相加</label>
+            <label><input type="radio" name="f10" value="c" /> 砝码质量除以时间</label>
+          </fieldset>
+          <button class="primary-action quiz-submit" type="submit">提交综合检查</button>
+          <div class="quiz-result" id="finalQuizResult" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
+    </footer>
+
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/quiz.js"></script>
+    <script src="../scripts/chapter6-density.js"></script>
+  </body>
+</html>

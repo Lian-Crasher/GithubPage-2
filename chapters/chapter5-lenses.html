@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>第五章 透镜及其应用 - 八年级物理预习站</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body data-page="lenses">
+    <header class="topbar">
+      <a class="brand" href="../index.html#top" aria-label="回到首页">
+        <span class="brand-mark">v</span>
+        <span>物理预习站</span>
+      </a>
+      <nav class="chapter-nav" aria-label="章节导航">
+        <a href="../index.html#map" data-nav="home">探索地图</a>
+        <a href="../chapters/chapter1-motion.html" data-nav="motion">机械运动</a>
+        <a href="../chapters/chapter2-sound.html" data-nav="sound">声现象</a>
+        <a href="../chapters/chapter3-states.html" data-nav="states">物态变化</a>
+        <a href="../chapters/chapter4-light.html" data-nav="light">光现象</a>
+        <a href="../chapters/chapter5-lenses.html" data-nav="lenses" class="is-active">透镜应用</a>
+        <a href="../chapters/chapter6-density.html" data-nav="density">质量密度</a>
+        <a href="../chapters/chapter6-density.html#final-check" data-nav="check">综合检查</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="chapter-showcase lenses-showcase" id="chapter-lenses" aria-labelledby="lenses-title">
+        <img src="../assets/chapter5-lenses.png?v=3" alt="照相机、凸透镜和眼睛组成的透镜成像示意图" />
+        <div class="showcase-copy">
+          <p class="eyebrow">第五章 · 透镜及其应用</p>
+          <h2 id="lenses-title">一片透镜，能把光重新组织成图像</h2>
+          <p>第五章从凸透镜和凹透镜出发，研究焦点、焦距、成像规律，再把规律带回照相机、投影仪、放大镜、眼睛、显微镜和望远镜。</p>
+        </div>
+      </section>
+
+      <section class="learning-band" id="lens-basics" aria-labelledby="lens-basics-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 1-2 节</p>
+          <h2 id="lens-basics-title">凸透镜会聚，凹透镜发散</h2>
+          <p>先分清透镜形状和对光的作用：中间厚边缘薄的是凸透镜，对光有会聚作用；中间薄边缘厚的是凹透镜，对光有发散作用。</p>
+        </div>
+        <div class="two-column">
+          <div class="knowledge-panel">
+            <h3>光学词典</h3>
+            <ul class="clean-list">
+              <li><strong>主光轴：</strong>通过透镜两个球面球心的直线。</li>
+              <li><strong>光心：</strong>经过光心的光线传播方向通常不改变。</li>
+              <li><strong>焦点：</strong>平行于主光轴的光经凸透镜后会聚的位置。</li>
+              <li><strong>焦距：</strong>焦点到光心的距离，用 f 表示。</li>
+            </ul>
+          </div>
+          <div class="interactive-panel lens-panel">
+            <div class="panel-topline">
+              <h3>透镜光路切换</h3>
+              <span class="tag">会聚 / 发散</span>
+            </div>
+            <div class="segmented" role="group" aria-label="选择透镜类型">
+              <button class="segment is-active" type="button" data-lens="convex">凸透镜</button>
+              <button class="segment" type="button" data-lens="concave">凹透镜</button>
+            </div>
+            <canvas id="lensCanvas" width="720" height="330" aria-label="透镜对光线作用示意画布"></canvas>
+            <p class="feedback" id="lensFeedback">凸透镜让平行光会聚到焦点，焦点是真实会聚的位置。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="image-rule" aria-labelledby="image-rule-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 3 节</p>
+          <h2 id="image-rule-title">凸透镜成像：物距变，像的性质也变</h2>
+          <p>预习时先记住三条边界：2f、f、焦点以内。照相机、投影仪和放大镜对应的物距区间不同。</p>
+        </div>
+        <div class="lens-bench">
+          <div class="interactive-panel image-panel">
+            <div class="panel-topline">
+              <h3>成像规律滑台</h3>
+              <span class="tag">f = 10 cm</span>
+            </div>
+            <label class="slider-label" for="objectDistanceSlider">
+              物距 u
+              <output id="objectDistanceOutput">28 cm</output>
+            </label>
+            <input id="objectDistanceSlider" type="range" min="6" max="38" value="28" />
+            <div class="bench-stage" aria-hidden="true">
+              <div class="bench-axis"></div>
+              <div class="bench-lens"></div>
+              <div class="bench-mark left-f">F</div>
+              <div class="bench-mark left-2f">2F</div>
+              <div class="bench-mark right-f">F</div>
+              <div class="bench-mark right-2f">2F</div>
+              <div class="object-arrow" id="objectArrow"></div>
+              <div class="image-arrow" id="imageArrow"></div>
+            </div>
+            <div class="result-box" id="imageRuleResult">物体在 2f 以外：成倒立、缩小的实像，照相机常利用这一规律。</div>
+          </div>
+          <div class="knowledge-panel">
+            <h3>应用配对</h3>
+            <ul class="clean-list">
+              <li><strong>照相机：</strong>物体在 2f 以外，成倒立、缩小的实像。</li>
+              <li><strong>投影仪：</strong>物体在 f 和 2f 之间，成倒立、放大的实像。</li>
+              <li><strong>放大镜：</strong>物体在焦点以内，成正立、放大的虚像。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band" id="eyes-tools" aria-labelledby="eyes-tools-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 4-5 节</p>
+          <h2 id="eyes-tools-title">眼睛和光学仪器：把成像规律装进工具里</h2>
+          <p>眼睛像一架能自动调焦的照相机。近视眼看远处物体成像在视网膜前方，用凹透镜矫正；远视眼通常用凸透镜矫正。</p>
+        </div>
+        <div class="application-grid">
+          <article class="app-card">
+            <span class="app-icon">eye</span>
+            <h3>眼睛</h3>
+            <p>晶状体相当于凸透镜，视网膜相当于光屏，成倒立、缩小的实像。</p>
+          </article>
+          <article class="app-card">
+            <span class="app-icon">-</span>
+            <h3>近视矫正</h3>
+            <p>近视眼会聚能力偏强，远处物体成像在视网膜前方，需要凹透镜发散光线。</p>
+          </article>
+          <article class="app-card">
+            <span class="app-icon">+</span>
+            <h3>显微镜与望远镜</h3>
+            <p>多个透镜组合能让微小物体或远处物体更容易被看清。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="check-band" id="lenses-check" aria-labelledby="lenses-check-title">
+        <div class="section-head">
+          <p class="eyebrow">第五章检查</p>
+          <h2 id="lenses-check-title">你能把透镜规律和仪器联系起来了吗？</h2>
+          <p>完成下面 6 题，检查会聚发散、焦距、成像规律和眼镜矫正。</p>
+        </div>
+        <form class="quiz" id="lensesQuiz">
+          <fieldset class="quiz-card">
+            <legend>1. 中间厚、边缘薄的透镜通常是什么透镜？</legend>
+            <label><input type="radio" name="e1" value="a" /> 凸透镜</label>
+            <label><input type="radio" name="e1" value="b" /> 凹透镜</label>
+            <label><input type="radio" name="e1" value="c" /> 平面镜</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>2. 凸透镜对平行光有什么作用？</legend>
+            <label><input type="radio" name="e2" value="a" /> 会聚</label>
+            <label><input type="radio" name="e2" value="b" /> 发散</label>
+            <label><input type="radio" name="e2" value="c" /> 完全吸收</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>3. 焦距指的是焦点到哪里之间的距离？</legend>
+            <label><input type="radio" name="e3" value="a" /> 光心</label>
+            <label><input type="radio" name="e3" value="b" /> 物体顶端</label>
+            <label><input type="radio" name="e3" value="c" /> 光屏边缘</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>4. 照相机常利用凸透镜成什么样的像？</legend>
+            <label><input type="radio" name="e4" value="a" /> 倒立、缩小的实像</label>
+            <label><input type="radio" name="e4" value="b" /> 正立、等大的虚像</label>
+            <label><input type="radio" name="e4" value="c" /> 倒立、放大的虚像</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>5. 放大镜使用时，物体一般放在哪里？</legend>
+            <label><input type="radio" name="e5" value="a" /> 焦点以内</label>
+            <label><input type="radio" name="e5" value="b" /> 无限远处</label>
+            <label><input type="radio" name="e5" value="c" /> 一定在 2f 以外</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>6. 近视眼通常用什么透镜矫正？</legend>
+            <label><input type="radio" name="e6" value="a" /> 凹透镜</label>
+            <label><input type="radio" name="e6" value="b" /> 凸透镜</label>
+            <label><input type="radio" name="e6" value="c" /> 平面镜</label>
+          </fieldset>
+          <button class="primary-action quiz-submit" type="submit">提交第五章检查</button>
+          <div class="quiz-result" id="lensesQuizResult" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
+    </footer>
+
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/quiz.js"></script>
+    <script src="../scripts/chapter5-lenses.js"></script>
+  </body>
+</html>

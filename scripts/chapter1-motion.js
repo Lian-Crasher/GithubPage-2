@@ -2,6 +2,7 @@ const lengthSlider = document.querySelector("#lengthSlider");
 const lengthOutput = document.querySelector("#lengthOutput");
 const lengthFeedback = document.querySelector("#lengthFeedback");
 const objectBar = document.querySelector("#objectBar");
+const rulerTrack = document.querySelector("#rulerTrack");
 const distanceSlider = document.querySelector("#distanceSlider");
 const timeSlider = document.querySelector("#timeSlider");
 const distanceOutput = document.querySelector("#distanceOutput");
@@ -16,16 +17,40 @@ const dataInputs = document.querySelectorAll(".data-input");
 const calcCells = document.querySelectorAll(".calc-cell");
 const averageFeedback = document.querySelector("#averageFeedback");
 
+function buildRuler() {
+  if (!rulerTrack || rulerTrack.children.length) return;
+
+  for (let mm = 0; mm <= 100; mm += 1) {
+    const tick = document.createElement("span");
+    tick.className = `ruler-tick${mm % 10 === 0 ? " cm" : mm % 5 === 0 ? " half" : ""}`;
+    tick.style.left = `${mm}%`;
+    rulerTrack.appendChild(tick);
+  }
+
+  for (let cm = 0; cm <= 10; cm += 1) {
+    const label = document.createElement("span");
+    label.className = "ruler-label";
+    label.style.left = `${cm * 10}%`;
+    label.textContent = cm;
+    rulerTrack.appendChild(label);
+  }
+}
+
 function updateLength() {
-  const value = Number(lengthSlider.value) / 10;
-  lengthOutput.textContent = `${value.toFixed(1)} cm`;
-  objectBar.style.width = `${Number(lengthSlider.value) - 10}%`;
-  if (value < 5) {
-    lengthFeedback.textContent = "物体较短时更要让左端对齐零刻度线，避免从尺端读起造成偏差。";
-  } else if (value > 8) {
-    lengthFeedback.textContent = "读数很接近整厘米时，也要估读到下一位，例如 8.4 cm。";
+  const mm = Number(lengthSlider.value);
+  const cm = mm / 10;
+  const wholeCm = Math.floor(mm / 10);
+  const extraMm = mm % 10;
+
+  lengthOutput.textContent = `${cm.toFixed(1)} cm（${mm} mm）`;
+  objectBar.style.width = `${mm}%`;
+
+  if (extraMm === 0) {
+    lengthFeedback.textContent = `右端正对 ${wholeCm} cm 长刻度，所以读数是 ${cm.toFixed(1)} cm。`;
+  } else if (extraMm === 5) {
+    lengthFeedback.textContent = `右端在 ${wholeCm} cm 和 ${wholeCm + 1} cm 的正中间，也就是 ${wholeCm}.5 cm。`;
   } else {
-    lengthFeedback.textContent = "读数时先看清 1 小格是多少，再估读最后一位。";
+    lengthFeedback.textContent = `右端越过 ${wholeCm} cm 后第 ${extraMm} 个 1 mm 小格，所以读数是 ${cm.toFixed(1)} cm。`;
   }
 }
 
@@ -125,6 +150,7 @@ dataInputs.forEach((input) => {
   input.addEventListener("input", updateTable);
 });
 
+buildRuler();
 updateLength();
 updateSpeed();
 updateTable();
