@@ -79,7 +79,7 @@ function runCar() {
   window.requestAnimationFrame(() => {
     const time = Number(timeSlider.value);
     const distance = Number(distanceSlider.value);
-    car.style.transitionDuration = `${Math.max(0.7, Math.min(3, time / 5))}s`;
+    car.style.transitionDuration = `${Math.max(0.5, Math.min(6, time / 5))}s`;
     car.style.left = `calc(34px + (100% - 124px) * ${distance / 100})`;
   });
 }
@@ -107,15 +107,16 @@ function updateTable() {
   }).filter(Boolean);
 
   if (!speeds.length) {
-    averageFeedback.textContent = "请输入有效的路程和时间，速度才能计算出来。";
+    averageFeedback.textContent = "请输入有效的路程和时间，平均速度才能计算出来。";
     return;
   }
 
+  const countText = speeds.length === 3 ? "三次测得的" : `${speeds.length} 组有效数据的`;
   const average = speeds.reduce((sum, value) => sum + value, 0) / speeds.length;
   const spread = Math.max(...speeds) - Math.min(...speeds);
   averageFeedback.textContent = spread > average * 0.35
-    ? `三次平均速度约为 ${average.toFixed(2)} m/s，但数据差别偏大，实验时要检查计时和起止位置。`
-    : `三次平均速度约为 ${average.toFixed(2)} m/s。数据接近，说明实验比较稳定。`;
+    ? `${countText}平均速度的平均值约为 ${average.toFixed(2)} m/s，但各次数据差别偏大，实验时要检查计时和起止位置。`
+    : `${countText}平均速度的平均值约为 ${average.toFixed(2)} m/s。数据接近，说明实验比较稳定。`;
 }
 
 setupQuiz({
