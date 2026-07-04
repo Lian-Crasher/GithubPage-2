@@ -75,6 +75,8 @@ a {
   display: flex;
   align-items: center;
   gap: 6px;
+  min-width: 0;
+  max-width: 100%;
   overflow-x: auto;
 }
 
@@ -915,10 +917,34 @@ th {
   height: 3px;
 }
 
+.axis-label,
+.origin-label,
+.line-label {
+  position: absolute;
+  color: #526b7d;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.y-label {
+  left: 12px;
+  top: 12px;
+}
+
+.x-label {
+  right: 12px;
+  bottom: 8px;
+}
+
+.origin-label {
+  left: 20px;
+  bottom: 14px;
+}
+
 .graph-line {
   position: absolute;
-  left: 44px;
-  bottom: 36px;
+  left: 38px;
+  bottom: 32px;
   height: 5px;
   background: var(--teal);
   border-radius: 999px;
@@ -926,24 +952,42 @@ th {
 }
 
 .graph-line.steady {
-  width: 155px;
-  transform: rotate(-28deg);
+  width: 170px;
+  transform: rotate(-31deg);
+}
+
+.graph-line.climb {
+  width: 86px;
+  transform: rotate(-34deg);
 }
 
 .graph-line.pause {
-  width: 150px;
-  bottom: 78px;
+  left: 108px;
+  bottom: 81px;
+  width: 112px;
 }
 
 .graph-line.fast {
-  width: 160px;
-  transform: rotate(-38deg);
+  width: 178px;
+  transform: rotate(-42deg);
 }
 
 .graph-line.slow {
-  width: 145px;
+  width: 168px;
   background: var(--coral);
-  transform: rotate(-20deg);
+  transform: rotate(-24deg);
+}
+
+.fast-label {
+  left: 174px;
+  top: 28px;
+  color: var(--teal);
+}
+
+.slow-label {
+  left: 190px;
+  top: 74px;
+  color: var(--coral);
 }
 
 .ray-sketch span {
@@ -1838,6 +1882,10 @@ th {
     gap: 8px;
   }
 
+  .chapter-nav {
+    width: 100%;
+  }
+
   .hero {
     min-height: 780px;
   }
@@ -1916,10 +1964,6 @@ th {
 }
 
 @media (max-width: 560px) {
-  .chapter-nav {
-    width: 100%;
-  }
-
   .hero {
     min-height: 820px;
   }
