@@ -2,17 +2,27 @@
 
 ## 项目目标
 
-为“人教版八年级物理上册”制作一个适合初中生预习的网页站点。要求图文并茂、激发探索兴趣，每章独立页面，包含知识讲解、互动体验和检查环节，并最终通过 GitHub Pages 对外访问。
+为“人教版八年级物理上册”制作一个适合初中生预习和期末前查漏补缺的静态网页站点。站点需要图文并茂、便于探索，每章独立页面，包含知识讲解、互动体验、章节检查，并通过 GitHub Pages 对外访问。
+
+当前内容重点不只是覆盖教材六章，也要对接深圳南山区 2025-2026 学年八年级上学期期末物理试卷中暴露出的考察方式：图像分析、光路作图、实验步骤、误差判断、项目化应用题和阅读信息题。
 
 ## 当前进展
 
-项目位于 `/Users/lianliu/Documents/GithubPage 2`。目前已完成静态网页版本，包含首页、第一至第六章页面、章节导航、综合检查入口。代码已重构为每章独立 HTML 文件，每章有独立 JS 互动脚本，公共样式在 `styles/main.css`。
+项目位于 `/Users/lianliu/Documents/GithubPage 2`。目前已完成原生静态网页版本，包含首页、第一至第六章页面、章节导航、阶段检查和综合检查入口。代码结构仍保持每章独立 HTML、每章独立 JS、公共样式集中在 `styles/main.css`。
 
 GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-最近一次远端 `main` 已通过 `gh api` 发布到提交 `b166e16386a99bb3d9c5cb127d46b7f1234ec3ac`，并验证远端 tree 与本地当前代码一致。
+最近一次远端 `main` 已通过 GitHub API 发布到提交：
+
+`437b8a58f1db886ff93182492fde884fef3094dd`
+
+该远端提交的 tree 已验证与本地当前代码一致：
+
+`39e3ece799b01b3e8327f9932c464ae36da52329`
+
+注意：本地 `git status` 可能显示 `main...origin/main [ahead 2]`。这是因为最近两次普通 `git push` 遇到 GitHub HTTPS/HTTP2 网络错误，改用 `gh api` 创建远端提交并更新 `main`；本地提交 SHA 与远端 API 创建的提交 SHA 不同，但代码 tree 已验证一致。
 
 ## 已做的代码/文件变更
 
@@ -35,7 +45,7 @@ https://lian-crasher.github.io/GithubPage-2/
 - `scripts/common.js`
 - `styles/main.css`
 
-章节配图已统一为轻量插画风格，资源包括：
+章节配图已统一为轻量教学插画风格，资源包括：
 
 - `assets/chapter1-motion.png`
 - `assets/chapter2-sound.png`
@@ -44,39 +54,61 @@ https://lian-crasher.github.io/GithubPage-2/
 - `assets/chapter5-lenses.png`
 - `assets/chapter6-density.png`
 
-最近重点修正：
+近期重点变更：
 
-- 第一章第一节刻度尺读数互动已修正为 1 mm 分度值、0-10 cm 刻度、64 mm 对应 6.4 cm。
-- 第一章其它互动已检查并修正：
-  - 第 4 节标题从“速度的测量”改为“测量平均速度”。
-  - 数据表列名和反馈统一为“平均速度”。
-  - 数据反馈会根据有效数据组数变化，不再错误固定说“三次”。
-  - 小车动画时长上限从 3s 调整为 6s，更能体现不同时间对应的快慢差异。
-- `node --check scripts/chapter1-motion.js` 已通过。
+- 第一章新增“路程-时间图像”期末题型模块。
+  - 小图已标明横轴 `t/s`、纵轴 `s/m` 和原点 `0`。
+  - 图线从原点出发，说明水平线段表示静止。
+  - 强调 s-t 图像中斜率表示速度；同一时刻高度表示路程，若都从原点出发，较陡的线速度更大。
+- 第三章新增水沸腾实验专项和热胀冷缩阅读题专项。
+  - 覆盖器材从下往上安装、沸腾现象判断、沸腾持续吸热、控制变量。
+  - 补充线膨胀系数、双金属片温度计、图像判断和改进措施。
+- 第四章补强光现象作图与实验专项。
+  - 反射、折射、平面镜实验卡片已从 CSS 线条改为 SVG 示意图，箭头方向、法线、界面和物像关系更清楚。
+  - 水到空气折射图明确标出空气/水界面和“远离法线”。
+- 第五章修正透镜应用互动。
+  - “透镜光路切换”中凸透镜平行光会聚、凹透镜发散和反向延长线示意已检查。
+  - “成像规律滑台”已改为按凸透镜公式 `1/f = 1/u + 1/v` 和统一比例计算像距。
+  - `F`、`2F` 标记已左右对称；默认 `u = 28 cm` 时，像位于右侧 `F` 与 `2F` 之间且倒立缩小。
+- 第六章新增密度实验误差专项。
+  - 覆盖天平调平、砝码使用、容器质量扣除、排水法体积、红豆空隙导致密度偏小。
+- 各章检查题和综合检查已扩充。
+  - 第一章 7 题、第三章 8 题、第四章 8 题、第五章 9 题、第六章 8 题。
+  - 综合检查从 10 题扩展到 14 题，加入 s-t 图像、折射作图、投影仪调试、热胀冷缩等期末常见能力点。
+- 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片等组件，并修复窄屏导航可能撑宽页面的问题。
 
 ## 关键设计决策
 
 采用原生 HTML/CSS/JS，而不是 React。原因：
 
-- 当前是 GitHub Pages 静态站，原生方案部署简单、维护直观。
-- 每章独立 HTML + 独立 JS，便于未来逐章扩展和修改。
+- 当前目标是 GitHub Pages 静态站，原生方案部署简单、维护直观。
+- 每章独立 HTML + 独立 JS，便于未来逐章扩展和修正。
 - 公共能力抽在 `scripts/common.js`、`scripts/quiz.js` 和 `styles/main.css`。
-- 视觉上避免每章配图风格割裂，统一成清爽、教学插画式的科学探索风格。
-- 每章都需要包含“检查环节”，不能只讲知识点。
+- 视觉上保持清爽、教学插画式的科学探索风格，避免章节风格割裂。
+- 每章都保留“检查环节”，并逐步从单纯知识点检查升级为期末题型检查。
+- 光路、透镜、图像等容易误导学生的内容，优先使用明确坐标、箭头方向、法线、`F/2F` 标记和物理公式驱动的位置计算，而不是随意摆放示意线条。
+- 互动内容优先追求物理准确性，再考虑视觉趣味。若两者冲突，以准确性为准。
 
 ## 未解决问题
 
-本地 Git 状态有历史遗留不一致：
+本地 Git 状态仍有历史不一致：
 
-- 本地 `origin/main` 由于普通 `git fetch/push` 多次遇到 HTTPS 连接问题，没有刷新。
-- `git status` 可能显示 `main...origin/main [ahead 2]`。
-- 远端 GitHub 实际已经是最新内容，已通过 `gh api` 验证 tree 与本地一致。
+- 本地 `git status` 可能显示 `main...origin/main [ahead 2]`。
+- 原因不是远端缺内容，而是最近两次普通 `git push` 网络失败后，使用 `gh api` 在远端创建了等价内容的新提交。
+- 本地提交 SHA 与远端提交 SHA 不同，但最近已通过远端 tree 与本地 tree 对比确认内容一致。
+- 后续如需恢复本地 Git 引用整洁，建议在确认没有未提交改动后，用非破坏方式重新对齐本地 `main` 到远端 `main`。不要直接 `git reset --hard`，除非用户明确同意。
 
-普通 `git push` 曾失败：
+普通 `git push` 曾多次失败：
 
-- 第一次是 HTTPS 凭证未接上，后来用 `gh auth setup-git` 修过。
-- 后续多次失败在网络层，例如 HTTP2 framing 或连接 GitHub 443 超时。
-- 因此最近几次发布采用 `gh api` 创建远端提交并更新 `main`。
+- 曾出现 `Error in the HTTP2 framing layer`。
+- 曾出现连接 GitHub 443 超时。
+- 因此当前可靠发布方式是：使用 `gh api` 创建 tree、创建 commit、PATCH 更新 `refs/heads/main`。
+
+内容层面仍可继续加强：
+
+- 部分章节仍是“预习站”深度，不是完整题库。
+- 光学、实验和密度题虽然已补强，但还可以继续加入更多可操作练习，例如学生自己拖拽光线、选择实验步骤排序、判断误差方向。
+- 线上 GitHub Pages 可能有缓存延迟，推送后需要等待 Pages 刷新。
 
 ## 如何验证
 
@@ -99,32 +131,55 @@ cd "/Users/lianliu/Documents/GithubPage 2"
 python3 -m http.server 8000
 ```
 
+如果 8000 被占用，可换端口，例如：
+
+```bash
+python3 -m http.server 8002
+```
+
 本地访问：
 
 - `http://localhost:8000/index.html`
-- `http://localhost:8000/chapters/chapter1-motion.html`
+- `http://localhost:8000/chapters/chapter1-motion.html#motion-graph`
+- `http://localhost:8000/chapters/chapter4-light.html#ray-drawing`
+- `http://localhost:8000/chapters/chapter5-lenses.html#image-rule`
 - `http://localhost:8000/chapters/chapter6-density.html#final-check`
 
 线上访问：
 
 - https://lian-crasher.github.io/GithubPage-2/
 - https://lian-crasher.github.io/GithubPage-2/chapters/chapter1-motion.html
+- https://lian-crasher.github.io/GithubPage-2/chapters/chapter4-light.html#ray-drawing
+- https://lian-crasher.github.io/GithubPage-2/chapters/chapter5-lenses.html#image-rule
 
-远端验证可用：
+远端验证：
 
 ```bash
 gh api repos/Lian-Crasher/GithubPage-2/git/ref/heads/main --jq .object.sha
-gh api repos/Lian-Crasher/GithubPage-2/git/commits/b166e16386a99bb3d9c5cb127d46b7f1234ec3ac --jq .tree.sha
+gh api repos/Lian-Crasher/GithubPage-2/git/commits/<remote-sha> --jq .tree.sha
 git rev-parse HEAD^{tree}
 ```
 
-预期远端 tree 和本地 tree 一致。
+预期远端 tree 和本地 tree 一致。最近一次已验证：
+
+- 远端 `main`: `437b8a58f1db886ff93182492fde884fef3094dd`
+- tree: `39e3ece799b01b3e8327f9932c464ae36da52329`
+
+浏览器验证重点：
+
+- 第一章 `#motion-graph`：坐标轴、原点、斜率含义是否清楚。
+- 第四章 `#ray-drawing`：反射光线是否从入射点射出，折射是否远离法线，平面镜物像是否对称。
+- 第五章 `#lens-basics`：凸透镜会聚、凹透镜发散是否准确。
+- 第五章 `#image-rule`：不同物距时像的位置、正倒、大小是否符合凸透镜成像规律。
+- 第六章 `#density-errors`：误差方向表述是否准确。
 
 ## 下一步建议
 
-优先做一次全站内容准确性审查，尤其是每章互动题、模拟器反馈和章末检查答案。然后继续完善视觉一致性与移动端体验。之后可以考虑：
+优先级从高到低：
 
-- 为每章增加“错题回看”定位。
-- 增加学习进度记录。
-- 给每章增加更贴近教材实验的互动模块。
-- 修复本地 Git 引用状态：网络恢复后尝试 `git fetch origin main`，必要时再决定是否把本地分支对齐到远端。
+- 做一次全站物理准确性复审，尤其是所有 canvas/SVG/互动反馈是否和教材规律一致。
+- 给第四章、第五章增加更可操作的“作图练习”互动，例如拖动入射光线、自动显示法线和角度。
+- 给第三章和第六章增加实验步骤排序题、误差方向判断题，进一步贴近期末实验题。
+- 增加“错题回看”定位：综合检查答错后可直接跳转到对应章节模块。
+- 增加学习进度记录，例如用 `localStorage` 保存章节检查完成状态。
+- 在网络稳定时处理本地 Git 引用不一致问题；处理前先确认工作区干净，并避免破坏用户未提交改动。
