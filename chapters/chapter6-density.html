@@ -168,11 +168,41 @@
         </div>
       </section>
 
+      <section class="learning-band alt" id="density-errors" aria-labelledby="density-errors-title">
+        <div class="section-head compact">
+          <p class="eyebrow">实验题专项</p>
+          <h2 id="density-errors-title">密度实验：读数之外，还要会判断误差方向</h2>
+          <p>期末实验题常把红豆、石块、烧杯放进同一个问题里。只会套公式还不够，要看质量、体积哪个被测大或测小。</p>
+        </div>
+        <div class="rule-grid">
+          <article class="rule-card">
+            <span>1</span>
+            <h3>天平调平</h3>
+            <p>指针偏左，说明左侧偏重，平衡螺母向右调；砝码必须用镊子夹取。</p>
+          </article>
+          <article class="rule-card">
+            <span>2</span>
+            <h3>先减烧杯质量</h3>
+            <p>红豆质量 = 烧杯和红豆总质量 - 空烧杯质量，别把容器质量算进去。</p>
+          </article>
+          <article class="rule-card">
+            <span>3</span>
+            <h3>排水法测真实体积</h3>
+            <p>红豆全部浸没后，体积 = 后读数 - 原来水的读数，单位 mL 可直接看作 cm³。</p>
+          </article>
+          <article class="rule-card">
+            <span>4</span>
+            <h3>空隙会让密度偏小</h3>
+            <p>直接倒进量筒量体积，会把红豆间空隙也算进去，体积偏大，密度偏小。</p>
+          </article>
+        </div>
+      </section>
+
       <section class="check-band" id="density-check" aria-labelledby="density-check-title">
         <div class="section-head">
           <p class="eyebrow">第六章检查</p>
           <h2 id="density-check-title">你能用密度判断物质了吗？</h2>
-          <p>完成下面 6 题，检查质量、天平、密度公式和实验方法。</p>
+          <p>完成下面 8 题，检查质量、天平、密度公式、实验方法和误差方向。</p>
         </div>
         <form class="quiz" id="densityQuiz">
           <fieldset class="quiz-card">
@@ -211,6 +241,18 @@
             <label><input type="radio" name="d6" value="b" /> 1 kg/m³</label>
             <label><input type="radio" name="d6" value="c" /> 0.001 kg/m³</label>
           </fieldset>
+          <fieldset class="quiz-card">
+            <legend>7. 用量筒直接量红豆体积时把空隙也算进去，测得密度会怎样？</legend>
+            <label><input type="radio" name="d7" value="a" /> 偏小</label>
+            <label><input type="radio" name="d7" value="b" /> 偏大</label>
+            <label><input type="radio" name="d7" value="c" /> 一定没有影响</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>8. 天平指针偏向分度盘左侧，调平时平衡螺母应向哪边调？</legend>
+            <label><input type="radio" name="d8" value="a" /> 向右</label>
+            <label><input type="radio" name="d8" value="b" /> 向左</label>
+            <label><input type="radio" name="d8" value="c" /> 不需要调</label>
+          </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第六章检查</button>
           <div class="quiz-result" id="densityQuizResult" aria-live="polite"></div>
         </form>
@@ -220,7 +262,7 @@
         <div class="section-head">
           <p class="eyebrow">综合检查</p>
           <h2 id="final-check-title">上册预习收官挑战</h2>
-          <p>这 10 题覆盖六章主线。做完后可以按反馈回到对应章节查漏补缺。</p>
+          <p>这 14 题覆盖六章主线和期末常见题型。做完后可以按反馈回到对应章节查漏补缺。</p>
         </div>
         <form class="quiz" id="finalQuiz">
           <fieldset class="quiz-card">
@@ -282,6 +324,30 @@
             <label><input type="radio" name="f10" value="a" /> 放入后读数减放入前读数</label>
             <label><input type="radio" name="f10" value="b" /> 两次读数相加</label>
             <label><input type="radio" name="f10" value="c" /> 砝码质量除以时间</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>11. s-t 图像中一段水平线表示什么？</legend>
+            <label><input type="radio" name="f11" value="a" /> 这一段静止</label>
+            <label><input type="radio" name="f11" value="b" /> 速度一定最大</label>
+            <label><input type="radio" name="f11" value="c" /> 体积不变</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>12. 光从水中斜射入空气时，折射光线通常怎样？</legend>
+            <label><input type="radio" name="f12" value="a" /> 远离法线</label>
+            <label><input type="radio" name="f12" value="b" /> 靠近法线</label>
+            <label><input type="radio" name="f12" value="c" /> 不再传播</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>13. 投影仪想让画面变大且清晰，通常应怎样调？</legend>
+            <label><input type="radio" name="f13" value="a" /> 手机靠近透镜，投影仪远离屏幕</label>
+            <label><input type="radio" name="f13" value="b" /> 手机远离透镜，投影仪靠近屏幕</label>
+            <label><input type="radio" name="f13" value="c" /> 只换更亮的屏幕</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>14. 同长同升温时，线膨胀系数更大的金属会怎样？</legend>
+            <label><input type="radio" name="f14" value="a" /> 伸长更多</label>
+            <label><input type="radio" name="f14" value="b" /> 伸长更少</label>
+            <label><input type="radio" name="f14" value="c" /> 一定不变</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交综合检查</button>
           <div class="quiz-result" id="finalQuizResult" aria-live="polite"></div>

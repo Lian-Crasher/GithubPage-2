@@ -130,11 +130,44 @@
         </div>
       </section>
 
+      <section class="learning-band alt" id="lens-exam" aria-labelledby="lens-exam-title">
+        <div class="section-head compact">
+          <p class="eyebrow">作图与项目专项</p>
+          <h2 id="lens-exam-title">透镜题：三条特殊光线和投影仪调试</h2>
+          <p>凸透镜题常把作图、焦距测量、手机投影仪放在一起考。先定焦距和物距，再判断像的大小、正倒和屏幕位置。</p>
+        </div>
+        <div class="rule-grid">
+          <article class="rule-card">
+            <span>1</span>
+            <h3>平行过焦点</h3>
+            <p>平行于主光轴的光线，经凸透镜折射后通过另一侧焦点。</p>
+          </article>
+          <article class="rule-card">
+            <span>2</span>
+            <h3>过焦点变平行</h3>
+            <p>从焦点射向凸透镜的光线，折射后平行于主光轴。</p>
+          </article>
+          <article class="rule-card">
+            <span>3</span>
+            <h3>过光心不偏折</h3>
+            <p>经过光心的光线，传播方向通常不改变，是作图时最稳的一条辅助线。</p>
+          </article>
+          <article class="rule-card">
+            <span>4</span>
+            <h3>投影仪调大像</h3>
+            <p>成实像时遵循“物近像远像变大”：手机靠近透镜，投影仪远离屏幕。</p>
+          </article>
+        </div>
+        <div class="exam-note">
+          <strong>测焦距：</strong>让凸透镜正对太阳光，移动白纸直到出现最小最亮的光斑，光心到光斑的距离就是焦距。
+        </div>
+      </section>
+
       <section class="check-band" id="lenses-check" aria-labelledby="lenses-check-title">
         <div class="section-head">
           <p class="eyebrow">第五章检查</p>
           <h2 id="lenses-check-title">你能把透镜规律和仪器联系起来了吗？</h2>
-          <p>完成下面 6 题，检查会聚发散、焦距、成像规律和眼镜矫正。</p>
+          <p>完成下面 9 题，检查会聚发散、焦距、成像规律、作图和投影仪调试。</p>
         </div>
         <form class="quiz" id="lensesQuiz">
           <fieldset class="quiz-card">
@@ -172,6 +205,24 @@
             <label><input type="radio" name="e6" value="a" /> 凹透镜</label>
             <label><input type="radio" name="e6" value="b" /> 凸透镜</label>
             <label><input type="radio" name="e6" value="c" /> 平面镜</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>7. 平行于主光轴的光线经凸透镜折射后通常会怎样？</legend>
+            <label><input type="radio" name="e7" value="a" /> 通过另一侧焦点</label>
+            <label><input type="radio" name="e7" value="b" /> 原路返回</label>
+            <label><input type="radio" name="e7" value="c" /> 变成声波</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>8. 投影仪成清晰放大实像时，物距一般满足什么范围？</legend>
+            <label><input type="radio" name="e8" value="a" /> f 和 2f 之间</label>
+            <label><input type="radio" name="e8" value="b" /> 小于 f</label>
+            <label><input type="radio" name="e8" value="c" /> 一定大于 2f</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>9. 想让投影画面变大且清晰，通常应怎样调？</legend>
+            <label><input type="radio" name="e9" value="a" /> 手机靠近透镜，投影仪远离屏幕</label>
+            <label><input type="radio" name="e9" value="b" /> 手机远离透镜，投影仪靠近屏幕</label>
+            <label><input type="radio" name="e9" value="c" /> 只调高屏幕亮度即可</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第五章检查</button>
           <div class="quiz-result" id="lensesQuizResult" aria-live="polite"></div>

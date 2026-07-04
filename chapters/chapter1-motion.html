@@ -153,6 +153,47 @@
         </div>
       </section>
 
+      <section class="learning-band alt" id="motion-graph" aria-labelledby="motion-graph-title">
+        <div class="section-head compact">
+          <p class="eyebrow">期末题型</p>
+          <h2 id="motion-graph-title">路程-时间图像：先看斜率，再看相对位置</h2>
+          <p>遇到无人机、小车、运动员的 s-t 图像题，先判断线段是上升、水平还是更陡，再比较同一时刻谁的路程更大。</p>
+        </div>
+        <div class="exam-grid">
+          <article class="exam-card">
+            <div class="mini-graph" aria-hidden="true">
+              <span class="axis y"></span>
+              <span class="axis x"></span>
+              <span class="graph-line steady"></span>
+            </div>
+            <h3>斜线向上</h3>
+            <p>路程随时间均匀增大，表示匀速直线运动。线越陡，速度越大。</p>
+          </article>
+          <article class="exam-card">
+            <div class="mini-graph" aria-hidden="true">
+              <span class="axis y"></span>
+              <span class="axis x"></span>
+              <span class="graph-line pause"></span>
+            </div>
+            <h3>水平线段</h3>
+            <p>时间在走，但路程不变，表示物体在这一段时间内静止。</p>
+          </article>
+          <article class="exam-card">
+            <div class="mini-graph" aria-hidden="true">
+              <span class="axis y"></span>
+              <span class="axis x"></span>
+              <span class="graph-line fast"></span>
+              <span class="graph-line slow"></span>
+            </div>
+            <h3>同一时刻比高度</h3>
+            <p>在同一个时间点，图像位置更高，说明通过的路程更大。</p>
+          </article>
+        </div>
+        <div class="exam-note">
+          <strong>相对运动判断：</strong>如果乙在 0-6 s 内比甲上升得更快，那么以甲为参照物，乙仍然向上运动。
+        </div>
+      </section>
+
       <section class="learning-band alt" id="lab" aria-labelledby="lab-title">
         <div class="section-head compact">
           <p class="eyebrow">第 4 节</p>
@@ -221,7 +262,7 @@
         <div class="section-head">
           <p class="eyebrow">第一章检查</p>
           <h2 id="check-title">你真的准备好进入课堂了吗？</h2>
-          <p>完成下面 5 题。答错也没关系，反馈会告诉你该回到哪里再看一眼。</p>
+          <p>完成下面 7 题。答错也没关系，反馈会告诉你该回到哪里再看一眼。</p>
         </div>
         <form class="quiz" id="quiz">
           <fieldset class="quiz-card">
@@ -253,6 +294,18 @@
             <label><input type="radio" name="q5" value="a" /> 只测一次，写得快一些</label>
             <label><input type="radio" name="q5" value="b" /> 多次测量并求平均值</label>
             <label><input type="radio" name="q5" value="c" /> 随便估一个接近的数</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>6. s-t 图像中出现水平线段，通常表示物体怎样？</legend>
+            <label><input type="radio" name="q6" value="a" /> 静止</label>
+            <label><input type="radio" name="q6" value="b" /> 速度越来越大</label>
+            <label><input type="radio" name="q6" value="c" /> 一定向下运动</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>7. 同一段时间内，乙的路程增加比甲多。以甲为参照物，乙可能怎样运动？</legend>
+            <label><input type="radio" name="q7" value="a" /> 相对甲向前或向上运动</label>
+            <label><input type="radio" name="q7" value="b" /> 一定相对甲静止</label>
+            <label><input type="radio" name="q7" value="c" /> 一定相对甲反向运动</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交检查</button>
           <div class="quiz-result" id="quizResult" aria-live="polite"></div>

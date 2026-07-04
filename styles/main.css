@@ -824,6 +824,278 @@ th {
   font-weight: 900;
 }
 
+.exam-grid,
+.rule-grid {
+  display: grid;
+  gap: 16px;
+  width: min(1180px, 100%);
+  margin: 0 auto;
+}
+
+.exam-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.rule-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.exam-card,
+.rule-card,
+.formula-card {
+  padding: 22px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(35, 65, 90, 0.08);
+}
+
+.exam-card h3,
+.rule-card h3,
+.formula-card h3 {
+  margin: 16px 0 0;
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.exam-card p,
+.rule-card p,
+.formula-card p,
+.exam-note {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.rule-card span {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  color: #fff;
+  font-weight: 900;
+  background: var(--coral);
+  border-radius: 8px;
+}
+
+.exam-note {
+  width: min(1180px, 100%);
+  margin: 16px auto 0;
+  padding: 18px 20px;
+  background: #fff8df;
+  border: 1px solid #f4d978;
+  border-radius: 8px;
+}
+
+.mini-graph,
+.ray-sketch {
+  position: relative;
+  height: 150px;
+  overflow: hidden;
+  background: #f7fcff;
+  border: 1px solid #cde1eb;
+  border-radius: 8px;
+}
+
+.mini-graph .axis {
+  position: absolute;
+  background: #90a8b8;
+}
+
+.mini-graph .axis.y {
+  left: 36px;
+  top: 18px;
+  bottom: 28px;
+  width: 3px;
+}
+
+.mini-graph .axis.x {
+  left: 28px;
+  right: 24px;
+  bottom: 30px;
+  height: 3px;
+}
+
+.graph-line {
+  position: absolute;
+  left: 44px;
+  bottom: 36px;
+  height: 5px;
+  background: var(--teal);
+  border-radius: 999px;
+  transform-origin: left center;
+}
+
+.graph-line.steady {
+  width: 155px;
+  transform: rotate(-28deg);
+}
+
+.graph-line.pause {
+  width: 150px;
+  bottom: 78px;
+}
+
+.graph-line.fast {
+  width: 160px;
+  transform: rotate(-38deg);
+}
+
+.graph-line.slow {
+  width: 145px;
+  background: var(--coral);
+  transform: rotate(-20deg);
+}
+
+.ray-sketch span {
+  position: absolute;
+  display: block;
+}
+
+.ray-sketch .surface,
+.ray-sketch .water-line,
+.ray-sketch .mirror-line {
+  left: 22px;
+  right: 22px;
+  top: 78px;
+  height: 5px;
+  background: #8ca5b5;
+  border-radius: 999px;
+}
+
+.ray-sketch .water-line {
+  background: #88cde0;
+}
+
+.ray-sketch .normal {
+  left: 50%;
+  top: 20px;
+  bottom: 20px;
+  width: 2px;
+  background: repeating-linear-gradient(180deg, #9db7c5 0 8px, transparent 8px 14px);
+}
+
+.ray-sketch .ray {
+  height: 5px;
+  border-radius: 999px;
+  transform-origin: right center;
+}
+
+.ray-sketch .ray::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: -5px;
+  border-left: 12px solid currentColor;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+
+.reflection-sketch .ray.in {
+  left: 52px;
+  top: 54px;
+  width: 122px;
+  color: var(--coral);
+  background: currentColor;
+  transform: rotate(28deg);
+}
+
+.reflection-sketch .ray.out {
+  left: 156px;
+  top: 54px;
+  width: 122px;
+  color: var(--cyan);
+  background: currentColor;
+  transform: rotate(152deg);
+}
+
+.refraction-sketch .ray.water {
+  left: 52px;
+  top: 96px;
+  width: 122px;
+  color: var(--coral);
+  background: currentColor;
+  transform: rotate(-26deg);
+}
+
+.refraction-sketch .ray.air {
+  left: 156px;
+  top: 58px;
+  width: 128px;
+  color: var(--cyan);
+  background: currentColor;
+  transform: rotate(-34deg);
+}
+
+.mirror-image-sketch .mirror-line {
+  left: 50%;
+  top: 20px;
+  bottom: 20px;
+  width: 4px;
+  height: auto;
+}
+
+.mirror-image-sketch .object-dot,
+.mirror-image-sketch .image-dot {
+  top: 62px;
+  width: 22px;
+  height: 22px;
+  background: var(--coral);
+  border-radius: 50%;
+}
+
+.mirror-image-sketch .object-dot {
+  left: 30%;
+}
+
+.mirror-image-sketch .image-dot {
+  right: 30%;
+  background: var(--cyan);
+  opacity: 0.72;
+}
+
+.mirror-image-sketch .measure-line {
+  left: 30%;
+  right: 30%;
+  top: 106px;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, #9db7c5 0 8px, transparent 8px 14px);
+}
+
+.formula-card {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+  min-height: 280px;
+  background: linear-gradient(180deg, #ffffff, #f4fbfd);
+}
+
+.formula-label {
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.formula-card strong {
+  color: var(--ink);
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1;
+}
+
+.comparison-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.comparison-row span {
+  padding: 12px;
+  color: #244056;
+  text-align: center;
+  font-weight: 900;
+  background: #eaf8f6;
+  border-radius: 8px;
+}
+
 .check-band {
   background: #f3faf7;
 }
@@ -1592,6 +1864,8 @@ th {
   .sound-grid,
   .application-grid,
   .phase-grid,
+  .exam-grid,
+  .rule-grid,
   .graph-lab,
   .reflection-lab,
   .lens-bench,

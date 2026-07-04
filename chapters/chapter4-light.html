@@ -129,11 +129,51 @@
         </div>
       </section>
 
+      <section class="learning-band alt" id="ray-drawing" aria-labelledby="ray-drawing-title">
+        <div class="section-head compact">
+          <p class="eyebrow">作图与实验专项</p>
+          <h2 id="ray-drawing-title">光路题：先画法线，再判断角度往哪边变</h2>
+          <p>试卷里的反射、折射和平面镜实验，通常不是问概念名字，而是让你把“角、法线、像的位置”画准确。</p>
+        </div>
+        <div class="exam-grid">
+          <article class="exam-card">
+            <div class="ray-sketch reflection-sketch" aria-hidden="true">
+              <span class="surface"></span>
+              <span class="normal"></span>
+              <span class="ray in"></span>
+              <span class="ray out"></span>
+            </div>
+            <h3>反射作图</h3>
+            <p>入射角和反射角都从法线量起，不是从镜面量起；入射光线靠近法线，反射光线也靠近法线。</p>
+          </article>
+          <article class="exam-card">
+            <div class="ray-sketch refraction-sketch" aria-hidden="true">
+              <span class="water-line"></span>
+              <span class="normal"></span>
+              <span class="ray water"></span>
+              <span class="ray air"></span>
+            </div>
+            <h3>水到空气折射</h3>
+            <p>光从水中斜射入空气时，折射光线远离法线，折射角大于入射角。</p>
+          </article>
+          <article class="exam-card">
+            <div class="ray-sketch mirror-image-sketch" aria-hidden="true">
+              <span class="mirror-line"></span>
+              <span class="object-dot"></span>
+              <span class="image-dot"></span>
+              <span class="measure-line"></span>
+            </div>
+            <h3>平面镜实验</h3>
+            <p>用玻璃板是为了确定像的位置；像和物关于镜面对称，虚像不能成在光屏上。</p>
+          </article>
+        </div>
+      </section>
+
       <section class="check-band" id="light-check" aria-labelledby="light-check-title">
         <div class="section-head">
           <p class="eyebrow">第四章检查</p>
           <h2 id="light-check-title">你能用光路解释生活现象了吗？</h2>
-          <p>完成下面 6 题，检查自己是否抓住直线传播、反射、折射和色散的核心。</p>
+          <p>完成下面 8 题，检查自己是否抓住直线传播、反射、折射、作图和色散的核心。</p>
         </div>
         <form class="quiz" id="lightQuiz">
           <fieldset class="quiz-card">
@@ -171,6 +211,18 @@
             <label><input type="radio" name="l6" value="a" /> 色散</label>
             <label><input type="radio" name="l6" value="b" /> 凝华</label>
             <label><input type="radio" name="l6" value="c" /> 蒸发</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>7. 光从水中斜射入空气时，折射光线通常怎样？</legend>
+            <label><input type="radio" name="l7" value="a" /> 远离法线</label>
+            <label><input type="radio" name="l7" value="b" /> 一定沿原路返回</label>
+            <label><input type="radio" name="l7" value="c" /> 不再传播</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>8. 平面镜成像实验用玻璃板代替平面镜，主要是为了什么？</legend>
+            <label><input type="radio" name="l8" value="a" /> 便于确定像的位置</label>
+            <label><input type="radio" name="l8" value="b" /> 让像变成实像</label>
+            <label><input type="radio" name="l8" value="c" /> 改变物体大小</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第四章检查</button>
           <div class="quiz-result" id="lightQuizResult" aria-live="polite"></div>
