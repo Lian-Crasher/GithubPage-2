@@ -385,40 +385,112 @@
             <label><input type="radio" name="f8" value="c" /> 密度</label>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>9. 白光通过三棱镜分解成彩色光带叫作什么？</legend>
-            <label><input type="radio" name="f9" value="a" /> 色散</label>
-            <label><input type="radio" name="f9" value="b" /> 液化</label>
-            <label><input type="radio" name="f9" value="c" /> 噪声</label>
+            <legend>9. 多选：下列哪些现象属于光现象？</legend>
+            <p class="quiz-help">可能不止一个正确选项。</p>
+            <label><input type="checkbox" name="f9" value="reflection" /> 平面镜成像</label>
+            <label><input type="checkbox" name="f9" value="dispersion" /> 白光通过三棱镜形成彩色光带</label>
+            <label><input type="checkbox" name="f9" value="boiling" /> 水沸腾时产生大量气泡</label>
+            <label><input type="checkbox" name="f9" value="echo" /> 山谷里听到回声</label>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>10. 用排水法测体积时，物体体积等于？</legend>
-            <label><input type="radio" name="f10" value="a" /> 放入后读数减放入前读数</label>
-            <label><input type="radio" name="f10" value="b" /> 两次读数相加</label>
-            <label><input type="radio" name="f10" value="c" /> 砝码质量除以时间</label>
+            <legend>10. 计算填空：小车 12 s 通过 60 m，平均速度是多少 m/s？</legend>
+            <label class="quiz-text-row">
+              平均速度
+              <input class="quiz-text-input" type="text" name="f10" inputmode="decimal" autocomplete="off" />
+              <span>m/s</span>
+            </label>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>11. s-t 图像中一段水平线表示什么？</legend>
-            <label><input type="radio" name="f11" value="a" /> 这一段静止</label>
-            <label><input type="radio" name="f11" value="b" /> 速度一定最大</label>
-            <label><input type="radio" name="f11" value="c" /> 体积不变</label>
+            <legend>11. 图像填空：s-t 图像中一段水平线表示物体处于什么状态？</legend>
+            <label class="quiz-text-row">
+              这一段物体
+              <input class="quiz-text-input" type="text" name="f11" autocomplete="off" />
+            </label>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>12. 光从水中斜射入空气时，折射光线通常怎样？</legend>
-            <label><input type="radio" name="f12" value="a" /> 远离法线</label>
-            <label><input type="radio" name="f12" value="b" /> 靠近法线</label>
-            <label><input type="radio" name="f12" value="c" /> 不再传播</label>
+            <legend>12. 排序：测液体密度时，怎样能减少烧杯残留造成的误差？</legend>
+            <div class="quiz-select-stack">
+              <label>
+                第 1 步
+                <select data-order-group="f12">
+                  <option value="">请选择</option>
+                  <option value="total">称烧杯和液体总质量</option>
+                  <option value="pour">倒一部分液体进量筒并读体积</option>
+                  <option value="remain">称烧杯和剩余液体质量</option>
+                  <option value="calc">用倒出液体质量除以体积</option>
+                </select>
+              </label>
+              <label>
+                第 2 步
+                <select data-order-group="f12">
+                  <option value="">请选择</option>
+                  <option value="total">称烧杯和液体总质量</option>
+                  <option value="pour">倒一部分液体进量筒并读体积</option>
+                  <option value="remain">称烧杯和剩余液体质量</option>
+                  <option value="calc">用倒出液体质量除以体积</option>
+                </select>
+              </label>
+              <label>
+                第 3 步
+                <select data-order-group="f12">
+                  <option value="">请选择</option>
+                  <option value="total">称烧杯和液体总质量</option>
+                  <option value="pour">倒一部分液体进量筒并读体积</option>
+                  <option value="remain">称烧杯和剩余液体质量</option>
+                  <option value="calc">用倒出液体质量除以体积</option>
+                </select>
+              </label>
+              <label>
+                第 4 步
+                <select data-order-group="f12">
+                  <option value="">请选择</option>
+                  <option value="total">称烧杯和液体总质量</option>
+                  <option value="pour">倒一部分液体进量筒并读体积</option>
+                  <option value="remain">称烧杯和剩余液体质量</option>
+                  <option value="calc">用倒出液体质量除以体积</option>
+                </select>
+              </label>
+            </div>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>13. 投影仪想让画面变大且清晰，通常应怎样调？</legend>
-            <label><input type="radio" name="f13" value="a" /> 手机靠近透镜，投影仪远离屏幕</label>
-            <label><input type="radio" name="f13" value="b" /> 手机远离透镜，投影仪靠近屏幕</label>
-            <label><input type="radio" name="f13" value="c" /> 只换更亮的屏幕</label>
+            <legend>13. 配对：把透镜作图规则和正确结果连起来。</legend>
+            <div class="quiz-select-stack">
+              <label>
+                平行于主光轴的光线
+                <select data-match-group="f13" data-match-key="parallel">
+                  <option value="">请选择</option>
+                  <option value="focus">折射后通过另一侧焦点</option>
+                  <option value="axis">折射后平行于主光轴</option>
+                  <option value="straight">经过光心方向不变</option>
+                </select>
+              </label>
+              <label>
+                从焦点方向射向凸透镜的光线
+                <select data-match-group="f13" data-match-key="focus">
+                  <option value="">请选择</option>
+                  <option value="focus">折射后通过另一侧焦点</option>
+                  <option value="axis">折射后平行于主光轴</option>
+                  <option value="straight">经过光心方向不变</option>
+                </select>
+              </label>
+              <label>
+                经过光心的光线
+                <select data-match-group="f13" data-match-key="center">
+                  <option value="">请选择</option>
+                  <option value="focus">折射后通过另一侧焦点</option>
+                  <option value="axis">折射后平行于主光轴</option>
+                  <option value="straight">经过光心方向不变</option>
+                </select>
+              </label>
+            </div>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>14. 同长同升温时，线膨胀系数更大的金属会怎样？</legend>
-            <label><input type="radio" name="f14" value="a" /> 伸长更多</label>
-            <label><input type="radio" name="f14" value="b" /> 伸长更少</label>
-            <label><input type="radio" name="f14" value="c" /> 一定不变</label>
+            <legend>14. 多选：下列哪些实验情况会让测得密度偏小？</legend>
+            <p class="quiz-help">从 ρ = m / V 判断质量和体积谁偏了。</p>
+            <label><input type="checkbox" name="f14" value="bean-gap" /> 直接量红豆总体积时把空隙算进去</label>
+            <label><input type="checkbox" name="f14" value="wet-stone" /> 石块表面带水就去称质量</label>
+            <label><input type="checkbox" name="f14" value="big-volume" /> 量筒体积读数偏大</label>
+            <label><input type="checkbox" name="f14" value="correct-unit" /> 正确把单位换成国际单位</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交综合检查</button>
           <div class="quiz-result" id="finalQuizResult" aria-live="polite"></div>

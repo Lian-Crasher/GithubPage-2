@@ -2136,6 +2136,48 @@ th {
   accent-color: var(--teal);
 }
 
+.quiz-help {
+  margin: 0 0 10px;
+  color: #6b7d8e;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.quiz-text-row {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.quiz-text-input,
+.quiz-card select {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  color: #223b4b;
+  font: inherit;
+  font-weight: 800;
+  background: #f7fcff;
+  border: 1px solid #cfe2ea;
+  border-radius: 8px;
+}
+
+.quiz-text-input {
+  flex: 1 1 140px;
+  max-width: 220px;
+}
+
+.quiz-select-stack {
+  display: grid;
+  gap: 10px;
+}
+
+.quiz-select-stack label {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
 .quiz-submit,
 .quiz-result {
   grid-column: 1 / -1;
