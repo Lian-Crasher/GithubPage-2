@@ -2222,6 +2222,13 @@ th {
   border-radius: 8px;
 }
 
+.answer-diagnosis {
+  display: block;
+  color: #526b7d;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
 .missed-list a {
   color: var(--teal);
   font-weight: 900;

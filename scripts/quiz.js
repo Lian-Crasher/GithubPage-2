@@ -27,11 +27,18 @@ function saveQuizAttempt(quizId, attempt) {
   writeQuizProgress(progress);
 }
 
-function createReviewItem(hint, link) {
+function createReviewItem(hint, link, diagnosis) {
   const item = document.createElement("li");
   const text = document.createElement("span");
   text.textContent = hint;
   item.appendChild(text);
+
+  if (diagnosis) {
+    const detail = document.createElement("small");
+    detail.className = "answer-diagnosis";
+    detail.textContent = diagnosis;
+    item.appendChild(detail);
+  }
 
   if (link) {
     const anchor = document.createElement("a");
@@ -50,6 +57,45 @@ function normalizeTextAnswer(value) {
     .replace(/\s+/g, "")
     .replace(/，/g, ",")
     .replace(/。/g, "");
+}
+
+function formatAnswerValue(value) {
+  return String(value ?? "").trim() || "未作答";
+}
+
+function getOptionLabelFromSelect(select, value) {
+  if (!select) return formatAnswerValue(value);
+  const option = Array.from(select.options).find((item) => item.value === value);
+  return option ? option.textContent.trim() : formatAnswerValue(value);
+}
+
+function getInputChoiceLabel(form, key, value) {
+  const input = Array.from(form.querySelectorAll(`input[name="${key}"]`)).find((control) => control.value === value);
+  const label = input?.closest("label");
+  if (!label) return formatAnswerValue(value);
+  return label.textContent.trim().replace(/\s+/g, " ");
+}
+
+function getOrderChoiceLabel(form, key, value) {
+  const select = form.querySelector(`[data-order-group="${key}"]`);
+  return getOptionLabelFromSelect(select, value);
+}
+
+function getMatchPrompt(form, key, matchKey) {
+  const control = form.querySelector(`[data-match-group="${key}"][data-match-key="${matchKey}"]`);
+  const label = control?.closest("label");
+  if (!label) return matchKey;
+  return Array.from(label.childNodes)
+    .filter((node) => node.nodeType === Node.TEXT_NODE)
+    .map((node) => node.textContent.trim())
+    .filter(Boolean)
+    .join(" ")
+    || matchKey;
+}
+
+function getMatchChoiceLabel(form, key, value) {
+  const select = form.querySelector(`[data-match-group="${key}"]`);
+  return getOptionLabelFromSelect(select, value);
 }
 
 function arraysMatch(actual, expected, { sorted = false } = {}) {
@@ -104,7 +150,49 @@ function isQuizAnswerCorrect(actual, expected, type) {
   return actual === expected;
 }
 
-function setupQuiz({ formSelector, resultSelector, answers, hints, badges, successMessage, quizId, reviewLinks = {}, questionTypes = {} }) {
+function getAnswerDiagnosis(form, key, actual, expected, type, detail) {
+  const messages = [];
+
+  if (type === "multi") {
+    const actualValues = actual.map(normalizeTextAnswer);
+    const expectedValues = expected.map(normalizeTextAnswer);
+    const missing = expected.filter((value) => !actualValues.includes(normalizeTextAnswer(value)));
+    const extra = actual.filter((value) => !expectedValues.includes(normalizeTextAnswer(value)));
+
+    if (!actual.length) {
+      messages.push("你还没有选择选项。");
+    }
+    if (missing.length) {
+      messages.push(`少选：${missing.map((value) => getInputChoiceLabel(form, key, value)).join("、")}。`);
+    }
+    if (extra.length) {
+      messages.push(`多选：${extra.map((value) => getInputChoiceLabel(form, key, value)).join("、")}。`);
+    }
+  } else if (type === "text") {
+    const accepted = Array.isArray(expected) ? expected : [expected];
+    messages.push(`你的答案：${formatAnswerValue(actual)}。参考答案：${formatAnswerValue(accepted[0])}。`);
+  } else if (type === "order") {
+    const wrongSteps = actual
+      .map((value, index) => normalizeTextAnswer(value) === normalizeTextAnswer(expected[index]) ? null : index + 1)
+      .filter(Boolean);
+    if (wrongSteps.length) {
+      messages.push(`顺序中第 ${wrongSteps.join("、")} 步需要调整。`);
+    }
+    messages.push(`正确顺序：${expected.map((value) => getOrderChoiceLabel(form, key, value)).join(" → ")}。`);
+  } else if (type === "match") {
+    const wrongMatches = Object.keys(expected)
+      .filter((matchKey) => normalizeTextAnswer(actual[matchKey]) !== normalizeTextAnswer(expected[matchKey]))
+      .map((matchKey) => `${getMatchPrompt(form, key, matchKey)}应选“${getMatchChoiceLabel(form, key, expected[matchKey])}”`);
+    if (wrongMatches.length) {
+      messages.push(`配对错误：${wrongMatches.join("；")}。`);
+    }
+  }
+
+  if (detail) messages.push(detail);
+  return messages.join(" ");
+}
+
+function setupQuiz({ formSelector, resultSelector, answers, hints, badges, successMessage, quizId, reviewLinks = {}, questionTypes = {}, answerDetails = {} }) {
   const form = document.querySelector(formSelector);
   const result = document.querySelector(resultSelector);
   if (!form || !result) return;
@@ -115,10 +203,12 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
     event.preventDefault();
     let score = 0;
     const missed = [];
+    const attempts = {};
 
     Object.keys(answers).forEach((key) => {
       const type = questionTypes[key] || "single";
       const actual = getQuizAnswer(form, key, type);
+      attempts[key] = { actual, type };
       if (isQuizAnswerCorrect(actual, answers[key], type)) {
         score += 1;
       } else {
@@ -142,7 +232,9 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
       const list = document.createElement("ul");
       list.className = "missed-list";
       missed.forEach((key) => {
-        list.appendChild(createReviewItem(hints[key], reviewLinks[key]));
+        const { actual, type } = attempts[key];
+        const diagnosis = getAnswerDiagnosis(form, key, actual, answers[key], type, answerDetails[key]);
+        list.appendChild(createReviewItem(hints[key], reviewLinks[key], diagnosis));
       });
       result.appendChild(list);
     }
