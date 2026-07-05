@@ -142,6 +142,7 @@ angleSlider.addEventListener("input", drawMirror);
 setupQuiz({
   formSelector: "#lightQuiz",
   resultSelector: "#lightQuizResult",
+  quizId: "chapter4",
   answers: {
     l1: "a",
     l2: "b",
@@ -161,6 +162,16 @@ setupQuiz({
     l6: "第 6 题回看“色散”：三棱镜把白光分解成彩色光带叫色散。",
     l7: "第 7 题回看“折射作图”：水到空气斜射时，折射光线远离法线。",
     l8: "第 8 题回看“平面镜实验”：玻璃板透光，便于确定像的位置。",
+  },
+  reviewLinks: {
+    l1: { href: "#straight-light", label: "回看直线传播" },
+    l2: { href: "#straight-light", label: "回看小孔成像" },
+    l3: { href: "#reflection", label: "回看反射定律" },
+    l4: { href: "#reflection", label: "回看平面镜成像" },
+    l5: { href: "#refraction", label: "回看折射现象" },
+    l6: { href: "#refraction", label: "回看光的色散" },
+    l7: { href: "#ray-drawing", label: "回看折射作图" },
+    l8: { href: "#ray-drawing", label: "回看平面镜实验" },
   },
   badges: (score) => score >= 7 ? "第四章掌握很稳" : score >= 5 ? "第四章基本过关" : "建议回看光路图",
   successMessage: "很好。你已经能用光路解释影子、镜面成像、折射和彩虹等现象。",

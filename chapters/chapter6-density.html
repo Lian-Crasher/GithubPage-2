@@ -196,6 +196,57 @@
             <p>直接倒进量筒量体积，会把红豆间空隙也算进去，体积偏大，密度偏小。</p>
           </article>
         </div>
+        <div class="interactive-panel experiment-practice">
+          <div class="panel-topline">
+            <h3>误差方向诊断</h3>
+            <span class="tag">ρ = m / V</span>
+          </div>
+          <p class="practice-intro">先判断哪个量偏大或偏小，再判断密度结果偏大、偏小，还是基本不变。</p>
+          <div class="error-cases" id="densityErrorCases">
+            <article class="error-case" data-answer="low">
+              <h3>红豆直接倒入量筒读总体积</h3>
+              <p>红豆之间的空隙也被算进体积。</p>
+              <div class="choice-row" role="group" aria-label="判断红豆体积误差">
+                <button type="button" data-choice="high">偏大</button>
+                <button type="button" data-choice="low">偏小</button>
+                <button type="button" data-choice="same">基本不变</button>
+              </div>
+              <p class="case-feedback"></p>
+            </article>
+            <article class="error-case" data-answer="high">
+              <h3>石块从水中取出后才擦干称质量</h3>
+              <p>石块表面带着水，称得的质量偏大。</p>
+              <div class="choice-row" role="group" aria-label="判断石块带水误差">
+                <button type="button" data-choice="high">偏大</button>
+                <button type="button" data-choice="low">偏小</button>
+                <button type="button" data-choice="same">基本不变</button>
+              </div>
+              <p class="case-feedback"></p>
+            </article>
+            <article class="error-case" data-answer="low">
+              <h3>把量筒读数看大了</h3>
+              <p>计算体积时使用的 V 偏大。</p>
+              <div class="choice-row" role="group" aria-label="判断量筒读数偏大误差">
+                <button type="button" data-choice="high">偏大</button>
+                <button type="button" data-choice="low">偏小</button>
+                <button type="button" data-choice="same">基本不变</button>
+              </div>
+              <p class="case-feedback"></p>
+            </article>
+            <article class="error-case" data-answer="same">
+              <h3>把质量和体积都换成国际单位再计算</h3>
+              <p>只要单位换算正确，物理量本身没有变。</p>
+              <div class="choice-row" role="group" aria-label="判断单位换算影响">
+                <button type="button" data-choice="high">偏大</button>
+                <button type="button" data-choice="low">偏小</button>
+                <button type="button" data-choice="same">基本不变</button>
+              </div>
+              <p class="case-feedback"></p>
+            </article>
+          </div>
+          <button class="primary-action small" type="button" id="checkDensityErrors">检查判断</button>
+          <p class="feedback" id="densityErrorFeedback" aria-live="polite">提示：密度公式中，质量偏大会让结果偏大，体积偏大会让结果偏小。</p>
+        </div>
       </section>
 
       <section class="check-band" id="density-check" aria-labelledby="density-check-title">

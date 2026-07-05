@@ -168,6 +168,57 @@
             <p>三支温度计测同一杯热水，是检验温度计差异；同一支温度计测不同水样，是检验水样差异。</p>
           </article>
         </div>
+        <div class="interactive-panel experiment-practice">
+          <div class="panel-topline">
+            <h3>实验步骤排序</h3>
+            <span class="tag">沸腾实验</span>
+          </div>
+          <p class="practice-intro">把下面 5 个步骤调成合理顺序，再检查自己的实验思路。</p>
+          <ol class="ordering-list" id="boilingOrderList" aria-label="水的沸腾实验步骤排序">
+            <li data-step="record">
+              <span class="order-index">1</span>
+              <p>每隔相同时间记录温度，观察气泡变化。</p>
+              <div class="order-controls" aria-label="移动步骤">
+                <button type="button" data-move="up">上移</button>
+                <button type="button" data-move="down">下移</button>
+              </div>
+            </li>
+            <li data-step="heat">
+              <span class="order-index">2</span>
+              <p>点燃酒精灯，用外焰给烧杯中的水加热。</p>
+              <div class="order-controls" aria-label="移动步骤">
+                <button type="button" data-move="up">上移</button>
+                <button type="button" data-move="down">下移</button>
+              </div>
+            </li>
+            <li data-step="lamp">
+              <span class="order-index">3</span>
+              <p>先固定酒精灯，再根据外焰高度安装陶土网和烧杯。</p>
+              <div class="order-controls" aria-label="移动步骤">
+                <button type="button" data-move="up">上移</button>
+                <button type="button" data-move="down">下移</button>
+              </div>
+            </li>
+            <li data-step="thermometer">
+              <span class="order-index">4</span>
+              <p>悬挂温度计，让玻璃泡全部浸入水中且不碰烧杯底和壁。</p>
+              <div class="order-controls" aria-label="移动步骤">
+                <button type="button" data-move="up">上移</button>
+                <button type="button" data-move="down">下移</button>
+              </div>
+            </li>
+            <li data-step="conclusion">
+              <span class="order-index">5</span>
+              <p>根据温度平台和气泡现象判断沸腾，并说明沸腾仍需吸热。</p>
+              <div class="order-controls" aria-label="移动步骤">
+                <button type="button" data-move="up">上移</button>
+                <button type="button" data-move="down">下移</button>
+              </div>
+            </li>
+          </ol>
+          <button class="primary-action small" type="button" id="checkBoilingOrder">检查排序</button>
+          <p class="feedback" id="boilingOrderFeedback" aria-live="polite">提示：实验装置通常先按酒精灯外焰高度确定其他器材位置。</p>
+        </div>
       </section>
 
       <section class="learning-band" id="thermal-expansion" aria-labelledby="thermal-expansion-title">

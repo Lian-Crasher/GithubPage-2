@@ -122,6 +122,7 @@ function updateTable() {
 setupQuiz({
   formSelector: "#quiz",
   resultSelector: "#quizResult",
+  quizId: "chapter1",
   answers: {
     q1: "b",
     q2: "a",
@@ -139,6 +140,15 @@ setupQuiz({
     q5: "第 5 题回看“误差”：多次测量取平均值能减小误差。",
     q6: "第 6 题回看 s-t 图像：水平线段表示路程不变，所以这一段静止。",
     q7: "第 7 题回看“相对运动”：乙比甲走得更多，以甲为参照物乙仍在向前或向上运动。",
+  },
+  reviewLinks: {
+    q1: { href: "#measure", label: "回看长度测量" },
+    q2: { href: "#motion", label: "回看参照物" },
+    q3: { href: "#speed", label: "回看速度计算" },
+    q4: { href: "#speed", label: "回看速度公式" },
+    q5: { href: "#lab", label: "回看平均速度实验" },
+    q6: { href: "#motion-graph", label: "回看 s-t 图像" },
+    q7: { href: "#motion-graph", label: "回看相对运动与图像" },
   },
   badges: (score) => score === 7 ? "预习完成度优秀" : score >= 5 ? "预习基本过关" : "建议再探索一次",
   successMessage: "很棒。你已经抓住机械运动这一章的预习重点，可以带着自己的问题去上课了。",

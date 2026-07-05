@@ -104,6 +104,7 @@ noiseButtons.forEach((button) => {
 setupQuiz({
   formSelector: "#soundQuiz",
   resultSelector: "#soundQuizResult",
+  quizId: "chapter2",
   answers: {
     s1: "a",
     s2: "b",
@@ -119,6 +120,14 @@ setupQuiz({
     s4: "第 4 题回看“响度”：振幅越大，响度通常越大。",
     s5: "第 5 题回看“声与信息”：B 超、声呐、倒车雷达都利用声传递信息。",
     s6: "第 6 题回看“噪声控制”：隔音板是在传播过程中减弱噪声。",
+  },
+  reviewLinks: {
+    s1: { href: "#sound-origin", label: "回看声音的产生" },
+    s2: { href: "#sound-origin", label: "回看声音传播" },
+    s3: { href: "#sound-origin", label: "回看音调" },
+    s4: { href: "#sound-origin", label: "回看响度" },
+    s5: { href: "#sound-use", label: "回看声的利用" },
+    s6: { href: "#sound-use", label: "回看噪声控制" },
   },
   badges: (score) => score === 6 ? "第二章掌握很稳" : score >= 4 ? "第二章基本过关" : "建议回看声音实验",
   successMessage: "很好。你已经能用振动、介质、频率、振幅和噪声控制来解释声现象。",

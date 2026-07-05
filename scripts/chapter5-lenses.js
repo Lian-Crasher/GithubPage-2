@@ -147,6 +147,7 @@ objectDistanceSlider.addEventListener("input", updateImageRule);
 setupQuiz({
   formSelector: "#lensesQuiz",
   resultSelector: "#lensesQuizResult",
+  quizId: "chapter5",
   answers: {
     e1: "a",
     e2: "a",
@@ -170,6 +171,18 @@ setupQuiz({
     e8: "第 8 题回看“投影仪”：物体在 f 和 2f 之间，成倒立、放大的实像。",
     e9: "第 9 题回看“物近像远像变大”：手机靠近透镜，投影仪远离屏幕。",
     e10: "第 10 题回看“实像和虚像”：能用光屏承接的是实像，不能承接的是虚像。",
+  },
+  reviewLinks: {
+    e1: { href: "#lens-basics", label: "回看透镜形状" },
+    e2: { href: "#lens-basics", label: "回看会聚作用" },
+    e3: { href: "#lens-basics", label: "回看焦点和焦距" },
+    e4: { href: "#image-rule", label: "回看照相机成像" },
+    e5: { href: "#image-rule", label: "回看放大镜成像" },
+    e6: { href: "#eyes-tools", label: "回看近视矫正" },
+    e7: { href: "#lens-exam", label: "回看特殊光线" },
+    e8: { href: "#image-rule", label: "回看投影仪成像" },
+    e9: { href: "#lens-exam", label: "回看投影仪调试" },
+    e10: { href: "#real-virtual-image", label: "回看实像和虚像" },
   },
   badges: (score) => score >= 9 ? "第五章掌握很稳" : score >= 7 ? "第五章基本过关" : "建议回看成像规律滑台",
   successMessage: "很好。你已经能把透镜作用、成像规律和光学仪器联系起来。",

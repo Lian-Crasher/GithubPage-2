@@ -7,6 +7,10 @@ const stateResult = document.querySelector("#stateResult");
 const graphButtons = document.querySelectorAll("[data-graph]");
 const graphCanvas = document.querySelector("#graphCanvas");
 const graphFeedback = document.querySelector("#graphFeedback");
+const boilingOrderList = document.querySelector("#boilingOrderList");
+const checkBoilingOrderButton = document.querySelector("#checkBoilingOrder");
+const boilingOrderFeedback = document.querySelector("#boilingOrderFeedback");
+const boilingOrderAnswer = ["lamp", "thermometer", "heat", "record", "conclusion"];
 
 function updateTemperature() {
   const temperature = Number(temperatureSlider.value);
@@ -130,9 +134,50 @@ function drawGraph(type = "crystal") {
   graphFeedback.textContent = current.text;
 }
 
+function updateBoilingOrderControls() {
+  if (!boilingOrderList) return;
+
+  const items = Array.from(boilingOrderList.children);
+  items.forEach((item, index) => {
+    item.querySelector(".order-index").textContent = index + 1;
+    item.querySelector('[data-move="up"]').disabled = index === 0;
+    item.querySelector('[data-move="down"]').disabled = index === items.length - 1;
+  });
+}
+
+function moveBoilingStep(item, direction) {
+  if (!boilingOrderList || !item) return;
+
+  if (direction === "up" && item.previousElementSibling) {
+    boilingOrderList.insertBefore(item, item.previousElementSibling);
+  }
+
+  if (direction === "down" && item.nextElementSibling) {
+    boilingOrderList.insertBefore(item.nextElementSibling, item);
+  }
+
+  updateBoilingOrderControls();
+  boilingOrderFeedback.textContent = "顺序已调整。检查前先想一想：哪些器材位置必须先确定？";
+}
+
+function checkBoilingOrder() {
+  const current = Array.from(boilingOrderList.children).map((item) => item.dataset.step);
+  const wrongIndexes = current
+    .map((step, index) => step === boilingOrderAnswer[index] ? null : index + 1)
+    .filter(Boolean);
+
+  if (!wrongIndexes.length) {
+    boilingOrderFeedback.textContent = "排序正确：先按酒精灯外焰确定装置，再放温度计，加热记录，最后根据温度平台和气泡现象下结论。";
+    return;
+  }
+
+  boilingOrderFeedback.textContent = `还要调整第 ${wrongIndexes.join("、")} 步。关键是先搭好装置，再加热观察，最后分析数据和现象。`;
+}
+
 setupQuiz({
   formSelector: "#statesQuiz",
   resultSelector: "#statesQuizResult",
+  quizId: "chapter3",
   answers: {
     p1: "a",
     p2: "b",
@@ -153,6 +198,16 @@ setupQuiz({
     p7: "第 7 题回看“水的沸腾实验”：酒精灯高度不易调，器材按从下到上安装。",
     p8: "第 8 题回看“热胀冷缩”：同长同升温时，线膨胀系数越大，伸长量越大。",
   },
+  reviewLinks: {
+    p1: { href: "#temperature", label: "回看温度概念" },
+    p2: { href: "#temperature", label: "回看温度计读数" },
+    p3: { href: "#state-change", label: "回看物态变化" },
+    p4: { href: "#boiling-exam", label: "回看水的沸腾" },
+    p5: { href: "#state-change", label: "回看汽化吸热" },
+    p6: { href: "#state-change", label: "回看升华和凝华" },
+    p7: { href: "#boiling-exam", label: "回看沸腾实验" },
+    p8: { href: "#thermal-expansion", label: "回看热胀冷缩" },
+  },
   badges: (score) => score >= 7 ? "第三章掌握很稳" : score >= 5 ? "第三章基本过关" : "建议回看物态变化地图",
   successMessage: "很好。你已经能把温度、状态变化、吸热放热和生活现象联系起来。",
 });
@@ -160,6 +215,7 @@ setupQuiz({
 setupQuiz({
   formSelector: "#halfQuiz",
   resultSelector: "#halfQuizResult",
+  quizId: "half",
   answers: {
     h1: "a",
     h2: "b",
@@ -180,6 +236,16 @@ setupQuiz({
     h7: "第 7 题回看沸腾图像：沸腾后持续吸热，温度保持在沸点附近。",
     h8: "第 8 题回看升华和凝华：霜通常是水蒸气凝华形成。",
   },
+  reviewLinks: {
+    h1: { href: "chapter2-sound.html#sound-origin", label: "回看声音的产生" },
+    h2: { href: "chapter2-sound.html#sound-origin", label: "回看声音传播" },
+    h3: { href: "chapter2-sound.html#sound-origin", label: "回看声音特性" },
+    h4: { href: "chapter2-sound.html#sound-use", label: "回看声的利用" },
+    h5: { href: "#temperature", label: "回看温度" },
+    h6: { href: "#state-change", label: "回看熔化" },
+    h7: { href: "#boiling-exam", label: "回看沸腾图像" },
+    h8: { href: "#state-change", label: "回看升华和凝华" },
+  },
   badges: (score) => score >= 7 ? "前三章预习很稳" : score >= 5 ? "前三章基本过关" : "建议回看关键实验",
   successMessage: "很好。你已经能用振动、介质、温度、吸放热和图像来解释前三章的核心现象。",
 });
@@ -191,7 +257,14 @@ stateButtons.forEach((button) => {
 graphButtons.forEach((button) => {
   button.addEventListener("click", () => drawGraph(button.dataset.graph));
 });
+boilingOrderList?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-move]");
+  if (!button) return;
+  moveBoilingStep(button.closest("li"), button.dataset.move);
+});
+checkBoilingOrderButton?.addEventListener("click", checkBoilingOrder);
 
 updateTemperature();
 setState("solid");
 drawGraph();
+updateBoilingOrderControls();

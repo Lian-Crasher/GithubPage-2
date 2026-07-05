@@ -11,6 +11,14 @@ const densityInputs = document.querySelectorAll(".density-input");
 const solidVolumeCell = document.querySelector("#solidVolumeCell");
 const solidDensityCell = document.querySelector("#solidDensityCell");
 const solidDensityFeedback = document.querySelector("#solidDensityFeedback");
+const densityErrorCases = document.querySelector("#densityErrorCases");
+const checkDensityErrorsButton = document.querySelector("#checkDensityErrors");
+const densityErrorFeedback = document.querySelector("#densityErrorFeedback");
+const densityErrorMessages = {
+  low: "结果偏小：体积 V 被算大时，ρ = m / V 会变小。",
+  high: "结果偏大：质量 m 被算大时，ρ = m / V 会变大。",
+  same: "基本不变：单位换算正确时，质量和体积表示方式变了，密度值对应的物理量不变。",
+};
 
 function updateBalance() {
   const rider = Number(riderSlider.value);
@@ -55,16 +63,52 @@ function updateSolidTable() {
   solidDensityFeedback.textContent = `体积为 ${volume.toFixed(1)} cm³，密度约为 ${density.toFixed(2)} g/cm³。`;
 }
 
+function chooseDensityError(button) {
+  const card = button.closest(".error-case");
+  card.querySelectorAll("[data-choice]").forEach((choice) => {
+    choice.classList.toggle("is-active", choice === button);
+  });
+  card.dataset.choice = button.dataset.choice;
+  card.dataset.state = "";
+  card.querySelector(".case-feedback").textContent = "";
+}
+
+function checkDensityErrors() {
+  const cards = Array.from(densityErrorCases.querySelectorAll(".error-case"));
+  let correct = 0;
+
+  cards.forEach((card) => {
+    const isCorrect = card.dataset.choice === card.dataset.answer;
+    const feedback = card.querySelector(".case-feedback");
+    card.dataset.state = isCorrect ? "correct" : "incorrect";
+    if (isCorrect) correct += 1;
+    feedback.textContent = isCorrect
+      ? densityErrorMessages[card.dataset.answer]
+      : `再想一步：${densityErrorMessages[card.dataset.answer]}`;
+  });
+
+  densityErrorFeedback.textContent = correct === cards.length
+    ? "全部判断正确。误差题先看 m 和 V 谁偏了，再带回 ρ = m / V。"
+    : `答对 ${correct}/${cards.length} 个。还不稳的题，先标出质量或体积是偏大还是偏小。`;
+}
+
 riderSlider.addEventListener("input", updateBalance);
 massSlider.addEventListener("input", updateDensity);
 volumeSlider.addEventListener("input", updateDensity);
 densityInputs.forEach((input) => {
   input.addEventListener("input", updateSolidTable);
 });
+densityErrorCases?.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-choice]");
+  if (!button) return;
+  chooseDensityError(button);
+});
+checkDensityErrorsButton?.addEventListener("click", checkDensityErrors);
 
 setupQuiz({
   formSelector: "#densityQuiz",
   resultSelector: "#densityQuizResult",
+  quizId: "chapter6",
   answers: {
     d1: "a",
     d2: "a",
@@ -85,6 +129,16 @@ setupQuiz({
     d7: "第 7 题回看“误差方向”：空隙让体积偏大，密度 ρ = m / V 会偏小。",
     d8: "第 8 题回看“天平调平”：指针偏左说明左侧重，平衡螺母向右调。",
   },
+  reviewLinks: {
+    d1: { href: "#mass", label: "回看质量" },
+    d2: { href: "#mass", label: "回看天平使用" },
+    d3: { href: "#density-formula", label: "回看密度公式" },
+    d4: { href: "#density-formula", label: "回看密度计算" },
+    d5: { href: "#measure-density", label: "回看排水法" },
+    d6: { href: "#density-formula", label: "回看单位换算" },
+    d7: { href: "#density-errors", label: "回看误差方向" },
+    d8: { href: "#mass", label: "回看天平调平" },
+  },
   badges: (score) => score >= 7 ? "第六章掌握很稳" : score >= 5 ? "第六章基本过关" : "建议回看密度实验",
   successMessage: "很好。你已经能用质量、体积和密度公式解释材料差异。",
 });
@@ -92,6 +146,7 @@ setupQuiz({
 setupQuiz({
   formSelector: "#finalQuiz",
   resultSelector: "#finalQuizResult",
+  quizId: "final",
   answers: {
     f1: "a",
     f2: "a",
@@ -123,6 +178,22 @@ setupQuiz({
     f12: "第 12 题回看第四章折射作图：水到空气斜射时，折射光线远离法线。",
     f13: "第 13 题回看第五章投影仪：物近像远像变大。",
     f14: "第 14 题回看第三章热胀冷缩：线膨胀系数越大，同条件下伸长越多。",
+  },
+  reviewLinks: {
+    f1: { href: "chapter1-motion.html#motion", label: "回看参照物" },
+    f2: { href: "chapter2-sound.html#sound-origin", label: "回看声音传播" },
+    f3: { href: "chapter3-states.html#state-change", label: "回看凝华" },
+    f4: { href: "chapter4-light.html#reflection", label: "回看平面镜成像" },
+    f5: { href: "chapter5-lenses.html#lens-basics", label: "回看凸透镜" },
+    f6: { href: "chapter5-lenses.html#eyes-tools", label: "回看近视矫正" },
+    f7: { href: "#density-formula", label: "回看密度公式" },
+    f8: { href: "chapter1-motion.html#speed", label: "回看速度公式" },
+    f9: { href: "chapter4-light.html#refraction", label: "回看光的色散" },
+    f10: { href: "#measure-density", label: "回看排水法" },
+    f11: { href: "chapter1-motion.html#motion-graph", label: "回看 s-t 图像" },
+    f12: { href: "chapter4-light.html#ray-drawing", label: "回看折射作图" },
+    f13: { href: "chapter5-lenses.html#lens-exam", label: "回看投影仪调试" },
+    f14: { href: "chapter3-states.html#thermal-expansion", label: "回看热胀冷缩" },
   },
   badges: (score) => score >= 12 ? "上册预习非常稳" : score >= 9 ? "上册主线基本过关" : "建议按反馈回看章节",
   successMessage: "漂亮。你已经抓住八年级上册物理的主要线索，可以带着问题进入课堂。",
