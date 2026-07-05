@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>第四章 光现象 - 八年级物理预习站</title>
-    <link rel="stylesheet" href="../styles/main.css?v=2" />
+    <link rel="stylesheet" href="../styles/main.css?v=3" />
   </head>
   <body data-page="light">
     <header class="topbar">
@@ -202,6 +202,43 @@
             <p>用玻璃板是为了确定像的位置；像和物关于镜面对称，虚像不能成在光屏上。</p>
           </article>
         </div>
+        <div class="interactive-panel ray-drawing-practice">
+          <div class="panel-topline">
+            <h3>光路作图台</h3>
+            <span class="tag">反射 / 折射</span>
+          </div>
+          <div class="segmented ray-mode-controls" role="group" aria-label="选择作图类型">
+            <button class="segment is-active" type="button" data-ray-mode="reflection">反射作图</button>
+            <button class="segment" type="button" data-ray-mode="refraction">折射作图</button>
+          </div>
+          <div class="ray-practice-layout">
+            <div>
+              <canvas id="rayPracticeCanvas" width="760" height="380" aria-label="反射和折射光路作图练习画布"></canvas>
+              <label class="slider-label" for="rayPracticeAngle">
+                入射角
+                <output id="rayPracticeAngleOutput">40°</output>
+              </label>
+              <input id="rayPracticeAngle" type="range" min="15" max="68" value="40" />
+            </div>
+            <div class="ray-practice-controls">
+              <div class="refraction-switch" id="refractionSwitch">
+                <p class="control-label">折射情境</p>
+                <div class="segmented" role="group" aria-label="选择折射介质方向">
+                  <button class="segment is-active" type="button" data-medium-path="air-water">空气到水</button>
+                  <button class="segment" type="button" data-medium-path="water-air">水到空气</button>
+                </div>
+              </div>
+              <p class="control-label">选择你要画出的出射光线</p>
+              <div class="choice-row ray-choice-row" id="rayRuleChoices" role="group" aria-label="选择光路作图规则">
+                <button type="button" data-ray-rule="equal">分居法线两侧，角度相等</button>
+                <button type="button" data-ray-rule="toward">折射光线靠近法线</button>
+                <button type="button" data-ray-rule="away">折射光线远离法线</button>
+              </div>
+              <button class="primary-action small" type="button" id="checkRayPractice">检查作图</button>
+              <p class="feedback" id="rayPracticeFeedback" aria-live="polite">先判断是反射还是折射，再决定出射光线和法线的夹角关系。</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="check-band" id="light-check" aria-labelledby="light-check-title">
@@ -271,6 +308,6 @@
 
     <script src="../scripts/common.js"></script>
     <script src="../scripts/quiz.js"></script>
-    <script src="../scripts/chapter4-light.js?v=2"></script>
+    <script src="../scripts/chapter4-light.js?v=3"></script>
   </body>
 </html>

@@ -11,6 +11,20 @@ const angleSlider = document.querySelector("#angleSlider");
 const angleOutput = document.querySelector("#angleOutput");
 const angleFeedback = document.querySelector("#angleFeedback");
 const mirrorCanvas = document.querySelector("#mirrorCanvas");
+const rayPracticeCanvas = document.querySelector("#rayPracticeCanvas");
+const rayPracticeAngle = document.querySelector("#rayPracticeAngle");
+const rayPracticeAngleOutput = document.querySelector("#rayPracticeAngleOutput");
+const rayPracticeFeedback = document.querySelector("#rayPracticeFeedback");
+const rayModeButtons = document.querySelectorAll("[data-ray-mode]");
+const mediumPathButtons = document.querySelectorAll("[data-medium-path]");
+const rayRuleButtons = document.querySelectorAll("[data-ray-rule]");
+const refractionSwitch = document.querySelector("#refractionSwitch");
+const checkRayPracticeButton = document.querySelector("#checkRayPractice");
+
+let rayPracticeMode = "reflection";
+let mediumPath = "air-water";
+let selectedRayRule = "";
+let rayPracticeChecked = false;
 
 const shadowStage = {
   width: 640,
@@ -136,8 +150,195 @@ function drawArrow(ctx, x1, y1, x2, y2, color) {
   ctx.fill();
 }
 
+function setRayPracticeMode(mode) {
+  rayPracticeMode = mode;
+  selectedRayRule = "";
+  rayPracticeChecked = false;
+  rayModeButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.rayMode === mode);
+  });
+  rayRuleButtons.forEach((button) => {
+    button.classList.remove("is-active");
+  });
+  refractionSwitch.hidden = mode !== "refraction";
+  rayPracticeFeedback.textContent = mode === "reflection"
+    ? "反射作图先画法线，再让反射光线与入射光线分居法线两侧，且角度相等。"
+    : "折射作图先判断光从哪种介质进入哪种介质，再判断靠近或远离法线。";
+  drawRayPractice();
+}
+
+function setMediumPath(path) {
+  mediumPath = path;
+  rayPracticeChecked = false;
+  mediumPathButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.mediumPath === path);
+  });
+  rayPracticeFeedback.textContent = path === "air-water"
+    ? "空气到水：折射角小于入射角，折射光线靠近法线。"
+    : "水到空气：折射角大于入射角，折射光线远离法线。";
+  drawRayPractice();
+}
+
+function selectRayRule(rule) {
+  selectedRayRule = rule;
+  rayPracticeChecked = false;
+  rayRuleButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.rayRule === rule);
+  });
+  rayPracticeFeedback.textContent = "已选择规则。点击“检查作图”看看出射光线该怎么画。";
+  drawRayPractice();
+}
+
+function expectedRayRule() {
+  if (rayPracticeMode === "reflection") return "equal";
+  return mediumPath === "air-water" ? "toward" : "away";
+}
+
+function drawInterface(ctx, origin, width, height) {
+  ctx.fillStyle = "#f7fcff";
+  ctx.fillRect(0, 0, width, height);
+
+  if (rayPracticeMode === "refraction") {
+    ctx.fillStyle = "rgba(26, 166, 183, 0.12)";
+    ctx.fillRect(0, origin.y, width, height - origin.y);
+    ctx.fillStyle = "#526b7d";
+    ctx.font = "800 17px -apple-system, BlinkMacSystemFont, sans-serif";
+    ctx.fillText("空气", 42, origin.y - 26);
+    ctx.fillText("水", 42, origin.y + 44);
+  }
+
+  ctx.strokeStyle = rayPracticeMode === "reflection" ? "#9db7c5" : "#7fb8c9";
+  ctx.lineWidth = rayPracticeMode === "reflection" ? 8 : 4;
+  ctx.beginPath();
+  ctx.moveTo(54, origin.y);
+  ctx.lineTo(width - 54, origin.y);
+  ctx.stroke();
+
+  ctx.strokeStyle = "#d6e4eb";
+  ctx.lineWidth = 2;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(origin.x, 36);
+  ctx.lineTo(origin.x, height - 36);
+  ctx.stroke();
+  ctx.setLineDash([]);
+}
+
+function drawAngleArc(ctx, origin, angle, side, label, normalSide = "up") {
+  const radius = 42;
+  const start = normalSide === "down" ? Math.PI / 2 : -Math.PI / 2;
+  const rad = (angle * Math.PI) / 180;
+  const end = normalSide === "down"
+    ? side === "left" ? start + rad : start - rad
+    : side === "left" ? start - rad : start + rad;
+  ctx.strokeStyle = "#8ea7b7";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.arc(origin.x, origin.y, radius, start, end, normalSide === "up" ? side === "left" : side === "right");
+  ctx.stroke();
+  ctx.fillStyle = "#526b7d";
+  ctx.font = "800 14px -apple-system, BlinkMacSystemFont, sans-serif";
+  ctx.fillText(label, side === "left" ? origin.x - 90 : origin.x + 44, normalSide === "down" ? origin.y + 58 : origin.y - 34);
+}
+
+function drawRayPractice() {
+  if (!rayPracticeCanvas) return;
+
+  const ctx = rayPracticeCanvas.getContext("2d");
+  const width = rayPracticeCanvas.width;
+  const height = rayPracticeCanvas.height;
+  const origin = { x: width / 2, y: height / 2 + 12 };
+  const angle = Number(rayPracticeAngle.value);
+  const incidentRad = (angle * Math.PI) / 180;
+  const rayLength = 210;
+  const isReflection = rayPracticeMode === "reflection";
+  const isWaterToAir = rayPracticeMode === "refraction" && mediumPath === "water-air";
+  const incidentStart = {
+    x: origin.x - Math.sin(incidentRad) * rayLength,
+    y: origin.y + (isWaterToAir ? Math.cos(incidentRad) : -Math.cos(incidentRad)) * rayLength,
+  };
+
+  rayPracticeAngleOutput.textContent = `${angle}°`;
+  drawInterface(ctx, origin, width, height);
+  drawArrow(ctx, incidentStart.x, incidentStart.y, origin.x, origin.y, "#ef6f61");
+
+  ctx.fillStyle = "#26394d";
+  ctx.font = "800 18px -apple-system, BlinkMacSystemFont, sans-serif";
+  ctx.fillText("法线", origin.x + 12, 58);
+  ctx.fillText("入射光线", incidentStart.x - 16, incidentStart.y - 12);
+  drawAngleArc(ctx, origin, angle, "left", `入射角 ${angle}°`, isWaterToAir ? "down" : "up");
+
+  if (!rayPracticeChecked) {
+    ctx.fillStyle = "#6b7d8e";
+    ctx.font = "800 17px -apple-system, BlinkMacSystemFont, sans-serif";
+    ctx.fillText("选择规则后检查，蓝色光线会补出来", origin.x - 170, height - 26);
+    return;
+  }
+
+  let outgoingAngle = angle;
+  let outgoingYSign = -1;
+  if (!isReflection) {
+    outgoingAngle = mediumPath === "air-water"
+      ? Math.max(8, angle * 0.62)
+      : Math.min(78, angle * 1.35);
+    outgoingYSign = mediumPath === "air-water" ? 1 : -1;
+  }
+
+  const outgoingRad = (outgoingAngle * Math.PI) / 180;
+  const outgoingEnd = {
+    x: origin.x + Math.sin(outgoingRad) * rayLength,
+    y: origin.y + outgoingYSign * Math.cos(outgoingRad) * rayLength,
+  };
+  drawArrow(ctx, origin.x, origin.y, outgoingEnd.x, outgoingEnd.y, "#1aa6b7");
+
+  ctx.fillStyle = "#26394d";
+  ctx.font = "800 18px -apple-system, BlinkMacSystemFont, sans-serif";
+  ctx.fillText(isReflection ? "反射光线" : "折射光线", outgoingEnd.x - 78, outgoingEnd.y - 12);
+  const outgoingNormalSide = isReflection || mediumPath === "water-air" ? "up" : "down";
+  drawAngleArc(ctx, origin, outgoingAngle, "right", `${isReflection ? "反射角" : "折射角"} ${Math.round(outgoingAngle)}°`, outgoingNormalSide);
+}
+
+function checkRayPractice() {
+  const expected = expectedRayRule();
+  rayPracticeChecked = true;
+  if (!selectedRayRule) {
+    rayPracticeFeedback.textContent = "先选择一条作图规则，再检查。";
+    drawRayPractice();
+    return;
+  }
+
+  if (selectedRayRule === expected) {
+    rayPracticeFeedback.textContent = rayPracticeMode === "reflection"
+      ? "判断正确：反射光线和入射光线分居法线两侧，反射角等于入射角。"
+      : mediumPath === "air-water"
+        ? "判断正确：光从空气斜射入水中，折射角变小，折射光线靠近法线。"
+        : "判断正确：光从水中斜射入空气，折射角变大，折射光线远离法线。";
+  } else {
+    rayPracticeFeedback.textContent = rayPracticeMode === "reflection"
+      ? "再看法线：反射不是靠近或远离法线，而是两侧角度相等。"
+      : mediumPath === "air-water"
+        ? "再判断介质：空气到水时折射角小于入射角，应靠近法线。"
+        : "再判断介质：水到空气时折射角大于入射角，应远离法线。";
+  }
+  drawRayPractice();
+}
+
 blockerSlider.addEventListener("input", updateShadow);
 angleSlider.addEventListener("input", drawMirror);
+rayPracticeAngle?.addEventListener("input", () => {
+  rayPracticeChecked = false;
+  drawRayPractice();
+});
+rayModeButtons.forEach((button) => {
+  button.addEventListener("click", () => setRayPracticeMode(button.dataset.rayMode));
+});
+mediumPathButtons.forEach((button) => {
+  button.addEventListener("click", () => setMediumPath(button.dataset.mediumPath));
+});
+rayRuleButtons.forEach((button) => {
+  button.addEventListener("click", () => selectRayRule(button.dataset.rayRule));
+});
+checkRayPracticeButton?.addEventListener("click", checkRayPractice);
 
 setupQuiz({
   formSelector: "#lightQuiz",
@@ -179,3 +380,4 @@ setupQuiz({
 
 updateShadow();
 drawMirror();
+setRayPracticeMode("reflection");

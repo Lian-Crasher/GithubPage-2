@@ -1048,6 +1048,42 @@ th {
   font-weight: 800;
 }
 
+.ray-drawing-practice {
+  width: min(1180px, 100%);
+  margin: 18px auto 0;
+}
+
+.ray-mode-controls {
+  width: min(440px, 100%);
+}
+
+.ray-practice-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.ray-practice-controls {
+  display: grid;
+  gap: 14px;
+}
+
+.control-label {
+  margin: 0 0 8px;
+  color: #33485f;
+  font-weight: 900;
+}
+
+.refraction-switch[hidden] {
+  display: none;
+}
+
+.ray-choice-row {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 .mini-graph,
 .ray-sketch,
 .exam-diagram {
@@ -1466,7 +1502,8 @@ th {
 .wave-panel canvas,
 .graph-panel canvas,
 .mirror-panel canvas,
-.lens-panel canvas {
+.lens-panel canvas,
+.ray-drawing-practice canvas {
   display: block;
   width: 100%;
   height: auto;
@@ -2203,7 +2240,8 @@ th {
   .graph-lab,
   .reflection-lab,
   .lens-bench,
-  .density-lab {
+  .density-lab,
+  .ray-practice-layout {
     grid-template-columns: 1fr;
   }
 
