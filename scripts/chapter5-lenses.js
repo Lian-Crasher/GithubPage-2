@@ -6,6 +6,15 @@ const objectDistanceOutput = document.querySelector("#objectDistanceOutput");
 const objectArrow = document.querySelector("#objectArrow");
 const imageArrow = document.querySelector("#imageArrow");
 const imageRuleResult = document.querySelector("#imageRuleResult");
+const lensPracticeButtons = document.querySelectorAll("[data-lens-practice]");
+const lensPracticeCanvas = document.querySelector("#lensPracticeCanvas");
+const lensRuleButtons = document.querySelectorAll("[data-lens-rule]");
+const checkLensPracticeButton = document.querySelector("#checkLensPractice");
+const lensPracticeFeedback = document.querySelector("#lensPracticeFeedback");
+
+let lensPracticeMode = "parallel";
+let selectedLensRule = null;
+let lensPracticeChecked = false;
 
 function drawLens(type = "convex") {
   const ctx = lensCanvas.getContext("2d");
@@ -139,10 +148,173 @@ function drawArrow(ctx, x1, y1, x2, y2, color) {
   ctx.fill();
 }
 
+function drawLensPracticeBase(ctx, width, height) {
+  const centerX = width / 2;
+  const centerY = height / 2 + 8;
+  const focus = 118;
+
+  ctx.clearRect(0, 0, width, height);
+  ctx.fillStyle = "#f7fcff";
+  ctx.fillRect(0, 0, width, height);
+
+  ctx.strokeStyle = "#d6e4eb";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(42, centerY);
+  ctx.lineTo(width - 42, centerY);
+  ctx.stroke();
+
+  ctx.fillStyle = "rgba(26, 166, 183, 0.22)";
+  ctx.strokeStyle = "#1aa6b7";
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.ellipse(centerX, centerY, 32, 130, 0, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = "#ef6f61";
+  ctx.font = "900 17px -apple-system, BlinkMacSystemFont, sans-serif";
+  [
+    [centerX - focus * 2, "2F"],
+    [centerX - focus, "F"],
+    [centerX + focus, "F"],
+    [centerX + focus * 2, "2F"],
+  ].forEach(([x, label]) => {
+    ctx.beginPath();
+    ctx.arc(x, centerY, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillText(label, x - (label === "2F" ? 10 : 5), centerY + 28);
+  });
+
+  ctx.fillStyle = "#26394d";
+  ctx.font = "900 18px -apple-system, BlinkMacSystemFont, sans-serif";
+  ctx.fillText("凸透镜", centerX - 34, 42);
+  ctx.fillText("主光轴", width - 122, centerY - 12);
+
+  return { centerX, centerY, focus };
+}
+
+function lensPracticePrompt(mode) {
+  if (mode === "parallel") return "平行于主光轴的光线，经凸透镜折射后会怎样？";
+  if (mode === "focus") return "从焦点方向射向凸透镜的光线，折射后会怎样？";
+  return "经过光心的光线，折射后方向会怎样？";
+}
+
+function expectedLensRule() {
+  if (lensPracticeMode === "parallel") return "through-focus";
+  if (lensPracticeMode === "focus") return "parallel";
+  return "straight";
+}
+
+function drawLensPractice() {
+  if (!lensPracticeCanvas) return;
+
+  const ctx = lensPracticeCanvas.getContext("2d");
+  const width = lensPracticeCanvas.width;
+  const height = lensPracticeCanvas.height;
+  const { centerX, centerY, focus } = drawLensPracticeBase(ctx, width, height);
+  let incidentStart;
+  let lensPoint;
+  let outgoingEnd;
+  let answerLabel;
+
+  if (lensPracticeMode === "parallel") {
+    incidentStart = { x: 74, y: centerY - 82 };
+    lensPoint = { x: centerX, y: centerY - 82 };
+    outgoingEnd = { x: centerX + focus + 130, y: centerY + 90 };
+    answerLabel = "折射后通过另一侧焦点";
+  } else if (lensPracticeMode === "focus") {
+    const leftFocus = { x: centerX - focus, y: centerY };
+    lensPoint = { x: centerX, y: centerY - 76 };
+    incidentStart = {
+      x: leftFocus.x - 96,
+      y: leftFocus.y + 62,
+    };
+    outgoingEnd = { x: centerX + 255, y: lensPoint.y };
+    answerLabel = "折射后平行于主光轴";
+  } else {
+    incidentStart = { x: centerX - 250, y: centerY - 108 };
+    lensPoint = { x: centerX, y: centerY };
+    outgoingEnd = { x: centerX + 250, y: centerY + 108 };
+    answerLabel = "经过光心方向不改变";
+  }
+
+  drawArrow(ctx, incidentStart.x, incidentStart.y, lensPoint.x, lensPoint.y, "#ef6f61");
+  ctx.fillStyle = "#26394d";
+  ctx.font = "800 17px -apple-system, BlinkMacSystemFont, sans-serif";
+  ctx.fillText("入射光线", incidentStart.x + 4, incidentStart.y - 14);
+  ctx.fillText(lensPracticePrompt(lensPracticeMode), 46, height - 28);
+
+  if (!lensPracticeChecked) {
+    ctx.fillStyle = "#6b7d8e";
+    ctx.font = "800 16px -apple-system, BlinkMacSystemFont, sans-serif";
+    ctx.fillText("选择规则后检查，蓝色光线会补出来", centerX - 154, 72);
+    return;
+  }
+
+  drawArrow(ctx, lensPoint.x, lensPoint.y, outgoingEnd.x, outgoingEnd.y, "#1aa6b7");
+  ctx.fillStyle = "#26394d";
+  ctx.font = "800 17px -apple-system, BlinkMacSystemFont, sans-serif";
+  ctx.fillText(answerLabel, centerX + 44, lensPoint.y - 16);
+}
+
+function setLensPracticeMode(mode) {
+  lensPracticeMode = mode;
+  selectedLensRule = null;
+  lensPracticeChecked = false;
+  lensPracticeButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.lensPractice === mode);
+  });
+  lensRuleButtons.forEach((button) => button.classList.remove("is-active"));
+  lensPracticeFeedback.textContent = "先看入射光线和光心、焦点的位置，再选择折射后的走向。";
+  drawLensPractice();
+}
+
+function selectLensRule(rule) {
+  selectedLensRule = rule;
+  lensPracticeChecked = false;
+  lensRuleButtons.forEach((button) => {
+    button.classList.toggle("is-active", button.dataset.lensRule === rule);
+  });
+  drawLensPractice();
+}
+
+function checkLensPractice() {
+  lensPracticeChecked = true;
+  if (!selectedLensRule) {
+    lensPracticeFeedback.textContent = "先选一条折射后光线的走向，再检查。";
+    drawLensPractice();
+    return;
+  }
+
+  const expected = expectedLensRule();
+  if (selectedLensRule === expected) {
+    lensPracticeFeedback.textContent = lensPracticeMode === "parallel"
+      ? "判断正确：平行于主光轴的光线，经凸透镜折射后通过另一侧焦点。"
+      : lensPracticeMode === "focus"
+        ? "判断正确：从焦点方向射来的光线，经凸透镜折射后平行于主光轴。"
+        : "判断正确：通过光心的光线，传播方向通常不改变。";
+  } else {
+    lensPracticeFeedback.textContent = lensPracticeMode === "parallel"
+      ? "再看焦点：平行光经凸透镜折射后，要通过另一侧焦点。"
+      : lensPracticeMode === "focus"
+        ? "再看入射方向：从焦点方向射来，折射后应平行于主光轴。"
+        : "再看光心：经过光心的特殊光线，方向通常不改变。";
+  }
+  drawLensPractice();
+}
+
 lensButtons.forEach((button) => {
   button.addEventListener("click", () => drawLens(button.dataset.lens));
 });
 objectDistanceSlider.addEventListener("input", updateImageRule);
+lensPracticeButtons.forEach((button) => {
+  button.addEventListener("click", () => setLensPracticeMode(button.dataset.lensPractice));
+});
+lensRuleButtons.forEach((button) => {
+  button.addEventListener("click", () => selectLensRule(button.dataset.lensRule));
+});
+checkLensPracticeButton?.addEventListener("click", checkLensPractice);
 
 setupQuiz({
   formSelector: "#lensesQuiz",
@@ -179,9 +351,9 @@ setupQuiz({
     e4: { href: "#image-rule", label: "回看照相机成像" },
     e5: { href: "#image-rule", label: "回看放大镜成像" },
     e6: { href: "#eyes-tools", label: "回看近视矫正" },
-    e7: { href: "#lens-exam", label: "回看特殊光线" },
+    e7: { href: "#lens-practice", label: "练习透镜作图" },
     e8: { href: "#image-rule", label: "回看投影仪成像" },
-    e9: { href: "#lens-exam", label: "回看投影仪调试" },
+    e9: { href: "#lens-practice", label: "回看特殊光线与投影仪调试" },
     e10: { href: "#real-virtual-image", label: "回看实像和虚像" },
   },
   badges: (score) => score >= 9 ? "第五章掌握很稳" : score >= 7 ? "第五章基本过关" : "建议回看成像规律滑台",
@@ -190,3 +362,4 @@ setupQuiz({
 
 drawLens("convex");
 updateImageRule();
+setLensPracticeMode("parallel");

@@ -10,6 +10,8 @@ const graphFeedback = document.querySelector("#graphFeedback");
 const boilingOrderList = document.querySelector("#boilingOrderList");
 const checkBoilingOrderButton = document.querySelector("#checkBoilingOrder");
 const boilingOrderFeedback = document.querySelector("#boilingOrderFeedback");
+const temperatureViewButtons = document.querySelectorAll("[data-temperature-view]");
+const temperatureViewFeedback = document.querySelector("#temperatureViewFeedback");
 const boilingOrderAnswer = ["lamp", "thermometer", "heat", "record", "conclusion"];
 
 function updateTemperature() {
@@ -22,6 +24,18 @@ function updateTemperature() {
     temperatureFeedback.textContent = "低温读数同样要看清分度值，玻璃泡要完全接触被测液体。";
   } else {
     temperatureFeedback.textContent = "等示数稳定后再读数，视线与液面相平。";
+  }
+}
+
+function chooseTemperatureView(button) {
+  temperatureViewButtons.forEach((viewButton) => {
+    viewButton.classList.toggle("is-active", viewButton === button);
+  });
+
+  if (button.dataset.temperatureView === "level") {
+    temperatureViewFeedback.textContent = "判断正确：视线与液柱上表面相平，能减少读数偏差。";
+  } else {
+    temperatureViewFeedback.textContent = "再调整视线：从上方或下方斜看都会产生偏差，读数时要和液柱上表面相平。";
   }
 }
 
@@ -200,7 +214,7 @@ setupQuiz({
   },
   reviewLinks: {
     p1: { href: "#temperature", label: "回看温度概念" },
-    p2: { href: "#temperature", label: "回看温度计读数" },
+    p2: { href: "#temperature-reading-practice", label: "练习温度计读数" },
     p3: { href: "#state-change", label: "回看物态变化" },
     p4: { href: "#boiling-exam", label: "回看水的沸腾" },
     p5: { href: "#state-change", label: "回看汽化吸热" },
@@ -251,6 +265,9 @@ setupQuiz({
 });
 
 temperatureSlider.addEventListener("input", updateTemperature);
+temperatureViewButtons.forEach((button) => {
+  button.addEventListener("click", () => chooseTemperatureView(button));
+});
 stateButtons.forEach((button) => {
   button.addEventListener("click", () => setState(button.dataset.state));
 });

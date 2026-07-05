@@ -71,6 +71,15 @@
             </label>
             <input id="temperatureSlider" type="range" min="0" max="100" value="42" />
             <p class="feedback" id="temperatureFeedback">等示数稳定后再读数，视线与液面相平。</p>
+            <div class="reading-practice" id="temperature-reading-practice">
+              <p class="control-label">下面哪种读数姿势正确？</p>
+              <div class="choice-row" role="group" aria-label="选择温度计读数姿势">
+                <button type="button" data-temperature-view="above">从液柱上方斜看</button>
+                <button type="button" data-temperature-view="level">视线与液柱上表面相平</button>
+                <button type="button" data-temperature-view="below">从液柱下方斜看</button>
+              </div>
+              <p class="feedback" id="temperatureViewFeedback" aria-live="polite">读数时，温度计玻璃泡仍要留在被测液体中。</p>
+            </div>
           </div>
         </div>
       </section>

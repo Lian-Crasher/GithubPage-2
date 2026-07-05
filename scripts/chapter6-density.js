@@ -15,8 +15,8 @@ const densityErrorCases = document.querySelector("#densityErrorCases");
 const checkDensityErrorsButton = document.querySelector("#checkDensityErrors");
 const densityErrorFeedback = document.querySelector("#densityErrorFeedback");
 const densityErrorMessages = {
-  low: "结果偏小：体积 V 被算大时，ρ = m / V 会变小。",
-  high: "结果偏大：质量 m 被算大时，ρ = m / V 会变大。",
+  low: "结果偏小：质量 m 偏小或体积 V 偏大时，ρ = m / V 会变小。",
+  high: "结果偏大：质量 m 偏大或体积 V 偏小时，ρ = m / V 会变大。",
   same: "基本不变：单位换算正确时，质量和体积表示方式变了，密度值对应的物理量不变。",
 };
 
@@ -192,7 +192,7 @@ setupQuiz({
     f10: { href: "#measure-density", label: "回看排水法" },
     f11: { href: "chapter1-motion.html#motion-graph", label: "回看 s-t 图像" },
     f12: { href: "chapter4-light.html#ray-drawing", label: "回看折射作图" },
-    f13: { href: "chapter5-lenses.html#lens-exam", label: "回看投影仪调试" },
+    f13: { href: "chapter5-lenses.html#lens-practice", label: "回看透镜作图与投影仪调试" },
     f14: { href: "chapter3-states.html#thermal-expansion", label: "回看热胀冷缩" },
   },
   badges: (score) => score >= 12 ? "上册预习非常稳" : score >= 9 ? "上册主线基本过关" : "建议按反馈回看章节",

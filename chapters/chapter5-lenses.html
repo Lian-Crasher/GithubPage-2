@@ -236,6 +236,30 @@
         <div class="exam-note">
           <strong>测焦距：</strong>让凸透镜正对太阳光，移动白纸直到出现最小最亮的光斑，光心到光斑的距离就是焦距。
         </div>
+        <div class="interactive-panel ray-drawing-practice lens-drawing-practice" id="lens-practice">
+          <div class="panel-topline">
+            <h3>透镜作图台</h3>
+            <span class="tag">三条特殊光线</span>
+          </div>
+          <div class="segmented ray-mode-controls" role="group" aria-label="选择透镜作图题型">
+            <button class="segment is-active" type="button" data-lens-practice="parallel">平行主光轴</button>
+            <button class="segment" type="button" data-lens-practice="focus">过焦点</button>
+            <button class="segment" type="button" data-lens-practice="center">过光心</button>
+          </div>
+          <div class="ray-practice-layout">
+            <canvas id="lensPracticeCanvas" width="760" height="380" aria-label="凸透镜三条特殊光线作图练习画布"></canvas>
+            <div class="ray-practice-controls">
+              <p class="control-label">选择折射后的光线走向</p>
+              <div class="choice-row ray-choice-row" id="lensRuleChoices" role="group" aria-label="选择透镜作图规则">
+                <button type="button" data-lens-rule="through-focus">通过另一侧焦点</button>
+                <button type="button" data-lens-rule="parallel">平行于主光轴</button>
+                <button type="button" data-lens-rule="straight">方向不改变</button>
+              </div>
+              <button class="primary-action small" type="button" id="checkLensPractice">检查作图</button>
+              <p class="feedback" id="lensPracticeFeedback" aria-live="polite">先看入射光线和光心、焦点的位置，再选择折射后的走向。</p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="check-band" id="lenses-check" aria-labelledby="lenses-check-title">

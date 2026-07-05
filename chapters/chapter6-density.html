@@ -243,6 +243,26 @@
               </div>
               <p class="case-feedback"></p>
             </article>
+            <article class="error-case" data-answer="low">
+              <h3>先在量筒中测液体体积，再倒入烧杯称质量</h3>
+              <p>量筒壁上残留一部分液体，称得的质量偏小，但体积仍按倒出前读数计算。</p>
+              <div class="choice-row" role="group" aria-label="判断量筒残留液体误差">
+                <button type="button" data-choice="high">偏大</button>
+                <button type="button" data-choice="low">偏小</button>
+                <button type="button" data-choice="same">基本不变</button>
+              </div>
+              <p class="case-feedback"></p>
+            </article>
+            <article class="error-case" data-answer="same">
+              <h3>先称烧杯和液体总质量，倒入量筒后再称剩余质量</h3>
+              <p>两次称量相减得到倒入量筒那部分液体的质量，能避开烧杯残留的影响。</p>
+              <div class="choice-row" role="group" aria-label="判断液体密度推荐顺序误差">
+                <button type="button" data-choice="high">偏大</button>
+                <button type="button" data-choice="low">偏小</button>
+                <button type="button" data-choice="same">基本不变</button>
+              </div>
+              <p class="case-feedback"></p>
+            </article>
           </div>
           <button class="primary-action small" type="button" id="checkDensityErrors">检查判断</button>
           <p class="feedback" id="densityErrorFeedback" aria-live="polite">提示：密度公式中，质量偏大会让结果偏大，体积偏大会让结果偏小。</p>
