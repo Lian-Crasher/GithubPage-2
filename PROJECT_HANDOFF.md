@@ -14,9 +14,11 @@ GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-最近几次远端 `main` 都通过 GitHub API 发布。继续交接时请用“如何验证”部分的命令实时查询远端 `main` 和 tree，不要只信本地 `origin/main` 引用。
+截至 2026-07-05，最近一次发布已通过普通 `git push origin main` 成功推送。当前本地 `main` 与 `origin/main` 对齐，最新提交为：
 
-注意：本地 `git status` 可能显示 `main...origin/main [ahead 4]` 或更多。原因是最近几次普通 `git push` 遇到 GitHub HTTPS/HTTP2 网络错误，改用 `gh api` 创建远端提交并更新 `main`；本地提交 SHA 与远端 API 创建的提交 SHA 不同，但代码 tree 已验证一致。
+- `02a5e78 Add ray drawing practice`
+
+历史上曾因 GitHub HTTPS/HTTP2 网络错误改用 `gh api` 发布，造成过本地提交 SHA 与远端提交 SHA 不一致。后续交接时仍建议先看 `git status -sb`、`git log --oneline --decorate -5` 和远端提交状态，再决定是否需要对齐。
 
 ## 已做的代码/文件变更
 
@@ -87,6 +89,11 @@ https://lian-crasher.github.io/GithubPage-2/
   - 第一章 7 题、第三章 8 题、第四章 8 题、第五章 10 题、第六章 8 题。
   - 综合检查从 10 题扩展到 14 题，加入 s-t 图像、折射作图、投影仪调试、热胀冷缩等期末常见能力点。
   - 首页综合检查入口文案已同步为“14 道题”，避免首页仍显示旧的 10 题。
+- 学习闭环已升级。
+  - `scripts/quiz.js` 现在会在提交检查后生成错题回看清单，每道错题可跳转到对应章节模块。
+  - `scripts/quiz.js` 会把答题分数、错题 key、完成状态保存到 `localStorage`。
+  - `scripts/common.js` 会在首页学习地图显示“未检查 / 待巩固 x/y / 已掌握 x/y”进度徽章。
+  - 各章检查、阶段检查和综合检查都已配置 `quizId` 与 `reviewLinks`。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片等组件，并修复窄屏导航可能撑宽页面的问题。
 
 ## 关键设计决策
@@ -103,18 +110,18 @@ https://lian-crasher.github.io/GithubPage-2/
 
 ## 未解决问题
 
-本地 Git 状态仍有历史不一致：
+本地 Git 状态：
 
-- 本地 `git status` 可能显示 `main...origin/main [ahead 4]` 或更多。
-- 原因不是远端缺内容，而是最近几次普通 `git push` 网络失败后，使用 `gh api` 在远端创建了等价内容的新提交。
-- 本地提交 SHA 与远端提交 SHA 不同，但最近已通过远端 tree 与本地 tree 对比确认内容一致。
-- 后续如需恢复本地 Git 引用整洁，建议在确认没有未提交改动后，用非破坏方式重新对齐本地 `main` 到远端 `main`。不要直接 `git reset --hard`，除非用户明确同意。
+- 截至本次交接，`git status -sb` 显示 `## main...origin/main`，没有未提交改动。
+- `HEAD` 与 `origin/main` 都指向 `02a5e782b2ef9a2983cc0b999c6220bf0e2c2834`。
+- 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
-普通 `git push` 曾多次失败：
+GitHub 发布注意事项：
 
-- 曾出现 `Error in the HTTP2 framing layer`。
-- 曾出现连接 GitHub 443 超时。
-- 因此当前可靠发布方式是：使用 `gh api` 创建 tree、创建 commit、PATCH 更新 `refs/heads/main`。
+- 普通 `git push origin main` 最近两次发布成功：`8ec1e5d` 和 `02a5e78`。
+- 但 `gh auth status` 最近显示 `Lian-Crasher` 的 GitHub CLI token invalid；如果后续要用 `gh api` 或 GitHub CLI，需要先重新认证。
+- 如果普通 `git push` 又遇到网络或 fast-forward 问题，先 `git fetch origin main` 检查远端历史，不要直接强推。
+- 除非用户明确同意，不要执行 `git reset --hard` 或强制推送。
 
 内容层面仍可继续加强：
 
@@ -169,12 +176,22 @@ python3 -m http.server 8002
 远端验证：
 
 ```bash
+git status -sb
+git log --oneline --decorate -5
+git rev-parse HEAD
+git rev-parse origin/main
+git rev-parse HEAD^{tree}
+```
+
+如果 GitHub CLI 重新认证可用，也可以用：
+
+```bash
 gh api repos/Lian-Crasher/GithubPage-2/git/ref/heads/main --jq .object.sha
 gh api repos/Lian-Crasher/GithubPage-2/git/commits/<remote-sha> --jq .tree.sha
 git rev-parse HEAD^{tree}
 ```
 
-预期远端 tree 和本地 tree 一致。由于最近发布常走 GitHub API，本地 `origin/main` 可能不是最新可信来源，应以 `gh api` 查询结果为准。
+预期 `HEAD` 和 `origin/main` 一致；若使用 `gh api`，预期远端 tree 与本地 tree 一致。
 
 浏览器验证重点：
 
@@ -183,11 +200,14 @@ git rev-parse HEAD^{tree}
 - 第四章首图：是否只表达直线传播和影子，不再出现光线穿过挡板或混合反射/色散。
 - 第四章 `#straight-light`：拖动挡板时，上下边界光线、被挡住的中间光线、阴影锥和屏上阴影是否同步变化。
 - 第四章 `#ray-drawing`：反射光线是否从入射点射出、是否与入射光线分居法线两侧且角度相等；折射是否远离法线，平面镜物像是否对称。
+- 第四章 `#ray-drawing` 的“光路作图台”：反射模式选“分居法线两侧，角度相等”应反馈正确；折射模式中空气到水应靠近法线，水到空气应远离法线；移动端 390px 宽度不应横向溢出。
+- 首页学习地图：做过章节检查后，应显示“待巩固 x/y”或“已掌握 x/y”进度徽章。
+- 第三章 `#boiling-exam`：实验步骤排序应能用上移/下移调整，正确顺序为酒精灯/装置、温度计、加热、记录、结论。
 - 第五章首图：是否表达凸透镜将物体光线会聚到光屏上形成倒立缩小实像，三条特殊光线是否自洽。
 - 第五章 `#lens-basics`：凸透镜会聚、凹透镜发散是否准确。
 - 第五章 `#image-rule`：不同物距时像的位置、正倒、大小是否符合凸透镜成像规律。
 - 第五章 `#real-virtual-image`：实像是否由实际光线会聚形成并可落在光屏上；虚像是否由实际发散光线的反向延长线形成；光屏是否明确标注且不被误认为光线。
-- 第六章 `#density-errors`：误差方向表述是否准确。
+- 第六章 `#density-errors`：误差方向表述是否准确；误差方向诊断中红豆总体积偏大和量筒读数偏大应判密度偏小，石块带水称质量应判密度偏大，正确单位换算应基本不变。
 
 ## 下一步建议
 
@@ -195,7 +215,7 @@ git rev-parse HEAD^{tree}
 
 - 继续做更细的全站物理准确性复审，尤其是新增练习和后续交互是否和教材规律一致。最近一次复审未发现高严重度物理错误，已修正 3 个低到中风险表述点。
 - 给第五章增加更可操作的透镜作图练习，例如三条特殊光线选择、光心不偏折、平行光过焦点等。
+- 将第五章透镜作图练习接入现有错题回看：第五章检查和综合检查中与透镜作图、投影仪、实像/虚像相关的错题可跳到对应互动模块。
 - 继续扩展第三章和第六章的实验专项题库，例如加入温度计读数纠错、实验表格补全、液体密度测量顺序误差等。
-- 增加“错题回看”定位：综合检查答错后可直接跳转到对应章节模块。
-- 增加学习进度记录，例如用 `localStorage` 保存章节检查完成状态。
-- 在网络稳定时处理本地 Git 引用不一致问题；处理前先确认工作区干净，并避免破坏用户未提交改动。
+- 做一次全站移动端 QA，重点看首页进度徽章、错题回看列表、第四章作图台、第三章排序按钮、第六章误差诊断按钮在窄屏是否拥挤。
+- 若需要继续发布，优先尝试普通 `git push origin main`；如果要使用 `gh api`，先处理 GitHub CLI token invalid 问题。
