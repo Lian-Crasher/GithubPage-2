@@ -373,6 +373,63 @@ section {
   background: #f6fbfd;
 }
 
+.recommendation-band {
+  padding: 84px 18px;
+  background: #eef8fb;
+}
+
+.recommendation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.recommendation-card {
+  display: grid;
+  gap: 12px;
+  min-height: 180px;
+  padding: 20px;
+  color: inherit;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(35, 65, 90, 0.08);
+}
+
+.recommendation-card:hover,
+.recommendation-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: #92cfd7;
+}
+
+.recommendation-tag {
+  width: fit-content;
+  padding: 6px 10px;
+  color: #0b665e;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  background: #e4f7f3;
+  border: 1px solid #a9ddd3;
+  border-radius: 999px;
+}
+
+.recommendation-card h3 {
+  margin: 0;
+  color: #223b4b;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.recommendation-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .learning-band.alt {
   background: #fffaf0;
 }
@@ -2131,9 +2188,24 @@ th {
   line-height: 1.45;
 }
 
+.quiz-card > label:not(.quiz-text-row) {
+  min-height: 42px;
+  padding: 10px 12px;
+  background: #f7fcff;
+  border: 1px solid #d7e8ef;
+  border-radius: 8px;
+}
+
 .quiz-card input {
   margin-top: 4px;
   accent-color: var(--teal);
+}
+
+.quiz-card input[type="radio"],
+.quiz-card input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
 }
 
 .quiz-help {
@@ -2275,6 +2347,7 @@ th {
 
   .hero-peek,
   .quest-grid,
+  .recommendation-grid,
   .two-column,
   .reference-lab,
   .speed-lab,
