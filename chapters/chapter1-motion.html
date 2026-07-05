@@ -290,10 +290,12 @@
             <label><input type="radio" name="q2" value="c" /> 向后运动的</label>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>3. 甲 10 s 跑 50 m，乙 8 s 跑 48 m，谁更快？</legend>
-            <label><input type="radio" name="q3" value="a" /> 甲</label>
-            <label><input type="radio" name="q3" value="b" /> 乙</label>
-            <label><input type="radio" name="q3" value="c" /> 一样快</label>
+            <legend>3. 甲 10 s 跑 50 m，乙 8 s 跑 48 m，乙的速度是多少 m/s？</legend>
+            <label class="quiz-text-row">
+              乙的速度
+              <input class="quiz-text-input" type="text" name="q3" inputmode="decimal" autocomplete="off" />
+              <span>m/s</span>
+            </label>
           </fieldset>
           <fieldset class="quiz-card">
             <legend>4. 速度公式 v = s / t 中，s 表示什么？</legend>
@@ -308,10 +310,11 @@
             <label><input type="radio" name="q5" value="c" /> 随便估一个接近的数</label>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>6. s-t 图像中出现水平线段，通常表示物体怎样？</legend>
-            <label><input type="radio" name="q6" value="a" /> 静止</label>
-            <label><input type="radio" name="q6" value="b" /> 速度越来越大</label>
-            <label><input type="radio" name="q6" value="c" /> 一定向下运动</label>
+            <legend>6. s-t 图像中出现水平线段，通常表示物体处于什么状态？</legend>
+            <label class="quiz-text-row">
+              这一段物体
+              <input class="quiz-text-input" type="text" name="q6" autocomplete="off" />
+            </label>
           </fieldset>
           <fieldset class="quiz-card">
             <legend>7. 同一段时间内，乙的路程增加比甲多。以甲为参照物，乙可能怎样运动？</legend>

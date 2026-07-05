@@ -296,9 +296,11 @@
           </fieldset>
           <fieldset class="quiz-card">
             <legend>4. 质量 80 g、体积 10 cm³ 的物体，密度是多少？</legend>
-            <label><input type="radio" name="d4" value="a" /> 8 g/cm³</label>
-            <label><input type="radio" name="d4" value="b" /> 0.125 g/cm³</label>
-            <label><input type="radio" name="d4" value="c" /> 90 g/cm³</label>
+            <label class="quiz-text-row">
+              密度
+              <input class="quiz-text-input" type="text" name="d4" inputmode="decimal" autocomplete="off" />
+              <span>g/cm³</span>
+            </label>
           </fieldset>
           <fieldset class="quiz-card">
             <legend>5. 用量筒排水法测不规则固体体积时，体积等于什么？</legend>
@@ -313,10 +315,12 @@
             <label><input type="radio" name="d6" value="c" /> 0.001 kg/m³</label>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>7. 用量筒直接量红豆体积时把空隙也算进去，测得密度会怎样？</legend>
-            <label><input type="radio" name="d7" value="a" /> 偏小</label>
-            <label><input type="radio" name="d7" value="b" /> 偏大</label>
-            <label><input type="radio" name="d7" value="c" /> 一定没有影响</label>
+            <legend>7. 多选：下列哪些情况会让测得密度偏小？</legend>
+            <p class="quiz-help">从 ρ = m / V 判断质量和体积谁偏了。</p>
+            <label><input type="checkbox" name="d7" value="bean-gap" /> 直接量红豆总体积时把空隙算进去</label>
+            <label><input type="checkbox" name="d7" value="wet-stone" /> 石块表面带水就去称质量</label>
+            <label><input type="checkbox" name="d7" value="big-volume" /> 量筒体积读数偏大</label>
+            <label><input type="checkbox" name="d7" value="correct-unit" /> 正确把单位换成国际单位</label>
           </fieldset>
           <fieldset class="quiz-card">
             <legend>8. 天平指针偏向分度盘左侧，调平时平衡螺母应向哪边调？</legend>

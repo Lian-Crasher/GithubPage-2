@@ -306,10 +306,36 @@
             <label><input type="radio" name="e6" value="c" /> 平面镜</label>
           </fieldset>
           <fieldset class="quiz-card">
-            <legend>7. 平行于主光轴的光线经凸透镜折射后通常会怎样？</legend>
-            <label><input type="radio" name="e7" value="a" /> 通过另一侧焦点</label>
-            <label><input type="radio" name="e7" value="b" /> 原路返回</label>
-            <label><input type="radio" name="e7" value="c" /> 变成声波</label>
+            <legend>7. 配对：把凸透镜特殊光线和折射后的走向连起来。</legend>
+            <div class="quiz-select-stack">
+              <label>
+                平行于主光轴的光线
+                <select data-match-group="e7" data-match-key="parallel">
+                  <option value="">请选择</option>
+                  <option value="focus">通过另一侧焦点</option>
+                  <option value="axis">平行于主光轴</option>
+                  <option value="straight">方向不改变</option>
+                </select>
+              </label>
+              <label>
+                从焦点方向射向凸透镜的光线
+                <select data-match-group="e7" data-match-key="focus">
+                  <option value="">请选择</option>
+                  <option value="focus">通过另一侧焦点</option>
+                  <option value="axis">平行于主光轴</option>
+                  <option value="straight">方向不改变</option>
+                </select>
+              </label>
+              <label>
+                经过光心的光线
+                <select data-match-group="e7" data-match-key="center">
+                  <option value="">请选择</option>
+                  <option value="focus">通过另一侧焦点</option>
+                  <option value="axis">平行于主光轴</option>
+                  <option value="straight">方向不改变</option>
+                </select>
+              </label>
+            </div>
           </fieldset>
           <fieldset class="quiz-card">
             <legend>8. 投影仪成清晰放大实像时，物距一般满足什么范围？</legend>
