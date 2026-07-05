@@ -3,18 +3,65 @@ const blockerOutput = document.querySelector("#blockerOutput");
 const shadowBlocker = document.querySelector("#shadowBlocker");
 const shadowShape = document.querySelector("#shadowShape");
 const shadowFeedback = document.querySelector("#shadowFeedback");
+const shadowCone = document.querySelector("#shadowCone");
+const upperBoundaryRay = document.querySelector("#upperBoundaryRay");
+const lowerBoundaryRay = document.querySelector("#lowerBoundaryRay");
+const blockedRay = document.querySelector("#blockedRay");
 const angleSlider = document.querySelector("#angleSlider");
 const angleOutput = document.querySelector("#angleOutput");
 const angleFeedback = document.querySelector("#angleFeedback");
 const mirrorCanvas = document.querySelector("#mirrorCanvas");
 
+const shadowStage = {
+  width: 640,
+  height: 280,
+  sourceX: 50,
+  sourceY: 140,
+  blockerHalfWidth: 12,
+  blockerHalfHeight: 47,
+  screenX: 600,
+  screenTop: 36,
+  screenBottom: 244,
+};
+
+function projectToScreen(edgeX, edgeY) {
+  const ratio = (shadowStage.screenX - shadowStage.sourceX) / (edgeX - shadowStage.sourceX);
+  return shadowStage.sourceY + (edgeY - shadowStage.sourceY) * ratio;
+}
+
+function setLine(line, x1, y1, x2, y2) {
+  line.setAttribute("x1", x1);
+  line.setAttribute("y1", y1);
+  line.setAttribute("x2", x2);
+  line.setAttribute("y2", y2);
+}
+
 function updateShadow() {
   const value = Number(blockerSlider.value);
-  const scale = 1.42 - (value - 24) / 92;
+  const blockerX = (value / 100) * shadowStage.width;
+  const blockerLeft = blockerX - shadowStage.blockerHalfWidth;
+  const blockerRight = blockerX + shadowStage.blockerHalfWidth;
+  const blockerTop = shadowStage.sourceY - shadowStage.blockerHalfHeight;
+  const blockerBottom = shadowStage.sourceY + shadowStage.blockerHalfHeight;
+  const screenTop = projectToScreen(blockerLeft, blockerTop);
+  const screenBottom = projectToScreen(blockerLeft, blockerBottom);
+  const visibleTop = Math.max(shadowStage.screenTop, Math.min(shadowStage.screenBottom, screenTop));
+  const visibleBottom = Math.max(shadowStage.screenTop, Math.min(shadowStage.screenBottom, screenBottom));
+  const visibleHeight = Math.max(36, visibleBottom - visibleTop);
+  const visibleMid = (visibleTop + visibleBottom) / 2;
+
   blockerOutput.textContent = `${value}%`;
   shadowBlocker.style.left = `${value}%`;
-  shadowShape.style.height = `${Math.max(64, 128 * scale)}px`;
-  shadowShape.style.width = `${Math.max(30, 54 * scale)}px`;
+  shadowShape.style.top = `${(visibleMid / shadowStage.height) * 100}%`;
+  shadowShape.style.height = `${(visibleHeight / shadowStage.height) * 100}%`;
+  shadowShape.style.width = `${Math.max(30, Math.min(64, visibleHeight * 0.24))}px`;
+  shadowCone.setAttribute(
+    "d",
+    `M ${blockerRight} ${blockerTop} L ${shadowStage.screenX} ${screenTop} L ${shadowStage.screenX} ${screenBottom} L ${blockerRight} ${blockerBottom} Z`,
+  );
+  setLine(upperBoundaryRay, shadowStage.sourceX, shadowStage.sourceY, shadowStage.screenX, screenTop);
+  setLine(lowerBoundaryRay, shadowStage.sourceX, shadowStage.sourceY, shadowStage.screenX, screenBottom);
+  setLine(blockedRay, shadowStage.sourceX, shadowStage.sourceY, blockerLeft - 6, shadowStage.sourceY);
   shadowFeedback.textContent = value < 38
     ? "挡板靠近光源，挡住的光锥范围更大，所以屏上的影子变大。"
     : value > 58
