@@ -14,11 +14,11 @@ GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-截至 2026-07-05，最近一次功能发布通过 `git -c http.version=HTTP/1.1 push origin main` 成功推送。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新功能提交为：
+截至 2026-07-06，最近一次功能发布已成功推送到 GitHub。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新功能提交为：
 
-- `05994c1 Add mixed-format final quiz`
+- `1223bbe Add study recommendations and release checklist`
 
-历史上曾因 GitHub HTTPS/HTTP2 网络错误改用 `gh api` 发布，造成过本地提交 SHA 与远端提交 SHA 不一致。本轮普通 `git push origin main` 也曾遇到 `Error in the HTTP2 framing layer`，改用 HTTP/1.1 后成功。后续交接时仍建议先看 `git status -sb`、`git log --oneline --decorate -5` 和远端提交状态，再决定是否需要对齐。
+历史上曾因 GitHub HTTPS/HTTP2 网络错误改用 `gh api` 发布，造成过本地提交 SHA 与远端提交 SHA 不一致。近期推送中普通 `git push origin main` 有时可成功，有时会遇到 DNS 或 `Error in the HTTP2 framing layer`；遇到 HTTP2 framing 问题时，`git -c http.version=HTTP/1.1 push origin main` 已验证可作为 fallback。后续交接时仍建议先看 `git status -sb`、`git log --oneline --decorate -5` 和远端提交状态，再决定是否需要对齐。
 
 ## 已做的代码/文件变更
 
@@ -40,6 +40,7 @@ https://lian-crasher.github.io/GithubPage-2/
 - `scripts/quiz.js`
 - `scripts/common.js`
 - `styles/main.css`
+- `RELEASE_CHECKLIST.md`
 
 章节配图已统一为轻量教学插画风格，资源包括：
 
@@ -101,11 +102,12 @@ https://lian-crasher.github.io/GithubPage-2/
   - 混合题型错题反馈已完成首轮增强：多选题会提示少选/多选，填空题会显示学生答案和参考答案，排序题会指出第几步需要调整并展示正确顺序，配对题会指出具体配错的项目。各章关键混合题已补充计算过程、实验逻辑或作图口诀。
   - `scripts/quiz.js` 会把答题分数、错题 key、完成状态保存到 `localStorage`。
   - `scripts/common.js` 会在首页学习地图显示“未检查 / 待巩固 x/y / 已掌握 x/y”进度徽章。
+  - `scripts/common.js` 会在首页生成“下一步复习建议”，根据检查记录优先推荐未掌握且得分比例最低的章节；没有记录时推荐第一个未开始章节，六章完成后推荐综合检查。
   - 各章检查、阶段检查和综合检查都已配置 `quizId` 与 `reviewLinks`。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片、填空输入和下拉题样式，并修复窄屏导航可能撑宽页面的问题。
 - 已完成一轮 390px 移动端 QA，覆盖首页进度徽章、第三章排序练习、第四章光路作图台、第五章透镜作图台、第六章误差诊断、各章检查和综合检查。主体页面未发现非预期横向溢出；导航和表格保留局部横向滚动。检查题单选/多选项已增强为整行触控目标，主要触控高度约 40px 以上。
 - 由于公共样式继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=5`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=2`，确保首页推荐逻辑刷新。
-- 首页已新增“下一步复习建议”区块，`scripts/common.js` 会根据 `localStorage` 中的检查记录优先推荐未掌握且得分比例最低的章节；没有记录时推荐第一个未开始章节，六章完成后推荐综合检查。
+- 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
 
 ## 关键设计决策
@@ -126,13 +128,13 @@ https://lian-crasher.github.io/GithubPage-2/
 本地 Git 状态：
 
 - 截至本次交接，`git status -sb` 显示 `## main...origin/main`，没有未提交改动。
-- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `05994c1 Add mixed-format final quiz`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `1223bbe Add study recommendations and release checklist`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
 - 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
 GitHub 发布注意事项：
 
-- 普通 `git push origin main` 曾多次成功，但最近一次普通推送遇到 `Error in the HTTP2 framing layer`。
-- 最近一次成功发布使用：`git -c http.version=HTTP/1.1 push origin main`，将 `873a0ee` 推到 `05994c1`。
+- 普通 `git push origin main` 曾多次成功；最近一次功能发布把 `af8413d` 推到 `1223bbe` 时，沙盒内普通推送因 DNS 失败，提权后 `git push origin main` 成功。
+- 如果普通推送遇到 `Error in the HTTP2 framing layer`，使用：`git -c http.version=HTTP/1.1 push origin main`。该 fallback 已在推送 `415b654` 和 `af8413d` 时验证有效。
 - 但 `gh auth status` 最近显示 `Lian-Crasher` 的 GitHub CLI token invalid；如果后续要用 `gh api` 或 GitHub CLI，需要先重新认证。
 - 如果普通 `git push` 又遇到网络或 fast-forward 问题，先 `git fetch origin main` 检查远端历史，不要直接强推。
 - 除非用户明确同意，不要执行 `git reset --hard` 或强制推送。
@@ -155,6 +157,7 @@ node --check scripts/chapter3-states.js
 node --check scripts/chapter4-light.js
 node --check scripts/chapter5-lenses.js
 node --check scripts/chapter6-density.js
+node --check scripts/common.js
 node --check scripts/quiz.js
 ```
 
@@ -233,9 +236,9 @@ git rev-parse HEAD^{tree}
 
 优先级从高到低：
 
-- 继续做更细的全站物理准确性复审，尤其是新增练习和后续交互是否和教材规律一致。最近一次复审未发现高严重度物理错误，已修正 3 个低到中风险表述点。
-- 继续做更细的全站物理准确性复审，尤其是新增混合题型、填空答案容错、排序/配对题是否和教材规律一致。
+- 继续做更细的全站物理准确性复审，尤其是新增混合题型、填空答案容错、排序/配对题和首页推荐逻辑是否和教材规律、学习路径一致。最近一次复审未发现高严重度物理错误，已修正 3 个低到中风险表述点。
 - 继续深化章节检查的混合题型比例，尤其是把更多实验题改成“步骤判断 + 误差分析 + 结论表达”的组合题。
 - 继续做浏览器端错题反馈 QA，重点验证多选少选/多选、填空带单位答案、排序重复选择、配对漏选时的提示是否清楚。
 - 后续移动端 QA 可继续补充更小宽度（例如 360px）和真实手机浏览器检查，重点看长反馈文本、表格横向滚动提示和 canvas 图中文字可读性。
+- 如果要进一步提高“下一步复习建议”的精度，可以给错题增加更细的主题标签，例如 `实验误差`、`光路作图`、`图像分析`，再让首页优先推荐具体模块而不只是章节。
 - 后续发布按 `RELEASE_CHECKLIST.md` 执行；如果要使用 `gh api`，先处理 GitHub CLI token invalid 问题。
