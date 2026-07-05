@@ -658,6 +658,17 @@ input[type="range"] {
   border-radius: 8px;
 }
 
+.compact-result {
+  min-height: 150px;
+  display: grid;
+  align-content: center;
+}
+
+.compact-result strong {
+  color: var(--teal);
+  font-size: 24px;
+}
+
 .speed-lab {
   grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
 }
@@ -942,6 +953,18 @@ th {
 
 .diagram-mirror {
   stroke: #8ca5b5;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.diagram-lens-fill {
+  fill: rgba(26, 166, 183, 0.2);
+  stroke: #1aa6b7;
+  stroke-width: 4;
+}
+
+.diagram-screen {
+  stroke: #f4d978;
   stroke-width: 6;
   stroke-linecap: round;
 }

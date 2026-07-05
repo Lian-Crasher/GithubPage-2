@@ -105,6 +105,66 @@
         </div>
       </section>
 
+      <section class="learning-band" id="real-virtual-image" aria-labelledby="real-virtual-title">
+        <div class="section-head compact">
+          <p class="eyebrow">成像本质</p>
+          <h2 id="real-virtual-title">实像和虚像：区别在光线有没有真的会聚</h2>
+          <p>判断像的性质，不只看正倒和大小，还要看实际光线是否到达像的位置。能被光屏承接的是实像；只能用眼睛看到、实际光线没有会聚到那里的，是虚像。</p>
+        </div>
+        <div class="exam-grid">
+          <article class="exam-card">
+            <svg class="exam-diagram" viewBox="0 0 320 160" role="img" aria-label="实像由实际光线会聚形成">
+              <defs>
+                <marker id="lens-real-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#1aa6b7"></path>
+                </marker>
+              </defs>
+              <line x1="30" y1="96" x2="288" y2="96" class="diagram-interface"></line>
+              <ellipse cx="148" cy="80" rx="16" ry="62" class="diagram-lens-fill"></ellipse>
+              <line x1="52" y1="48" x2="148" y2="72" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
+              <line x1="52" y1="112" x2="148" y2="88" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
+              <line x1="148" y1="72" x2="242" y2="112" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
+              <line x1="148" y1="88" x2="242" y2="112" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
+              <line x1="252" y1="44" x2="252" y2="132" class="diagram-screen"></line>
+              <circle cx="242" cy="112" r="7" fill="#0b7c72"></circle>
+              <text x="132" y="24" class="diagram-label">凸透镜</text>
+              <text x="226" y="35" class="diagram-label">光屏</text>
+              <text x="200" y="136" class="diagram-label">实际会聚</text>
+            </svg>
+            <h3>实像</h3>
+            <p>实际光线真的会聚到像的位置，所以能成在光屏上。照相机、投影仪、眼睛视网膜上的像都属于实像。</p>
+          </article>
+          <article class="exam-card">
+            <svg class="exam-diagram" viewBox="0 0 320 160" role="img" aria-label="虚像由反向延长线相交形成">
+              <defs>
+                <marker id="lens-virtual-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#ef6f61"></path>
+                </marker>
+              </defs>
+              <line x1="154" y1="24" x2="154" y2="136" class="diagram-mirror"></line>
+              <line x1="154" y1="64" x2="248" y2="38" class="diagram-ray coral" marker-end="url(#lens-virtual-arrow)"></line>
+              <line x1="154" y1="96" x2="248" y2="122" class="diagram-ray coral" marker-end="url(#lens-virtual-arrow)"></line>
+              <line x1="154" y1="64" x2="74" y2="86" class="diagram-normal"></line>
+              <line x1="154" y1="96" x2="74" y2="86" class="diagram-normal"></line>
+              <circle cx="74" cy="86" r="7" fill="#1aa6b7" opacity="0.72"></circle>
+              <text x="164" y="28" class="diagram-label">镜面或透镜</text>
+              <text x="188" y="148" class="diagram-label">实际光线发散</text>
+              <text x="36" y="78" class="diagram-label">反向延长线相交</text>
+            </svg>
+            <h3>虚像</h3>
+            <p>实际光线没有在像的位置会聚，只是人眼把进入眼睛的光线反向延长后，以为光从那里来。平面镜成像、放大镜成正立放大的像通常是虚像。</p>
+          </article>
+          <article class="exam-card">
+            <div class="result-box compact-result">
+              <strong>判断口诀</strong>
+              <p>光线真到那里，就是实像；眼睛以为从那里来，就是虚像。</p>
+            </div>
+            <h3>考试怎么判断</h3>
+            <p>能用光屏接住的是实像；不能用光屏接住，只能通过眼睛观察到的是虚像。</p>
+          </article>
+        </div>
+      </section>
+
       <section class="learning-band" id="eyes-tools" aria-labelledby="eyes-tools-title">
         <div class="section-head compact">
           <p class="eyebrow">第 4-5 节</p>
@@ -167,7 +227,7 @@
         <div class="section-head">
           <p class="eyebrow">第五章检查</p>
           <h2 id="lenses-check-title">你能把透镜规律和仪器联系起来了吗？</h2>
-          <p>完成下面 9 题，检查会聚发散、焦距、成像规律、作图和投影仪调试。</p>
+          <p>完成下面 10 题，检查会聚发散、焦距、成像规律、作图和投影仪调试。</p>
         </div>
         <form class="quiz" id="lensesQuiz">
           <fieldset class="quiz-card">
@@ -223,6 +283,12 @@
             <label><input type="radio" name="e9" value="a" /> 手机靠近透镜，投影仪远离屏幕</label>
             <label><input type="radio" name="e9" value="b" /> 手机远离透镜，投影仪靠近屏幕</label>
             <label><input type="radio" name="e9" value="c" /> 只调高屏幕亮度即可</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>10. 判断实像和虚像时，最直接的方法是什么？</legend>
+            <label><input type="radio" name="e10" value="a" /> 看能不能用光屏承接</label>
+            <label><input type="radio" name="e10" value="b" /> 看像是不是彩色</label>
+            <label><input type="radio" name="e10" value="c" /> 看物体是不是发光</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第五章检查</button>
           <div class="quiz-result" id="lensesQuizResult" aria-live="polite"></div>

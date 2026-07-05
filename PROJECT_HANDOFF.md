@@ -14,13 +14,7 @@ GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-最近一次远端 `main` 已通过 GitHub API 发布到提交：
-
-`437b8a58f1db886ff93182492fde884fef3094dd`
-
-该远端提交的 tree 已验证与本地当前代码一致：
-
-`39e3ece799b01b3e8327f9932c464ae36da52329`
+最近几次远端 `main` 都通过 GitHub API 发布。继续交接时请用“如何验证”部分的命令实时查询远端 `main` 和 tree，不要只信本地 `origin/main` 引用。
 
 注意：本地 `git status` 可能显示 `main...origin/main [ahead 2]`。这是因为最近两次普通 `git push` 遇到 GitHub HTTPS/HTTP2 网络错误，改用 `gh api` 创建远端提交并更新 `main`；本地提交 SHA 与远端 API 创建的提交 SHA 不同，但代码 tree 已验证一致。
 
@@ -70,10 +64,11 @@ https://lian-crasher.github.io/GithubPage-2/
   - “透镜光路切换”中凸透镜平行光会聚、凹透镜发散和反向延长线示意已检查。
   - “成像规律滑台”已改为按凸透镜公式 `1/f = 1/u + 1/v` 和统一比例计算像距。
   - `F`、`2F` 标记已左右对称；默认 `u = 28 cm` 时，像位于右侧 `F` 与 `2F` 之间且倒立缩小。
+  - 新增“实像和虚像”成像本质模块，说明实像由实际光线会聚形成、能用光屏承接；虚像由反向延长线相交形成，实际光线没有在像的位置会聚。
 - 第六章新增密度实验误差专项。
   - 覆盖天平调平、砝码使用、容器质量扣除、排水法体积、红豆空隙导致密度偏小。
 - 各章检查题和综合检查已扩充。
-  - 第一章 7 题、第三章 8 题、第四章 8 题、第五章 9 题、第六章 8 题。
+  - 第一章 7 题、第三章 8 题、第四章 8 题、第五章 10 题、第六章 8 题。
   - 综合检查从 10 题扩展到 14 题，加入 s-t 图像、折射作图、投影仪调试、热胀冷缩等期末常见能力点。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片等组件，并修复窄屏导航可能撑宽页面的问题。
 
@@ -160,10 +155,7 @@ gh api repos/Lian-Crasher/GithubPage-2/git/commits/<remote-sha> --jq .tree.sha
 git rev-parse HEAD^{tree}
 ```
 
-预期远端 tree 和本地 tree 一致。最近一次已验证：
-
-- 远端 `main`: `437b8a58f1db886ff93182492fde884fef3094dd`
-- tree: `39e3ece799b01b3e8327f9932c464ae36da52329`
+预期远端 tree 和本地 tree 一致。由于最近发布常走 GitHub API，本地 `origin/main` 可能不是最新可信来源，应以 `gh api` 查询结果为准。
 
 浏览器验证重点：
 
@@ -171,6 +163,7 @@ git rev-parse HEAD^{tree}
 - 第四章 `#ray-drawing`：反射光线是否从入射点射出，折射是否远离法线，平面镜物像是否对称。
 - 第五章 `#lens-basics`：凸透镜会聚、凹透镜发散是否准确。
 - 第五章 `#image-rule`：不同物距时像的位置、正倒、大小是否符合凸透镜成像规律。
+- 第五章 `#real-virtual-image`：实像/虚像的光线会聚原理、光屏判断方法是否清楚。
 - 第六章 `#density-errors`：误差方向表述是否准确。
 
 ## 下一步建议
