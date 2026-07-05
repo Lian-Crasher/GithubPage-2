@@ -82,9 +82,10 @@ function checkDensityErrors() {
     const feedback = card.querySelector(".case-feedback");
     card.dataset.state = isCorrect ? "correct" : "incorrect";
     if (isCorrect) correct += 1;
+    const explanation = card.dataset.feedback || densityErrorMessages[card.dataset.answer];
     feedback.textContent = isCorrect
-      ? densityErrorMessages[card.dataset.answer]
-      : `再想一步：${densityErrorMessages[card.dataset.answer]}`;
+      ? explanation
+      : `再想一步：${explanation}`;
   });
 
   densityErrorFeedback.textContent = correct === cards.length
