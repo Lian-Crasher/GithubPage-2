@@ -46,11 +46,11 @@ function updateLength() {
   objectBar.style.width = `${mm}%`;
 
   if (extraMm === 0) {
-    lengthFeedback.textContent = `右端正对 ${wholeCm} cm 长刻度，所以读数是 ${cm.toFixed(1)} cm。`;
+    lengthFeedback.textContent = `右端正对 ${wholeCm} cm 长刻度，所以读数是 ${cm.toFixed(1)} cm（${mm} mm）。`;
   } else if (extraMm === 5) {
-    lengthFeedback.textContent = `右端在 ${wholeCm} cm 和 ${wholeCm + 1} cm 的正中间，也就是 ${wholeCm}.5 cm。`;
+    lengthFeedback.textContent = `右端在 ${wholeCm} cm 和 ${wholeCm + 1} cm 的正中间，也就是 ${wholeCm}.5 cm（${mm} mm）。`;
   } else {
-    lengthFeedback.textContent = `右端越过 ${wholeCm} cm 后第 ${extraMm} 个 1 mm 小格，所以读数是 ${cm.toFixed(1)} cm。`;
+    lengthFeedback.textContent = `右端越过 ${wholeCm} cm 后第 ${extraMm} 个 1 mm 小格，所以读数是 ${cm.toFixed(1)} cm（${mm} mm）。`;
   }
 }
 

@@ -14,6 +14,9 @@ function drawLens(type = "convex") {
   const centerX = width / 2;
   const centerY = height / 2;
   const focus = 138;
+  const rayStartX = 44;
+  const rayEndX = width - 48;
+  const concaveRayEndX = centerX + 180;
 
   lensButtons.forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lens === type);
@@ -57,16 +60,16 @@ function drawLens(type = "convex") {
 
   const rays = [centerY - 70, centerY, centerY + 70];
   rays.forEach((y) => {
-    drawArrow(ctx, 44, y, centerX - 44, y, "#7b91a4");
+    drawArrow(ctx, rayStartX, y, centerX, y, "#7b91a4");
     if (type === "convex") {
-      drawArrow(ctx, centerX + 44, y, centerX + focus, centerY, "#0b7c72");
+      drawArrow(ctx, centerX, y, centerX + focus, centerY, "#0b7c72");
     } else {
-      const endY = y + (y - centerY) * 0.72;
-      drawArrow(ctx, centerX + 44, y, width - 48, endY, "#ef6f61");
+      const endY = y + (y - centerY) * ((concaveRayEndX - centerX) / focus);
+      drawArrow(ctx, centerX, y, concaveRayEndX, endY, "#ef6f61");
       ctx.strokeStyle = "rgba(239, 111, 97, 0.35)";
       ctx.setLineDash([7, 7]);
       ctx.beginPath();
-      ctx.moveTo(centerX + 44, y);
+      ctx.moveTo(centerX, y);
       ctx.lineTo(centerX - focus, centerY);
       ctx.stroke();
       ctx.setLineDash([]);

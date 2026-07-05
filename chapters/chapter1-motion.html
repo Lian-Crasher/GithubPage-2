@@ -46,7 +46,7 @@
             <ul class="clean-list">
               <li><strong>单位：</strong>长度常用 m、dm、cm、mm；时间常用 h、min、s。</li>
               <li><strong>分度值：</strong>相邻两条刻度线表示的长度，是读数精度的关键。</li>
-              <li><strong>估读：</strong>用刻度尺读数时，通常要估读到分度值的下一位。</li>
+              <li><strong>读数：</strong>分度值为 1 mm 的刻度尺，通常读到 1 mm，对应 0.1 cm。</li>
               <li><strong>误差：</strong>测量值和真实值之间总会有差别，多次测量取平均值可减小误差。</li>
             </ul>
           </div>
@@ -64,7 +64,7 @@
               <output id="lengthOutput">6.4 cm（64 mm）</output>
             </label>
             <input id="lengthSlider" type="range" min="20" max="96" value="64" step="1" />
-            <p class="feedback" id="lengthFeedback">右端越过 6 cm 后第 4 个小格，所以读数是 6.4 cm。</p>
+            <p class="feedback" id="lengthFeedback">右端越过 6 cm 后第 4 个 1 mm 小格，所以读数是 6.4 cm。</p>
           </div>
         </div>
       </section>
@@ -169,8 +169,8 @@
               <span class="origin-label">0</span>
               <span class="graph-line steady"></span>
             </div>
-            <h3>斜线向上</h3>
-            <p>路程随时间均匀增大，表示匀速直线运动。线越陡，速度越大。</p>
+            <h3>倾斜直线向上</h3>
+            <p>路程随时间均匀增大，表示匀速直线运动。直线越陡，速度越大。</p>
           </article>
           <article class="exam-card">
             <div class="mini-graph" aria-hidden="true">

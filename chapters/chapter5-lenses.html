@@ -26,7 +26,7 @@
 
     <main id="top">
       <section class="chapter-showcase lenses-showcase" id="chapter-lenses" aria-labelledby="lenses-title">
-        <img src="../assets/chapter5-lenses.png?v=3" alt="照相机、凸透镜和眼睛组成的透镜成像示意图" />
+        <img src="../assets/chapter5-lenses.svg?v=4" alt="凸透镜把物体发出的光会聚到光屏上形成倒立缩小实像的光路图" />
         <div class="showcase-copy">
           <p class="eyebrow">第五章 · 透镜及其应用</p>
           <h2 id="lenses-title">一片透镜，能把光重新组织成图像</h2>
@@ -119,17 +119,23 @@
                   <path d="M0,0 L12,6 L0,12 Z" fill="#1aa6b7"></path>
                 </marker>
               </defs>
-              <line x1="30" y1="96" x2="288" y2="96" class="diagram-interface"></line>
-              <ellipse cx="148" cy="80" rx="16" ry="62" class="diagram-lens-fill"></ellipse>
-              <line x1="52" y1="48" x2="148" y2="72" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
-              <line x1="52" y1="112" x2="148" y2="88" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
-              <line x1="148" y1="72" x2="242" y2="112" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
-              <line x1="148" y1="88" x2="242" y2="112" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
-              <line x1="252" y1="44" x2="252" y2="132" class="diagram-screen"></line>
-              <circle cx="242" cy="112" r="7" fill="#0b7c72"></circle>
-              <text x="132" y="24" class="diagram-label">凸透镜</text>
-              <text x="226" y="35" class="diagram-label">光屏</text>
-              <text x="200" y="136" class="diagram-label">实际会聚</text>
+              <line x1="28" y1="86" x2="292" y2="86" class="diagram-interface"></line>
+              <ellipse cx="154" cy="86" rx="14" ry="62" class="diagram-lens-fill"></ellipse>
+              <circle cx="106" cy="86" r="4" fill="#ef6f61"></circle>
+              <circle cx="202" cy="86" r="4" fill="#ef6f61"></circle>
+              <line x1="58" y1="86" x2="58" y2="48" class="diagram-measure"></line>
+              <line x1="248" y1="86" x2="248" y2="122" class="diagram-measure"></line>
+              <line x1="58" y1="48" x2="154" y2="48" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
+              <line x1="154" y1="48" x2="248" y2="122" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
+              <line x1="58" y1="48" x2="248" y2="122" class="diagram-ray cyan" marker-end="url(#lens-real-arrow)"></line>
+              <rect x="256" y="36" width="8" height="96" rx="3" class="diagram-screen"></rect>
+              <circle cx="248" cy="122" r="6" fill="#0b7c72"></circle>
+              <text x="136" y="24" class="diagram-label">凸透镜</text>
+              <text x="48" y="38" class="diagram-label">物</text>
+              <text x="250" y="30" class="diagram-label">光屏</text>
+              <text x="234" y="144" class="diagram-label">倒立实像</text>
+              <text x="86" y="104" class="diagram-label">F</text>
+              <text x="194" y="104" class="diagram-label">F</text>
             </svg>
             <h3>实像</h3>
             <p>实际光线真的会聚到像的位置，所以能成在光屏上。照相机、投影仪、眼睛视网膜上的像都属于实像。</p>
@@ -141,15 +147,24 @@
                   <path d="M0,0 L12,6 L0,12 Z" fill="#ef6f61"></path>
                 </marker>
               </defs>
-              <line x1="154" y1="24" x2="154" y2="136" class="diagram-mirror"></line>
-              <line x1="154" y1="64" x2="248" y2="38" class="diagram-ray coral" marker-end="url(#lens-virtual-arrow)"></line>
-              <line x1="154" y1="96" x2="248" y2="122" class="diagram-ray coral" marker-end="url(#lens-virtual-arrow)"></line>
-              <line x1="154" y1="64" x2="74" y2="86" class="diagram-normal"></line>
-              <line x1="154" y1="96" x2="74" y2="86" class="diagram-normal"></line>
-              <circle cx="74" cy="86" r="7" fill="#1aa6b7" opacity="0.72"></circle>
-              <text x="164" y="28" class="diagram-label">镜面或透镜</text>
-              <text x="188" y="148" class="diagram-label">实际光线发散</text>
-              <text x="36" y="78" class="diagram-label">反向延长线相交</text>
+              <line x1="28" y1="86" x2="292" y2="86" class="diagram-interface"></line>
+              <ellipse cx="154" cy="86" rx="14" ry="62" class="diagram-lens-fill"></ellipse>
+              <circle cx="106" cy="86" r="4" fill="#ef6f61"></circle>
+              <circle cx="202" cy="86" r="4" fill="#ef6f61"></circle>
+              <line x1="124" y1="86" x2="124" y2="70" class="diagram-measure"></line>
+              <line x1="58" y1="86" x2="58" y2="36" class="diagram-normal"></line>
+              <line x1="124" y1="70" x2="154" y2="70" class="diagram-ray coral" marker-end="url(#lens-virtual-arrow)"></line>
+              <line x1="154" y1="70" x2="248" y2="104" class="diagram-ray coral" marker-end="url(#lens-virtual-arrow)"></line>
+              <line x1="124" y1="70" x2="248" y2="135" class="diagram-ray coral" marker-end="url(#lens-virtual-arrow)"></line>
+              <line x1="154" y1="70" x2="58" y2="36" class="diagram-normal"></line>
+              <line x1="154" y1="86" x2="58" y2="36" class="diagram-normal"></line>
+              <circle cx="58" cy="36" r="6" fill="#1aa6b7" opacity="0.76"></circle>
+              <text x="136" y="24" class="diagram-label">凸透镜</text>
+              <text x="116" y="60" class="diagram-label">物在 F 内</text>
+              <text x="30" y="28" class="diagram-label">正立虚像</text>
+              <text x="96" y="104" class="diagram-label">F</text>
+              <text x="194" y="104" class="diagram-label">F</text>
+              <text x="190" y="148" class="diagram-label">实际光线发散</text>
             </svg>
             <h3>虚像</h3>
             <p>实际光线没有在像的位置会聚，只是人眼把进入眼睛的光线反向延长后，以为光从那里来。平面镜成像、放大镜成正立放大的像通常是虚像。</p>

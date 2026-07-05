@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>第四章 光现象 - 八年级物理预习站</title>
-    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/main.css?v=2" />
   </head>
   <body data-page="light">
     <header class="topbar">
@@ -26,7 +26,7 @@
 
     <main id="top">
       <section class="chapter-showcase light-showcase" id="chapter-light" aria-labelledby="light-title">
-        <img src="../assets/chapter4-light.png?v=3" alt="光源、反射镜和三棱镜组成的光现象实验示意图" />
+        <img src="../assets/chapter4-light.svg?v=5" alt="光源照射不透明挡板并在屏幕形成影子的直线传播示意图" />
         <div class="showcase-copy">
           <p class="eyebrow">第四章 · 光现象</p>
           <h2 id="light-title">影子、镜子、彩虹，都是光在走路</h2>
@@ -56,8 +56,13 @@
               <span class="tag">直线传播</span>
             </div>
             <div class="shadow-stage" aria-hidden="true">
+              <svg class="shadow-rays" viewBox="0 0 640 280" preserveAspectRatio="none">
+                <path id="shadowCone" class="shadow-cone"></path>
+                <line id="upperBoundaryRay" class="boundary-ray"></line>
+                <line id="lowerBoundaryRay" class="boundary-ray"></line>
+                <line id="blockedRay" class="blocked-ray"></line>
+              </svg>
               <div class="lamp"></div>
-              <div class="light-beam"></div>
               <div class="blocker" id="shadowBlocker"></div>
               <div class="screen"></div>
               <div class="shadow" id="shadowShape"></div>
@@ -155,7 +160,7 @@
               <text x="218" y="30" class="diagram-label">反射光线</text>
             </svg>
             <h3>反射作图</h3>
-            <p>入射角和反射角都从法线量起，不是从镜面量起；入射光线靠近法线，反射光线也靠近法线。</p>
+            <p>入射角和反射角都从法线量起，不是从镜面量起；入射光线和反射光线分居法线两侧，且与法线夹角相等。</p>
           </article>
           <article class="exam-card">
             <svg class="exam-diagram" viewBox="0 0 320 160" role="img" aria-label="光从水斜射入空气时远离法线">
@@ -266,6 +271,6 @@
 
     <script src="../scripts/common.js"></script>
     <script src="../scripts/quiz.js"></script>
-    <script src="../scripts/chapter4-light.js"></script>
+    <script src="../scripts/chapter4-light.js?v=2"></script>
   </body>
 </html>
