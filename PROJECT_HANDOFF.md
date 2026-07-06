@@ -14,11 +14,13 @@ GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-截至 2026-07-06，最近一次功能发布已成功推送到 GitHub。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新功能提交为：
+截至 2026-07-06，最近一次功能更新已成功推送到 GitHub，但 GitHub Pages 线上发布仍处于失败状态。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
 
-- `1223bbe Add study recommendations and release checklist`
+- `1b57556 Add nojekyll for Pages deploy`
 
-历史上曾因 GitHub HTTPS/HTTP2 网络错误改用 `gh api` 发布，造成过本地提交 SHA 与远端提交 SHA 不一致。近期推送中普通 `git push origin main` 有时可成功，有时会遇到 DNS 或 `Error in the HTTP2 framing layer`；遇到 HTTP2 framing 问题时，`git -c http.version=HTTP/1.1 push origin main` 已验证可作为 fallback。后续交接时仍建议先看 `git status -sb`、`git log --oneline --decorate -5` 和远端提交状态，再决定是否需要对齐。
+最新内容变更提交为 `2cf3cb6 Refresh chapter hero illustrations`，新增 `.nojekyll` 的部署配置提交为 `1b57556 Add nojekyll for Pages deploy`。GitHub 远端 `main` 已确认指向 `1b57556`，但 Pages workflow 的 build/artifact 成功、deploy 失败，线上页面仍停在旧版首图引用。后续交接时必须区分“GitHub 已同步”和“GitHub Pages 已发布”。
+
+历史上曾因 GitHub HTTPS/HTTP2 网络错误改用 `gh api` 发布，造成过本地提交 SHA 与远端提交 SHA 不一致。近期推送中普通 `git push origin main` 有时可成功，有时会遇到 DNS 或 `Error in the HTTP2 framing layer`；遇到 HTTP2 framing 问题时，`git -c http.version=HTTP/1.1 push origin main` 已验证可作为 fallback。当前 `gh auth status` 显示 GitHub CLI token invalid，Codex 内置浏览器也未登录 GitHub。后续交接时仍建议先看 `git status -sb`、`git log --oneline --decorate -5`、远端提交状态和 Pages Actions 状态，再判断是 Git 同步问题还是 Pages 发布问题。
 
 ## 已做的代码/文件变更
 
@@ -41,6 +43,7 @@ https://lian-crasher.github.io/GithubPage-2/
 - `scripts/common.js`
 - `styles/main.css`
 - `RELEASE_CHECKLIST.md`
+- `.nojekyll`
 
 章节配图已统一为轻量教学插画风格，资源包括：
 
@@ -117,6 +120,7 @@ https://lian-crasher.github.io/GithubPage-2/
 - 由于公共样式继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=5`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=2`，确保首页推荐逻辑刷新。
 - 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
+- 已新增 `.nojekyll`，用于让 GitHub Pages 按纯静态文件发布，减少 Jekyll 对当前原生 HTML/CSS/JS 站点的干预。
 
 ## 关键设计决策
 
@@ -136,14 +140,22 @@ https://lian-crasher.github.io/GithubPage-2/
 本地 Git 状态：
 
 - 截至本次交接，`git status -sb` 显示 `## main...origin/main`，没有未提交改动。
-- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `1223bbe Add study recommendations and release checklist`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `1b57556 Add nojekyll for Pages deploy`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
 - 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
 GitHub 发布注意事项：
 
+- 当前最重要的未解决发布问题：GitHub 远端 `main` 已包含最新代码，但 GitHub Pages workflow 连续失败，线上页面仍未更新到新 SVG 首图。
+- 已确认失败运行：
+  - `pages build and deployment #28`：`2cf3cb6 Refresh chapter hero illustrations`，build 成功，deploy 失败。
+  - `pages build and deployment #29`：`1b57556 Add nojekyll for Pages deploy`，build 成功，deploy 失败。
+- 失败日志的关键内容是：artifact 找到并创建了 Pages deployment，但随后 `Deployment failed, try again later.`；这不是本地代码语法错误，也不是浏览器缓存。
+- 线上 Pages 当前仍返回旧首页首图引用 `assets/chapter1-hero.png?v=3`，新 SVG 资源如 `assets/chapter1-motion.svg?v=1` 在线上返回 404；GitHub raw 的 `main/index.html` 已经是新 SVG 引用。
+- GitHub 插件能读取 Actions 日志，但没有 Actions 写权限，无法代点 `Re-run failed jobs`；本机 `gh auth status` 显示 token invalid；Codex 内置浏览器未登录 GitHub。
+- 如果要继续处理发布，需要用户登录 GitHub 后在 Actions 页面点击 `Re-run failed jobs`，或进入仓库 `Settings -> Pages` 重新保存发布源后再触发部署。
 - 普通 `git push origin main` 曾多次成功；最近一次功能发布把 `af8413d` 推到 `1223bbe` 时，沙盒内普通推送因 DNS 失败，提权后 `git push origin main` 成功。
 - 如果普通推送遇到 `Error in the HTTP2 framing layer`，使用：`git -c http.version=HTTP/1.1 push origin main`。该 fallback 已在推送 `415b654` 和 `af8413d` 时验证有效。
-- 但 `gh auth status` 最近显示 `Lian-Crasher` 的 GitHub CLI token invalid；如果后续要用 `gh api` 或 GitHub CLI，需要先重新认证。
+- `gh auth status` 最近显示 `Lian-Crasher` 的 GitHub CLI token invalid；如果后续要用 `gh api`、GitHub CLI 或 rerun workflow，需要先重新认证。
 - 如果普通 `git push` 又遇到网络或 fast-forward 问题，先 `git fetch origin main` 检查远端历史，不要直接强推。
 - 除非用户明确同意，不要执行 `git reset --hard` 或强制推送。
 
@@ -151,7 +163,7 @@ GitHub 发布注意事项：
 
 - 部分章节仍是“预习站”深度，不是完整题库。
 - 光学、实验和密度题虽然已补强，但还可以继续把各章检查从纯单选逐步改成混合题型，例如多选、填空、排序、配对和情境分析。
-- 线上 GitHub Pages 可能有缓存延迟，推送后需要等待 Pages 刷新。
+- 线上 GitHub Pages 不是单纯缓存延迟；截至本次交接，最新 Pages deploy 明确失败，必须重新部署成功后线上才会出现新 SVG 首图。
 
 ## 如何验证
 
@@ -209,6 +221,7 @@ git log --oneline --decorate -5
 git rev-parse HEAD
 git rev-parse origin/main
 git rev-parse HEAD^{tree}
+git ls-remote origin refs/heads/main
 ```
 
 如果 GitHub CLI 重新认证可用，也可以用：
@@ -220,6 +233,17 @@ git rev-parse HEAD^{tree}
 ```
 
 预期 `HEAD` 和 `origin/main` 一致；若使用 `gh api`，预期远端 tree 与本地 tree 一致。
+
+Pages 发布验证：
+
+```bash
+curl -L -s -o /tmp/ghpage-index.html https://lian-crasher.github.io/GithubPage-2/index.html
+rg -n "chapter1-motion\\.svg|chapter1-hero\\.png" /tmp/ghpage-index.html
+curl -L -s -D /tmp/ghpage-svg-headers.txt -o /tmp/chapter1-motion.svg 'https://lian-crasher.github.io/GithubPage-2/assets/chapter1-motion.svg?v=1'
+sed -n '1,40p' /tmp/ghpage-svg-headers.txt
+```
+
+预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion.svg?v=1`，新 SVG 资源应返回 HTTP 200。当前失败状态下，首页仍包含 `assets/chapter1-hero.png?v=3`，新 SVG 返回 404。
 
 浏览器验证重点：
 
@@ -254,3 +278,4 @@ git rev-parse HEAD^{tree}
 - 后续移动端 QA 可继续补充更小宽度（例如 360px）和真实手机浏览器检查，重点看长反馈文本、表格横向滚动提示和 canvas 图中文字可读性。
 - 如果要进一步提高“下一步复习建议”的精度，可以给错题增加更细的主题标签，例如 `实验误差`、`光路作图`、`图像分析`，再让首页优先推荐具体模块而不只是章节。
 - 后续发布按 `RELEASE_CHECKLIST.md` 执行；如果要使用 `gh api`，先处理 GitHub CLI token invalid 问题。
+- 发布问题优先级高于继续扩内容：先让 GitHub Pages deploy 成功，再继续做下一轮站点优化，否则线上用户看不到最新首图变更。
