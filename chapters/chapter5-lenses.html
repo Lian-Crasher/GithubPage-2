@@ -184,7 +184,7 @@
         <div class="section-head compact">
           <p class="eyebrow">第 4-5 节</p>
           <h2 id="eyes-tools-title">眼睛和光学仪器：把成像规律装进工具里</h2>
-          <p>眼睛像一架能自动调焦的照相机。近视眼看远处物体成像在视网膜前方，用凹透镜矫正；远视眼通常用凸透镜矫正。</p>
+          <p>眼睛像一架能自动调焦的照相机。晶状体和角膜共同相当于凸透镜，视网膜相当于光屏。近视和远视的区别，关键看像落在视网膜前还是视网膜后。</p>
         </div>
         <div class="application-grid">
           <article class="app-card">
@@ -195,12 +195,73 @@
           <article class="app-card">
             <span class="app-icon">-</span>
             <h3>近视矫正</h3>
-            <p>近视眼会聚能力偏强，远处物体成像在视网膜前方，需要凹透镜发散光线。</p>
+            <p>近视眼会聚能力偏强，或眼球前后方向偏长，远处物体成像在视网膜前方，需要凹透镜先发散光线。</p>
+          </article>
+          <article class="app-card">
+            <span class="app-icon">+</span>
+            <h3>远视矫正</h3>
+            <p>远视眼会聚能力偏弱，或眼球前后方向偏短，近处物体成像在视网膜后方，需要凸透镜先会聚光线。</p>
           </article>
           <article class="app-card">
             <span class="app-icon">+</span>
             <h3>显微镜与望远镜</h3>
             <p>多个透镜组合能让微小物体或远处物体更容易被看清。</p>
+          </article>
+        </div>
+        <div class="exam-grid eye-exam-grid">
+          <article class="exam-card">
+            <svg class="exam-diagram" viewBox="0 0 320 170" role="img" aria-label="近视眼远处物体成像在视网膜前方">
+              <defs>
+                <marker id="myopia-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#ef6f61"></path>
+                </marker>
+              </defs>
+              <ellipse cx="190" cy="86" rx="86" ry="58" class="diagram-lens-fill"></ellipse>
+              <ellipse cx="132" cy="86" rx="13" ry="44" class="diagram-lens-fill"></ellipse>
+              <path d="M256 46 Q276 86 256 126" class="diagram-screen"></path>
+              <line x1="34" y1="62" x2="132" y2="62" class="diagram-ray coral" marker-end="url(#myopia-arrow)"></line>
+              <line x1="132" y1="62" x2="224" y2="86" class="diagram-ray coral" marker-end="url(#myopia-arrow)"></line>
+              <line x1="34" y1="110" x2="132" y2="110" class="diagram-ray coral" marker-end="url(#myopia-arrow)"></line>
+              <line x1="132" y1="110" x2="224" y2="86" class="diagram-ray coral" marker-end="url(#myopia-arrow)"></line>
+              <circle cx="224" cy="86" r="6" fill="#ef6f61"></circle>
+              <line x1="224" y1="86" x2="258" y2="100" class="diagram-normal"></line>
+              <line x1="224" y1="86" x2="258" y2="72" class="diagram-normal"></line>
+              <text x="112" y="30" class="diagram-label">晶状体</text>
+              <text x="236" y="34" class="diagram-label">视网膜</text>
+              <text x="188" y="154" class="diagram-label">像在视网膜前</text>
+            </svg>
+            <h3>近视：像提前会聚</h3>
+            <p>远处物体来的光近似平行。眼睛折光太强或眼球太长时，光线提前会聚，像落在视网膜前。</p>
+          </article>
+          <article class="exam-card">
+            <svg class="exam-diagram" viewBox="0 0 320 170" role="img" aria-label="远视眼近处物体成像在视网膜后方">
+              <defs>
+                <marker id="hyperopia-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" fill="#1aa6b7"></path>
+                </marker>
+              </defs>
+              <ellipse cx="190" cy="86" rx="86" ry="58" class="diagram-lens-fill"></ellipse>
+              <ellipse cx="132" cy="86" rx="13" ry="44" class="diagram-lens-fill"></ellipse>
+              <path d="M256 46 Q276 86 256 126" class="diagram-screen"></path>
+              <line x1="44" y1="54" x2="132" y2="68" class="diagram-ray cyan" marker-end="url(#hyperopia-arrow)"></line>
+              <line x1="132" y1="68" x2="286" y2="86" class="diagram-ray cyan" marker-end="url(#hyperopia-arrow)"></line>
+              <line x1="44" y1="118" x2="132" y2="104" class="diagram-ray cyan" marker-end="url(#hyperopia-arrow)"></line>
+              <line x1="132" y1="104" x2="286" y2="86" class="diagram-ray cyan" marker-end="url(#hyperopia-arrow)"></line>
+              <circle cx="286" cy="86" r="6" fill="#1aa6b7"></circle>
+              <text x="112" y="30" class="diagram-label">晶状体</text>
+              <text x="236" y="34" class="diagram-label">视网膜</text>
+              <text x="190" y="154" class="diagram-label">像在视网膜后</text>
+            </svg>
+            <h3>远视：会聚来得太晚</h3>
+            <p>近处物体来的光更发散。眼睛折光太弱或眼球太短时，光线还没会聚就到达视网膜，像落在视网膜后。</p>
+          </article>
+          <article class="exam-card">
+            <div class="result-box compact-result">
+              <strong>考试速记</strong>
+              <p>近视：前、凹、发散。远视：后、凸、会聚。</p>
+            </div>
+            <h3>矫正思路</h3>
+            <p>像太靠前，就先用凹透镜把光线发散一点；像太靠后，就先用凸透镜把光线会聚一点。</p>
           </article>
         </div>
       </section>
@@ -266,7 +327,7 @@
         <div class="section-head">
           <p class="eyebrow">第五章检查</p>
           <h2 id="lenses-check-title">你能把透镜规律和仪器联系起来了吗？</h2>
-          <p>完成下面 10 题，检查会聚发散、焦距、成像规律、作图和投影仪调试。</p>
+          <p>完成下面 11 题，检查会聚发散、焦距、成像规律、近视远视、作图和投影仪调试。</p>
         </div>
         <form class="quiz" id="lensesQuiz">
           <fieldset class="quiz-card">
@@ -355,6 +416,12 @@
             <label><input type="radio" name="e10" value="b" /> 看像是不是彩色</label>
             <label><input type="radio" name="e10" value="c" /> 看物体是不是发光</label>
           </fieldset>
+          <fieldset class="quiz-card">
+            <legend>11. 远视眼看近处物体困难，主要是因为像通常落在哪里？</legend>
+            <label><input type="radio" name="e11" value="a" /> 视网膜后方，需要凸透镜矫正</label>
+            <label><input type="radio" name="e11" value="b" /> 视网膜前方，需要凹透镜矫正</label>
+            <label><input type="radio" name="e11" value="c" /> 正好在视网膜上，不需要矫正</label>
+          </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第五章检查</button>
           <div class="quiz-result" id="lensesQuizResult" aria-live="polite"></div>
         </form>
@@ -367,6 +434,6 @@
 
     <script src="../scripts/common.js?v=2"></script>
     <script src="../scripts/quiz.js"></script>
-    <script src="../scripts/chapter5-lenses.js"></script>
+    <script src="../scripts/chapter5-lenses.js?v=2"></script>
   </body>
 </html>

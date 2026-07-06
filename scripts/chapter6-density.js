@@ -175,6 +175,7 @@ setupQuiz({
       center: "straight",
     },
     f14: ["bean-gap", "big-volume"],
+    f15: ["myopia-front", "myopia-concave", "hyperopia-convex"],
   },
   questionTypes: {
     f9: "multi",
@@ -183,6 +184,7 @@ setupQuiz({
     f12: "order",
     f13: "match",
     f14: "multi",
+    f15: "multi",
   },
   answerDetails: {
     f9: "判断方法：平面镜成像、白光色散都和光的传播有关；沸腾属于物态变化，回声属于声现象。",
@@ -191,6 +193,7 @@ setupQuiz({
     f12: "实验逻辑：用总质量减剩余质量，得到倒入量筒那部分液体的质量，再除以量筒读出的体积。",
     f13: "作图口诀：平行过焦点，过焦点变平行，过光心不偏折。",
     f14: "判断方法：红豆空隙和量筒读数偏大都会让体积偏大，因此密度偏小。",
+    f15: "判断方法：近视是像在视网膜前方，用凹透镜发散；远视是像在视网膜后方，用凸透镜会聚。",
   },
   hints: {
     f1: "第 1 题回看第一章：判断运动和静止要先选参照物。",
@@ -207,6 +210,7 @@ setupQuiz({
     f12: "第 12 题回看第六章液体密度实验：先称总质量，再倒入量筒读体积，称剩余质量，最后计算。",
     f13: "第 13 题回看第五章透镜作图：平行过焦点、过焦点变平行、过光心不偏折。",
     f14: "第 14 题回看第六章误差方向：体积偏大或质量偏小会让密度偏小。",
+    f15: "第 15 题回看第五章眼睛成像：近视像在前，用凹透镜；远视像在后，用凸透镜。",
   },
   reviewLinks: {
     f1: { href: "chapter1-motion.html#motion", label: "回看参照物" },
@@ -223,8 +227,9 @@ setupQuiz({
     f12: { href: "#density-errors", label: "回看液体密度实验" },
     f13: { href: "chapter5-lenses.html#lens-practice", label: "回看透镜作图与投影仪调试" },
     f14: { href: "#density-errors", label: "回看误差方向" },
+    f15: { href: "chapter5-lenses.html#eyes-tools", label: "回看近视和远视" },
   },
-  badges: (score) => score >= 12 ? "上册预习非常稳" : score >= 9 ? "上册主线基本过关" : "建议按反馈回看章节",
+  badges: (score) => score >= 13 ? "上册预习非常稳" : score >= 10 ? "上册主线基本过关" : "建议按反馈回看章节",
   successMessage: "漂亮。你已经抓住八年级上册物理的主要线索，可以带着问题进入课堂。",
 });
 
