@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>综合检查 - 八年级物理预习站</title>
-    <link rel="stylesheet" href="../styles/main.css?v=5" />
+    <link rel="stylesheet" href="../styles/main.css?v=6" />
   </head>
   <body data-page="check">
     <header class="topbar">
@@ -29,7 +29,7 @@
         <div class="section-head">
           <p class="eyebrow">综合检查</p>
           <h2 id="final-check-title">上册预习收官挑战</h2>
-          <p>这 15 题覆盖六章主线和期末常见题型。做完后可以按反馈回到对应章节查漏补缺。</p>
+          <p>这 20 题覆盖六章主线和期末常见题型。做完后可以按反馈回到对应章节查漏补缺。</p>
         </div>
         <form class="quiz" id="finalQuiz">
           <fieldset class="quiz-card">
@@ -195,6 +195,95 @@
             <label><input type="checkbox" name="f15" value="myopia-concave" /> 近视眼通常用凹透镜矫正</label>
             <label><input type="checkbox" name="f15" value="hyperopia-front" /> 远视眼看近处物体时，像通常落在视网膜前方</label>
             <label><input type="checkbox" name="f15" value="hyperopia-convex" /> 远视眼通常用凸透镜矫正</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>16. 多选：观察 s-t 图像，下列判断正确的是？</legend>
+            <div class="quiz-figure" aria-label="A 和 B 的路程时间图像">
+              <svg viewBox="0 0 320 180" role="img" aria-labelledby="stGraphTitle">
+                <title id="stGraphTitle">A 从原点到 10 米，B 从 5 米到 10 米，时间都是 5 秒</title>
+                <line class="axis-line" x1="52" y1="138" x2="292" y2="138" />
+                <line class="axis-line" x1="52" y1="138" x2="52" y2="24" />
+                <text class="axis-text" x="286" y="160">t/s</text>
+                <text class="axis-text" x="22" y="32">s/m</text>
+                <text class="axis-text" x="37" y="156">0</text>
+                <line class="guide-line" x1="52" y1="68" x2="272" y2="68" />
+                <line class="guide-line" x1="52" y1="103" x2="52" y2="103" />
+                <line class="guide-line" x1="272" y1="138" x2="272" y2="68" />
+                <text class="axis-text" x="24" y="73">10</text>
+                <text class="axis-text" x="30" y="108">5</text>
+                <text class="axis-text" x="266" y="160">5</text>
+                <polyline class="quiz-graph-line primary" points="52,138 272,68" />
+                <polyline class="quiz-graph-line secondary" points="52,103 272,68" />
+                <text class="graph-tag primary" x="170" y="84">A</text>
+                <text class="graph-tag secondary" x="178" y="112">B</text>
+              </svg>
+            </div>
+            <label><input type="checkbox" name="f16" value="b-start" /> t = 0 时，B 在距离参考点 5 m 处</label>
+            <label><input type="checkbox" name="f16" value="a-faster" /> 0 到 5 s 内，A 的平均速度大于 B</label>
+            <label><input type="checkbox" name="f16" value="same-speed" /> 0 到 5 s 内，A、B 平均速度相等</label>
+            <label><input type="checkbox" name="f16" value="both-origin" /> A、B 都从参考点 O 出发</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>17. m-V 图像中，甲为 75% 酒精消毒液，乙为纯水。90% 酒精消毒液的图线应在哪里？</legend>
+            <p class="quiz-help">同一体积下，质量越大，密度越大；图线越陡，密度越大。</p>
+            <div class="quiz-figure" aria-label="甲和乙的质量体积图像">
+              <svg viewBox="0 0 320 180" role="img" aria-labelledby="mvGraphTitle">
+                <title id="mvGraphTitle">乙线比甲线更陡，甲线下方表示密度更小</title>
+                <line class="axis-line" x1="52" y1="138" x2="292" y2="138" />
+                <line class="axis-line" x1="52" y1="138" x2="52" y2="24" />
+                <text class="axis-text" x="286" y="160">V</text>
+                <text class="axis-text" x="28" y="32">m</text>
+                <text class="axis-text" x="37" y="156">0</text>
+                <line class="quiz-graph-line water" x1="52" y1="138" x2="255" y2="42" />
+                <line class="quiz-graph-line primary" x1="52" y1="138" x2="255" y2="70" />
+                <line class="quiz-graph-line secondary dashed" x1="52" y1="138" x2="255" y2="98" />
+                <text class="graph-tag water" x="262" y="45">乙 纯水</text>
+                <text class="graph-tag primary" x="262" y="74">甲 75%</text>
+                <text class="graph-tag secondary" x="262" y="102">90%</text>
+              </svg>
+            </div>
+            <label><input type="radio" name="f17" value="below" /> 在甲线下方，因为 90% 酒精含水更少、密度更小</label>
+            <label><input type="radio" name="f17" value="between" /> 在甲线和乙线之间，因为浓度更高所以密度更大</label>
+            <label><input type="radio" name="f17" value="same" /> 与甲线重合，因为都是酒精消毒液</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>18. 多选：大烧杯中的水已沸腾，小烧杯中的水最终稳定在 95℃ 且没有沸腾。下列分析正确的是？</legend>
+            <p class="quiz-help">沸腾要同时满足“达到沸点”和“继续吸热”。</p>
+            <label><input type="checkbox" name="f18" value="below-boiling" /> 小烧杯内水温低于 100℃，没有达到通常条件下水的沸点</label>
+            <label><input type="checkbox" name="f18" value="heat-more" /> 升温阶段，小烧杯内水吸收的热量大于散失的热量</label>
+            <label><input type="checkbox" name="f18" value="balance" /> 稳定在 95℃ 时，吸热和散热大致相等</label>
+            <label><input type="checkbox" name="f18" value="must-boil" /> 只要外面大烧杯沸腾，小烧杯中的水就一定会沸腾</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>19. 图像填空：凸透镜成像实验中，当 u = v = 20 cm 时，焦距 f 是多少 cm？</legend>
+            <div class="quiz-figure" aria-label="u-v 图像中 u 等于 v 等于 20 厘米">
+              <svg viewBox="0 0 320 180" role="img" aria-labelledby="uvGraphTitle">
+                <title id="uvGraphTitle">u 等于 v 等于 20 厘米，对应二倍焦距</title>
+                <line class="axis-line" x1="52" y1="138" x2="292" y2="138" />
+                <line class="axis-line" x1="52" y1="138" x2="52" y2="24" />
+                <text class="axis-text" x="286" y="160">u/cm</text>
+                <text class="axis-text" x="22" y="32">v/cm</text>
+                <line class="guide-line" x1="52" y1="74" x2="176" y2="74" />
+                <line class="guide-line" x1="176" y1="138" x2="176" y2="74" />
+                <text class="axis-text" x="20" y="78">20</text>
+                <text class="axis-text" x="168" y="160">20</text>
+                <circle class="graph-point" cx="176" cy="74" r="7" />
+                <text class="graph-tag primary" x="186" y="70">u = v = 20 cm</text>
+              </svg>
+            </div>
+            <label class="quiz-text-row">
+              焦距
+              <input class="quiz-text-input" type="text" name="f19" inputmode="decimal" autocomplete="off" />
+              <span>cm</span>
+            </label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>20. 多选：阅读题中，古琴和排箫演奏同一个音，下列说法正确的是？</legend>
+            <p class="quiz-help">“同一个音”主要看音调，换乐器后声音特色会改变。</p>
+            <label><input type="checkbox" name="f20" value="same-pitch" /> 两者的音调相同</label>
+            <label><input type="checkbox" name="f20" value="different-timbre" /> 两者的音色不同</label>
+            <label><input type="checkbox" name="f20" value="short-high" /> 同种琴弦通常越短，振动越快，音调越高</label>
+            <label><input type="checkbox" name="f20" value="same-loudness" /> 只要音调相同，响度一定相同</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交综合检查</button>
           <div class="quiz-result" id="finalQuizResult" aria-live="polite"></div>

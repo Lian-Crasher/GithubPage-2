@@ -16,9 +16,9 @@ https://lian-crasher.github.io/GithubPage-2/
 
 截至 2026-07-07，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
 
-- `73c4eb4 Improve SVG hero rendering`
+- `e084afc Split final check into standalone page`
 
-最近一次 Pages 成功发布运行为 `pages build and deployment #34`，head 为 `73c4eb4`，build、deploy、report-build-status 均成功。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
+最近一次 Pages 验证中，线上首页已指向 `chapters/final-check.html`，独立综合检查页返回 HTTP 200。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
 历史上曾因 GitHub HTTPS/HTTP2 网络错误改用 `gh api` 发布，造成过本地提交 SHA 与远端提交 SHA 不一致。近期推送中普通 `git push origin main` 有时可成功，有时会遇到 DNS 或 `Error in the HTTP2 framing layer`；遇到 HTTP2 framing 问题时，`git -c http.version=HTTP/1.1 push origin main` 已验证可作为 fallback。当前 `gh auth status` 显示 GitHub CLI token invalid，Codex 内置浏览器也未登录 GitHub。后续交接时仍建议先看 `git status -sb`、`git log --oneline --decorate -5`、远端提交状态和 Pages Actions 状态，再判断是 Git 同步问题还是 Pages 发布问题。
 
@@ -106,10 +106,11 @@ https://lian-crasher.github.io/GithubPage-2/
 - 各章检查题和综合检查已扩充。
   - 第一章 7 题、第三章 8 题、第四章 8 题、第五章 11 题、第六章 8 题。
   - 第一至第六章的章节检查已完成首轮混合题型升级：第一章加入速度计算填空和 s-t 图像填空，第二章加入声传递信息多选，第三章加入沸腾实验安装排序，第四章加入反射/折射光路配对，第五章加入凸透镜特殊光线配对，第六章加入密度计算填空和误差方向多选。
-  - 综合检查从 10 题扩展到 15 题，加入 s-t 图像、折射作图、投影仪调试、热胀冷缩、近视/远视判断等期末常见能力点。
-  - 综合检查已从纯单选升级为混合题型：前 8 题保留基础单选，后 7 题覆盖多选、速度计算填空、s-t 图像填空、液体密度实验排序、透镜特殊光线配对、密度误差多选、近视远视多选。
+  - 综合检查从 10 题扩展到 20 题，加入 s-t 图像、折射作图、投影仪调试、热胀冷缩、近视/远视判断，以及参考深圳中学期末卷改写的图像分析、沸腾条件、凸透镜焦距和声学阅读题。
+  - 综合检查已从纯单选升级为混合题型：前 8 题保留基础单选，后 12 题覆盖多选、速度计算填空、s-t 图像填空、液体密度实验排序、透镜特殊光线配对、密度误差多选、近视远视多选、m-V 图像判断、u-v 图像求焦距和阅读信息题。
   - 综合检查已从第六章页面拆出为 `chapters/final-check.html`，题目配置移到 `scripts/final-check.js`，便于未来继续扩展综合题库。
-  - 首页综合检查入口文案已同步为“15 道题”，避免首页仍显示旧题数。
+  - 综合检查中涉及图像的变式题采用内嵌 SVG 小图，而不是直接裁试卷截图，便于控制坐标轴、标注、线段比例和移动端清晰度。
+  - 首页综合检查入口文案已同步为“20 道题”，避免首页仍显示旧题数。
 - 学习闭环已升级。
   - `scripts/quiz.js` 现在会在提交检查后生成错题回看清单，每道错题可跳转到对应章节模块。
   - `scripts/quiz.js` 支持单选、多选、填空、排序、配对等题型；旧的单选配置仍保持兼容。
@@ -120,7 +121,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - 各章检查、阶段检查和综合检查都已配置 `quizId` 与 `reviewLinks`。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片、填空输入和下拉题样式，并修复窄屏导航可能撑宽页面的问题。
 - 已完成一轮 390px 移动端 QA，覆盖首页进度徽章、第三章排序练习、第四章光路作图台、第五章透镜作图台、第六章误差诊断、各章检查和综合检查。主体页面未发现非预期横向溢出；导航和表格保留局部横向滚动。检查题单选/多选项已增强为整行触控目标，主要触控高度约 40px 以上。
-- 由于公共样式和首页推荐链接继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=5`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=3`，确保首页推荐逻辑刷新。
+- 由于公共样式、综合检查 SVG 图像题和首页推荐链接继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=6`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=3`，确保首页推荐逻辑刷新。
 - 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
 - 已新增 `.nojekyll`，用于让 GitHub Pages 按纯静态文件发布，减少 Jekyll 对当前原生 HTML/CSS/JS 站点的干预。
@@ -142,8 +143,8 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，没有未提交改动；本次拆分综合检查页面后会产生新的本地提交。
-- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `73c4eb4 Improve SVG hero rendering`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，没有未提交改动；本次扩展综合检查到 20 题后会产生新的本地提交。
+- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `e084afc Split final check into standalone page`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
 - 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
 GitHub 发布注意事项：
@@ -267,7 +268,7 @@ sed -n '1,40p' /tmp/ghpage-svg-headers.txt
 - 第五章 `#lens-practice`：平行主光轴应选“通过另一侧焦点”，过焦点应选“平行于主光轴”，过光心应选“方向不改变”；390px 移动宽度不应横向溢出。
 - 第六章 `#density-errors`：误差方向表述是否准确；误差方向诊断中红豆总体积偏大和量筒读数偏大应判密度偏小，石块带水称质量应判密度偏大，正确单位换算应基本不变。
 - 第六章首图：天平测质量、量筒排水法测体积、`ρ = m / V` 三者是否形成清楚的实验链条。
-- 独立页面 `chapters/final-check.html`：综合检查应有 15 张题卡，其中后 7 题为混合题型。正确填写后应显示 `上册预习非常稳：15/15`；移动端 390px 宽度不应横向溢出。
+- 独立页面 `chapters/final-check.html`：综合检查应有 20 张题卡，其中后 12 题为混合题型。正确填写后应显示 `上册预习非常稳：20/20`；内嵌 SVG 图像题的坐标轴和标注应清楚；移动端 390px 宽度不应横向溢出。
 
 ## 下一步建议
 

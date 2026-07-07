@@ -2216,6 +2216,82 @@ th {
   line-height: 1.5;
 }
 
+.quiz-figure {
+  margin: 0 0 12px;
+  padding: 10px;
+  overflow: hidden;
+  background: #f7fcff;
+  border: 1px solid #d7e8ef;
+  border-radius: 8px;
+}
+
+.quiz-figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 150px;
+}
+
+.axis-line {
+  stroke: #8ca5b5;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.guide-line {
+  stroke: #c9dce5;
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+}
+
+.axis-text,
+.graph-tag {
+  fill: #526b7d;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.quiz-graph-line {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.quiz-graph-line.primary {
+  stroke: var(--teal);
+}
+
+.quiz-graph-line.secondary {
+  stroke: var(--coral);
+}
+
+.quiz-graph-line.water {
+  stroke: #3f8edb;
+}
+
+.quiz-graph-line.dashed {
+  stroke-dasharray: 10 8;
+}
+
+.graph-tag.primary {
+  fill: var(--teal);
+}
+
+.graph-tag.secondary {
+  fill: var(--coral);
+}
+
+.graph-tag.water {
+  fill: #3f8edb;
+}
+
+.graph-point {
+  fill: var(--teal);
+  stroke: #fff;
+  stroke-width: 3;
+}
+
 .quiz-text-row {
   align-items: center;
   flex-wrap: wrap;
