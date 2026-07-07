@@ -14,9 +14,9 @@ GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-截至 2026-07-07，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
+截至 2026-07-07，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。本轮优化开始前，本地 `main` 与 `origin/main` 对齐，最新提交为：
 
-- `e084afc Split final check into standalone page`
+- `49b2752 Add exam-style final check variants`
 
 最近一次 Pages 验证中，线上首页已指向 `chapters/final-check.html`，独立综合检查页返回 HTTP 200。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
@@ -116,12 +116,14 @@ https://lian-crasher.github.io/GithubPage-2/
   - `scripts/quiz.js` 支持单选、多选、填空、排序、配对等题型；旧的单选配置仍保持兼容。
   - 混合题型错题反馈已完成首轮增强：多选题会提示少选/多选，填空题会显示学生答案和参考答案，排序题会指出第几步需要调整并展示正确顺序，配对题会指出具体配错的项目。各章关键混合题已补充计算过程、实验逻辑或作图口诀。
   - `scripts/quiz.js` 会把答题分数、错题 key、完成状态保存到 `localStorage`。
+  - `scripts/quiz.js` 现在还会保存错题对应的回看模块、链接和主题标签，供首页生成更具体的下一步复习建议。
   - `scripts/common.js` 会在首页学习地图显示“未检查 / 待巩固 x/y / 已掌握 x/y”进度徽章。
   - `scripts/common.js` 会在首页生成“下一步复习建议”，根据检查记录优先推荐未掌握且得分比例最低的章节；没有记录时推荐第一个未开始章节，六章完成后推荐综合检查。
+  - 首页“下一步复习建议”已升级为优先使用最近错题的具体回看模块，例如“s-t 图像”“沸腾条件”“透镜作图”，没有具体错题记录时仍回退到章节级建议。
   - 各章检查、阶段检查和综合检查都已配置 `quizId` 与 `reviewLinks`。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片、填空输入和下拉题样式，并修复窄屏导航可能撑宽页面的问题。
 - 已完成一轮 390px 移动端 QA，覆盖首页进度徽章、第三章排序练习、第四章光路作图台、第五章透镜作图台、第六章误差诊断、各章检查和综合检查。主体页面未发现非预期横向溢出；导航和表格保留局部横向滚动。检查题单选/多选项已增强为整行触控目标，主要触控高度约 40px 以上。
-- 由于公共样式、综合检查 SVG 图像题和首页推荐链接继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=6`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=3`，确保首页推荐逻辑刷新。
+- 由于公共样式、综合检查 SVG 图像题和首页推荐链接继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=6`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=4`，确保首页模块级推荐逻辑刷新。
 - 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
 - 已新增 `.nojekyll`，用于让 GitHub Pages 按纯静态文件发布，减少 Jekyll 对当前原生 HTML/CSS/JS 站点的干预。
@@ -143,8 +145,8 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，没有未提交改动；本次扩展综合检查到 20 题后会产生新的本地提交。
-- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `e084afc Split final check into standalone page`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 本轮优化开始前，`git status -sb` 显示 `## main...origin/main`，没有未提交改动；本次错题模块级推荐优化会产生新的本地提交。
+- 本轮优化开始前，`HEAD` 与 `origin/main` 都指向 `49b2752 Add exam-style final check variants`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
 - 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
 GitHub 发布注意事项：

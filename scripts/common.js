@@ -79,10 +79,40 @@ function getProgressRatio(record) {
   return record.score / record.total;
 }
 
+function getReviewTargets(record) {
+  if (!Array.isArray(record?.missedReviews)) return [];
+
+  const seen = new Set();
+  return record.missedReviews
+    .filter((item) => item && item.href && item.topic)
+    .filter((item) => {
+      const key = `${item.href}|${item.topic}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 3);
+}
+
+function getAdviceHref(defaultHref, record) {
+  return getReviewTargets(record)[0]?.href || defaultHref;
+}
+
+function getAdviceCopy(focus, record) {
+  if (!record) return `先从这里建立主线：${focus}。`;
+
+  const targets = getReviewTargets(record);
+  if (targets.length) {
+    return `${formatProgress(record)}。优先回看：${targets.map((item) => item.topic).join("、")}。`;
+  }
+
+  return `${formatProgress(record)}。重点回看：${focus}。`;
+}
+
 function createAdviceCard({ title, href, focus, record, label }) {
   const card = document.createElement("a");
   card.className = "recommendation-card";
-  card.href = href;
+  card.href = getAdviceHref(href, record);
 
   const tag = document.createElement("span");
   tag.className = "recommendation-tag";
@@ -94,9 +124,7 @@ function createAdviceCard({ title, href, focus, record, label }) {
   card.appendChild(heading);
 
   const copy = document.createElement("p");
-  copy.textContent = record
-    ? `${formatProgress(record)}。重点回看：${focus}。`
-    : `先从这里建立主线：${focus}。`;
+  copy.textContent = getAdviceCopy(focus, record);
   card.appendChild(copy);
 
   return card;

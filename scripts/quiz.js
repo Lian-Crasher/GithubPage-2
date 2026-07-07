@@ -50,6 +50,37 @@ function createReviewItem(hint, link, diagnosis) {
   return item;
 }
 
+function getCurrentQuizPagePath() {
+  const pathname = window.location.pathname;
+  const filename = pathname.split("/").pop() || "index.html";
+  return pathname.includes("/chapters/") ? `chapters/${filename}` : filename;
+}
+
+function getProgressReviewHref(href) {
+  if (!href) return "";
+  if (/^(https?:|mailto:|\/)/.test(href)) return href;
+  if (href.startsWith("#")) return `${getCurrentQuizPagePath()}${href}`;
+  if (href.startsWith("chapters/")) return href;
+  if (window.location.pathname.includes("/chapters/")) return `chapters/${href}`;
+  return href;
+}
+
+function getReviewTopic(link, hint) {
+  if (link?.topic) return link.topic;
+  if (link?.label) return link.label.replace(/^(回看|练习)/, "").trim();
+  return hint.replace(/^第\s*\d+\s*题回看/, "").replace(/[：:。].*$/, "").trim() || "对应知识点";
+}
+
+function buildMissedReview(key, hint, link) {
+  return {
+    key,
+    hint,
+    href: getProgressReviewHref(link?.href),
+    label: link?.label || "回看对应知识点",
+    topic: getReviewTopic(link, hint),
+  };
+}
+
 function normalizeTextAnswer(value) {
   return String(value ?? "")
     .trim()
@@ -243,6 +274,7 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
       score,
       total,
       missed,
+      missedReviews: missed.map((key) => buildMissedReview(key, hints[key], reviewLinks[key])),
       completed: missed.length === 0,
     });
     result.focus({ preventScroll: true });
