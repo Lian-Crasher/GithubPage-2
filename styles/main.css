@@ -2274,6 +2274,14 @@ th {
   stroke-dasharray: 10 8;
 }
 
+.graph-point.primary {
+  fill: var(--teal);
+}
+
+.graph-point.secondary {
+  fill: var(--coral);
+}
+
 .graph-tag.primary {
   fill: var(--teal);
 }
