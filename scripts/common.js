@@ -42,7 +42,7 @@ var QUIZ_META = {
   },
   final: {
     title: "综合检查",
-    href: "chapters/chapter6-density.html#final-check",
+    href: "chapters/final-check.html",
     focus: "六章主线和期末常见混合题型",
   },
 };

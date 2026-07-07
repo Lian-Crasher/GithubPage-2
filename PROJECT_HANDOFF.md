@@ -8,17 +8,17 @@
 
 ## 当前进展
 
-项目位于 `/Users/lianliu/Documents/GithubPage 2`。目前已完成原生静态网页版本，包含首页、第一至第六章页面、章节导航、阶段检查和综合检查入口。代码结构仍保持每章独立 HTML、每章独立 JS、公共样式集中在 `styles/main.css`。
+项目位于 `/Users/lianliu/Documents/GithubPage 2`。目前已完成原生静态网页版本，包含首页、第一至第六章页面、独立综合检查页、章节导航、阶段检查和综合检查入口。代码结构仍保持每章独立 HTML、每章独立 JS、公共样式集中在 `styles/main.css`。
 
 GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-截至 2026-07-06，最近一次功能更新已成功推送到 GitHub，但 GitHub Pages 线上发布仍处于失败状态。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
+截至 2026-07-07，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
 
-- `1b57556 Add nojekyll for Pages deploy`
+- `73c4eb4 Improve SVG hero rendering`
 
-最新内容变更提交为 `2cf3cb6 Refresh chapter hero illustrations`，新增 `.nojekyll` 的部署配置提交为 `1b57556 Add nojekyll for Pages deploy`。GitHub 远端 `main` 已确认指向 `1b57556`，但 Pages workflow 的 build/artifact 成功、deploy 失败，线上页面仍停在旧版首图引用。后续交接时必须区分“GitHub 已同步”和“GitHub Pages 已发布”。
+最近一次 Pages 成功发布运行为 `pages build and deployment #34`，head 为 `73c4eb4`，build、deploy、report-build-status 均成功。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
 历史上曾因 GitHub HTTPS/HTTP2 网络错误改用 `gh api` 发布，造成过本地提交 SHA 与远端提交 SHA 不一致。近期推送中普通 `git push origin main` 有时可成功，有时会遇到 DNS 或 `Error in the HTTP2 framing layer`；遇到 HTTP2 framing 问题时，`git -c http.version=HTTP/1.1 push origin main` 已验证可作为 fallback。当前 `gh auth status` 显示 GitHub CLI token invalid，Codex 内置浏览器也未登录 GitHub。后续交接时仍建议先看 `git status -sb`、`git log --oneline --decorate -5`、远端提交状态和 Pages Actions 状态，再判断是 Git 同步问题还是 Pages 发布问题。
 
@@ -33,12 +33,14 @@ https://lian-crasher.github.io/GithubPage-2/
 - `chapters/chapter4-light.html`
 - `chapters/chapter5-lenses.html`
 - `chapters/chapter6-density.html`
+- `chapters/final-check.html`
 - `scripts/chapter1-motion.js`
 - `scripts/chapter2-sound.js`
 - `scripts/chapter3-states.js`
 - `scripts/chapter4-light.js`
 - `scripts/chapter5-lenses.js`
 - `scripts/chapter6-density.js`
+- `scripts/final-check.js`
 - `scripts/quiz.js`
 - `scripts/common.js`
 - `styles/main.css`
@@ -106,6 +108,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - 第一至第六章的章节检查已完成首轮混合题型升级：第一章加入速度计算填空和 s-t 图像填空，第二章加入声传递信息多选，第三章加入沸腾实验安装排序，第四章加入反射/折射光路配对，第五章加入凸透镜特殊光线配对，第六章加入密度计算填空和误差方向多选。
   - 综合检查从 10 题扩展到 15 题，加入 s-t 图像、折射作图、投影仪调试、热胀冷缩、近视/远视判断等期末常见能力点。
   - 综合检查已从纯单选升级为混合题型：前 8 题保留基础单选，后 7 题覆盖多选、速度计算填空、s-t 图像填空、液体密度实验排序、透镜特殊光线配对、密度误差多选、近视远视多选。
+  - 综合检查已从第六章页面拆出为 `chapters/final-check.html`，题目配置移到 `scripts/final-check.js`，便于未来继续扩展综合题库。
   - 首页综合检查入口文案已同步为“15 道题”，避免首页仍显示旧题数。
 - 学习闭环已升级。
   - `scripts/quiz.js` 现在会在提交检查后生成错题回看清单，每道错题可跳转到对应章节模块。
@@ -117,7 +120,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - 各章检查、阶段检查和综合检查都已配置 `quizId` 与 `reviewLinks`。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片、填空输入和下拉题样式，并修复窄屏导航可能撑宽页面的问题。
 - 已完成一轮 390px 移动端 QA，覆盖首页进度徽章、第三章排序练习、第四章光路作图台、第五章透镜作图台、第六章误差诊断、各章检查和综合检查。主体页面未发现非预期横向溢出；导航和表格保留局部横向滚动。检查题单选/多选项已增强为整行触控目标，主要触控高度约 40px 以上。
-- 由于公共样式继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=5`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=2`，确保首页推荐逻辑刷新。
+- 由于公共样式和首页推荐链接继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=5`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=3`，确保首页推荐逻辑刷新。
 - 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
 - 已新增 `.nojekyll`，用于让 GitHub Pages 按纯静态文件发布，减少 Jekyll 对当前原生 HTML/CSS/JS 站点的干预。
@@ -139,20 +142,17 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 截至本次交接，`git status -sb` 显示 `## main...origin/main`，没有未提交改动。
-- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `1b57556 Add nojekyll for Pages deploy`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，没有未提交改动；本次拆分综合检查页面后会产生新的本地提交。
+- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `73c4eb4 Improve SVG hero rendering`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
 - 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
 GitHub 发布注意事项：
 
-- 当前最重要的未解决发布问题：GitHub 远端 `main` 已包含最新代码，但 GitHub Pages workflow 连续失败，线上页面仍未更新到新 SVG 首图。
-- 已确认失败运行：
-  - `pages build and deployment #28`：`2cf3cb6 Refresh chapter hero illustrations`，build 成功，deploy 失败。
-  - `pages build and deployment #29`：`1b57556 Add nojekyll for Pages deploy`，build 成功，deploy 失败。
-- 失败日志的关键内容是：artifact 找到并创建了 Pages deployment，但随后 `Deployment failed, try again later.`；这不是本地代码语法错误，也不是浏览器缓存。
-- 线上 Pages 当前仍返回旧首页首图引用 `assets/chapter1-hero.png?v=3`，新 SVG 资源如 `assets/chapter1-motion.svg?v=1` 在线上返回 404；GitHub raw 的 `main/index.html` 已经是新 SVG 引用。
-- GitHub 插件能读取 Actions 日志，但没有 Actions 写权限，无法代点 `Re-run failed jobs`；本机 `gh auth status` 显示 token invalid；Codex 内置浏览器未登录 GitHub。
-- 如果要继续处理发布，需要用户登录 GitHub 后在 Actions 页面点击 `Re-run failed jobs`，或进入仓库 `Settings -> Pages` 重新保存发布源后再触发部署。
+- 当前没有已知的 GitHub Pages 发布阻塞；最近一次验证中线上首页和新 SVG 资源均返回 HTTP 200。
+- 历史失败运行可作为排查参考：
+  - `pages build and deployment #32`：`bea0f08 Update handoff with Pages deploy status`，build 成功，deploy 失败。
+  - 失败日志关键内容为 artifact 找到并创建 Pages deployment 后返回 `Deployment failed, try again later.`；这类情况不是本地代码语法错误，也不是浏览器缓存。
+- GitHub 插件能读取 Actions 日志，但没有 Actions 写权限，无法代点 `Re-run failed jobs`；本机 `gh auth status` 曾显示 token invalid。如果后续要用 `gh api`、GitHub CLI 或 rerun workflow，需要先重新认证。
 - 普通 `git push origin main` 曾多次成功；最近一次功能发布把 `af8413d` 推到 `1223bbe` 时，沙盒内普通推送因 DNS 失败，提权后 `git push origin main` 成功。
 - 如果普通推送遇到 `Error in the HTTP2 framing layer`，使用：`git -c http.version=HTTP/1.1 push origin main`。该 fallback 已在推送 `415b654` 和 `af8413d` 时验证有效。
 - `gh auth status` 最近显示 `Lian-Crasher` 的 GitHub CLI token invalid；如果后续要用 `gh api`、GitHub CLI 或 rerun workflow，需要先重新认证。
@@ -163,7 +163,7 @@ GitHub 发布注意事项：
 
 - 部分章节仍是“预习站”深度，不是完整题库。
 - 光学、实验和密度题虽然已补强，但还可以继续把各章检查从纯单选逐步改成混合题型，例如多选、填空、排序、配对和情境分析。
-- 线上 GitHub Pages 不是单纯缓存延迟；截至本次交接，最新 Pages deploy 明确失败，必须重新部署成功后线上才会出现新 SVG 首图。
+- 如果后续线上内容没有更新，先检查 Pages Actions 是否成功，再判断是否只是浏览器或 GitHub Pages 缓存延迟。
 
 ## 如何验证
 
@@ -177,6 +177,7 @@ node --check scripts/chapter3-states.js
 node --check scripts/chapter4-light.js
 node --check scripts/chapter5-lenses.js
 node --check scripts/chapter6-density.js
+node --check scripts/final-check.js
 node --check scripts/common.js
 node --check scripts/quiz.js
 ```
@@ -203,7 +204,7 @@ python3 -m http.server 8002
 - `http://localhost:8000/chapters/chapter5-lenses.html#image-rule`
 - `http://localhost:8000/chapters/chapter5-lenses.html#real-virtual-image`
 - `http://localhost:8000/chapters/chapter5-lenses.html#lens-practice`
-- `http://localhost:8000/chapters/chapter6-density.html#final-check`
+- `http://localhost:8000/chapters/final-check.html`
 
 线上访问：
 
@@ -211,7 +212,7 @@ python3 -m http.server 8002
 - https://lian-crasher.github.io/GithubPage-2/chapters/chapter1-motion.html
 - https://lian-crasher.github.io/GithubPage-2/chapters/chapter4-light.html#ray-drawing
 - https://lian-crasher.github.io/GithubPage-2/chapters/chapter5-lenses.html#image-rule
-- https://lian-crasher.github.io/GithubPage-2/chapters/chapter6-density.html#final-check
+- https://lian-crasher.github.io/GithubPage-2/chapters/final-check.html
 
 远端验证：
 
@@ -243,7 +244,7 @@ curl -L -s -D /tmp/ghpage-svg-headers.txt -o /tmp/chapter1-motion.svg 'https://l
 sed -n '1,40p' /tmp/ghpage-svg-headers.txt
 ```
 
-预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion.svg?v=1`，新 SVG 资源应返回 HTTP 200。当前失败状态下，首页仍包含 `assets/chapter1-hero.png?v=3`，新 SVG 返回 404。
+预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion.svg?v=1`，新 SVG 资源应返回 HTTP 200。若线上仍出现旧 `assets/chapter1-hero.png` 引用或新 SVG 返回 404，先检查 Pages Actions 的 deploy 状态，再判断是否为缓存或发布延迟。
 
 浏览器验证重点：
 
@@ -266,7 +267,7 @@ sed -n '1,40p' /tmp/ghpage-svg-headers.txt
 - 第五章 `#lens-practice`：平行主光轴应选“通过另一侧焦点”，过焦点应选“平行于主光轴”，过光心应选“方向不改变”；390px 移动宽度不应横向溢出。
 - 第六章 `#density-errors`：误差方向表述是否准确；误差方向诊断中红豆总体积偏大和量筒读数偏大应判密度偏小，石块带水称质量应判密度偏大，正确单位换算应基本不变。
 - 第六章首图：天平测质量、量筒排水法测体积、`ρ = m / V` 三者是否形成清楚的实验链条。
-- 第六章 `#final-check`：综合检查应有 15 张题卡，其中后 7 题为混合题型。正确填写后应显示 `上册预习非常稳：15/15`；移动端 390px 宽度不应横向溢出。
+- 独立页面 `chapters/final-check.html`：综合检查应有 15 张题卡，其中后 7 题为混合题型。正确填写后应显示 `上册预习非常稳：15/15`；移动端 390px 宽度不应横向溢出。
 
 ## 下一步建议
 
@@ -278,4 +279,4 @@ sed -n '1,40p' /tmp/ghpage-svg-headers.txt
 - 后续移动端 QA 可继续补充更小宽度（例如 360px）和真实手机浏览器检查，重点看长反馈文本、表格横向滚动提示和 canvas 图中文字可读性。
 - 如果要进一步提高“下一步复习建议”的精度，可以给错题增加更细的主题标签，例如 `实验误差`、`光路作图`、`图像分析`，再让首页优先推荐具体模块而不只是章节。
 - 后续发布按 `RELEASE_CHECKLIST.md` 执行；如果要使用 `gh api`，先处理 GitHub CLI token invalid 问题。
-- 发布问题优先级高于继续扩内容：先让 GitHub Pages deploy 成功，再继续做下一轮站点优化，否则线上用户看不到最新首图变更。
+- 如果后续再次出现 GitHub Pages 内容滞后，发布问题优先级高于继续扩内容：先让 Pages deploy 成功，再继续做下一轮站点优化，否则线上用户看不到最新变更。

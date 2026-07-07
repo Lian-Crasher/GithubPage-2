@@ -25,6 +25,7 @@ node --check scripts/chapter3-states.js
 node --check scripts/chapter4-light.js
 node --check scripts/chapter5-lenses.js
 node --check scripts/chapter6-density.js
+node --check scripts/final-check.js
 ```
 
 ## 3. Local Browser QA
@@ -40,7 +41,7 @@ Open:
 - `http://localhost:8000/chapters/chapter4-light.html#ray-drawing`
 - `http://localhost:8000/chapters/chapter5-lenses.html#lens-practice`
 - `http://localhost:8000/chapters/chapter6-density.html#density-errors`
-- `http://localhost:8000/chapters/chapter6-density.html#final-check`
+- `http://localhost:8000/chapters/final-check.html`
 
 Check:
 
@@ -93,6 +94,6 @@ git rev-parse HEAD^{tree}
 Open GitHub Pages after it refreshes:
 
 - `https://lian-crasher.github.io/GithubPage-2/`
-- `https://lian-crasher.github.io/GithubPage-2/chapters/chapter6-density.html#final-check`
+- `https://lian-crasher.github.io/GithubPage-2/chapters/final-check.html`
 
 If CSS or JavaScript changes do not appear online, bump the query string version in HTML references.
