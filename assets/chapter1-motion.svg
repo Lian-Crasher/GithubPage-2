@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">测量小车平均速度实验示意图</title>
   <desc id="desc">小车沿斜面运动，刻度尺测量路程，秒表测量时间，通过 v 等于 s 除以 t 计算平均速度。</desc>
   <defs>
