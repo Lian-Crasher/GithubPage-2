@@ -51,34 +51,40 @@ https://lian-crasher.github.io/GithubPage-2/
 
 - `assets/chapter1-motion.svg`
 - `assets/chapter1-motion.png`
+- `assets/chapter1-motion-hero.jpg`
 - `assets/chapter2-sound.png`
+- `assets/chapter2-sound-hero.jpg`
 - `assets/chapter3-states.svg`
 - `assets/chapter3-states.png`
+- `assets/chapter3-states-hero.jpg`
 - `assets/chapter4-light.png`
 - `assets/chapter4-light.svg`
+- `assets/chapter4-light-hero.jpg`
 - `assets/chapter5-lenses.png`
 - `assets/chapter5-lenses.svg`
+- `assets/chapter5-lenses-hero.jpg`
 - `assets/chapter6-density.svg`
 - `assets/chapter6-density.png`
+- `assets/chapter6-density-hero.jpg`
 
 近期重点变更：
 
 - 第一章新增“路程-时间图像”期末题型模块。
-  - 第一章首图和首页 hero 已从旧 PNG 切换为 `assets/chapter1-motion.svg`，改成“斜面小车 + 刻度尺 + 秒表 + v = s / t”的平均速度实验场景，避免旧图中秒表悬空、运动线偏装饰的问题。
+  - 第一章首图和首页 hero 已切换为生成式位图 `assets/chapter1-motion-hero.jpg`，用斜面小车、刻度尺和秒表表现平均速度实验场景。
   - 小图已标明横轴 `t/s`、纵轴 `s/m` 和原点 `0`。
   - 图线从原点出发，说明水平线段表示静止。
   - 强调 s-t 图像中斜率表示速度；同一时刻高度表示路程，若都从原点出发，较陡的线速度更大。
   - 审核后将“斜线向上”改为“倾斜直线向上”，避免把任意上升曲线误说成匀速直线运动。
   - 刻度尺读数说明已改为“分度值为 1 mm 时通常读到 1 mm，对应 0.1 cm”，并在互动反馈里同步显示 cm 和 mm，避免“估读下一位”和当前读数位数不一致。
+- 第二章首图已切换为生成式位图 `assets/chapter2-sound-hero.jpg`，用音叉、水面波纹、扬声器和玻璃钟罩表现振动、传播和介质相关的声音实验场景。
 - 第三章新增水沸腾实验专项和热胀冷缩阅读题专项。
-  - 第三章首图已从旧 PNG 切换为 `assets/chapter3-states.svg`，改成冰、水、水蒸气之间的物态变化循环图，并标出熔化、凝固、汽化、液化、升华、凝华六种变化。
+  - 第三章首图已从旧 SVG 切换为生成式位图 `assets/chapter3-states-hero.jpg`，用冰块、清水、蒸汽、冷凝水珠和霜晶表现固态、液态和气态变化；六种物态变化的准确名称继续保留在正文交互模块中。
   - 覆盖器材从下往上安装、沸腾现象判断、沸腾持续吸热、控制变量。
   - 补充线膨胀系数、双金属片温度计、图像判断和改进措施。
   - 新增“实验步骤排序”互动，用上移/下移按钮排列水的沸腾实验步骤，并即时反馈错误位置和正确实验逻辑。
   - 新增“温度计读数姿势纠错”互动：选择从上方斜看、视线相平或从下方斜看，正确反馈强调视线与液柱上表面相平，错题回看会跳到该练习。
 - 第四章补强光现象作图与实验专项。
-  - 顶部首图已改为 `assets/chapter4-light.svg`，只表达“光沿直线传播并被不透明挡板挡住形成影子”，不再把直线传播、反射、色散硬塞在同一张图中。
-  - 首图中间光线到挡板前停止，边界光线保持直线传播，避免误导为“光线穿过挡板后折射”。
+  - 顶部首图已切换为生成式位图 `assets/chapter4-light-hero.jpg`，用灯光、镜面、玻璃块和屏幕表现光的传播、反射、折射和影子；正文互动仍负责更严格的直线传播和光路作图训练。
   - “影子实验台”已从静态光锥改为动态 SVG 光路：挡板移动时，上下边界光线、被挡住的中间光线、挡板后阴影锥和屏上阴影大小同步更新。
   - 第四章页面已对 `styles/main.css` 和 `scripts/chapter4-light.js` 加查询版本号，避免线上/浏览器缓存旧版光路。
   - 反射、折射、平面镜实验卡片已从 CSS 线条改为 SVG 示意图，箭头方向、法线、界面和物像关系更清楚。
@@ -86,7 +92,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - 审核后将反射作图说明改为“入射光线和反射光线分居法线两侧，且与法线夹角相等”，避免误解为反射光线也发生“向法线偏折”。
   - 新增“光路作图台”互动：可切换反射/折射，调整入射角，选择反射角相等、折射靠近法线或远离法线，并在检查后自动补出正确出射光线。
 - 第五章修正透镜应用互动。
-  - 顶部首图已从 `assets/chapter5-lenses.png` 切换为 `assets/chapter5-lenses.svg`，改成凸透镜成倒立缩小实像的标准作图：平行光过焦点、过光心方向不变、光线在光屏处会聚。
+  - 顶部首图已切换为生成式位图 `assets/chapter5-lenses-hero.jpg`，用光具座、凸透镜、物体、光屏和倒立实像表现透镜成像场景。
   - “透镜光路切换”中凸透镜平行光会聚、凹透镜发散和反向延长线示意已检查。
   - “透镜光路切换”已按薄透镜近似重画：入射平行光到透镜中心平面后再折向焦点；凹透镜实际光线发散，反向延长线过同侧虚焦点，且出射线不再被画布裁切。
   - “成像规律滑台”已改为按凸透镜公式 `1/f = 1/u + 1/v` 和统一比例计算像距。
@@ -99,7 +105,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - “眼睛和光学仪器”已补强近视/远视专项：说明晶状体和角膜共同相当于凸透镜、视网膜相当于光屏；近视通常像落在视网膜前方，用凹透镜发散矫正；远视通常像落在视网膜后方，用凸透镜会聚矫正。
   - 第五章新增近视和远视 SVG 示意图，并加入“近视：前、凹、发散；远视：后、凸、会聚”的考试速记。
 - 第六章新增密度实验误差专项。
-  - 第六章首图已从旧 PNG 切换为 `assets/chapter6-density.svg`，改成“天平测质量 m + 量筒排水法测体积 V + ρ = m / V”的实验链条，强化密度公式与测量步骤的关系。
+  - 第六章首图已切换为生成式位图 `assets/chapter6-density-hero.jpg`，用电子天平、金属块、量筒排水法和不同材料样品表现质量、体积和密度测量。
   - 覆盖天平调平、砝码使用、容器质量扣除、排水法体积、红豆空隙导致密度偏小。
   - 新增“误差方向诊断”互动，围绕红豆空隙、石块带水、量筒读数偏大、单位换算等情境判断密度偏大/偏小/基本不变，并逐项解释原因。
   - 误差方向诊断已从 4 个情境扩展到 6 个，新增“先在量筒中测液体体积，再倒入烧杯称质量”和“先称总质量、倒入量筒后再称剩余质量”两类液体密度顺序误差。
@@ -242,26 +248,26 @@ Pages 发布验证：
 
 ```bash
 curl -L -s -o /tmp/ghpage-index.html https://lian-crasher.github.io/GithubPage-2/index.html
-rg -n "chapter1-motion\\.svg|chapter1-hero\\.png" /tmp/ghpage-index.html
-curl -L -s -D /tmp/ghpage-svg-headers.txt -o /tmp/chapter1-motion.svg 'https://lian-crasher.github.io/GithubPage-2/assets/chapter1-motion.svg?v=1'
-sed -n '1,40p' /tmp/ghpage-svg-headers.txt
+rg -n "chapter1-motion-hero\\.jpg" /tmp/ghpage-index.html
+curl -L -s -D /tmp/ghpage-hero-headers.txt -o /tmp/chapter1-motion-hero.jpg 'https://lian-crasher.github.io/GithubPage-2/assets/chapter1-motion-hero.jpg'
+sed -n '1,40p' /tmp/ghpage-hero-headers.txt
 ```
 
-预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion.svg?v=1`，新 SVG 资源应返回 HTTP 200。若线上仍出现旧 `assets/chapter1-hero.png` 引用或新 SVG 返回 404，先检查 Pages Actions 的 deploy 状态，再判断是否为缓存或发布延迟。
+预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion-hero.jpg`，新 JPG 资源应返回 HTTP 200。若线上仍出现旧 `assets/chapter1-motion.svg` 引用或新 JPG 返回 404，先检查 Pages Actions 的 deploy 状态，再判断是否为缓存或发布延迟。
 
 浏览器验证重点：
 
 - 第一章 `#motion-graph`：坐标轴、原点、斜率含义是否清楚。
 - 首页 hero 与第一章首图：是否表达平均速度实验，刻度尺测路程、秒表测时间、`v = s / t` 是否清楚。
 - 第一章 `#measure`：1 mm 分度值读数、cm/mm 显示和反馈是否一致。
-- 第四章首图：是否只表达直线传播和影子，不再出现光线穿过挡板或混合反射/色散。
+- 第四章首图：生成式位图是否作为章节氛围图清楚呈现光的传播、反射、折射和影子；严格光路关系以正文 `#straight-light` 和 `#ray-drawing` 为准。
 - 第四章 `#straight-light`：拖动挡板时，上下边界光线、被挡住的中间光线、阴影锥和屏上阴影是否同步变化。
 - 第四章 `#ray-drawing`：反射光线是否从入射点射出、是否与入射光线分居法线两侧且角度相等；折射是否远离法线，平面镜物像是否对称。
 - 第四章 `#ray-drawing` 的“光路作图台”：反射模式选“分居法线两侧，角度相等”应反馈正确；折射模式中空气到水应靠近法线，水到空气应远离法线；移动端 390px 宽度不应横向溢出。
 - 首页学习地图：做过章节检查后，应显示“待巩固 x/y”或“已掌握 x/y”进度徽章。
 - 第三章 `#boiling-exam`：实验步骤排序应能用上移/下移调整，正确顺序为酒精灯/装置、温度计、加热、记录、结论。
 - 第三章 `#temperature-reading-practice`：选择“视线与液柱上表面相平”应反馈正确；从上方/下方斜看应提示会产生偏差。
-- 第三章首图：六种物态变化箭头和文字是否清楚，是否比旧三图标并列更容易看出循环关系。
+- 第三章首图：生成式位图是否清楚表现冰块、清水、蒸汽、冷凝水珠和霜晶；正文 `#state-change` 交互图仍需检查六种物态变化名称和吸放热方向是否准确。
 - 第五章首图：是否表达凸透镜将物体光线会聚到光屏上形成倒立缩小实像，三条特殊光线是否自洽。
 - 第五章 `#lens-basics`：凸透镜会聚、凹透镜发散是否准确。
 - 第五章 `#image-rule`：不同物距时像的位置、正倒、大小是否符合凸透镜成像规律。
