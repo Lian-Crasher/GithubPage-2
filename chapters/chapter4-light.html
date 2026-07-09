@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>第四章 光现象 - 八年级物理预习站</title>
-    <link rel="stylesheet" href="../styles/main.css?v=6" />
+    <link rel="stylesheet" href="../styles/main.css?v=7" />
   </head>
   <body data-page="light">
     <header class="topbar">
@@ -75,6 +75,55 @@
             <p class="feedback" id="shadowFeedback">挡板越靠近光源，屏上的影子越大。</p>
           </div>
         </div>
+        <article class="pinhole-card" id="pinhole">
+          <div class="pinhole-copy">
+            <p class="eyebrow">典型证据</p>
+            <h3>小孔成像：倒立实像从哪里来</h3>
+            <p>小孔只允许少量光线通过。物体上端发出的光穿过小孔后到达光屏下方，物体下端发出的光穿过小孔后到达光屏上方，所以光屏上的像是倒立的实像。</p>
+            <ul class="clean-list compact-list">
+              <li>小孔成像说明光沿直线传播。</li>
+              <li>像能成在光屏上，所以属于实像。</li>
+              <li>孔太大时很多光线混在一起，像会变模糊。</li>
+            </ul>
+          </div>
+          <svg class="pinhole-diagram" viewBox="0 0 720 300" role="img" aria-labelledby="pinholeTitle pinholeDesc">
+            <title id="pinholeTitle">小孔成像光路示意</title>
+            <desc id="pinholeDesc">蜡烛上下两点发出的光穿过小孔后交叉，到达光屏形成倒立实像。</desc>
+            <defs>
+              <marker id="pinhole-arrow-coral" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0,0 L12,6 L0,12 Z" fill="#ef6f61"></path>
+              </marker>
+              <marker id="pinhole-arrow-teal" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                <path d="M0,0 L12,6 L0,12 Z" fill="#0b7c72"></path>
+              </marker>
+            </defs>
+            <rect x="28" y="26" width="664" height="248" rx="22" class="pinhole-bg"></rect>
+            <g class="pinhole-candle">
+              <path d="M116 70 C96 94 112 118 132 130 C122 106 154 94 138 64 C150 80 162 96 158 116 C178 92 160 58 132 38 C136 54 126 62 116 70 Z" class="pinhole-flame"></path>
+              <rect x="112" y="130" width="44" height="96" rx="12" class="pinhole-object"></rect>
+              <circle cx="134" cy="86" r="6" class="pinhole-point top"></circle>
+              <circle cx="134" cy="210" r="6" class="pinhole-point bottom"></circle>
+              <text x="82" y="250" class="pinhole-label">物体</text>
+            </g>
+            <g class="pinhole-board">
+              <rect x="330" y="42" width="24" height="216" rx="8"></rect>
+              <circle cx="342" cy="150" r="9"></circle>
+              <text x="308" y="286" class="pinhole-label">小孔</text>
+            </g>
+            <g class="pinhole-screen">
+              <rect x="570" y="46" width="20" height="208" rx="8"></rect>
+              <path d="M610 198 C624 186 624 168 608 158 C620 146 618 128 600 118 C602 132 590 142 584 150 C594 162 590 178 578 190 C590 190 600 192 610 198 Z" class="pinhole-image-flame"></path>
+              <rect x="574" y="80" width="44" height="96" rx="12" class="pinhole-image"></rect>
+              <text x="552" y="286" class="pinhole-label">倒立实像</text>
+            </g>
+            <line x1="134" y1="86" x2="342" y2="150" class="pinhole-ray coral"></line>
+            <line x1="342" y1="150" x2="596" y2="214" class="pinhole-ray coral" marker-end="url(#pinhole-arrow-coral)"></line>
+            <line x1="134" y1="210" x2="342" y2="150" class="pinhole-ray teal"></line>
+            <line x1="342" y1="150" x2="596" y2="86" class="pinhole-ray teal" marker-end="url(#pinhole-arrow-teal)"></line>
+            <text x="380" y="118" class="pinhole-note">上端光线到下方</text>
+            <text x="382" y="190" class="pinhole-note">下端光线到上方</text>
+          </svg>
+        </article>
       </section>
 
       <section class="learning-band alt" id="reflection" aria-labelledby="reflection-title">
@@ -334,6 +383,6 @@
 
     <script src="../scripts/common.js?v=4"></script>
     <script src="../scripts/quiz.js"></script>
-    <script src="../scripts/chapter4-light.js?v=3"></script>
+    <script src="../scripts/chapter4-light.js?v=4"></script>
   </body>
 </html>

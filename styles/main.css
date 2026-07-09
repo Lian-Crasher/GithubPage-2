@@ -1661,6 +1661,132 @@ th {
   transition: width 0.18s ease, height 0.18s ease;
 }
 
+.pinhole-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.82fr) minmax(360px, 1.18fr);
+  gap: 22px;
+  align-items: center;
+  width: min(1180px, 100%);
+  margin: 24px auto 0;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 14px 30px rgba(35, 65, 90, 0.08);
+}
+
+.pinhole-copy h3 {
+  margin: 0 0 10px;
+}
+
+.pinhole-copy p {
+  margin: 0;
+  color: #33485f;
+  line-height: 1.75;
+}
+
+.compact-list {
+  margin-top: 14px;
+  gap: 8px;
+}
+
+.pinhole-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 230px;
+  background: linear-gradient(180deg, #f8fdff, #eef8fb);
+  border: 1px solid #cfe2ea;
+  border-radius: 8px;
+}
+
+.pinhole-bg {
+  fill: rgba(232, 248, 251, 0.56);
+  stroke: #d7e8ef;
+  stroke-width: 2;
+}
+
+.pinhole-flame {
+  fill: #ffd166;
+  stroke: #ef6f61;
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+
+.pinhole-object,
+.pinhole-image {
+  fill: #1aa6b7;
+  stroke: #0b7c72;
+  stroke-width: 4;
+}
+
+.pinhole-image,
+.pinhole-image-flame {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: rotate(180deg);
+}
+
+.pinhole-image-flame {
+  fill: #ffd166;
+  stroke: #ef6f61;
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+
+.pinhole-point.top {
+  fill: #ef6f61;
+}
+
+.pinhole-point.bottom {
+  fill: #0b7c72;
+}
+
+.pinhole-board rect {
+  fill: #26394d;
+}
+
+.pinhole-board circle {
+  fill: #f8fdff;
+  stroke: #ffd166;
+  stroke-width: 4;
+}
+
+.pinhole-screen rect {
+  fill: #ffffff;
+  stroke: #bfd4df;
+  stroke-width: 4;
+}
+
+.pinhole-ray {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.pinhole-ray.coral {
+  stroke: #ef6f61;
+}
+
+.pinhole-ray.teal {
+  stroke: #0b7c72;
+}
+
+.pinhole-label,
+.pinhole-note {
+  fill: #244056;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-weight: 900;
+}
+
+.pinhole-label {
+  font-size: 22px;
+}
+
+.pinhole-note {
+  font-size: 18px;
+}
+
 .reflection-lab,
 .lens-bench,
 .density-lab {
@@ -1945,9 +2071,6 @@ th {
 
 .thermometer-demo {
   position: relative;
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  align-items: end;
   min-height: 300px;
   padding: 18px;
   overflow: hidden;
@@ -1957,7 +2080,10 @@ th {
 }
 
 .thermometer {
-  position: relative;
+  position: absolute;
+  left: clamp(190px, 28vw, 245px);
+  bottom: 48px;
+  z-index: 3;
   display: grid;
   grid-template-columns: 54px 34px;
   gap: 10px;
@@ -2023,7 +2149,10 @@ th {
 }
 
 .beaker {
-  position: relative;
+  position: absolute;
+  left: clamp(188px, 28vw, 260px);
+  right: 18px;
+  bottom: 38px;
   height: 170px;
   border: 5px solid #b6d3df;
   border-top: 0;
@@ -2043,6 +2172,7 @@ th {
 
 .beaker .water {
   position: absolute;
+  z-index: 1;
   left: 10px;
   right: 10px;
   bottom: 10px;
@@ -2054,13 +2184,15 @@ th {
 .state-map {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(3, minmax(140px, 1fr));
-  gap: clamp(18px, 5vw, 60px);
+  grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr) auto minmax(120px, 1fr);
+  grid-template-rows: auto auto;
+  gap: 18px clamp(12px, 2.4vw, 28px);
   align-items: center;
-  width: min(980px, 100%);
-  min-height: 270px;
+  justify-items: center;
+  width: min(1120px, 100%);
+  min-height: 300px;
   margin: 0 auto 18px;
-  padding: 38px;
+  padding: clamp(22px, 3vw, 34px);
   background: linear-gradient(180deg, #f9fdff, #ecf8fb);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -2072,7 +2204,7 @@ th {
   display: grid;
   place-items: center;
   aspect-ratio: 1;
-  width: min(180px, 100%);
+  width: clamp(128px, 14vw, 164px);
   justify-self: center;
   color: #fff;
   font-size: 22px;
@@ -2083,14 +2215,20 @@ th {
 }
 
 .state-node.solid {
+  grid-column: 1;
+  grid-row: 1;
   background: linear-gradient(145deg, #7fc7e8, #2f8dc0);
 }
 
 .state-node.liquid {
+  grid-column: 3;
+  grid-row: 1;
   background: linear-gradient(145deg, #28b4c7, #0b7c72);
 }
 
 .state-node.gas {
+  grid-column: 5;
+  grid-row: 1;
   background: linear-gradient(145deg, #ffbf69, #ef6f61);
 }
 
@@ -2099,38 +2237,34 @@ th {
 }
 
 .state-links {
-  position: absolute;
-  inset: 0;
+  display: contents;
   pointer-events: none;
 }
 
 .link {
-  position: absolute;
   padding: 8px 10px;
   color: #244056;
   font-size: 13px;
   font-weight: 900;
+  white-space: nowrap;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--line);
   border-radius: 8px;
 }
 
 .solid-liquid {
-  left: 26%;
-  top: 38%;
-  transform: translateX(-50%);
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .liquid-gas {
-  right: 26%;
-  top: 38%;
-  transform: translateX(50%);
+  grid-column: 4;
+  grid-row: 1;
 }
 
 .solid-gas {
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%);
+  grid-column: 3;
+  grid-row: 2;
 }
 
 .state-result {
@@ -2444,6 +2578,7 @@ th {
   .exam-grid,
   .rule-grid,
   .graph-lab,
+  .pinhole-card,
   .reflection-lab,
   .lens-bench,
   .density-lab,
@@ -2468,18 +2603,38 @@ th {
 
   .state-map {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 12px;
     min-height: auto;
   }
 
   .state-node {
-    width: min(190px, 72%);
+    grid-column: 1;
+    grid-row: auto;
+    width: min(150px, 58%);
+    font-size: 20px;
+  }
+
+  .state-node.solid,
+  .state-node.liquid,
+  .state-node.gas {
+    grid-column: 1;
+  }
+
+  .state-node.solid {
+    grid-row: 1;
+  }
+
+  .state-node.liquid {
+    grid-row: 3;
+  }
+
+  .state-node.gas {
+    grid-row: 5;
   }
 
   .state-links {
-    position: static;
-    display: grid;
-    grid-column: 1;
-    gap: 8px;
+    display: contents;
   }
 
   .link,
@@ -2490,6 +2645,21 @@ th {
     transform: none;
     justify-self: stretch;
     text-align: center;
+  }
+
+  .solid-liquid {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .liquid-gas {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .solid-gas {
+    grid-column: 1;
+    grid-row: 6;
   }
 
   .error-cases {
@@ -2556,16 +2726,40 @@ th {
   }
 
   .thermometer-demo {
-    grid-template-columns: 112px 1fr;
+    min-height: 280px;
     padding: 12px;
   }
 
   .thermometer {
+    left: 100px;
+    bottom: 46px;
     grid-template-columns: 42px 30px;
+  }
+
+  .beaker {
+    left: 118px;
+    right: 12px;
+    bottom: 36px;
   }
 
   .state-map {
     padding: 22px;
+  }
+
+  .pinhole-card {
+    padding: 18px;
+  }
+
+  .pinhole-diagram {
+    min-height: 220px;
+  }
+
+  .pinhole-label {
+    font-size: 24px;
+  }
+
+  .pinhole-note {
+    font-size: 24px;
   }
 
   .graph-tabs {

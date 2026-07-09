@@ -376,7 +376,7 @@ setupQuiz({
   },
   reviewLinks: {
     l1: { href: "#straight-light", label: "回看直线传播" },
-    l2: { href: "#straight-light", label: "回看小孔成像" },
+    l2: { href: "#pinhole", label: "回看小孔成像" },
     l3: { href: "#reflection", label: "回看反射定律" },
     l4: { href: "#reflection", label: "回看平面镜成像" },
     l5: { href: "#refraction", label: "回看折射现象" },
