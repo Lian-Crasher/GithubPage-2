@@ -177,5 +177,40 @@ function applyNextStepAdvice() {
   grid.replaceChildren(...adviceItems.map(createAdviceCard));
 }
 
+function resetQuizProgress() {
+  try {
+    localStorage.removeItem(QUIZ_PROGRESS_KEY);
+  } catch (error) {
+    return false;
+  }
+
+  applyHomeProgress();
+  applyNextStepAdvice();
+  return true;
+}
+
+function setupProgressReset() {
+  const resetButton = document.querySelector("#resetProgressButton");
+  const resetStatus = document.querySelector("#resetProgressStatus");
+  if (!resetButton) return;
+
+  resetButton.addEventListener("click", () => {
+    const hasProgress = Object.keys(readQuizProgress()).length > 0;
+    if (!hasProgress) {
+      if (resetStatus) resetStatus.textContent = "当前已经是未检查状态。";
+      return;
+    }
+
+    const confirmed = window.confirm("确定要清空所有章节和综合检查的提交记录吗？");
+    if (!confirmed) return;
+
+    const didReset = resetQuizProgress();
+    if (resetStatus) {
+      resetStatus.textContent = didReset ? "已清空检查记录。" : "清空失败，请检查浏览器存储权限。";
+    }
+  });
+}
+
 applyHomeProgress();
 applyNextStepAdvice();
+setupProgressReset();

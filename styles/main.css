@@ -378,6 +378,35 @@ section {
   background: #eef8fb;
 }
 
+.reset-progress-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  margin-top: 16px;
+  padding: 0 14px;
+  color: #9b4c30;
+  font-weight: 900;
+  background: #fff7ef;
+  border: 1px solid #f2c3aa;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.reset-progress-button:hover,
+.reset-progress-button:focus-visible {
+  color: #7d3d27;
+  background: #ffefe2;
+}
+
+.reset-progress-status {
+  min-height: 24px;
+  margin: 8px 0 0;
+  color: #526b7d;
+  font-size: 14px;
+  font-weight: 800;
+}
+
 .recommendation-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
