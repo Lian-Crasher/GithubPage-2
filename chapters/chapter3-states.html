@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理物态变化预习：学习温度计使用、六种物态变化、吸热放热、沸腾实验和温度图像。" />
     <title>第三章 物态变化 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=12" />
+    <link rel="stylesheet" href="../styles/main.css?v=13" />
   </head>
   <body data-page="states">
     <header class="topbar">
@@ -93,13 +93,52 @@
           <p>固、液、气之间的转化不只是名字不同，它们和吸热、放热紧密相连。抓住“往更自由的状态变通常吸热，往更聚集的状态变通常放热”。</p>
         </div>
         <div class="state-map">
-          <button type="button" class="state-node solid" data-state="solid">固态</button>
-          <button type="button" class="state-node liquid" data-state="liquid">液态</button>
-          <button type="button" class="state-node gas" data-state="gas">气态</button>
-          <div class="state-links" aria-hidden="true">
-            <span class="link solid-liquid">熔化 / 凝固</span>
-            <span class="link liquid-gas">汽化 / 液化</span>
-            <span class="link solid-gas">升华 / 凝华</span>
+          <div class="state-primary-flow">
+            <button type="button" class="state-node solid" data-state="solid">
+              <span class="state-name">固态</span>
+              <span class="state-note">形状、体积较固定</span>
+            </button>
+            <div class="state-route-pair" aria-label="固态和液态之间的物态变化">
+              <div class="transition-row heat-in" data-from="solid">
+                <span class="transition-path">固态 <b aria-hidden="true">→</b> 液态</span>
+                <span class="transition-detail"><strong>熔化</strong><em>吸热</em></span>
+              </div>
+              <div class="transition-row heat-out" data-from="liquid">
+                <span class="transition-path">液态 <b aria-hidden="true">→</b> 固态</span>
+                <span class="transition-detail"><strong>凝固</strong><em>放热</em></span>
+              </div>
+            </div>
+            <button type="button" class="state-node liquid" data-state="liquid">
+              <span class="state-name">液态</span>
+              <span class="state-note">体积较固定，能够流动</span>
+            </button>
+            <div class="state-route-pair" aria-label="液态和气态之间的物态变化">
+              <div class="transition-row heat-in" data-from="liquid">
+                <span class="transition-path">液态 <b aria-hidden="true">→</b> 气态</span>
+                <span class="transition-detail"><strong>汽化</strong><em>吸热</em></span>
+              </div>
+              <div class="transition-row heat-out" data-from="gas">
+                <span class="transition-path">气态 <b aria-hidden="true">→</b> 液态</span>
+                <span class="transition-detail"><strong>液化</strong><em>放热</em></span>
+              </div>
+            </div>
+            <button type="button" class="state-node gas" data-state="gas">
+              <span class="state-name">气态</span>
+              <span class="state-note">形状、体积都不固定</span>
+            </button>
+          </div>
+          <div class="state-direct-flow">
+            <p class="direct-flow-title">不经过液态的直接转化</p>
+            <div class="direct-route-grid">
+              <div class="transition-row heat-in" data-from="solid">
+                <span class="transition-path">固态 <b aria-hidden="true">→</b> 气态</span>
+                <span class="transition-detail"><strong>升华</strong><em>吸热</em></span>
+              </div>
+              <div class="transition-row heat-out" data-from="gas">
+                <span class="transition-path">气态 <b aria-hidden="true">→</b> 固态</span>
+                <span class="transition-detail"><strong>凝华</strong><em>放热</em></span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="state-result" id="stateResult">点击三种状态，观察它们和另外两种状态之间可能发生的物态变化。</div>
@@ -531,6 +570,6 @@
 
     <script src="../scripts/common.js?v=8"></script>
     <script src="../scripts/quiz.js?v=2"></script>
-    <script src="../scripts/chapter3-states.js?v=4"></script>
+    <script src="../scripts/chapter3-states.js?v=5"></script>
   </body>
 </html>

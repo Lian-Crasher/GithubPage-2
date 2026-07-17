@@ -4,6 +4,7 @@ const temperatureFeedback = document.querySelector("#temperatureFeedback");
 const thermoMercury = document.querySelector("#thermoMercury");
 const stateButtons = document.querySelectorAll("[data-state]");
 const stateResult = document.querySelector("#stateResult");
+const stateTransitionRows = document.querySelectorAll(".transition-row[data-from]");
 const graphButtons = document.querySelectorAll("[data-graph]");
 const graphCanvas = document.querySelector("#graphCanvas");
 const graphFeedback = document.querySelector("#graphFeedback");
@@ -58,10 +59,13 @@ function setState(state) {
   const messages = {
     solid: "固态出发：固态变液态是熔化，吸热；固态直接变气态是升华，也吸热，例如樟脑片变小。",
     liquid: "液态出发：液态变固态是凝固，放热；液态变气态是汽化，吸热，包括蒸发和沸腾。",
-    gas: "气态出发：气态变液态是液化，放热；气态直接变固态是凝华，霜和雾凇常与它有关。",
+    gas: "气态出发：气态变液态是液化，放热；气态直接变固态是凝华，也放热，霜和雾凇常与它有关。",
   };
   stateButtons.forEach((button) => {
     setButtonPressedState(button, button.dataset.state === state);
+  });
+  stateTransitionRows.forEach((row) => {
+    row.classList.toggle("is-highlighted", row.dataset.from === state);
   });
   stateResult.textContent = messages[state];
 }
