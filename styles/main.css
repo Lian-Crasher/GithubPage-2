@@ -516,6 +516,48 @@ section {
   border-radius: 8px;
 }
 
+.key-term,
+.key-rule,
+.key-caution {
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  font-weight: 750;
+}
+
+.key-term {
+  margin: 0;
+  padding: 0 0.12em;
+  color: inherit;
+  background: linear-gradient(
+    180deg,
+    transparent 48%,
+    rgba(255, 209, 102, 0.62) 48%,
+    rgba(255, 209, 102, 0.62) 92%,
+    transparent 92%
+  );
+}
+
+.key-rule {
+  text-decoration-line: underline;
+  text-decoration-color: rgba(11, 124, 114, 0.58);
+  text-decoration-thickness: 0.16em;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.14em;
+}
+
+.key-caution {
+  padding: 0 0.12em;
+  color: #9c362d;
+  background: linear-gradient(
+    180deg,
+    transparent 46%,
+    rgba(239, 111, 97, 0.18) 46%,
+    rgba(239, 111, 97, 0.18) 94%,
+    transparent 94%
+  );
+  border-bottom: 2px solid rgba(239, 111, 97, 0.62);
+}
+
 .ruler-demo {
   position: relative;
   height: 168px;
