@@ -16,7 +16,7 @@ https://lian-crasher.github.io/GithubPage-2/
 
 截至 2026-07-17，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
 
-- `4ab20bf Improve quiz validation and mobile navigation`
+- `56d2dd4 Improve accessibility and motion preferences`
 
 最近一次 Pages 验证中，线上首页已指向 `chapters/final-check.html`，独立综合检查页返回 HTTP 200。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
@@ -44,27 +44,18 @@ https://lian-crasher.github.io/GithubPage-2/
 - `scripts/quiz.js`
 - `scripts/common.js`
 - `styles/main.css`
+- `assets/favicon.svg`
 - `RELEASE_CHECKLIST.md`
 - `.nojekyll`
 
 章节配图已统一为轻量教学插画风格，资源包括：
 
-- `assets/chapter1-motion.svg`
-- `assets/chapter1-motion.png`
+- `assets/favicon.svg`
 - `assets/chapter1-motion-hero.jpg`
-- `assets/chapter2-sound.png`
 - `assets/chapter2-sound-hero.jpg`
-- `assets/chapter3-states.svg`
-- `assets/chapter3-states.png`
 - `assets/chapter3-states-hero.jpg`
-- `assets/chapter4-light.png`
-- `assets/chapter4-light.svg`
 - `assets/chapter4-light-hero.jpg`
-- `assets/chapter5-lenses.png`
-- `assets/chapter5-lenses.svg`
 - `assets/chapter5-lenses-hero.jpg`
-- `assets/chapter6-density.svg`
-- `assets/chapter6-density.png`
 - `assets/chapter6-density-hero.jpg`
 
 近期重点变更：
@@ -145,6 +136,10 @@ https://lian-crasher.github.io/GithubPage-2/
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片、填空输入和下拉题样式，并修复窄屏导航可能撑宽页面的问题。
 - 已完成一轮 390px 移动端 QA，覆盖首页进度徽章、第三章排序练习、第四章光路作图台、第五章透镜作图台、第六章误差诊断、各章检查和综合检查。主体页面未发现非预期横向溢出；导航和表格保留局部横向滚动。检查题单选/多选项已增强为整行触控目标，主要触控高度约 40px 以上。
 - 首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=9`，`scripts/common.js` 升级到 `?v=7`，各章交互脚本也已提升查询版本号，避免浏览器或 GitHub Pages 继续使用旧版样式、无障碍状态逻辑和交互脚本。
+- 发布与页面元信息已完成一轮维护收尾。
+  - 首页、六个章节页和综合检查页均补充独立 `meta description`，并统一显式引用 `assets/favicon.svg`。
+  - 已确认网页只使用六张 `*-hero.jpg` 章节首图，并删除 12 个不再引用的旧 PNG/SVG 首图资源。
+  - 发布检查增加页面描述、favicon 和静态资源加载核对，避免再次出现默认 `favicon.ico` 404 或文档列出已删除资源。
 - 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
 - 已新增 `.nojekyll`，用于让 GitHub Pages 按纯静态文件发布，减少 Jekyll 对当前原生 HTML/CSS/JS 站点的干预。
@@ -166,8 +161,8 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，本轮 5-8 项无障碍优化和本文档更新尚待提交。
-- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `4ab20bf Improve quiz validation and mobile navigation`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，本轮 10-12 项发布维护优化和本文档更新尚待提交。
+- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `56d2dd4 Improve accessibility and motion preferences`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
 - 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
 GitHub 发布注意事项：
@@ -268,7 +263,7 @@ curl -L -s -D /tmp/ghpage-hero-headers.txt -o /tmp/chapter1-motion-hero.jpg 'htt
 sed -n '1,40p' /tmp/ghpage-hero-headers.txt
 ```
 
-预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion-hero.jpg`，新 JPG 资源应返回 HTTP 200。若线上仍出现旧 `assets/chapter1-motion.svg` 引用或新 JPG 返回 404，先检查 Pages Actions 的 deploy 状态，再判断是否为缓存或发布延迟。
+预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion-hero.jpg` 和 `assets/favicon.svg`，对应资源均应返回 HTTP 200。若新资源返回 404，先检查 Pages Actions 的 deploy 状态，再判断是否为缓存或发布延迟。
 
 浏览器验证重点：
 

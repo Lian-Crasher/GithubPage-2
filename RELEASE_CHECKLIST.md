@@ -28,6 +28,15 @@ node --check scripts/chapter6-density.js
 node --check scripts/final-check.js
 ```
 
+Confirm that every HTML page includes a description and favicon:
+
+```bash
+rg -L '<meta name="description"' index.html chapters/*.html
+rg -L 'rel="icon"' index.html chapters/*.html
+```
+
+Both commands should return no files.
+
 ## 3. Local Browser QA
 
 ```bash
@@ -49,6 +58,7 @@ Check:
 - Home progress badges and next-step recommendations update after quiz attempts.
 - Wrong answers show useful feedback and review links.
 - Drawing and ordering interactions still respond on mobile.
+- Browser console has no missing favicon, image, stylesheet, or script requests.
 
 ## 4. Commit
 
