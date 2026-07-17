@@ -2586,6 +2586,225 @@ th {
   background: #fbfcff;
 }
 
+.concept-module {
+  width: min(980px, 100%);
+  margin: 34px auto 0;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+}
+
+.concept-module-head {
+  width: min(780px, 100%);
+  margin-bottom: 22px;
+}
+
+.concept-module-head h3 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.25;
+}
+
+.concept-module-head p:not(.eyebrow) {
+  margin: 12px 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.concept-grid,
+.water-cycle-layout,
+.reflection-surface-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.82fr);
+  align-items: stretch;
+  gap: 18px;
+}
+
+.water-cycle-layout,
+.reflection-surface-layout {
+  grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+}
+
+.concept-copy {
+  padding: 4px 0;
+}
+
+.compact-tool {
+  min-height: 100%;
+}
+
+.diagram-scroll {
+  min-width: 0;
+  overflow-x: auto;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.diagram-scroll:focus-visible {
+  outline: 3px solid rgba(26, 166, 183, 0.3);
+  outline-offset: 2px;
+}
+
+.water-cycle-figure,
+.surface-reflection-figure {
+  display: block;
+  width: 100%;
+  min-width: 620px;
+  height: auto;
+}
+
+.cycle-node {
+  stroke-width: 3;
+}
+
+.liquid-node {
+  fill: #e7f7fb;
+  stroke: #1aa6b7;
+}
+
+.gas-node {
+  fill: #f1f6f8;
+  stroke: #7b91a4;
+}
+
+.cloud-node {
+  fill: #f4f9ff;
+  stroke: #5d87b8;
+}
+
+.rain-node {
+  fill: #fff4e8;
+  stroke: #ef8b61;
+}
+
+.cycle-title,
+.cycle-label,
+.cycle-process,
+.surface-caption {
+  fill: #26394d;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.cycle-title {
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.cycle-label,
+.cycle-process {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.cycle-arrow {
+  fill: none;
+  stroke: #0b7c72;
+  stroke-width: 5;
+}
+
+.cycle-arrow-head,
+.surface-arrow-head {
+  fill: #0b7c72;
+}
+
+.surface-line {
+  fill: none;
+  stroke: #7b91a4;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.surface-ray {
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.surface-ray.incident {
+  stroke: #ef6f61;
+}
+
+.surface-ray.reflected {
+  stroke: #0b7c72;
+}
+
+.surface-caption {
+  font-size: 23px;
+  font-weight: 900;
+}
+
+#diffuseReflectionRays[hidden],
+#smoothReflectionRays[hidden],
+.instrument-panel[hidden] {
+  display: none;
+}
+
+.instrument-switcher {
+  display: grid;
+  gap: 16px;
+}
+
+.instrument-panel {
+  padding: 18px;
+  background: #f7fcff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.instrument-chain {
+  display: grid;
+  grid-template-columns: minmax(110px, 1fr) auto minmax(110px, 1fr) auto minmax(140px, 1.2fr) auto minmax(110px, 1fr) auto minmax(140px, 1.2fr);
+  align-items: stretch;
+  gap: 8px;
+}
+
+.chain-node {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 108px;
+  padding: 12px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #d7e8ef;
+  border-radius: 8px;
+}
+
+.chain-node strong {
+  color: #26394d;
+  font-size: 17px;
+}
+
+.chain-node span {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.chain-node.lens-node {
+  background: #e8f7f5;
+  border-color: #abdcd5;
+}
+
+.chain-node.image-node {
+  background: #fff8df;
+  border-color: #f4d978;
+}
+
+.chain-node.result-node {
+  background: #fff0e8;
+  border-color: #f0b69d;
+}
+
+.chain-arrow {
+  align-self: center;
+  color: #0b7c72;
+  font-size: 26px;
+  font-weight: 900;
+}
+
 @media (max-width: 920px) {
   .topbar {
     align-items: flex-start;
@@ -2631,8 +2850,19 @@ th {
   .reflection-lab,
   .lens-bench,
   .density-lab,
-  .ray-practice-layout {
+  .ray-practice-layout,
+  .concept-grid,
+  .water-cycle-layout,
+  .reflection-surface-layout {
     grid-template-columns: 1fr;
+  }
+
+  .instrument-chain {
+    grid-template-columns: 1fr;
+  }
+
+  .chain-arrow {
+    transform: rotate(90deg);
   }
 
   .quest-card,

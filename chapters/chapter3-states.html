@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理物态变化预习：学习温度计使用、六种物态变化、吸热放热、沸腾实验和温度图像。" />
     <title>第三章 物态变化 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=9" />
+    <link rel="stylesheet" href="../styles/main.css?v=10" />
   </head>
   <body data-page="states">
     <header class="topbar">
@@ -40,7 +40,7 @@
         <div class="section-head compact">
           <p class="eyebrow">第 1 节</p>
           <h2 id="temperature-title">温度：冷热感觉不可靠，测量才可靠</h2>
-          <p>温度表示物体的冷热程度。实验室温度计要看量程和分度值，玻璃泡全部浸入液体，稳定后再读数，视线与液面相平。</p>
+          <p>温度表示物体的冷热程度。实验室温度计要看量程和分度值，玻璃泡全部浸入液体，稳定后再读数，视线与温度计内液柱上表面相平。</p>
         </div>
         <div class="two-column">
           <div class="knowledge-panel">
@@ -72,7 +72,7 @@
               <output id="temperatureOutput">42 °C</output>
             </label>
             <input id="temperatureSlider" type="range" min="0" max="100" value="42" />
-            <p class="feedback" id="temperatureFeedback">等示数稳定后再读数，视线与液面相平。</p>
+            <p class="feedback" id="temperatureFeedback">等示数稳定后再读数，视线与温度计内液柱上表面相平。</p>
             <div class="reading-practice" id="temperature-reading-practice">
               <p class="control-label">下面哪种读数姿势正确？</p>
               <div class="choice-row" role="group" aria-label="选择温度计读数姿势">
@@ -116,6 +116,57 @@
             <h3>升华与凝华</h3>
             <p>固态直接变气态叫升华，吸热；气态直接变固态叫凝华，放热，如霜、雾凇。</p>
           </article>
+        </div>
+        <div class="concept-module" id="water-cycle">
+          <div class="concept-module-head">
+            <p class="eyebrow">自然界的水循环</p>
+            <h3>一滴水的旅行，会连续经历多种物态变化</h3>
+            <p>判断水循环现象时，先找水的初态和末态。云不是水蒸气，而是悬浮在空中的小水滴和小冰晶。</p>
+          </div>
+          <div class="water-cycle-layout">
+            <div class="diagram-scroll" tabindex="0" aria-label="水循环图，可横向滚动查看">
+              <svg class="water-cycle-figure" viewBox="0 0 900 330" role="img" aria-labelledby="waterCycleTitle waterCycleDesc">
+              <title id="waterCycleTitle">自然界水循环中的主要物态变化</title>
+              <desc id="waterCycleDesc">江河湖海中的液态水汽化成为水蒸气，水蒸气液化为小水滴或凝华为小冰晶，形成云后通过降水回到地表。</desc>
+              <defs>
+                <marker id="water-cycle-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" class="cycle-arrow-head"></path>
+                </marker>
+              </defs>
+              <rect x="40" y="190" width="180" height="82" rx="8" class="cycle-node liquid-node"></rect>
+              <text x="130" y="224" text-anchor="middle" class="cycle-title">江河湖海</text>
+              <text x="130" y="250" text-anchor="middle" class="cycle-label">液态水</text>
+              <rect x="290" y="55" width="190" height="82" rx="8" class="cycle-node gas-node"></rect>
+              <text x="385" y="89" text-anchor="middle" class="cycle-title">水蒸气</text>
+              <text x="385" y="115" text-anchor="middle" class="cycle-label">气态、看不见</text>
+              <rect x="545" y="55" width="210" height="82" rx="8" class="cycle-node cloud-node"></rect>
+              <text x="650" y="87" text-anchor="middle" class="cycle-title">云</text>
+              <text x="650" y="113" text-anchor="middle" class="cycle-label">小水滴 / 小冰晶</text>
+              <rect x="680" y="205" width="170" height="66" rx="8" class="cycle-node rain-node"></rect>
+              <text x="765" y="245" text-anchor="middle" class="cycle-title">雨或雪</text>
+              <path d="M190 190 C230 130 258 104 290 98" class="cycle-arrow" marker-end="url(#water-cycle-arrow)"></path>
+              <text x="205" y="120" class="cycle-process">汽化吸热</text>
+              <path d="M480 96 L545 96" class="cycle-arrow" marker-end="url(#water-cycle-arrow)"></path>
+              <text x="486" y="72" class="cycle-process">液化 / 凝华放热</text>
+              <path d="M710 137 C742 160 760 180 765 205" class="cycle-arrow" marker-end="url(#water-cycle-arrow)"></path>
+              <text x="755" y="170" class="cycle-process">降水</text>
+              <path d="M680 248 C530 306 295 306 220 252" class="cycle-arrow" marker-end="url(#water-cycle-arrow)"></path>
+              <text x="430" y="309" text-anchor="middle" class="cycle-process">汇流、熔化后回到地表水体</text>
+              </svg>
+            </div>
+            <div class="interactive-panel compact-tool">
+              <div class="panel-topline">
+                <h3>现象判断</h3>
+                <span class="tag">先找初态和末态</span>
+              </div>
+              <div class="choice-row" role="group" aria-label="选择水循环现象">
+                <button type="button" class="choice-button is-active" data-water-cycle="evaporation">水面变干</button>
+                <button type="button" class="choice-button" data-water-cycle="cloud">形成云滴</button>
+                <button type="button" class="choice-button" data-water-cycle="ice">形成冰晶</button>
+              </div>
+              <p class="feedback" id="waterCycleResult" aria-live="polite">液态水变成水蒸气是汽化，需要吸热。</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -413,8 +464,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=7"></script>
+    <script src="../scripts/common.js?v=8"></script>
     <script src="../scripts/quiz.js?v=2"></script>
-    <script src="../scripts/chapter3-states.js?v=3"></script>
+    <script src="../scripts/chapter3-states.js?v=4"></script>
   </body>
 </html>

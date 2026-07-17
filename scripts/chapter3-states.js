@@ -12,7 +12,22 @@ const checkBoilingOrderButton = document.querySelector("#checkBoilingOrder");
 const boilingOrderFeedback = document.querySelector("#boilingOrderFeedback");
 const temperatureViewButtons = document.querySelectorAll("[data-temperature-view]");
 const temperatureViewFeedback = document.querySelector("#temperatureViewFeedback");
+const waterCycleButtons = document.querySelectorAll("[data-water-cycle]");
+const waterCycleResult = document.querySelector("#waterCycleResult");
 const boilingOrderAnswer = ["lamp", "thermometer", "heat", "record", "conclusion"];
+
+function setWaterCycleScenario(scenario) {
+  const messages = {
+    evaporation: "液态水变成水蒸气是汽化，需要吸热。水蒸气是看不见的气体。",
+    cloud: "水蒸气遇冷变成小水滴是液化，会放热。云中的小水滴不是水蒸气。",
+    ice: "水蒸气直接变成小冰晶是凝华，会放热；如果先变成水滴再结冰，则还经历了液化和凝固。",
+  };
+
+  waterCycleButtons.forEach((button) => {
+    setButtonPressedState(button, button.dataset.waterCycle === scenario);
+  });
+  waterCycleResult.textContent = messages[scenario];
+}
 
 function updateTemperature() {
   const temperature = Number(temperatureSlider.value);
@@ -280,6 +295,9 @@ stateButtons.forEach((button) => {
 graphButtons.forEach((button) => {
   button.addEventListener("click", () => drawGraph(button.dataset.graph));
 });
+waterCycleButtons.forEach((button) => {
+  button.addEventListener("click", () => setWaterCycleScenario(button.dataset.waterCycle));
+});
 boilingOrderList?.addEventListener("click", (event) => {
   const button = event.target.closest("[data-move]");
   if (!button) return;
@@ -291,3 +309,4 @@ updateTemperature();
 setState("solid");
 drawGraph();
 updateBoilingOrderControls();
+setWaterCycleScenario("evaporation");

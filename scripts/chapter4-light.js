@@ -20,11 +20,26 @@ const mediumPathButtons = document.querySelectorAll("[data-medium-path]");
 const rayRuleButtons = document.querySelectorAll("[data-ray-rule]");
 const refractionSwitch = document.querySelector("#refractionSwitch");
 const checkRayPracticeButton = document.querySelector("#checkRayPractice");
+const reflectionSurfaceButtons = document.querySelectorAll("[data-reflection-surface]");
+const smoothReflectionRays = document.querySelector("#smoothReflectionRays");
+const diffuseReflectionRays = document.querySelector("#diffuseReflectionRays");
+const reflectionSurfaceResult = document.querySelector("#reflectionSurfaceResult");
 
 let rayPracticeMode = "reflection";
 let mediumPath = "air-water";
 let selectedRayRule = "";
 let rayPracticeChecked = false;
+
+function setReflectionSurface(surface) {
+  reflectionSurfaceButtons.forEach((button) => {
+    setButtonPressedState(button, button.dataset.reflectionSurface === surface);
+  });
+  smoothReflectionRays.toggleAttribute("hidden", surface !== "smooth");
+  diffuseReflectionRays.toggleAttribute("hidden", surface !== "rough");
+  reflectionSurfaceResult.textContent = surface === "smooth"
+    ? "这是镜面反射：平行入射光反射后仍较整齐，容易形成清晰反光或镜面像。"
+    : "这是漫反射：粗糙表面各处法线不同，反射光射向不同方向，因此能从多个方向看到物体；每条光线仍遵守反射定律。";
+}
 
 const shadowStage = {
   width: 640,
@@ -338,6 +353,9 @@ mediumPathButtons.forEach((button) => {
 rayRuleButtons.forEach((button) => {
   button.addEventListener("click", () => selectRayRule(button.dataset.rayRule));
 });
+reflectionSurfaceButtons.forEach((button) => {
+  button.addEventListener("click", () => setReflectionSurface(button.dataset.reflectionSurface));
+});
 checkRayPracticeButton?.addEventListener("click", checkRayPractice);
 
 setupQuiz({
@@ -391,3 +409,4 @@ setupQuiz({
 updateShadow();
 drawMirror();
 setRayPracticeMode("reflection");
+setReflectionSurface("smooth");

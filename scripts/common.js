@@ -36,6 +36,10 @@ const pressedStateButtons = document.querySelectorAll([
   "button[data-lens-practice]",
   "button[data-lens-rule]",
   "button[data-choice]",
+  "button[data-frequency-band]",
+  "button[data-water-cycle]",
+  "button[data-reflection-surface]",
+  "button[data-optical-instrument]",
 ].join(", "));
 
 function setButtonPressedState(button, pressed) {

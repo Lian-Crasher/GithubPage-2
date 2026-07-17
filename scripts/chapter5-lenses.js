@@ -11,10 +11,25 @@ const lensPracticeCanvas = document.querySelector("#lensPracticeCanvas");
 const lensRuleButtons = document.querySelectorAll("[data-lens-rule]");
 const checkLensPracticeButton = document.querySelector("#checkLensPractice");
 const lensPracticeFeedback = document.querySelector("#lensPracticeFeedback");
+const opticalInstrumentButtons = document.querySelectorAll("[data-optical-instrument]");
+const microscopeChain = document.querySelector("#microscopeChain");
+const telescopeChain = document.querySelector("#telescopeChain");
+const opticalInstrumentResult = document.querySelector("#opticalInstrumentResult");
 
 let lensPracticeMode = "parallel";
 let selectedLensRule = null;
 let lensPracticeChecked = false;
+
+function setOpticalInstrument(instrument) {
+  opticalInstrumentButtons.forEach((button) => {
+    setButtonPressedState(button, button.dataset.opticalInstrument === instrument);
+  });
+  microscopeChain.hidden = instrument !== "microscope";
+  telescopeChain.hidden = instrument !== "telescope";
+  opticalInstrumentResult.textContent = instrument === "microscope"
+    ? "显微镜的物镜先形成倒立、放大的实像，目镜再像放大镜一样观察这个中间像。"
+    : "望远镜的物镜先形成远处物体的倒立、缩小实像，目镜再放大中间像的视角，让远处细节更容易分辨。";
+}
 
 function drawLens(type = "convex") {
   const ctx = lensCanvas.getContext("2d");
@@ -314,6 +329,9 @@ lensPracticeButtons.forEach((button) => {
 lensRuleButtons.forEach((button) => {
   button.addEventListener("click", () => selectLensRule(button.dataset.lensRule));
 });
+opticalInstrumentButtons.forEach((button) => {
+  button.addEventListener("click", () => setOpticalInstrument(button.dataset.opticalInstrument));
+});
 checkLensPracticeButton?.addEventListener("click", checkLensPractice);
 
 setupQuiz({
@@ -377,3 +395,4 @@ setupQuiz({
 drawLens("convex");
 updateImageRule();
 setLensPracticeMode("parallel");
+setOpticalInstrument("microscope");

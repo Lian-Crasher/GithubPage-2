@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理光现象预习：理解光的直线传播、小孔成像、反射、平面镜成像、折射与色散。" />
     <title>第四章 光现象 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=9" />
+    <link rel="stylesheet" href="../styles/main.css?v=10" />
   </head>
   <body data-page="light">
     <header class="topbar">
@@ -156,6 +156,60 @@
               <li>像和物的连线与镜面垂直。</li>
               <li>平面镜成的是虚像，不能用光屏承接。</li>
             </ul>
+          </div>
+        </div>
+        <div class="concept-module" id="reflection-surfaces">
+          <div class="concept-module-head">
+            <p class="eyebrow">镜面反射与漫反射</p>
+            <h3>表面粗糙，改变的是各处法线方向，不是反射定律</h3>
+            <p>光滑表面让平行入射光反射后仍较整齐；粗糙表面各处朝向不同，反射光射向不同方向。每一条光线仍满足反射角等于入射角。</p>
+          </div>
+          <div class="reflection-surface-layout">
+            <div class="diagram-scroll" tabindex="0" aria-label="反射对照图，可横向滚动查看">
+              <svg class="surface-reflection-figure" viewBox="0 0 900 330" role="img" aria-labelledby="surfaceReflectionTitle surfaceReflectionDesc">
+              <title id="surfaceReflectionTitle">镜面反射和漫反射对照图</title>
+              <desc id="surfaceReflectionDesc">平行光照到光滑表面后向同一方向反射，照到粗糙表面后向不同方向反射，但每条光线都遵守反射定律。</desc>
+              <defs>
+                <marker id="surface-ray-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                  <path d="M0,0 L12,6 L0,12 Z" class="surface-arrow-head"></path>
+                </marker>
+              </defs>
+              <g id="smoothReflectionRays">
+                <line x1="75" y1="235" x2="825" y2="235" class="surface-line smooth"></line>
+                <line x1="120" y1="45" x2="255" y2="235" class="surface-ray incident" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="285" y1="45" x2="420" y2="235" class="surface-ray incident" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="450" y1="45" x2="585" y2="235" class="surface-ray incident" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="255" y1="235" x2="390" y2="45" class="surface-ray reflected" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="420" y1="235" x2="555" y2="45" class="surface-ray reflected" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="585" y1="235" x2="720" y2="45" class="surface-ray reflected" marker-end="url(#surface-ray-arrow)"></line>
+                <text x="450" y="292" text-anchor="middle" class="surface-caption">光滑表面：反射光仍较整齐</text>
+              </g>
+              <g id="diffuseReflectionRays" hidden>
+                <polyline points="75,238 210,224 345,244 480,218 615,241 825,226" class="surface-line rough"></polyline>
+                <line x1="120" y1="45" x2="245" y2="229" class="surface-ray incident" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="300" y1="45" x2="420" y2="229" class="surface-ray incident" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="480" y1="45" x2="595" y2="238" class="surface-ray incident" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="245" y1="229" x2="416" y2="90" class="surface-ray reflected" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="420" y1="229" x2="463" y2="13" class="surface-ray reflected" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="595" y1="238" x2="764" y2="97" class="surface-ray reflected" marker-end="url(#surface-ray-arrow)"></line>
+                <line x1="245" y1="229" x2="258" y2="140" class="diagram-normal"></line>
+                <line x1="420" y1="229" x2="403" y2="141" class="diagram-normal"></line>
+                <line x1="595" y1="238" x2="610" y2="149" class="diagram-normal"></line>
+                <text x="450" y="292" text-anchor="middle" class="surface-caption">粗糙表面：各处法线不同，反射光分散</text>
+              </g>
+              </svg>
+            </div>
+            <div class="interactive-panel compact-tool">
+              <div class="panel-topline">
+                <h3>切换表面</h3>
+                <span class="tag">每条光线都守定律</span>
+              </div>
+              <div class="choice-row" role="group" aria-label="选择反射表面">
+                <button type="button" class="choice-button is-active" data-reflection-surface="smooth">光滑表面</button>
+                <button type="button" class="choice-button" data-reflection-surface="rough">粗糙表面</button>
+              </div>
+              <p class="feedback" id="reflectionSurfaceResult" aria-live="polite">这是镜面反射：平行入射光反射后仍较整齐，容易形成清晰反光或镜面像。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -383,8 +437,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=7"></script>
+    <script src="../scripts/common.js?v=8"></script>
     <script src="../scripts/quiz.js?v=2"></script>
-    <script src="../scripts/chapter4-light.js?v=5"></script>
+    <script src="../scripts/chapter4-light.js?v=6"></script>
   </body>
 </html>

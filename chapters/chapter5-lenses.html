@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理透镜及其应用预习：学习凸透镜和凹透镜、成像规律、实像虚像、眼睛与光学仪器。" />
     <title>第五章 透镜及其应用 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=9" />
+    <link rel="stylesheet" href="../styles/main.css?v=10" />
   </head>
   <body data-page="lenses">
     <header class="topbar">
@@ -209,6 +209,46 @@
             <h3>显微镜与望远镜</h3>
             <p>多个透镜组合能让微小物体或远处物体更容易被看清。</p>
           </article>
+        </div>
+        <div class="concept-module" id="optical-instruments">
+          <div class="concept-module-head">
+            <p class="eyebrow">两级成像</p>
+            <h3>物镜先成实像，目镜再把中间像放大给眼睛看</h3>
+            <p>显微镜和望远镜都不是“一片透镜直接放大”。先找物镜形成的中间实像，再看目镜怎样增大观察效果。</p>
+          </div>
+          <div class="instrument-switcher">
+            <div class="choice-row" role="group" aria-label="选择光学仪器">
+              <button type="button" class="choice-button is-active" data-optical-instrument="microscope">显微镜</button>
+              <button type="button" class="choice-button" data-optical-instrument="telescope">望远镜</button>
+            </div>
+            <div class="instrument-panel" id="microscopeChain">
+              <div class="instrument-chain" aria-label="显微镜成像顺序">
+                <div class="chain-node"><strong>微小物体</strong><span>放在物镜焦点稍外</span></div>
+                <span class="chain-arrow" aria-hidden="true">→</span>
+                <div class="chain-node lens-node"><strong>物镜</strong><span>相当于投影仪镜头</span></div>
+                <span class="chain-arrow" aria-hidden="true">→</span>
+                <div class="chain-node image-node"><strong>中间实像</strong><span>倒立、放大</span></div>
+                <span class="chain-arrow" aria-hidden="true">→</span>
+                <div class="chain-node lens-node"><strong>目镜</strong><span>相当于放大镜</span></div>
+                <span class="chain-arrow" aria-hidden="true">→</span>
+                <div class="chain-node result-node"><strong>供眼睛观察</strong><span>进一步放大的虚像</span></div>
+              </div>
+            </div>
+            <div class="instrument-panel" id="telescopeChain" hidden>
+              <div class="instrument-chain" aria-label="望远镜成像顺序">
+                <div class="chain-node"><strong>远处物体</strong><span>进入物镜的光近似平行</span></div>
+                <span class="chain-arrow" aria-hidden="true">→</span>
+                <div class="chain-node lens-node"><strong>物镜</strong><span>会聚远处物体的光</span></div>
+                <span class="chain-arrow" aria-hidden="true">→</span>
+                <div class="chain-node image-node"><strong>中间实像</strong><span>倒立、缩小</span></div>
+                <span class="chain-arrow" aria-hidden="true">→</span>
+                <div class="chain-node lens-node"><strong>目镜</strong><span>放大中间像的视角</span></div>
+                <span class="chain-arrow" aria-hidden="true">→</span>
+                <div class="chain-node result-node"><strong>供眼睛观察</strong><span>看清远处细节</span></div>
+              </div>
+            </div>
+            <p class="feedback" id="opticalInstrumentResult" aria-live="polite">显微镜的物镜先形成倒立、放大的实像，目镜再像放大镜一样观察这个中间像。</p>
+          </div>
         </div>
         <div class="exam-grid eye-exam-grid">
           <article class="exam-card">
@@ -434,8 +474,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=7"></script>
+    <script src="../scripts/common.js?v=8"></script>
     <script src="../scripts/quiz.js?v=2"></script>
-    <script src="../scripts/chapter5-lenses.js?v=3"></script>
+    <script src="../scripts/chapter5-lenses.js?v=4"></script>
   </body>
 </html>

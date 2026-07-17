@@ -9,6 +9,25 @@ const echoTimeOutput = document.querySelector("#echoTimeOutput");
 const echoDistanceOutput = document.querySelector("#echoDistanceOutput");
 const noiseButtons = document.querySelectorAll("[data-noise]");
 const noiseResult = document.querySelector("#noiseResult");
+const frequencyBandButtons = document.querySelectorAll("[data-frequency-band]");
+const frequencyBandResult = document.querySelector("#frequencyBandResult");
+
+function setFrequencyBand(frequency) {
+  let frequencyLabel = `${frequency} Hz`;
+  frequencyBandButtons.forEach((button) => {
+    const selected = Number(button.dataset.frequencyBand) === frequency;
+    setButtonPressedState(button, selected);
+    if (selected) frequencyLabel = button.textContent.trim();
+  });
+
+  if (frequency < 20) {
+    frequencyBandResult.textContent = `${frequencyLabel} 低于 20 Hz，属于次声波，正常人耳通常听不到。`;
+  } else if (frequency > 20000) {
+    frequencyBandResult.textContent = `${frequencyLabel} 高于 20 000 Hz，属于超声波，正常人耳通常听不到。`;
+  } else {
+    frequencyBandResult.textContent = `${frequencyLabel} 位于约 20 Hz 至 20 000 Hz 之间，属于正常人耳的可听声范围。`;
+  }
+}
 
 function drawWave() {
   const ctx = waveCanvas.getContext("2d");
@@ -100,6 +119,9 @@ echoTimeSlider.addEventListener("input", updateEcho);
 noiseButtons.forEach((button) => {
   button.addEventListener("click", () => setNoise(button.dataset.noise));
 });
+frequencyBandButtons.forEach((button) => {
+  button.addEventListener("click", () => setFrequencyBand(Number(button.dataset.frequencyBand)));
+});
 
 setupQuiz({
   formSelector: "#soundQuiz",
@@ -142,3 +164,4 @@ setupQuiz({
 drawWave();
 updateEcho();
 setNoise("source");
+setFrequencyBand(10);

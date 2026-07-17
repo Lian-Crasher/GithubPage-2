@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理声现象预习：理解声音的产生与传播、音调响度音色、声的利用和噪声控制。" />
     <title>第二章 声现象 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=9" />
+    <link rel="stylesheet" href="../styles/main.css?v=10" />
   </head>
   <body data-page="sound">
     <header class="topbar">
@@ -70,6 +70,34 @@
             </label>
             <input id="amplitudeSlider" type="range" min="20" max="90" value="50" step="5" />
             <p class="feedback" id="waveFeedback">频率变高时，波形更密；振幅变大时，波峰和波谷更高更低。</p>
+          </div>
+        </div>
+        <div class="concept-module" id="sound-range">
+          <div class="concept-module-head">
+            <p class="eyebrow">频段与声速</p>
+            <h3>听不见，不等于它不是声波</h3>
+            <p>正常人耳通常能听到约 20 Hz 至 20 000 Hz 的声音。频率低于 20 Hz 的是次声波，高于 20 000 Hz 的是超声波。</p>
+          </div>
+          <div class="concept-grid">
+            <div class="concept-copy">
+              <ul class="clean-list">
+                <li><strong>频段：</strong>次声、可听声和超声的区别看频率，不看响度。</li>
+                <li><strong>空气中的声速：</strong>15℃ 时约为 340 m/s；温度变化，声速也会变化。</li>
+                <li><strong>不同介质：</strong>声速与介质有关，通常在固体中比液体、气体中快，不能把 340 m/s 套到所有情境。</li>
+              </ul>
+            </div>
+            <div class="interactive-panel compact-tool">
+              <div class="panel-topline">
+                <h3>频段判断器</h3>
+                <span class="tag">看频率</span>
+              </div>
+              <div class="choice-row" role="group" aria-label="选择一个声音频率">
+                <button type="button" class="choice-button is-active" data-frequency-band="10">10 Hz</button>
+                <button type="button" class="choice-button" data-frequency-band="1000">1 000 Hz</button>
+                <button type="button" class="choice-button" data-frequency-band="25000">25 000 Hz</button>
+              </div>
+              <p class="feedback" id="frequencyBandResult" aria-live="polite">10 Hz 低于 20 Hz，属于次声波，正常人耳通常听不到。</p>
+            </div>
           </div>
         </div>
       </section>
@@ -186,8 +214,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=7"></script>
+    <script src="../scripts/common.js?v=8"></script>
     <script src="../scripts/quiz.js?v=2"></script>
-    <script src="../scripts/chapter2-sound.js?v=2"></script>
+    <script src="../scripts/chapter2-sound.js?v=3"></script>
   </body>
 </html>
