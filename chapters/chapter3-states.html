@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理物态变化预习：学习温度计使用、六种物态变化、吸热放热、沸腾实验和温度图像。" />
     <title>第三章 物态变化 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=11" />
+    <link rel="stylesheet" href="../styles/main.css?v=12" />
   </head>
   <body data-page="states">
     <header class="topbar">
@@ -125,33 +125,98 @@
           </div>
           <div class="water-cycle-layout">
             <div class="diagram-scroll" tabindex="0" aria-label="水循环图，可横向滚动查看">
-              <svg class="water-cycle-figure" viewBox="0 0 900 330" role="img" aria-labelledby="waterCycleTitle waterCycleDesc">
-              <title id="waterCycleTitle">自然界水循环中的主要物态变化</title>
-              <desc id="waterCycleDesc">江河湖海中的液态水汽化成为水蒸气，水蒸气液化为小水滴或凝华为小冰晶，形成云后通过降水回到地表。</desc>
-              <defs>
-                <marker id="water-cycle-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
-                  <path d="M0,0 L12,6 L0,12 Z" class="cycle-arrow-head"></path>
-                </marker>
-              </defs>
-              <rect x="40" y="190" width="180" height="82" rx="8" class="cycle-node liquid-node"></rect>
-              <text x="130" y="224" text-anchor="middle" class="cycle-title">江河湖海</text>
-              <text x="130" y="250" text-anchor="middle" class="cycle-label">液态水</text>
-              <rect x="290" y="55" width="190" height="82" rx="8" class="cycle-node gas-node"></rect>
-              <text x="385" y="89" text-anchor="middle" class="cycle-title">水蒸气</text>
-              <text x="385" y="115" text-anchor="middle" class="cycle-label">气态、看不见</text>
-              <rect x="545" y="55" width="210" height="82" rx="8" class="cycle-node cloud-node"></rect>
-              <text x="650" y="87" text-anchor="middle" class="cycle-title">云</text>
-              <text x="650" y="113" text-anchor="middle" class="cycle-label">小水滴 / 小冰晶</text>
-              <rect x="680" y="205" width="170" height="66" rx="8" class="cycle-node rain-node"></rect>
-              <text x="765" y="245" text-anchor="middle" class="cycle-title">雨或雪</text>
-              <path d="M190 190 C230 130 258 104 290 98" class="cycle-arrow" marker-end="url(#water-cycle-arrow)"></path>
-              <text x="205" y="120" class="cycle-process">汽化吸热</text>
-              <path d="M480 96 L545 96" class="cycle-arrow" marker-end="url(#water-cycle-arrow)"></path>
-              <text x="486" y="72" class="cycle-process">液化 / 凝华放热</text>
-              <path d="M710 137 C742 160 760 180 765 205" class="cycle-arrow" marker-end="url(#water-cycle-arrow)"></path>
-              <text x="755" y="170" class="cycle-process">降水</text>
-              <path d="M680 248 C530 306 295 306 220 252" class="cycle-arrow" marker-end="url(#water-cycle-arrow)"></path>
-              <text x="430" y="309" text-anchor="middle" class="cycle-process">汇流、熔化后回到地表水体</text>
+              <svg class="water-cycle-figure" viewBox="0 0 900 420" role="img" aria-labelledby="waterCycleTitle waterCycleDesc">
+                <title id="waterCycleTitle">自然界水循环中的主要物态变化</title>
+                <desc id="waterCycleDesc">太阳照射江河湖海，液态水汽化成为看不见的水蒸气。水蒸气上升遇冷，液化为小水滴或凝华为小冰晶形成云，随后通过雨雪回到地表并汇入水体。</desc>
+                <defs>
+                  <marker id="water-cycle-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                    <path d="M0,0 L12,6 L0,12 Z" class="cycle-arrow-head"></path>
+                  </marker>
+                  <marker id="water-cycle-arrow-heat-out" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                    <path d="M0,0 L12,6 L0,12 Z" class="cycle-arrow-head heat-out-head"></path>
+                  </marker>
+                  <marker id="water-cycle-arrow-rain" markerWidth="12" markerHeight="12" refX="10" refY="6" viewBox="0 0 12 12" orient="auto" markerUnits="userSpaceOnUse">
+                    <path d="M0,0 L12,6 L0,12 Z" class="cycle-arrow-head rain-head"></path>
+                  </marker>
+                </defs>
+
+                <rect width="900" height="420" class="cycle-sky"></rect>
+                <circle cx="94" cy="78" r="32" class="cycle-sun"></circle>
+                <g class="cycle-sun-rays" aria-hidden="true">
+                  <line x1="94" y1="24" x2="94" y2="10"></line>
+                  <line x1="94" y1="146" x2="94" y2="132"></line>
+                  <line x1="40" y1="78" x2="26" y2="78"></line>
+                  <line x1="162" y1="78" x2="148" y2="78"></line>
+                  <line x1="56" y1="40" x2="46" y2="30"></line>
+                  <line x1="132" y1="116" x2="142" y2="126"></line>
+                  <line x1="132" y1="40" x2="142" y2="30"></line>
+                  <line x1="56" y1="116" x2="46" y2="126"></line>
+                </g>
+
+                <path d="M510 309 L646 155 L786 309 Z" class="cycle-mountain-back"></path>
+                <path d="M610 309 L734 188 L865 309 Z" class="cycle-mountain-front"></path>
+                <path d="M620 184 L646 155 L676 188 L658 184 L646 198 L635 182 Z" class="cycle-snowcap"></path>
+                <path d="M710 211 L734 188 L760 213 L747 210 L735 222 L724 208 Z" class="cycle-snowcap"></path>
+                <path d="M0 302 C120 282 230 322 350 304 C470 286 590 314 710 300 C790 290 850 294 900 302 L900 420 L0 420 Z" class="cycle-water"></path>
+                <path d="M0 329 C130 307 235 347 360 328 C500 306 625 345 760 321 C812 312 860 314 900 320" class="cycle-water-line"></path>
+                <path d="M0 362 C150 342 260 378 390 358 C520 340 650 372 790 350 C835 343 870 344 900 347" class="cycle-water-line faint"></path>
+
+                <g class="cycle-vapor" aria-hidden="true">
+                  <path d="M210 286 C188 250 236 226 214 188 C196 158 224 138 232 111"></path>
+                  <path d="M270 294 C248 258 292 232 274 199 C258 170 286 148 294 122"></path>
+                  <path d="M329 291 C309 260 346 237 333 207 C319 178 349 157 361 132"></path>
+                </g>
+
+                <g class="cycle-cloud" aria-hidden="true">
+                  <circle cx="592" cy="91" r="38"></circle>
+                  <circle cx="642" cy="70" r="52"></circle>
+                  <circle cx="701" cy="96" r="40"></circle>
+                  <rect x="560" y="91" width="180" height="54" rx="27"></rect>
+                </g>
+                <g class="cycle-precipitation" aria-hidden="true">
+                  <line x1="616" y1="159" x2="598" y2="202"></line>
+                  <line x1="655" y1="159" x2="637" y2="217"></line>
+                  <line x1="696" y1="159" x2="678" y2="203"></line>
+                  <circle cx="721" cy="181" r="5"></circle>
+                  <circle cx="735" cy="207" r="5"></circle>
+                </g>
+
+                <g class="cycle-label-block">
+                  <rect x="46" y="330" width="176" height="62" rx="8"></rect>
+                  <text x="64" y="356" class="cycle-title">江河湖海</text>
+                  <text x="64" y="380" class="cycle-label">液态水</text>
+                </g>
+                <g class="cycle-label-block vapor-label">
+                  <rect x="248" y="56" width="190" height="62" rx="8"></rect>
+                  <text x="266" y="82" class="cycle-title">水蒸气</text>
+                  <text x="266" y="106" class="cycle-label">气态、看不见</text>
+                </g>
+                <g class="cycle-label-block cloud-label">
+                  <rect x="570" y="15" width="250" height="62" rx="8"></rect>
+                  <text x="588" y="41" class="cycle-title">云</text>
+                  <text x="588" y="65" class="cycle-label">小水滴 / 小冰晶</text>
+                </g>
+
+                <path d="M176 303 C184 235 205 171 251 124" class="cycle-arrow heat-in" marker-end="url(#water-cycle-arrow)"></path>
+                <g class="cycle-process-chip heat-in-chip">
+                  <rect x="72" y="207" width="142" height="38" rx="8"></rect>
+                  <text x="143" y="232" text-anchor="middle">汽化 · 吸热</text>
+                </g>
+                <path d="M444 88 C485 74 526 70 566 78" class="cycle-arrow heat-out" marker-end="url(#water-cycle-arrow-heat-out)"></path>
+                <g class="cycle-process-chip heat-out-chip">
+                  <rect x="422" y="118" width="196" height="38" rx="8"></rect>
+                  <text x="520" y="143" text-anchor="middle">液化 / 凝华 · 放热</text>
+                </g>
+                <path d="M742 139 C784 179 790 233 759 280" class="cycle-arrow precipitation-arrow" marker-end="url(#water-cycle-arrow-rain)"></path>
+                <g class="cycle-process-chip rain-chip">
+                  <rect x="763" y="220" width="92" height="38" rx="8"></rect>
+                  <text x="809" y="245" text-anchor="middle">降水</text>
+                </g>
+                <path d="M696 324 C564 394 353 400 224 352" class="cycle-arrow return-arrow" marker-end="url(#water-cycle-arrow)"></path>
+                <g class="cycle-process-chip return-chip">
+                  <rect x="382" y="359" width="180" height="38" rx="8"></rect>
+                  <text x="472" y="384" text-anchor="middle">汇流 / 熔化回归</text>
+                </g>
               </svg>
             </div>
             <div class="interactive-panel compact-tool">

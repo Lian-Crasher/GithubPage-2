@@ -2657,28 +2657,89 @@ th {
   height: auto;
 }
 
-.cycle-node {
+.cycle-sky {
+  fill: #f4fafc;
+}
+
+.cycle-sun {
+  fill: #ffd166;
+  stroke: #e9a92f;
+  stroke-width: 4;
+}
+
+.cycle-sun-rays line {
+  stroke: #e9a92f;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.cycle-mountain-back {
+  fill: #bad8df;
+}
+
+.cycle-mountain-front {
+  fill: #86b9aa;
+}
+
+.cycle-snowcap {
+  fill: #fff;
+}
+
+.cycle-water {
+  fill: #74c8d8;
+}
+
+.cycle-water-line {
+  fill: none;
+  stroke: #278ca5;
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.cycle-water-line.faint {
+  opacity: 0.3;
+}
+
+.cycle-vapor path {
+  fill: none;
+  stroke: #6f9daa;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 7 12;
+  opacity: 0.7;
+}
+
+.cycle-cloud {
+  fill: #fff;
+  stroke: #8fb8c7;
   stroke-width: 3;
 }
 
-.liquid-node {
-  fill: #e7f7fb;
-  stroke: #1aa6b7;
+.cycle-precipitation line {
+  stroke: #2c83b2;
+  stroke-width: 6;
+  stroke-linecap: round;
 }
 
-.gas-node {
-  fill: #f1f6f8;
-  stroke: #7b91a4;
-}
-
-.cloud-node {
-  fill: #f4f9ff;
+.cycle-precipitation circle {
+  fill: #dbeef8;
   stroke: #5d87b8;
+  stroke-width: 2;
 }
 
-.rain-node {
-  fill: #fff4e8;
-  stroke: #ef8b61;
+.cycle-label-block rect {
+  fill: rgba(255, 255, 255, 0.94);
+  stroke: #c9e0e7;
+  stroke-width: 2;
+}
+
+.cycle-label-block.vapor-label rect {
+  fill: rgba(240, 247, 249, 0.96);
+}
+
+.cycle-label-block.cloud-label rect {
+  fill: rgba(255, 255, 255, 0.96);
 }
 
 .cycle-title,
@@ -2694,21 +2755,69 @@ th {
   font-weight: 900;
 }
 
-.cycle-label,
-.cycle-process {
+.cycle-label {
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .cycle-arrow {
   fill: none;
   stroke: #0b7c72;
-  stroke-width: 5;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.cycle-arrow.heat-out {
+  stroke: #d86a4d;
+}
+
+.cycle-arrow.precipitation-arrow {
+  stroke: #2c83b2;
+}
+
+.cycle-arrow.return-arrow {
+  stroke: #397f70;
+}
+
+.cycle-process-chip rect {
+  fill: rgba(255, 255, 255, 0.96);
+  stroke-width: 2;
+}
+
+.cycle-process-chip text {
+  fill: #26394d;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.heat-in-chip rect {
+  stroke: #e4b33f;
+}
+
+.heat-out-chip rect {
+  stroke: #eaa18d;
+}
+
+.rain-chip rect {
+  stroke: #86bdd8;
+}
+
+.return-chip rect {
+  stroke: #8ec3b6;
 }
 
 .cycle-arrow-head,
 .surface-arrow-head {
   fill: #0b7c72;
+}
+
+.cycle-arrow-head.heat-out-head {
+  fill: #d86a4d;
+}
+
+.cycle-arrow-head.rain-head {
+  fill: #2c83b2;
 }
 
 .surface-line {
