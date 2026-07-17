@@ -2215,26 +2215,138 @@ th {
 .state-map {
   width: min(1120px, 100%);
   margin: 0 auto 18px;
-  padding: clamp(22px, 3vw, 34px);
+  padding: 18px;
   background: #f4fafc;
   border: 1px solid var(--line);
   border-radius: 8px;
 }
 
-.state-primary-flow {
-  display: grid;
-  grid-template-columns: minmax(150px, 0.82fr) minmax(180px, 1fr) minmax(150px, 0.82fr) minmax(180px, 1fr) minmax(150px, 0.82fr);
-  gap: clamp(10px, 1.5vw, 18px);
-  align-items: stretch;
+.state-map-key {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.state-map-key span {
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 900;
+  background: #fff;
+  border: 1px solid #d7e6ec;
+  border-radius: 999px;
+}
+
+.state-map-key .heat-in-key {
+  color: #8a5a00;
+  border-color: #e6b64d;
+}
+
+.state-map-key .direction-key {
+  color: #0b6f67;
+  border-color: #8ec3b6;
+}
+
+.state-map-key .heat-out-key {
+  color: #28566e;
+  border-color: #83b6cf;
+}
+
+.state-map-scroll {
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.state-map-scroll:focus-visible {
+  outline: 3px solid rgba(26, 166, 183, 0.3);
+  outline-offset: 2px;
+}
+
+.phase-triangle {
+  position: relative;
+  width: 100%;
+  min-width: 760px;
+  aspect-ratio: 1000 / 540;
+}
+
+.phase-arrows {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.phase-arrow {
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  transition: stroke-width 160ms ease, opacity 160ms ease;
+}
+
+.phase-transition.heat-in .phase-arrow {
+  stroke: #b86c00;
+}
+
+.phase-transition.heat-out .phase-arrow {
+  stroke: #176b95;
+}
+
+.phase-heat-in-head {
+  fill: #b86c00;
+}
+
+.phase-heat-out-head {
+  fill: #176b95;
+}
+
+.phase-arrow-head-halo {
+  fill: #fff;
+}
+
+.phase-label rect {
+  fill: rgba(255, 255, 255, 0.97);
+  stroke-width: 2;
+}
+
+.phase-transition.heat-in .phase-label rect {
+  stroke: #e6b64d;
+}
+
+.phase-transition.heat-out .phase-label rect {
+  stroke: #83b6cf;
+}
+
+.phase-label text {
+  fill: #26394d;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.phase-transition.is-highlighted .phase-arrow {
+  stroke-width: 10;
+  filter: drop-shadow(0 3px 3px rgba(35, 65, 90, 0.2));
+}
+
+.phase-transition.is-highlighted .phase-label rect {
+  fill: #fff8df;
+  stroke-width: 4;
 }
 
 .state-node {
+  position: absolute;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 132px;
-  padding: 18px 14px;
+  width: 19%;
+  height: 22%;
+  min-height: 84px;
+  padding: 12px;
   color: #fff;
   border: 0;
   border-radius: 8px;
@@ -2242,14 +2354,20 @@ th {
 }
 
 .state-node.solid {
+  left: 3.5%;
+  bottom: 8%;
   background: #3e96c4;
 }
 
 .state-node.liquid {
+  top: 4%;
+  left: 40.5%;
   background: #148e8f;
 }
 
 .state-node.gas {
+  right: 3.5%;
+  bottom: 8%;
   background: #ef7f63;
 }
 
@@ -2274,95 +2392,6 @@ th {
 .state-node:focus-visible {
   outline: 4px solid #ffd166;
   outline-offset: 3px;
-}
-
-.state-route-pair,
-.direct-route-grid {
-  display: grid;
-  gap: 10px;
-}
-
-.transition-row {
-  display: grid;
-  align-content: center;
-  gap: 7px;
-  min-height: 61px;
-  padding: 10px 12px;
-  background: #fff;
-  border: 1px solid #d7e6ec;
-  border-left-width: 4px;
-  border-radius: 8px;
-  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
-}
-
-.transition-row.heat-in {
-  border-left-color: #d99a20;
-}
-
-.transition-row.heat-out {
-  border-left-color: #3f82a4;
-}
-
-.transition-row.is-highlighted {
-  border-color: #2f8f83;
-  box-shadow: 0 8px 18px rgba(47, 143, 131, 0.18);
-  transform: translateY(-1px);
-}
-
-.transition-path {
-  color: #244056;
-  font-size: 14px;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
-.transition-path b {
-  margin: 0 4px;
-  color: #0b7c72;
-  font-size: 18px;
-}
-
-.transition-detail {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.transition-detail strong {
-  color: #14263d;
-  font-size: 16px;
-}
-
-.transition-detail em {
-  padding: 2px 7px;
-  color: #5e4a15;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 900;
-  background: #fff4ce;
-  border-radius: 999px;
-}
-
-.transition-row.heat-out .transition-detail em {
-  color: #28566e;
-  background: #e7f3f8;
-}
-
-.state-direct-flow {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid #d7e6ec;
-}
-
-.direct-flow-title {
-  margin: 0 0 12px;
-  color: #365065;
-  font-size: 14px;
-  font-weight: 900;
-}
-
-.direct-route-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .state-result {
@@ -3061,28 +3090,20 @@ th {
   }
 
   .state-map {
-    padding: 20px;
+    padding: 14px;
   }
 
-  .state-primary-flow {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .state-map-key {
+    justify-content: flex-start;
+    overflow-x: auto;
   }
 
-  .state-node {
-    min-height: 94px;
+  .state-map-key span {
+    flex: 0 0 auto;
   }
 
-  .state-route-pair {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .direct-route-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .transition-row {
-    min-height: 70px;
+  .state-name {
+    font-size: 21px;
   }
 
   .error-cases {

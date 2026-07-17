@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理物态变化预习：学习温度计使用、六种物态变化、吸热放热、沸腾实验和温度图像。" />
     <title>第三章 物态变化 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=13" />
+    <link rel="stylesheet" href="../styles/main.css?v=15" />
   </head>
   <body data-page="states">
     <header class="topbar">
@@ -93,51 +93,83 @@
           <p>固、液、气之间的转化不只是名字不同，它们和吸热、放热紧密相连。抓住“往更自由的状态变通常吸热，往更聚集的状态变通常放热”。</p>
         </div>
         <div class="state-map">
-          <div class="state-primary-flow">
-            <button type="button" class="state-node solid" data-state="solid">
-              <span class="state-name">固态</span>
-              <span class="state-note">形状、体积较固定</span>
-            </button>
-            <div class="state-route-pair" aria-label="固态和液态之间的物态变化">
-              <div class="transition-row heat-in" data-from="solid">
-                <span class="transition-path">固态 <b aria-hidden="true">→</b> 液态</span>
-                <span class="transition-detail"><strong>熔化</strong><em>吸热</em></span>
-              </div>
-              <div class="transition-row heat-out" data-from="liquid">
-                <span class="transition-path">液态 <b aria-hidden="true">→</b> 固态</span>
-                <span class="transition-detail"><strong>凝固</strong><em>放热</em></span>
-              </div>
-            </div>
-            <button type="button" class="state-node liquid" data-state="liquid">
-              <span class="state-name">液态</span>
-              <span class="state-note">体积较固定，能够流动</span>
-            </button>
-            <div class="state-route-pair" aria-label="液态和气态之间的物态变化">
-              <div class="transition-row heat-in" data-from="liquid">
-                <span class="transition-path">液态 <b aria-hidden="true">→</b> 气态</span>
-                <span class="transition-detail"><strong>汽化</strong><em>吸热</em></span>
-              </div>
-              <div class="transition-row heat-out" data-from="gas">
-                <span class="transition-path">气态 <b aria-hidden="true">→</b> 液态</span>
-                <span class="transition-detail"><strong>液化</strong><em>放热</em></span>
-              </div>
-            </div>
-            <button type="button" class="state-node gas" data-state="gas">
-              <span class="state-name">气态</span>
-              <span class="state-note">形状、体积都不固定</span>
-            </button>
+          <div class="state-map-key" aria-label="颜色图例">
+            <span class="direction-key">箭头指向变化后的状态</span>
+            <span class="heat-in-key">暖色箭头：吸热变化</span>
+            <span class="heat-out-key">蓝色箭头：放热变化</span>
           </div>
-          <div class="state-direct-flow">
-            <p class="direct-flow-title">不经过液态的直接转化</p>
-            <div class="direct-route-grid">
-              <div class="transition-row heat-in" data-from="solid">
-                <span class="transition-path">固态 <b aria-hidden="true">→</b> 气态</span>
-                <span class="transition-detail"><strong>升华</strong><em>吸热</em></span>
-              </div>
-              <div class="transition-row heat-out" data-from="gas">
-                <span class="transition-path">气态 <b aria-hidden="true">→</b> 固态</span>
-                <span class="transition-detail"><strong>凝华</strong><em>放热</em></span>
-              </div>
+          <div class="state-map-scroll" tabindex="0" aria-label="三态六变关系图，可横向滚动查看">
+            <div class="phase-triangle">
+              <svg class="phase-arrows" viewBox="0 0 1000 540" role="img" aria-labelledby="phaseMapTitle phaseMapDesc">
+                <title id="phaseMapTitle">固态、液态、气态之间的六种物态变化</title>
+                <desc id="phaseMapDesc">固态吸热熔化为液态，液态放热凝固为固态；液态吸热汽化为气态，气态放热液化为液态；固态吸热升华为气态，气态放热凝华为固态。</desc>
+                <defs>
+                  <marker id="phase-heat-in-arrow" markerWidth="20" markerHeight="20" refX="18" refY="10" viewBox="0 0 20 20" orient="auto" markerUnits="userSpaceOnUse">
+                    <path d="M1,1 L20,10 L1,19 Z" class="phase-arrow-head-halo"></path>
+                    <path d="M4,4 L18,10 L4,16 Z" class="phase-heat-in-head"></path>
+                  </marker>
+                  <marker id="phase-heat-out-arrow" markerWidth="20" markerHeight="20" refX="18" refY="10" viewBox="0 0 20 20" orient="auto" markerUnits="userSpaceOnUse">
+                    <path d="M1,1 L20,10 L1,19 Z" class="phase-arrow-head-halo"></path>
+                    <path d="M4,4 L18,10 L4,16 Z" class="phase-heat-out-head"></path>
+                  </marker>
+                </defs>
+
+                <g class="phase-transition heat-in" data-from="solid">
+                  <path class="phase-arrow" d="M214 350 C278 281 349 215 430 170" marker-end="url(#phase-heat-in-arrow)"></path>
+                  <g class="phase-label" transform="translate(230 205)">
+                    <rect width="154" height="42" rx="8"></rect>
+                    <text x="77" y="27" text-anchor="middle">熔化 · 吸热</text>
+                  </g>
+                </g>
+                <g class="phase-transition heat-out" data-from="liquid">
+                  <path class="phase-arrow" d="M452 170 C374 226 299 297 238 355" marker-end="url(#phase-heat-out-arrow)"></path>
+                  <g class="phase-label" transform="translate(300 286)">
+                    <rect width="154" height="42" rx="8"></rect>
+                    <text x="77" y="27" text-anchor="middle">凝固 · 放热</text>
+                  </g>
+                </g>
+                <g class="phase-transition heat-in" data-from="liquid">
+                  <path class="phase-arrow" d="M570 170 C651 215 722 281 786 350" marker-end="url(#phase-heat-in-arrow)"></path>
+                  <g class="phase-label" transform="translate(616 205)">
+                    <rect width="154" height="42" rx="8"></rect>
+                    <text x="77" y="27" text-anchor="middle">汽化 · 吸热</text>
+                  </g>
+                </g>
+                <g class="phase-transition heat-out" data-from="gas">
+                  <path class="phase-arrow" d="M762 355 C701 297 626 226 548 170" marker-end="url(#phase-heat-out-arrow)"></path>
+                  <g class="phase-label" transform="translate(546 286)">
+                    <rect width="154" height="42" rx="8"></rect>
+                    <text x="77" y="27" text-anchor="middle">液化 · 放热</text>
+                  </g>
+                </g>
+                <g class="phase-transition heat-in" data-from="solid">
+                  <path class="phase-arrow" d="M240 409 C392 371 608 371 760 409" marker-end="url(#phase-heat-in-arrow)"></path>
+                  <g class="phase-label" transform="translate(423 353)">
+                    <rect width="154" height="42" rx="8"></rect>
+                    <text x="77" y="27" text-anchor="middle">升华 · 吸热</text>
+                  </g>
+                </g>
+                <g class="phase-transition heat-out" data-from="gas">
+                  <path class="phase-arrow" d="M760 463 C608 501 392 501 240 463" marker-end="url(#phase-heat-out-arrow)"></path>
+                  <g class="phase-label" transform="translate(423 467)">
+                    <rect width="154" height="42" rx="8"></rect>
+                    <text x="77" y="27" text-anchor="middle">凝华 · 放热</text>
+                  </g>
+                </g>
+              </svg>
+
+              <button type="button" class="state-node liquid" data-state="liquid" aria-label="液态：体积较固定，能够流动。点击查看从液态出发的变化">
+                <span class="state-name">液态</span>
+                <span class="state-note">体积较固定，能够流动</span>
+              </button>
+              <button type="button" class="state-node solid" data-state="solid" aria-label="固态：形状和体积较固定。点击查看从固态出发的变化">
+                <span class="state-name">固态</span>
+                <span class="state-note">形状、体积较固定</span>
+              </button>
+              <button type="button" class="state-node gas" data-state="gas" aria-label="气态：形状和体积都不固定。点击查看从气态出发的变化">
+                <span class="state-name">气态</span>
+                <span class="state-note">形状、体积都不固定</span>
+              </button>
             </div>
           </div>
         </div>
@@ -570,6 +602,6 @@
 
     <script src="../scripts/common.js?v=8"></script>
     <script src="../scripts/quiz.js?v=2"></script>
-    <script src="../scripts/chapter3-states.js?v=5"></script>
+    <script src="../scripts/chapter3-states.js?v=6"></script>
   </body>
 </html>
