@@ -29,7 +29,7 @@ function updateTemperature() {
 
 function chooseTemperatureView(button) {
   temperatureViewButtons.forEach((viewButton) => {
-    viewButton.classList.toggle("is-active", viewButton === button);
+    setButtonPressedState(viewButton, viewButton === button);
   });
 
   if (button.dataset.temperatureView === "level") {
@@ -46,7 +46,7 @@ function setState(state) {
     gas: "气态出发：气态变液态是液化，放热；气态直接变固态是凝华，霜和雾凇常与它有关。",
   };
   stateButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.state === state);
+    setButtonPressedState(button, button.dataset.state === state);
   });
   stateResult.textContent = messages[state];
 }
@@ -87,7 +87,7 @@ function drawGraph(type = "crystal") {
   const current = dataSets[type];
 
   graphButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.graph === type);
+    setButtonPressedState(button, button.dataset.graph === type);
   });
 
   ctx.clearRect(0, 0, width, height);

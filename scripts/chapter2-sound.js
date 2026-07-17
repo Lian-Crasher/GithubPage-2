@@ -89,7 +89,7 @@ function setNoise(type) {
     ear: "防噪声耳罩：在人耳处保护听觉，防止噪声进入耳朵。",
   };
   noiseButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.noise === type);
+    setButtonPressedState(button, button.dataset.noise === type);
   });
   noiseResult.textContent = messages[type];
 }
@@ -141,3 +141,4 @@ setupQuiz({
 
 drawWave();
 updateEcho();
+setNoise("source");

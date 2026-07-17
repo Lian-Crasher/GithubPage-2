@@ -23,6 +23,30 @@ function revealActiveChapterLink() {
 
 requestAnimationFrame(revealActiveChapterLink);
 
+const pressedStateButtons = document.querySelectorAll([
+  "button[data-reference]",
+  "button[data-noise]",
+  "button[data-temperature-view]",
+  "button[data-state]",
+  "button[data-graph]",
+  "button[data-ray-mode]",
+  "button[data-medium-path]",
+  "button[data-ray-rule]",
+  "button[data-lens]",
+  "button[data-lens-practice]",
+  "button[data-lens-rule]",
+  "button[data-choice]",
+].join(", "));
+
+function setButtonPressedState(button, pressed) {
+  button.classList.toggle("is-active", pressed);
+  button.setAttribute("aria-pressed", String(pressed));
+}
+
+pressedStateButtons.forEach((button) => {
+  button.setAttribute("aria-pressed", String(button.classList.contains("is-active")));
+});
+
 var QUIZ_PROGRESS_KEY = "physics-preview-quiz-progress";
 var QUIZ_META = {
   chapter1: {

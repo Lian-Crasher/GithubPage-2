@@ -155,10 +155,10 @@ function setRayPracticeMode(mode) {
   selectedRayRule = "";
   rayPracticeChecked = false;
   rayModeButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.rayMode === mode);
+    setButtonPressedState(button, button.dataset.rayMode === mode);
   });
   rayRuleButtons.forEach((button) => {
-    button.classList.remove("is-active");
+    setButtonPressedState(button, false);
   });
   refractionSwitch.hidden = mode !== "refraction";
   rayPracticeFeedback.textContent = mode === "reflection"
@@ -171,7 +171,7 @@ function setMediumPath(path) {
   mediumPath = path;
   rayPracticeChecked = false;
   mediumPathButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.mediumPath === path);
+    setButtonPressedState(button, button.dataset.mediumPath === path);
   });
   rayPracticeFeedback.textContent = path === "air-water"
     ? "空气到水：折射角小于入射角，折射光线靠近法线。"
@@ -183,7 +183,7 @@ function selectRayRule(rule) {
   selectedRayRule = rule;
   rayPracticeChecked = false;
   rayRuleButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.rayRule === rule);
+    setButtonPressedState(button, button.dataset.rayRule === rule);
   });
   rayPracticeFeedback.textContent = "已选择规则。点击“检查作图”看看出射光线该怎么画。";
   drawRayPractice();

@@ -66,7 +66,7 @@ function updateSolidTable() {
 function chooseDensityError(button) {
   const card = button.closest(".error-case");
   card.querySelectorAll("[data-choice]").forEach((choice) => {
-    choice.classList.toggle("is-active", choice === button);
+    setButtonPressedState(choice, choice === button);
   });
   card.dataset.choice = button.dataset.choice;
   card.dataset.state = "";

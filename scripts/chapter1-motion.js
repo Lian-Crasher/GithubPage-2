@@ -86,7 +86,7 @@ function runCar() {
 
 function setReference(reference) {
   referenceButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.reference === reference);
+    setButtonPressedState(button, button.dataset.reference === reference);
   });
   if (reference === "bus") {
     referenceResult.textContent = "以公交车为参照物：车上学生的位置没有变化，通常可看作静止；路边树木的位置在变化，像是在向后运动。";
@@ -177,3 +177,4 @@ buildRuler();
 updateLength();
 updateSpeed();
 updateTable();
+setReference("road");

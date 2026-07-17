@@ -262,6 +262,7 @@ section {
   text-align: left;
 }
 
+.section-head h1,
 .section-head h2 {
   margin: 0;
   font-size: clamp(30px, 4vw, 48px);
@@ -1555,6 +1556,7 @@ th {
   padding: clamp(28px, 4vw, 52px);
 }
 
+.showcase-copy h1,
 .showcase-copy h2 {
   margin: 0;
   font-size: clamp(30px, 3.6vw, 46px);
@@ -2829,5 +2831,20 @@ th {
 
   .balance-pan.right {
     right: 7%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

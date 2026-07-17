@@ -16,7 +16,7 @@ https://lian-crasher.github.io/GithubPage-2/
 
 截至 2026-07-17，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
 
-- `3f01fa3 Add quiz progress reset control`
+- `4ab20bf Improve quiz validation and mobile navigation`
 
 最近一次 Pages 验证中，线上首页已指向 `chapters/final-check.html`，独立综合检查页返回 HTTP 200。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
@@ -137,9 +137,14 @@ https://lian-crasher.github.io/GithubPage-2/
 - 测量表述与移动端导航已完成一轮准确性和可用性修正。
   - 温度计读数统一表述为“视线与温度计内液柱上表面相平”，避免把烧杯液面误认为读数基准。
   - 章节导航为当前链接增加 `aria-current="page"`，并在窄屏横向导航中自动滚动到当前章节。
+- 页面结构与交互无障碍已完成一轮补强。
+  - 六个章节页和综合检查页均设置唯一 `h1`，其余知识模块继续使用 `h2`，页面标题层级完整。
+  - 分段选择、状态节点和判断按钮会同步 `.is-active` 与 `aria-pressed`，让视觉状态和屏幕阅读器状态保持一致。
+  - 公共样式加入 `prefers-reduced-motion` 降级规则，减少动态效果时关闭平滑滚动并将动画、过渡缩短到近乎即时。
+  - 综合检查第 19 题 SVG 的无障碍标题已改为中性数据描述，不再包含“二倍焦距”等解题提示。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片、填空输入和下拉题样式，并修复窄屏导航可能撑宽页面的问题。
 - 已完成一轮 390px 移动端 QA，覆盖首页进度徽章、第三章排序练习、第四章光路作图台、第五章透镜作图台、第六章误差诊断、各章检查和综合检查。主体页面未发现非预期横向溢出；导航和表格保留局部横向滚动。检查题单选/多选项已增强为整行触控目标，主要触控高度约 40px 以上。
-- 首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=8`，`scripts/common.js` 升级到 `?v=6`，检查页面的 `scripts/quiz.js` 升级到 `?v=2`，避免浏览器或 GitHub Pages 继续使用旧版样式、导航和提交逻辑。
+- 首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=9`，`scripts/common.js` 升级到 `?v=7`，各章交互脚本也已提升查询版本号，避免浏览器或 GitHub Pages 继续使用旧版样式、无障碍状态逻辑和交互脚本。
 - 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
 - 已新增 `.nojekyll`，用于让 GitHub Pages 按纯静态文件发布，减少 Jekyll 对当前原生 HTML/CSS/JS 站点的干预。
@@ -161,8 +166,8 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，本轮 1-4 项优化和本文档更新尚待提交。
-- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `3f01fa3 Add quiz progress reset control`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，本轮 5-8 项无障碍优化和本文档更新尚待提交。
+- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `4ab20bf Improve quiz validation and mobile navigation`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
 - 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
 GitHub 发布注意事项：

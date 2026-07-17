@@ -28,7 +28,7 @@ function drawLens(type = "convex") {
   const concaveRayEndX = centerX + 180;
 
   lensButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.lens === type);
+    setButtonPressedState(button, button.dataset.lens === type);
   });
 
   ctx.clearRect(0, 0, width, height);
@@ -263,9 +263,9 @@ function setLensPracticeMode(mode) {
   selectedLensRule = null;
   lensPracticeChecked = false;
   lensPracticeButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.lensPractice === mode);
+    setButtonPressedState(button, button.dataset.lensPractice === mode);
   });
-  lensRuleButtons.forEach((button) => button.classList.remove("is-active"));
+  lensRuleButtons.forEach((button) => setButtonPressedState(button, false));
   lensPracticeFeedback.textContent = "先看入射光线和光心、焦点的位置，再选择折射后的走向。";
   drawLensPractice();
 }
@@ -274,7 +274,7 @@ function selectLensRule(rule) {
   selectedLensRule = rule;
   lensPracticeChecked = false;
   lensRuleButtons.forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.lensRule === rule);
+    setButtonPressedState(button, button.dataset.lensRule === rule);
   });
   drawLensPractice();
 }
