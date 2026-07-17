@@ -2953,6 +2953,11 @@ th {
   gap: 16px;
 }
 
+.instrument-section-tool {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
 .instrument-panel {
   padding: 18px;
   background: #f7fcff;
@@ -2962,9 +2967,9 @@ th {
 
 .instrument-chain {
   display: grid;
-  grid-template-columns: minmax(110px, 1fr) auto minmax(110px, 1fr) auto minmax(140px, 1.2fr) auto minmax(110px, 1fr) auto minmax(140px, 1.2fr);
+  grid-template-columns: minmax(180px, 1fr) auto minmax(220px, 1.25fr) auto minmax(220px, 1.25fr);
   align-items: stretch;
-  gap: 8px;
+  gap: 12px;
 }
 
 .chain-node {
@@ -3012,6 +3017,130 @@ th {
   color: #0b7c72;
   font-size: 26px;
   font-weight: 900;
+}
+
+.eye-baseline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 12px;
+  width: min(980px, 100%);
+  margin: 0 auto 22px;
+}
+
+.eye-baseline-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 112px;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.baseline-step {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-bottom: 10px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  background: var(--teal);
+  border-radius: 50%;
+}
+
+.eye-baseline-item strong {
+  color: #26394d;
+  font-size: 17px;
+}
+
+.eye-baseline-item > span:last-child {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.eye-baseline-arrow {
+  align-self: center;
+  color: #0b7c72;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.eye-exam-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(980px, 100%);
+}
+
+.diagnosis-list {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0 0;
+}
+
+.diagnosis-list div {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.diagnosis-list dt {
+  color: var(--teal);
+  font-weight: 900;
+}
+
+.diagnosis-list dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.eye-memory-strip {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: min(980px, 100%);
+  min-height: 0;
+  margin: 18px auto 0;
+}
+
+.eye-memory-strip strong {
+  flex: 0 0 auto;
+  color: var(--teal);
+  font-size: 18px;
+}
+
+.eye-memory-strip p {
+  margin: 0;
+}
+
+.instrument-comparison-wrap {
+  width: min(980px, 100%);
+  margin: 22px auto 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.instrument-comparison-wrap:focus-visible {
+  outline: 3px solid rgba(26, 166, 183, 0.3);
+  outline-offset: 2px;
+}
+
+.instrument-comparison {
+  width: 100%;
+  min-width: 720px;
+  margin: 0;
+}
+
+.instrument-comparison th:first-child {
+  white-space: nowrap;
 }
 
 @media (max-width: 920px) {
@@ -3072,6 +3201,20 @@ th {
 
   .chain-arrow {
     transform: rotate(90deg);
+  }
+
+  .eye-baseline {
+    grid-template-columns: 1fr;
+  }
+
+  .eye-baseline-arrow {
+    transform: rotate(90deg);
+  }
+
+  .eye-memory-strip {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
   }
 
   .quest-card,

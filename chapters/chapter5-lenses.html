@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理透镜及其应用预习：学习凸透镜和凹透镜、成像规律、实像虚像、眼睛与光学仪器。" />
     <title>第五章 透镜及其应用 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=15" />
+    <link rel="stylesheet" href="../styles/main.css?v=16" />
   </head>
   <body data-page="lenses">
     <header class="topbar">
@@ -184,70 +184,27 @@
 
       <section class="learning-band" id="eyes-tools" aria-labelledby="eyes-tools-title">
         <div class="section-head compact">
-          <p class="eyebrow">第 4-5 节</p>
-          <h2 id="eyes-tools-title">眼睛和光学仪器：把成像规律装进工具里</h2>
-          <p>眼睛像一架能自动调焦的照相机。晶状体和角膜共同相当于凸透镜，视网膜相当于光屏。近视和远视的区别，关键看像落在视网膜前还是视网膜后。</p>
+          <p class="eyebrow">第 4 节</p>
+          <h2 id="eyes-tools-title">眼睛与眼镜：像落在哪里，决定怎样矫正</h2>
+          <p>先以正常眼成像为基准，再比较近视和远视。判断时依次看眼睛折光能力、像相对视网膜的位置，以及矫正透镜怎样提前改变光线。</p>
         </div>
-        <div class="application-grid">
-          <article class="app-card">
-            <span class="app-icon">eye</span>
-            <h3>眼睛</h3>
-            <p>晶状体相当于凸透镜，视网膜相当于光屏，成倒立、缩小的实像。</p>
-          </article>
-          <article class="app-card">
-            <span class="app-icon">-</span>
-            <h3>近视矫正</h3>
-            <p>近视眼会聚能力偏强，或眼球前后方向偏长，远处物体成像在视网膜前方，需要凹透镜先发散光线。</p>
-          </article>
-          <article class="app-card">
-            <span class="app-icon">+</span>
-            <h3>远视矫正</h3>
-            <p>远视眼会聚能力偏弱，或眼球前后方向偏短，近处物体成像在视网膜后方，需要凸透镜先会聚光线。</p>
-          </article>
-          <article class="app-card">
-            <span class="app-icon">+</span>
-            <h3>显微镜与望远镜</h3>
-            <p>多个透镜组合能让微小物体或远处物体更容易被看清。</p>
-          </article>
-        </div>
-        <div class="concept-module" id="optical-instruments">
-          <div class="concept-module-head">
-            <p class="eyebrow">两级成像</p>
-            <h3>物镜先成实像，目镜再把中间像放大给眼睛看</h3>
-            <p>显微镜和望远镜都不是“一片透镜直接放大”。先找物镜形成的中间实像，再看目镜怎样增大观察效果。</p>
+        <div class="eye-baseline" aria-label="正常眼成像过程">
+          <div class="eye-baseline-item">
+            <span class="baseline-step">1</span>
+            <strong>角膜和晶状体</strong>
+            <span>共同相当于凸透镜</span>
           </div>
-          <div class="instrument-switcher">
-            <div class="choice-row" role="group" aria-label="选择光学仪器">
-              <button type="button" class="choice-button is-active" data-optical-instrument="microscope">显微镜</button>
-              <button type="button" class="choice-button" data-optical-instrument="telescope">望远镜</button>
-            </div>
-            <div class="instrument-panel" id="microscopeChain">
-              <div class="instrument-chain" aria-label="显微镜成像顺序">
-                <div class="chain-node"><strong>微小物体</strong><span>放在物镜焦点稍外</span></div>
-                <span class="chain-arrow" aria-hidden="true">→</span>
-                <div class="chain-node lens-node"><strong>物镜</strong><span>相当于投影仪镜头</span></div>
-                <span class="chain-arrow" aria-hidden="true">→</span>
-                <div class="chain-node image-node"><strong>中间实像</strong><span>倒立、放大</span></div>
-                <span class="chain-arrow" aria-hidden="true">→</span>
-                <div class="chain-node lens-node"><strong>目镜</strong><span>相当于放大镜</span></div>
-                <span class="chain-arrow" aria-hidden="true">→</span>
-                <div class="chain-node result-node"><strong>供眼睛观察</strong><span>进一步放大的虚像</span></div>
-              </div>
-            </div>
-            <div class="instrument-panel" id="telescopeChain" hidden>
-              <div class="instrument-chain" aria-label="望远镜成像顺序">
-                <div class="chain-node"><strong>远处物体</strong><span>进入物镜的光近似平行</span></div>
-                <span class="chain-arrow" aria-hidden="true">→</span>
-                <div class="chain-node lens-node"><strong>物镜</strong><span>会聚远处物体的光</span></div>
-                <span class="chain-arrow" aria-hidden="true">→</span>
-                <div class="chain-node image-node"><strong>中间实像</strong><span>倒立、缩小</span></div>
-                <span class="chain-arrow" aria-hidden="true">→</span>
-                <div class="chain-node lens-node"><strong>目镜</strong><span>放大中间像的视角</span></div>
-                <span class="chain-arrow" aria-hidden="true">→</span>
-                <div class="chain-node result-node"><strong>供眼睛观察</strong><span>看清远处细节</span></div>
-              </div>
-            </div>
-            <p class="feedback" id="opticalInstrumentResult" aria-live="polite">显微镜的物镜先形成倒立、放大的实像，目镜再像放大镜一样观察这个中间像。</p>
+          <span class="eye-baseline-arrow" aria-hidden="true">→</span>
+          <div class="eye-baseline-item">
+            <span class="baseline-step">2</span>
+            <strong>在视网膜上成像</strong>
+            <span>视网膜相当于光屏</span>
+          </div>
+          <span class="eye-baseline-arrow" aria-hidden="true">→</span>
+          <div class="eye-baseline-item">
+            <span class="baseline-step">3</span>
+            <strong>倒立、缩小的实像</strong>
+            <span>正常眼通过调节看清远近物体</span>
           </div>
         </div>
         <div class="exam-grid eye-exam-grid">
@@ -273,7 +230,11 @@
               <text x="188" y="154" class="diagram-label">像在视网膜前</text>
             </svg>
             <h3>近视：像提前会聚</h3>
-            <p>远处物体来的光近似平行。眼睛折光太强或眼球太长时，光线提前会聚，像落在视网膜前。</p>
+            <dl class="diagnosis-list">
+              <div><dt>原因</dt><dd>折光能力偏强，或眼球前后方向偏长。</dd></div>
+              <div><dt>成像</dt><dd>远处物体的像落在视网膜前。</dd></div>
+              <div><dt>矫正</dt><dd>凹透镜先使光线发散，再由眼睛会聚到视网膜。</dd></div>
+            </dl>
           </article>
           <article class="exam-card">
             <svg class="exam-diagram" viewBox="0 0 320 170" role="img" aria-label="远视眼近处物体成像在视网膜后方">
@@ -295,20 +256,64 @@
               <text x="190" y="154" class="diagram-label">像在视网膜后</text>
             </svg>
             <h3>远视：会聚来得太晚</h3>
-            <p>近处物体来的光更发散。眼睛折光太弱或眼球太短时，光线还没会聚就到达视网膜，像落在视网膜后。</p>
+            <dl class="diagnosis-list">
+              <div><dt>原因</dt><dd>折光能力偏弱，或眼球前后方向偏短。</dd></div>
+              <div><dt>成像</dt><dd>近处物体的像落在视网膜后。</dd></div>
+              <div><dt>矫正</dt><dd>凸透镜先使光线会聚，帮助眼睛把像前移到视网膜。</dd></div>
+            </dl>
           </article>
-          <article class="exam-card">
-            <div class="result-box compact-result">
-              <strong>考试速记</strong>
-              <p>近视：前、凹、发散。远视：后、凸、会聚。</p>
-            </div>
-            <h3>矫正思路</h3>
-            <p>像太靠前，就先用凹透镜把光线发散一点；像太靠后，就先用凸透镜把光线会聚一点。</p>
-          </article>
+        </div>
+        <div class="result-box eye-memory-strip">
+          <strong>考试速记</strong>
+          <p>近视：前、凹、发散；远视：后、凸、会聚。先判断像的位置，再选择能把像移回视网膜的透镜。</p>
         </div>
       </section>
 
-      <section class="learning-band alt" id="lens-exam" aria-labelledby="lens-exam-title">
+      <section class="learning-band alt" id="optical-instruments" aria-labelledby="optical-instruments-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 5 节</p>
+          <h2 id="optical-instruments-title">显微镜和望远镜：物镜成像，目镜观察</h2>
+          <p>两种仪器都由物镜和目镜接力工作。先判断观察对象和物镜形成的中间实像，再看目镜怎样增大观察效果。</p>
+        </div>
+        <div class="instrument-switcher instrument-section-tool">
+          <div class="choice-row" role="group" aria-label="选择光学仪器">
+            <button type="button" class="choice-button is-active" data-optical-instrument="microscope">显微镜</button>
+            <button type="button" class="choice-button" data-optical-instrument="telescope">望远镜</button>
+          </div>
+          <div class="instrument-panel" id="microscopeChain">
+            <div class="instrument-chain" aria-label="显微镜成像顺序">
+              <div class="chain-node"><strong>观察对象</strong><span>微小物体放在物镜焦点稍外</span></div>
+              <span class="chain-arrow" aria-hidden="true">→</span>
+              <div class="chain-node image-node"><strong>物镜形成中间实像</strong><span>倒立、放大，相当于投影仪镜头</span></div>
+              <span class="chain-arrow" aria-hidden="true">→</span>
+              <div class="chain-node result-node"><strong>目镜供眼睛观察</strong><span>像放大镜一样进一步放大中间像</span></div>
+            </div>
+          </div>
+          <div class="instrument-panel" id="telescopeChain" hidden>
+            <div class="instrument-chain" aria-label="望远镜成像顺序">
+              <div class="chain-node"><strong>观察对象</strong><span>远处物体进入物镜的光近似平行</span></div>
+              <span class="chain-arrow" aria-hidden="true">→</span>
+              <div class="chain-node image-node"><strong>物镜形成中间实像</strong><span>倒立、缩小的实像</span></div>
+              <span class="chain-arrow" aria-hidden="true">→</span>
+              <div class="chain-node result-node"><strong>目镜供眼睛观察</strong><span>放大中间像的视角，看清远处细节</span></div>
+            </div>
+          </div>
+          <p class="feedback" id="opticalInstrumentResult" aria-live="polite">显微镜的物镜先形成倒立、放大的实像，目镜再像放大镜一样观察这个中间像。</p>
+        </div>
+        <div class="instrument-comparison-wrap" tabindex="0" aria-label="显微镜和望远镜对照表，可横向滚动查看">
+          <table class="instrument-comparison">
+            <thead>
+              <tr><th>仪器</th><th>观察对象</th><th>物镜形成的中间像</th><th>目镜作用</th></tr>
+            </thead>
+            <tbody>
+              <tr><th>显微镜</th><td>微小物体</td><td>倒立、放大的实像</td><td>进一步放大中间像</td></tr>
+              <tr><th>望远镜</th><td>远处物体</td><td>倒立、缩小的实像</td><td>放大视角，分辨远处细节</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="learning-band" id="lens-exam" aria-labelledby="lens-exam-title">
         <div class="section-head compact">
           <p class="eyebrow">作图与项目专项</p>
           <h2 id="lens-exam-title">透镜题：三条特殊光线和投影仪调试</h2>
