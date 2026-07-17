@@ -23,7 +23,7 @@ function updateTemperature() {
   } else if (temperature <= 10) {
     temperatureFeedback.textContent = "低温读数同样要看清分度值，玻璃泡要完全接触被测液体。";
   } else {
-    temperatureFeedback.textContent = "等示数稳定后再读数，视线与液面相平。";
+    temperatureFeedback.textContent = "等示数稳定后再读数，视线与温度计内液柱上表面相平。";
   }
 }
 
@@ -210,7 +210,7 @@ setupQuiz({
   },
   hints: {
     p1: "第 1 题回看“温度”：温度表示物体的冷热程度。",
-    p2: "第 2 题回看“温度计的使用”：读数时视线要与液面相平。",
+    p2: "第 2 题回看“温度计的使用”：读数时视线要与温度计内液柱上表面相平。",
     p3: "第 3 题回看“熔化和凝固”：固态冰变液态水是熔化。",
     p4: "第 4 题回看“水的沸腾”：沸腾后继续吸热，温度保持在沸点附近。",
     p5: "第 5 题回看“蒸发”：蒸发是汽化的一种形式，汽化吸热。",

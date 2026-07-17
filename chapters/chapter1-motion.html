@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>第一章 机械运动 - 八年级物理预习站</title>
-    <link rel="stylesheet" href="../styles/main.css?v=6" />
+    <link rel="stylesheet" href="../styles/main.css?v=8" />
   </head>
   <body data-page="motion">
     <header class="topbar">
@@ -46,14 +46,14 @@
             <ul class="clean-list">
               <li><strong>单位：</strong>长度常用 m、dm、cm、mm；时间常用 h、min、s。</li>
               <li><strong>分度值：</strong>相邻两条刻度线表示的长度，是读数精度的关键。</li>
-              <li><strong>读数：</strong>分度值为 1 mm 的刻度尺，通常读到 1 mm，对应 0.1 cm。</li>
+              <li><strong>读数：</strong>模拟刻度尺要估读到分度值的下一位。分度值为 1 mm 时，应记录到 0.1 mm，也就是 0.01 cm。</li>
               <li><strong>误差：</strong>测量值和真实值之间总会有差别，多次测量取平均值可减小误差。</li>
             </ul>
           </div>
           <div class="interactive-panel ruler-panel" aria-label="刻度尺读数互动">
             <div class="panel-topline">
               <h3>读数练习</h3>
-              <span class="tag">分度值 1 mm</span>
+              <span class="tag">分度值 1 mm · 估读到 0.1 mm</span>
             </div>
             <div class="ruler-demo">
               <div class="ruler-track" id="rulerTrack" aria-hidden="true"></div>
@@ -61,10 +61,10 @@
             </div>
             <label class="slider-label" for="lengthSlider">
               物体右端位置
-              <output id="lengthOutput">6.4 cm（64 mm）</output>
+              <output id="lengthOutput">6.40 cm（末位为估读值）</output>
             </label>
             <input id="lengthSlider" type="range" min="20" max="96" value="64" step="1" />
-            <p class="feedback" id="lengthFeedback">右端越过 6 cm 后第 4 个 1 mm 小格，所以读数是 6.4 cm。</p>
+            <p class="feedback" id="lengthFeedback">右端在 6.4 cm 刻线上，准确值读到 6.4 cm，再估读一位记为 6.40 cm。</p>
           </div>
         </div>
       </section>
@@ -334,8 +334,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=4"></script>
-    <script src="../scripts/quiz.js"></script>
-    <script src="../scripts/chapter1-motion.js"></script>
+    <script src="../scripts/common.js?v=6"></script>
+    <script src="../scripts/quiz.js?v=2"></script>
+    <script src="../scripts/chapter1-motion.js?v=2"></script>
   </body>
 </html>

@@ -169,6 +169,38 @@ function getQuizAnswer(form, key, type) {
   return form.querySelector(`input[name="${key}"]:checked`)?.value || "";
 }
 
+function isQuizAnswerComplete(actual, type) {
+  if (type === "multi" || type === "order") {
+    return actual.length > 0 && actual.every((value) => normalizeTextAnswer(value));
+  }
+
+  if (type === "match") {
+    const values = Object.values(actual);
+    return values.length > 0 && values.every((value) => normalizeTextAnswer(value));
+  }
+
+  return Boolean(normalizeTextAnswer(actual));
+}
+
+function setQuestionIncomplete(form, key, incomplete) {
+  const controls = form.querySelectorAll(
+    `[name="${key}"], [data-order-group="${key}"], [data-match-group="${key}"]`,
+  );
+  const card = controls[0]?.closest(".quiz-card");
+  card?.classList.toggle("is-incomplete", incomplete);
+  controls.forEach((control) => {
+    if (incomplete) {
+      control.setAttribute("aria-invalid", "true");
+    } else {
+      control.removeAttribute("aria-invalid");
+    }
+  });
+}
+
+function getQuestionNumber(key) {
+  return key.match(/\d+$/)?.[0] || key;
+}
+
 function isQuizAnswerCorrect(actual, expected, type) {
   if (type === "multi") return arraysMatch(actual, expected, { sorted: true });
   if (type === "order") return arraysMatch(actual, expected);
@@ -234,12 +266,33 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
     event.preventDefault();
     let score = 0;
     const missed = [];
+    const incomplete = [];
     const attempts = {};
 
     Object.keys(answers).forEach((key) => {
       const type = questionTypes[key] || "single";
       const actual = getQuizAnswer(form, key, type);
       attempts[key] = { actual, type };
+      const complete = isQuizAnswerComplete(actual, type);
+      setQuestionIncomplete(form, key, !complete);
+      if (!complete) incomplete.push(key);
+    });
+
+    result.classList.toggle("is-warning", incomplete.length > 0);
+    if (incomplete.length) {
+      const title = document.createElement("strong");
+      title.textContent = `还有 ${incomplete.length} 题未完成`;
+
+      const detail = document.createElement("p");
+      detail.textContent = `请先完成第 ${incomplete.map(getQuestionNumber).join("、")} 题，再提交检查。未完成的答卷不会计分或保存。`;
+
+      result.replaceChildren(title, detail);
+      result.focus({ preventScroll: true });
+      return;
+    }
+
+    Object.keys(answers).forEach((key) => {
+      const { actual, type } = attempts[key];
       if (isQuizAnswerCorrect(actual, answers[key], type)) {
         score += 1;
       } else {

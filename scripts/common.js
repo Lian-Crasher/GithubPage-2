@@ -1,7 +1,27 @@
+const chapterNav = document.querySelector(".chapter-nav");
+const currentPage = document.body.dataset.page;
+let activeChapterLink = null;
+
 document.querySelectorAll(".chapter-nav a[data-nav]").forEach((link) => {
-  const current = document.body.dataset.page;
-  link.classList.toggle("is-active", link.dataset.nav === current);
+  const isActive = link.dataset.nav === currentPage;
+  link.classList.toggle("is-active", isActive);
+  if (isActive) {
+    link.setAttribute("aria-current", "page");
+    activeChapterLink = link;
+  } else {
+    link.removeAttribute("aria-current");
+  }
 });
+
+function revealActiveChapterLink() {
+  if (!chapterNav || !activeChapterLink || chapterNav.scrollWidth <= chapterNav.clientWidth) return;
+
+  const centeredLeft = activeChapterLink.offsetLeft
+    - (chapterNav.clientWidth - activeChapterLink.offsetWidth) / 2;
+  chapterNav.scrollTo({ left: Math.max(0, centeredLeft), behavior: "auto" });
+}
+
+requestAnimationFrame(revealActiveChapterLink);
 
 var QUIZ_PROGRESS_KEY = "physics-preview-quiz-progress";
 var QUIZ_META = {

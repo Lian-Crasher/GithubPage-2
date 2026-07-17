@@ -14,9 +14,9 @@ GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-截至 2026-07-07，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。本轮优化开始前，本地 `main` 与 `origin/main` 对齐，最新提交为：
+截至 2026-07-17，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
 
-- `49b2752 Add exam-style final check variants`
+- `3f01fa3 Add quiz progress reset control`
 
 最近一次 Pages 验证中，线上首页已指向 `chapters/final-check.html`，独立综合检查页返回 HTTP 200。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
@@ -76,7 +76,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - 强调 s-t 图像中斜率表示速度；同一时刻高度表示路程，若都从原点出发，较陡的线速度更大。
   - 修正机械运动检查第 7 题：补充“同一地点、同一直线、同方向、相同时间”的条件，并把正文相对运动讲解从图像“向上”改为实际“向前”，避免混淆图像方向和运动方向。
   - 审核后将“斜线向上”改为“倾斜直线向上”，避免把任意上升曲线误说成匀速直线运动。
-  - 刻度尺读数说明已改为“分度值为 1 mm 时通常读到 1 mm，对应 0.1 cm”，并在互动反馈里同步显示 cm 和 mm，避免“估读下一位”和当前读数位数不一致。
+  - 刻度尺读数说明已统一为“估读到分度值的下一位”：分度值为 1 mm 时记录到 0.1 mm，即 0.01 cm；互动读数和反馈同步保留估读位。
 - 第二章首图已切换为生成式位图 `assets/chapter2-sound-hero.jpg`，用音叉、水面波纹、扬声器和玻璃钟罩表现振动、传播和介质相关的声音实验场景。
 - 第三章新增水沸腾实验专项和热胀冷缩阅读题专项。
   - 第三章首图已从旧 SVG 切换为生成式位图 `assets/chapter3-states-hero.jpg`，用冰块、清水、蒸汽、冷凝水珠和霜晶表现固态、液态和气态变化；六种物态变化的准确名称继续保留在正文交互模块中。
@@ -132,10 +132,14 @@ https://lian-crasher.github.io/GithubPage-2/
   - `scripts/common.js` 会在首页生成“下一步复习建议”，根据检查记录优先推荐未掌握且得分比例最低的章节；没有记录时推荐第一个未开始章节，六章完成后推荐综合检查。
   - 首页“下一步复习建议”已升级为优先使用最近错题的具体回看模块，例如“s-t 图像”“沸腾条件”“透镜作图”，没有具体错题记录时仍回退到章节级建议。
   - 首页新增“清空检查记录”按钮，可删除浏览器本地 `physics-preview-quiz-progress`，让章节徽章和下一步建议恢复到未检查状态。
+  - 检查提交新增完整性校验：有未答题时标出对应题卡，提示题号并阻止计分、答案解析和进度保存；完整作答后才进入原有评分流程。
   - 各章检查、阶段检查和综合检查都已配置 `quizId` 与 `reviewLinks`。
+- 测量表述与移动端导航已完成一轮准确性和可用性修正。
+  - 温度计读数统一表述为“视线与温度计内液柱上表面相平”，避免把烧杯液面误认为读数基准。
+  - 章节导航为当前链接增加 `aria-current="page"`，并在窄屏横向导航中自动滚动到当前章节。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片、填空输入和下拉题样式，并修复窄屏导航可能撑宽页面的问题。
 - 已完成一轮 390px 移动端 QA，覆盖首页进度徽章、第三章排序练习、第四章光路作图台、第五章透镜作图台、第六章误差诊断、各章检查和综合检查。主体页面未发现非预期横向溢出；导航和表格保留局部横向滚动。检查题单选/多选项已增强为整行触控目标，主要触控高度约 40px 以上。
-- 由于公共样式、综合检查 SVG 图像题和首页推荐链接继续调整，首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=6`，避免浏览器或 GitHub Pages 继续使用旧样式缓存；`scripts/common.js` 引用已升级到 `?v=4`，确保首页模块级推荐逻辑刷新。
+- 首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=8`，`scripts/common.js` 升级到 `?v=6`，检查页面的 `scripts/quiz.js` 升级到 `?v=2`，避免浏览器或 GitHub Pages 继续使用旧版样式、导航和提交逻辑。
 - 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
 - 已新增 `.nojekyll`，用于让 GitHub Pages 按纯静态文件发布，减少 Jekyll 对当前原生 HTML/CSS/JS 站点的干预。
@@ -157,8 +161,8 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 本轮优化开始前，`git status -sb` 显示 `## main...origin/main`，没有未提交改动；本次错题模块级推荐优化会产生新的本地提交。
-- 本轮优化开始前，`HEAD` 与 `origin/main` 都指向 `49b2752 Add exam-style final check variants`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，本轮 1-4 项优化和本文档更新尚待提交。
+- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `3f01fa3 Add quiz progress reset control`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
 - 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
 
 GitHub 发布注意事项：

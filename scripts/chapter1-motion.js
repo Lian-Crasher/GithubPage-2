@@ -42,15 +42,15 @@ function updateLength() {
   const wholeCm = Math.floor(mm / 10);
   const extraMm = mm % 10;
 
-  lengthOutput.textContent = `${cm.toFixed(1)} cm（${mm} mm）`;
+  lengthOutput.textContent = `${cm.toFixed(2)} cm（末位为估读值）`;
   objectBar.style.width = `${mm}%`;
 
   if (extraMm === 0) {
-    lengthFeedback.textContent = `右端正对 ${wholeCm} cm 长刻度，所以读数是 ${cm.toFixed(1)} cm（${mm} mm）。`;
+    lengthFeedback.textContent = `右端正对 ${wholeCm} cm 长刻度，准确值读到 ${cm.toFixed(1)} cm，再估读一位记为 ${cm.toFixed(2)} cm。`;
   } else if (extraMm === 5) {
-    lengthFeedback.textContent = `右端在 ${wholeCm} cm 和 ${wholeCm + 1} cm 的正中间，也就是 ${wholeCm}.5 cm（${mm} mm）。`;
+    lengthFeedback.textContent = `右端在 ${wholeCm} cm 和 ${wholeCm + 1} cm 的正中间，准确值读到 ${wholeCm}.5 cm，再估读一位记为 ${cm.toFixed(2)} cm。`;
   } else {
-    lengthFeedback.textContent = `右端越过 ${wholeCm} cm 后第 ${extraMm} 个 1 mm 小格，所以读数是 ${cm.toFixed(1)} cm（${mm} mm）。`;
+    lengthFeedback.textContent = `右端越过 ${wholeCm} cm 后第 ${extraMm} 个 1 mm 小格，准确值读到 ${cm.toFixed(1)} cm，再估读一位记为 ${cm.toFixed(2)} cm。`;
   }
 }
 
