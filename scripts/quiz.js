@@ -201,6 +201,109 @@ function getQuestionNumber(key) {
   return key.match(/\d+$/)?.[0] || key;
 }
 
+function getQuestionCard(form, key) {
+  return form.querySelector(
+    `[name="${key}"], [data-order-group="${key}"], [data-match-group="${key}"]`,
+  )?.closest(".quiz-card");
+}
+
+function jumpToQuizQuestion(form, key) {
+  const card = getQuestionCard(form, key);
+  if (!card) return;
+
+  card.setAttribute("tabindex", "-1");
+  const offset = Number.parseFloat(window.getComputedStyle(card).scrollMarginTop) || 0;
+  const targetTop = window.scrollY + card.getBoundingClientRect().top - offset;
+  const previousScrollBehavior = document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior = "auto";
+  window.scrollTo(0, Math.max(0, targetTop));
+  document.documentElement.style.scrollBehavior = previousScrollBehavior;
+  card.focus({ preventScroll: true });
+}
+
+function createQuestionJumpButton(form, key, className = "") {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = className;
+  button.textContent = getQuestionNumber(key);
+  button.addEventListener("click", () => jumpToQuizQuestion(form, key));
+  return button;
+}
+
+function setupQuizProgress(form, answers, questionTypes) {
+  const keys = Object.keys(answers);
+  const panel = document.createElement("section");
+  panel.className = "quiz-progress";
+  panel.setAttribute("aria-label", "答题进度");
+
+  const summary = document.createElement("div");
+  summary.className = "quiz-progress-summary";
+
+  const count = document.createElement("strong");
+  count.className = "quiz-progress-count";
+  count.setAttribute("aria-live", "polite");
+  summary.appendChild(count);
+
+  const remaining = document.createElement("span");
+  remaining.className = "quiz-progress-remaining";
+  summary.appendChild(remaining);
+
+  const track = document.createElement("div");
+  track.className = "quiz-progress-track";
+  track.setAttribute("role", "progressbar");
+  track.setAttribute("aria-valuemin", "0");
+  track.setAttribute("aria-valuemax", String(keys.length));
+
+  const fill = document.createElement("span");
+  fill.className = "quiz-progress-fill";
+  track.appendChild(fill);
+
+  const navigator = document.createElement("div");
+  navigator.className = "quiz-question-nav";
+  navigator.setAttribute("aria-label", "题目跳转");
+
+  const buttons = new Map(keys.map((key) => {
+    const button = createQuestionJumpButton(form, key, "quiz-question-button");
+    button.dataset.questionKey = key;
+    navigator.appendChild(button);
+    return [key, button];
+  }));
+
+  panel.append(summary, track, navigator);
+  form.prepend(panel);
+
+  function update(incompleteKeys = []) {
+    const incompleteSet = new Set(incompleteKeys);
+    let completed = 0;
+
+    keys.forEach((key) => {
+      const type = questionTypes[key] || "single";
+      const answered = isQuizAnswerComplete(getQuizAnswer(form, key, type), type);
+      if (answered) completed += 1;
+
+      const button = buttons.get(key);
+      button.classList.toggle("is-complete", answered);
+      button.classList.toggle("is-incomplete", incompleteSet.has(key));
+      button.setAttribute(
+        "aria-label",
+        `第 ${getQuestionNumber(key)} 题，${incompleteSet.has(key) ? "未完成" : answered ? "已完成" : "未作答"}`,
+      );
+    });
+
+    count.textContent = `已完成 ${completed}/${keys.length}`;
+    remaining.textContent = completed === keys.length ? "可以提交检查" : `还剩 ${keys.length - completed} 题`;
+    track.setAttribute("aria-valuenow", String(completed));
+    track.setAttribute("aria-valuetext", `已完成 ${completed} 题，共 ${keys.length} 题`);
+    fill.style.width = `${(completed / keys.length) * 100}%`;
+  }
+
+  form.addEventListener("input", () => update());
+  form.addEventListener("change", () => update());
+  update();
+
+  return { update };
+}
+
 function isQuizAnswerCorrect(actual, expected, type) {
   if (type === "multi") return arraysMatch(actual, expected, { sorted: true });
   if (type === "order") return arraysMatch(actual, expected);
@@ -255,12 +358,13 @@ function getAnswerDiagnosis(form, key, actual, expected, type, detail) {
   return messages.join(" ");
 }
 
-function setupQuiz({ formSelector, resultSelector, answers, hints, badges, successMessage, quizId, reviewLinks = {}, questionTypes = {}, answerDetails = {} }) {
+function setupQuiz({ formSelector, resultSelector, answers, hints, badges, successMessage, quizId, reviewLinks = {}, questionTypes = {}, answerDetails = {}, showProgress = false }) {
   const form = document.querySelector(formSelector);
   const result = document.querySelector(resultSelector);
   if (!form || !result) return;
 
   result.setAttribute("tabindex", "-1");
+  const progress = showProgress ? setupQuizProgress(form, answers, questionTypes) : null;
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -279,14 +383,25 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
     });
 
     result.classList.toggle("is-warning", incomplete.length > 0);
+    progress?.update(incomplete);
     if (incomplete.length) {
       const title = document.createElement("strong");
       title.textContent = `还有 ${incomplete.length} 题未完成`;
 
       const detail = document.createElement("p");
-      detail.textContent = `请先完成第 ${incomplete.map(getQuestionNumber).join("、")} 题，再提交检查。未完成的答卷不会计分或保存。`;
+      detail.textContent = "请先完成下面这些题目，再提交检查。未完成的答卷不会计分或保存。";
 
-      result.replaceChildren(title, detail);
+      const jumpList = document.createElement("div");
+      jumpList.className = "incomplete-question-links";
+      jumpList.setAttribute("aria-label", "跳转到未完成题目");
+      incomplete.forEach((key) => {
+        const button = createQuestionJumpButton(form, key, "incomplete-question-link");
+        button.textContent = `第 ${getQuestionNumber(key)} 题`;
+        button.setAttribute("aria-label", `跳转到未完成的第 ${getQuestionNumber(key)} 题`);
+        jumpList.appendChild(button);
+      });
+
+      result.replaceChildren(title, detail, jumpList);
       result.focus({ preventScroll: true });
       return;
     }

@@ -2,6 +2,7 @@ setupQuiz({
   formSelector: "#finalQuiz",
   resultSelector: "#finalQuizResult",
   quizId: "final",
+  showProgress: true,
   answers: {
     f1: "a",
     f2: "a",
