@@ -23,6 +23,96 @@ function revealActiveChapterLink() {
 
 requestAnimationFrame(revealActiveChapterLink);
 
+function getChapterTocLabel(section, heading) {
+  if (section.classList.contains("half-check")) return "前三章闯关";
+  if (section.classList.contains("check-band")) return "章节检查";
+
+  const title = heading.textContent.trim();
+  return title.includes("：") ? title.split("：")[0] : title;
+}
+
+function setupChapterToc() {
+  const showcase = document.querySelector("main > .chapter-showcase");
+  if (!showcase || document.querySelector("#chapter-toc")) return;
+
+  const sections = [...document.querySelectorAll("main > section[id]")]
+    .filter((section) => !section.classList.contains("chapter-showcase"))
+    .map((section) => ({ section, heading: section.querySelector("h2") }))
+    .filter(({ heading }) => heading);
+  if (!sections.length) return;
+
+  const toc = document.createElement("nav");
+  toc.id = "chapter-toc";
+  toc.className = "chapter-toc";
+  toc.setAttribute("aria-label", "本章目录");
+
+  const inner = document.createElement("div");
+  inner.className = "chapter-toc-inner";
+
+  const title = document.createElement("strong");
+  title.className = "chapter-toc-title";
+  title.textContent = "本章目录";
+  inner.appendChild(title);
+
+  const links = document.createElement("div");
+  links.className = "chapter-toc-links";
+
+  const tocLinks = sections.map(({ section, heading }, index) => {
+    const link = document.createElement("a");
+    link.className = "chapter-toc-link";
+    link.href = `#${section.id}`;
+    link.textContent = getChapterTocLabel(section, heading);
+    link.dataset.tocTarget = section.id;
+    if (index === 0) link.setAttribute("aria-current", "location");
+    links.appendChild(link);
+    return link;
+  });
+
+  inner.appendChild(links);
+  toc.appendChild(inner);
+  showcase.insertAdjacentElement("afterend", toc);
+
+  const returnLink = document.createElement("a");
+  returnLink.className = "chapter-toc-return";
+  returnLink.href = "#chapter-toc";
+  returnLink.setAttribute("aria-label", "返回本章目录");
+  returnLink.title = "返回本章目录";
+  returnLink.textContent = "↑";
+  document.body.appendChild(returnLink);
+
+  let scrollFrame = null;
+  function updateChapterToc() {
+    scrollFrame = null;
+    const marker = window.scrollY + Math.max(150, window.innerHeight * 0.22);
+    let activeIndex = 0;
+
+    sections.forEach(({ section }, index) => {
+      if (section.offsetTop <= marker) activeIndex = index;
+    });
+
+    tocLinks.forEach((link, index) => {
+      link.classList.toggle("is-current", index === activeIndex);
+      if (index === activeIndex) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+
+    const tocBottom = toc.offsetTop + toc.offsetHeight;
+    returnLink.classList.toggle("is-visible", window.scrollY > tocBottom + 240);
+  }
+
+  window.addEventListener("scroll", () => {
+    if (scrollFrame !== null) return;
+    scrollFrame = requestAnimationFrame(updateChapterToc);
+  }, { passive: true });
+  window.addEventListener("resize", updateChapterToc);
+  updateChapterToc();
+}
+
+setupChapterToc();
+
 const pressedStateButtons = document.querySelectorAll([
   "button[data-reference]",
   "button[data-noise]",
@@ -86,7 +176,7 @@ var QUIZ_META = {
   chapter6: {
     title: "质量与密度",
     href: "chapters/chapter6-density.html#density-check",
-    focus: "密度计算、排水法和误差方向",
+    focus: "密度计算、排水法、生活应用和误差方向",
   },
   final: {
     title: "综合检查",
@@ -223,6 +313,21 @@ function applyNextStepAdvice() {
   const progress = readQuizProgress();
   const adviceItems = getAdviceItems(progress);
   grid.replaceChildren(...adviceItems.map(createAdviceCard));
+
+  const primaryAction = document.querySelector("#homePrimaryAction");
+  const primaryAdvice = adviceItems[0];
+  if (!primaryAction || !primaryAdvice) return;
+
+  primaryAction.href = getAdviceHref(primaryAdvice.href, primaryAdvice.record);
+  if (!primaryAdvice.record) {
+    primaryAction.textContent = primaryAdvice.title === "综合检查"
+      ? "开始综合检查"
+      : `从${primaryAdvice.title}开始`;
+  } else if (primaryAdvice.record.completed) {
+    primaryAction.textContent = "查看综合检查";
+  } else {
+    primaryAction.textContent = `继续巩固：${primaryAdvice.title}`;
+  }
 }
 
 function resetQuizProgress() {
