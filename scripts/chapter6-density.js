@@ -14,11 +14,26 @@ const solidDensityFeedback = document.querySelector("#solidDensityFeedback");
 const densityErrorCases = document.querySelector("#densityErrorCases");
 const checkDensityErrorsButton = document.querySelector("#checkDensityErrors");
 const densityErrorFeedback = document.querySelector("#densityErrorFeedback");
+const densityLifeButtons = document.querySelectorAll("[data-density-life]");
+const densityLifeResult = document.querySelector("#densityLifeResult");
 const densityErrorMessages = {
   low: "结果偏小：质量 m 偏小或体积 V 偏大时，ρ = m / V 会变小。",
   high: "结果偏大：质量 m 偏大或体积 V 偏小时，ρ = m / V 会变大。",
   same: "基本不变：单位换算正确时，质量和体积表示方式变了，密度值对应的物理量不变。",
 };
+
+const densityLifeMessages = {
+  heat: "加热后球内空气平均密度减小，热气球更容易上升。",
+  cool: "停止加热后空气逐渐冷却，平均密度增大，热气球的上升能力减弱。",
+  color: "只改变气囊颜色不会直接改变球内空气密度，因此不能据此判断升降。",
+};
+
+function setDensityLifeScenario(scenario) {
+  densityLifeButtons.forEach((button) => {
+    setButtonPressedState(button, button.dataset.densityLife === scenario);
+  });
+  if (densityLifeResult) densityLifeResult.textContent = densityLifeMessages[scenario];
+}
 
 function updateBalance() {
   const rider = Number(riderSlider.value);
@@ -105,6 +120,9 @@ densityErrorCases?.addEventListener("click", (event) => {
   chooseDensityError(button);
 });
 checkDensityErrorsButton?.addEventListener("click", checkDensityErrors);
+densityLifeButtons.forEach((button) => {
+  button.addEventListener("click", () => setDensityLifeScenario(button.dataset.densityLife));
+});
 
 setupQuiz({
   formSelector: "#densityQuiz",
@@ -119,6 +137,7 @@ setupQuiz({
     d6: "a",
     d7: ["bean-gap", "big-volume"],
     d8: "a",
+    d9: "a",
   },
   questionTypes: {
     d4: "text",
@@ -128,6 +147,7 @@ setupQuiz({
     d4: "计算过程：ρ = m / V = 80 g ÷ 10 cm³ = 8 g/cm³。",
     d5: "判断方法：小石块完全浸没后，水面从 V1 升到 V2，升高的体积 V2 - V1 就是小石块排开水的体积，也就是小石块体积。",
     d7: "判断方法：体积 V 偏大或质量 m 偏小会让密度偏小；石块带水会让质量偏大，所以密度偏大。",
+    d9: "判断方法：球内空气受热后平均密度减小，与外界空气的密度差使热气球更容易上升。",
   },
   hints: {
     d1: "第 1 题回看“质量”：质量表示物体所含物质的多少。",
@@ -138,6 +158,7 @@ setupQuiz({
     d6: "第 6 题回看“单位换算”：1 g/cm³ = 1000 kg/m³。",
     d7: "第 7 题回看“误差方向”：体积偏大或质量偏小会让密度 ρ = m / V 偏小。",
     d8: "第 8 题回看“天平调平”：指针偏左说明左侧重，平衡螺母向右调。",
+    d9: "第 9 题回看“密度与社会生活”：热空气平均密度较小，热气球更容易上升。",
   },
   reviewLinks: {
     d1: { href: "#mass", label: "回看质量" },
@@ -148,11 +169,13 @@ setupQuiz({
     d6: { href: "#density-formula", label: "回看单位换算" },
     d7: { href: "#density-errors", label: "回看误差方向" },
     d8: { href: "#mass", label: "回看天平调平" },
+    d9: { href: "#density-life", label: "回看密度与社会生活" },
   },
-  badges: (score) => score >= 7 ? "第六章掌握很稳" : score >= 5 ? "第六章基本过关" : "建议回看密度实验",
-  successMessage: "很好。你已经能用质量、体积和密度公式解释材料差异。",
+  badges: (score) => score >= 8 ? "第六章掌握很稳" : score >= 6 ? "第六章基本过关" : "建议回看密度实验",
+  successMessage: "很好。你已经能用质量、体积和密度解释材料差异与生活现象。",
 });
 
 updateBalance();
 updateDensity();
 updateSolidTable();
+setDensityLifeScenario("heat");

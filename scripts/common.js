@@ -86,7 +86,7 @@ var QUIZ_META = {
   chapter6: {
     title: "质量与密度",
     href: "chapters/chapter6-density.html#density-check",
-    focus: "密度计算、排水法和误差方向",
+    focus: "密度计算、排水法、生活应用和误差方向",
   },
   final: {
     title: "综合检查",
@@ -223,6 +223,21 @@ function applyNextStepAdvice() {
   const progress = readQuizProgress();
   const adviceItems = getAdviceItems(progress);
   grid.replaceChildren(...adviceItems.map(createAdviceCard));
+
+  const primaryAction = document.querySelector("#homePrimaryAction");
+  const primaryAdvice = adviceItems[0];
+  if (!primaryAction || !primaryAdvice) return;
+
+  primaryAction.href = getAdviceHref(primaryAdvice.href, primaryAdvice.record);
+  if (!primaryAdvice.record) {
+    primaryAction.textContent = primaryAdvice.title === "综合检查"
+      ? "开始综合检查"
+      : `从${primaryAdvice.title}开始`;
+  } else if (primaryAdvice.record.completed) {
+    primaryAction.textContent = "查看综合检查";
+  } else {
+    primaryAction.textContent = `继续巩固：${primaryAdvice.title}`;
+  }
 }
 
 function resetQuizProgress() {

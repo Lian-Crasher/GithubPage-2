@@ -187,7 +187,45 @@
         </div>
       </section>
 
-      <section class="learning-band alt" id="density-errors" aria-labelledby="density-errors-title">
+      <section class="learning-band alt" id="density-life" aria-labelledby="density-life-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 4 节</p>
+          <h2 id="density-life-title">密度与社会生活：温度、材料和密度一起判断</h2>
+          <p>密度不只用来做计算。把温度变化、物体结构和使用场景放在一起，才能解释热气球升降、材料选择和物质鉴别。</p>
+        </div>
+        <div class="exam-grid">
+          <article class="exam-card">
+            <span class="tag">温度变化</span>
+            <h3>质量不变，体积变化</h3>
+            <p>对多数物质，温度升高时体积会增大。<strong class="key-rule">质量不变而体积增大，密度通常减小</strong>，气体的变化尤其明显。</p>
+          </article>
+          <article class="exam-card">
+            <span class="tag">热气球</span>
+            <h3>内部空气密度更小</h3>
+            <p>球内空气受热膨胀，部分空气排出，平均密度小于外界空气，热气球更容易获得向上的净作用。</p>
+          </article>
+          <article class="exam-card">
+            <span class="tag">物质鉴别</span>
+            <h3>密度是线索，不是唯一证据</h3>
+            <p><strong class="key-caution">空心、混合材料和温度差都会影响判断</strong>，测得密度接近某种物质时，只能说明“可能是”。</p>
+          </article>
+        </div>
+        <div class="interactive-panel experiment-practice">
+          <div class="panel-topline">
+            <h3>热气球升降判断</h3>
+            <span class="tag">先比较密度</span>
+          </div>
+          <p class="practice-intro">选择一个变化，判断球内空气密度和热气球运动趋势。</p>
+          <div class="choice-row" role="group" aria-label="选择热气球状态变化">
+            <button type="button" class="is-active" data-density-life="heat">加热球内空气</button>
+            <button type="button" data-density-life="cool">停止加热并冷却</button>
+            <button type="button" data-density-life="color">只改变气囊颜色</button>
+          </div>
+          <p class="feedback" id="densityLifeResult" aria-live="polite">加热后球内空气平均密度减小，热气球更容易上升。</p>
+        </div>
+      </section>
+
+      <section class="learning-band" id="density-errors" aria-labelledby="density-errors-title">
         <div class="section-head compact">
           <p class="eyebrow">实验题专项</p>
           <h2 id="density-errors-title">密度实验：读数之外，还要会判断误差方向</h2>
@@ -292,7 +330,7 @@
         <div class="section-head">
           <p class="eyebrow">第六章检查</p>
           <h2 id="density-check-title">你能用密度判断物质了吗？</h2>
-          <p>完成下面 8 题，检查质量、天平、密度公式、实验方法和误差方向。</p>
+          <p>完成下面 9 题，检查质量、天平、密度公式、实验方法、生活应用和误差方向。</p>
         </div>
         <form class="quiz" id="densityQuiz">
           <fieldset class="quiz-card">
@@ -303,15 +341,15 @@
           </fieldset>
           <fieldset class="quiz-card">
             <legend>2. 使用天平时，通常应怎样放置物体和砝码？</legend>
-            <label><input type="radio" name="d2" value="a" /> 左物右码</label>
             <label><input type="radio" name="d2" value="b" /> 左码右物</label>
+            <label><input type="radio" name="d2" value="a" /> 左物右码</label>
             <label><input type="radio" name="d2" value="c" /> 两边随意</label>
           </fieldset>
           <fieldset class="quiz-card">
             <legend>3. 密度公式正确的是哪一个？</legend>
-            <label><input type="radio" name="d3" value="a" /> ρ = m / V</label>
             <label><input type="radio" name="d3" value="b" /> ρ = V / m</label>
             <label><input type="radio" name="d3" value="c" /> ρ = m × V</label>
+            <label><input type="radio" name="d3" value="a" /> ρ = m / V</label>
           </fieldset>
           <fieldset class="quiz-card">
             <legend>4. 质量 80 g、体积 10 cm³ 的物体，密度是多少？</legend>
@@ -330,8 +368,8 @@
           </fieldset>
           <fieldset class="quiz-card">
             <legend>6. 1 g/cm³ 等于多少 kg/m³？</legend>
-            <label><input type="radio" name="d6" value="a" /> 1000 kg/m³</label>
             <label><input type="radio" name="d6" value="b" /> 1 kg/m³</label>
+            <label><input type="radio" name="d6" value="a" /> 1000 kg/m³</label>
             <label><input type="radio" name="d6" value="c" /> 0.001 kg/m³</label>
           </fieldset>
           <fieldset class="quiz-card">
@@ -344,9 +382,15 @@
           </fieldset>
           <fieldset class="quiz-card">
             <legend>8. 天平指针偏向分度盘左侧，调平时平衡螺母应向哪边调？</legend>
-            <label><input type="radio" name="d8" value="a" /> 向右</label>
             <label><input type="radio" name="d8" value="b" /> 向左</label>
             <label><input type="radio" name="d8" value="c" /> 不需要调</label>
+            <label><input type="radio" name="d8" value="a" /> 向右</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>9. 热气球加热球内空气后更容易上升，主要是因为什么？</legend>
+            <label><input type="radio" name="d9" value="a" /> 球内空气平均密度减小</label>
+            <label><input type="radio" name="d9" value="b" /> 空气不再受到重力</label>
+            <label><input type="radio" name="d9" value="c" /> 气囊颜色变深</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第六章检查</button>
           <div class="quiz-result" id="densityQuizResult" aria-live="polite"></div>
@@ -362,6 +406,6 @@
 
     <script src="../scripts/common.js?v=8"></script>
     <script src="../scripts/quiz.js?v=2"></script>
-    <script src="../scripts/chapter6-density.js?v=4"></script>
+    <script src="../scripts/chapter6-density.js?v=5"></script>
   </body>
 </html>
