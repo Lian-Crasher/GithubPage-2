@@ -538,11 +538,15 @@ section {
 }
 
 .key-rule {
-  text-decoration-line: underline;
-  text-decoration-color: rgba(11, 124, 114, 0.58);
-  text-decoration-thickness: 0.16em;
-  text-decoration-skip-ink: none;
-  text-underline-offset: 0.14em;
+  padding: 0 0.1em;
+  color: inherit;
+  background: linear-gradient(
+    180deg,
+    transparent 58%,
+    rgba(26, 166, 183, 0.2) 58%,
+    rgba(26, 166, 183, 0.2) 94%,
+    transparent 94%
+  );
 }
 
 .key-caution {
@@ -556,6 +560,63 @@ section {
     transparent 94%
   );
   border-bottom: 2px solid rgba(239, 111, 97, 0.62);
+}
+
+.focus-guide {
+  width: min(1120px, 100%);
+  margin: 0 auto 28px;
+  background: rgba(255, 255, 255, 0.58);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.focus-guide-title {
+  margin: 0;
+  padding: 12px 18px 0;
+  color: var(--teal);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.focus-guide-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+}
+
+.focus-guide-item {
+  min-width: 0;
+  padding: 12px 18px 18px;
+}
+
+.focus-guide-item + .focus-guide-item {
+  border-left: 1px solid var(--line);
+}
+
+.focus-guide-item dt {
+  margin-bottom: 7px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.focus-guide-item dd {
+  margin: 0;
+  color: #26394d;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.focus-guide-item[data-focus-type="term"] dt {
+  color: #8a6200;
+}
+
+.focus-guide-item[data-focus-type="rule"] dt {
+  color: var(--teal);
+}
+
+.focus-guide-item[data-focus-type="caution"] dt {
+  color: #9c362d;
 }
 
 .ruler-demo {
@@ -3257,6 +3318,15 @@ th {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
+  }
+
+  .focus-guide-list {
+    grid-template-columns: 1fr;
+  }
+
+  .focus-guide-item + .focus-guide-item {
+    border-top: 1px solid var(--line);
+    border-left: 0;
   }
 
   .quest-card,
