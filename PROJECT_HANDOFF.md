@@ -14,11 +14,11 @@ GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-截至 2026-07-22，本轮下册扩展正在 `codex/volume2-expansion-preview` 分支完成最终发布检查。更新本文档前，该分支与本地 `main`、`origin/main` 共同基于：
+截至 2026-07-22，本轮下册扩展已由 `codex/volume2-expansion-preview` 快进合并到 `main`，功能提交已成功推送：
 
-- `965cd27 Improve final check progress and accessibility`
+- `f359786 Expand site with second-semester physics chapters`
 
-本轮计划在测试通过后提交预览分支，快进合并到 `main` 并推送。发布完成后的准确提交号以 `git log --oneline --decorate -5` 为准；仍需分别核对 GitHub 主分支同步和 GitHub Pages 部署状态。
+推送后已确认本地 `HEAD`、`origin/main` 都指向 `f3597865c127ac7e18d827792fc94b9c694d75f3`。GitHub Pages 首页、第九章和下册综合检查均返回 HTTP 200，并能检索到第七章入口、船闸互动和下册综合检查等本轮新增标记。
 
 最近一次 Pages 验证中，线上首页已指向 `chapters/final-check.html`，独立综合检查页返回 HTTP 200。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
@@ -189,8 +189,8 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 更新本文档前，当前分支为 `codex/volume2-expansion-preview`，本轮下册扩展、全站关键词标注和交互修正尚待提交。
-- 更新本文档前，当前分支、本地 `main` 与 `origin/main` 都基于 `965cd27 Improve final check progress and accessibility`；提交并合并后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 当前分支为 `main`，本轮下册扩展、全站关键词标注和交互修正已包含在 `f359786`。
+- 功能提交推送后，本地 `HEAD` 与 `origin/main` 已对齐；本段交接状态修正会作为后续文档提交继续同步。
 - 不要假设本地和远端必然同步。每次发布都应核对 `git status -sb`、`HEAD`、`origin/main` 和 Pages 部署结果。
 
 GitHub 发布注意事项：
