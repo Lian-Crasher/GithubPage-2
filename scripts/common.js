@@ -1,6 +1,73 @@
-const chapterNav = document.querySelector(".chapter-nav");
 const currentPage = document.body.dataset.page;
+const volumeTwoPages = new Set(["force", "motion-force", "pressure", "buoyancy", "work-energy", "simple-machines", "check-volume2"]);
+const currentVolume = currentPage === "home" ? "all" : volumeTwoPages.has(currentPage) ? "2" : "1";
+const rootPrefix = currentPage === "home" ? "" : "../";
+const chapterNav = document.querySelector(".chapter-nav");
 let activeChapterLink = null;
+
+const volumeNavigation = {
+  all: [
+    { href: "#map", nav: "home", label: "上册地图" },
+    { href: "#volume2", nav: "volume2-map", label: "下册地图" },
+    { href: "#next-step", nav: "next", label: "下一步" },
+  ],
+  1: [
+    { href: `${rootPrefix}index.html#map`, nav: "home", label: "上册地图" },
+    { href: `${rootPrefix}chapters/chapter1-motion.html`, nav: "motion", label: "机械运动" },
+    { href: `${rootPrefix}chapters/chapter2-sound.html`, nav: "sound", label: "声现象" },
+    { href: `${rootPrefix}chapters/chapter3-states.html`, nav: "states", label: "物态变化" },
+    { href: `${rootPrefix}chapters/chapter4-light.html`, nav: "light", label: "光现象" },
+    { href: `${rootPrefix}chapters/chapter5-lenses.html`, nav: "lenses", label: "透镜应用" },
+    { href: `${rootPrefix}chapters/chapter6-density.html`, nav: "density", label: "质量密度" },
+    { href: `${rootPrefix}chapters/final-check.html`, nav: "check", label: "上册检查" },
+  ],
+  2: [
+    { href: `${rootPrefix}index.html#volume2`, nav: "volume2-map", label: "下册地图" },
+    { href: `${rootPrefix}chapters/chapter7-force.html`, nav: "force", label: "力" },
+    { href: `${rootPrefix}chapters/chapter8-motion-force.html`, nav: "motion-force", label: "运动和力" },
+    { href: `${rootPrefix}chapters/chapter9-pressure.html`, nav: "pressure", label: "压强" },
+    { href: `${rootPrefix}chapters/chapter10-buoyancy.html`, nav: "buoyancy", label: "浮力" },
+    { href: `${rootPrefix}chapters/chapter11-work-energy.html`, nav: "work-energy", label: "功和机械能" },
+    { href: `${rootPrefix}chapters/chapter12-simple-machines.html`, nav: "simple-machines", label: "简单机械" },
+    { href: `${rootPrefix}chapters/final-check-volume2.html`, nav: "check-volume2", label: "下册检查" },
+  ],
+};
+
+function setupSiteNavigation() {
+  const topbar = document.querySelector(".topbar");
+  if (!topbar || !chapterNav) return;
+
+  const semesterNav = document.createElement("nav");
+  semesterNav.className = "semester-nav";
+  semesterNav.setAttribute("aria-label", "分册导航");
+  [
+    { volume: "all", href: `${rootPrefix}index.html#top`, label: "全年" },
+    { volume: "1", href: `${rootPrefix}index.html#map`, label: "上册" },
+    { volume: "2", href: `${rootPrefix}index.html#volume2`, label: "下册" },
+  ].forEach((item) => {
+    const link = document.createElement("a");
+    link.href = item.href;
+    link.textContent = item.label;
+    if (item.volume === currentVolume) {
+      link.classList.add("is-active");
+      link.setAttribute("aria-current", currentVolume === "all" ? "page" : "location");
+    }
+    semesterNav.appendChild(link);
+  });
+  topbar.insertBefore(semesterNav, chapterNav);
+
+  const links = volumeNavigation[currentVolume].map((item) => {
+    const link = document.createElement("a");
+    link.href = item.href;
+    link.dataset.nav = item.nav;
+    link.textContent = item.label;
+    return link;
+  });
+  chapterNav.replaceChildren(...links);
+  chapterNav.setAttribute("aria-label", currentVolume === "all" ? "首页导航" : `${currentVolume === "1" ? "上" : "下"}册章节导航`);
+}
+
+setupSiteNavigation();
 
 document.querySelectorAll(".chapter-nav a[data-nav]").forEach((link) => {
   const isActive = link.dataset.nav === currentPage;
@@ -130,6 +197,7 @@ const pressedStateButtons = document.querySelectorAll([
   "button[data-water-cycle]",
   "button[data-reflection-surface]",
   "button[data-optical-instrument]",
+  "button[data-volume2-scenario]",
 ].join(", "));
 
 function setButtonPressedState(button, pressed) {
@@ -142,6 +210,7 @@ pressedStateButtons.forEach((button) => {
 });
 
 var QUIZ_PROGRESS_KEY = "physics-preview-quiz-progress";
+var ACTIVE_VOLUME_KEY = "physics-preview-active-volume";
 var QUIZ_META = {
   chapter1: {
     title: "机械运动",
@@ -179,11 +248,59 @@ var QUIZ_META = {
     focus: "密度计算、排水法、生活应用和误差方向",
   },
   final: {
-    title: "综合检查",
+    title: "上册综合检查",
     href: "chapters/final-check.html",
     focus: "六章主线和期末常见混合题型",
   },
+  chapter7: {
+    title: "力",
+    href: "chapters/chapter7-force.html#force-check",
+    focus: "力的作用效果、三要素、弹力和重力",
+  },
+  chapter8: {
+    title: "运动和力",
+    href: "chapters/chapter8-motion-force.html#motion-force-check",
+    focus: "惯性、二力平衡、摩擦力和二力合成",
+  },
+  chapter9: {
+    title: "压强",
+    href: "chapters/chapter9-pressure.html#pressure-check",
+    focus: "固体压强、液体压强、大气压和流体流速",
+  },
+  chapter10: {
+    title: "浮力",
+    href: "chapters/chapter10-buoyancy.html#buoyancy-check",
+    focus: "阿基米德原理、浮沉条件和浮力应用",
+  },
+  chapter11: {
+    title: "功和机械能",
+    href: "chapters/chapter11-work-energy.html#work-energy-check",
+    focus: "功、功率、动能势能和机械能转化",
+  },
+  chapter12: {
+    title: "简单机械",
+    href: "chapters/chapter12-simple-machines.html#machines-check",
+    focus: "杠杆、滑轮和机械效率",
+  },
+  final2: {
+    title: "下册综合检查",
+    href: "chapters/final-check-volume2.html",
+    focus: "力学主线、实验方法和综合计算",
+  },
 };
+
+var VOLUME_PROGRESS_IDS = {
+  1: ["chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "chapter6"],
+  2: ["chapter7", "chapter8", "chapter9", "chapter10", "chapter11", "chapter12"],
+};
+
+function getActiveHomeVolume() {
+  try {
+    return localStorage.getItem(ACTIVE_VOLUME_KEY) === "2" ? "2" : "1";
+  } catch (error) {
+    return "1";
+  }
+}
 
 function readQuizProgress() {
   try {
@@ -209,6 +326,13 @@ function applyHomeProgress() {
 
     badge.textContent = formatProgress(record);
     badge.dataset.state = record?.completed ? "complete" : record ? "review" : "empty";
+  });
+
+  document.querySelectorAll("[data-volume-progress]").forEach((summary) => {
+    const ids = VOLUME_PROGRESS_IDS[summary.dataset.volumeProgress] || [];
+    const mastered = ids.filter((id) => progress[id]?.completed).length;
+    const checked = ids.filter((id) => progress[id]).length;
+    summary.textContent = checked ? `已掌握 ${mastered}/6 · 已检查 ${checked}/6` : "尚未开始检查";
   });
 }
 
@@ -268,10 +392,12 @@ function createAdviceCard({ title, href, focus, record, label }) {
   return card;
 }
 
-function getAdviceItems(progress) {
-  const chapterIds = ["chapter1", "chapter2", "chapter3", "chapter4", "chapter5", "chapter6"];
-  const attemptedReviews = Object.entries(progress)
-    .filter(([id, record]) => QUIZ_META[id] && record && !record.completed)
+function getAdviceItems(progress, volume) {
+  const chapterIds = VOLUME_PROGRESS_IDS[volume];
+  const finalId = volume === "2" ? "final2" : "final";
+  const attemptedReviews = chapterIds
+    .filter((id) => progress[id] && !progress[id].completed)
+    .map((id) => [id, progress[id]])
     .sort((left, right) => getProgressRatio(left[1]) - getProgressRatio(right[1]));
 
   if (attemptedReviews.length) {
@@ -291,18 +417,18 @@ function getAdviceItems(progress) {
     }];
   }
 
-  if (!progress.final) {
+  if (!progress[finalId]) {
     return [{
-      ...QUIZ_META.final,
+      ...QUIZ_META[finalId],
       record: null,
       label: "收官挑战",
     }];
   }
 
   return [{
-    ...QUIZ_META.final,
-    record: progress.final,
-    label: progress.final.completed ? "保持手感" : "继续冲刺",
+    ...QUIZ_META[finalId],
+    record: progress[finalId],
+    label: progress[finalId].completed ? "保持手感" : "继续冲刺",
   }];
 }
 
@@ -311,8 +437,16 @@ function applyNextStepAdvice() {
   if (!grid) return;
 
   const progress = readQuizProgress();
-  const adviceItems = getAdviceItems(progress);
+  const volume = getActiveHomeVolume();
+  const adviceItems = getAdviceItems(progress, volume);
   grid.replaceChildren(...adviceItems.map(createAdviceCard));
+
+  document.querySelectorAll("[data-home-volume]").forEach((button) => {
+    setButtonPressedState(button, button.dataset.homeVolume === volume);
+  });
+
+  const title = document.querySelector("#next-step-title");
+  if (title) title.textContent = `${volume === "1" ? "上" : "下"}册：先补最值得补的一块`;
 
   const primaryAction = document.querySelector("#homePrimaryAction");
   const primaryAdvice = adviceItems[0];
@@ -320,7 +454,7 @@ function applyNextStepAdvice() {
 
   primaryAction.href = getAdviceHref(primaryAdvice.href, primaryAdvice.record);
   if (!primaryAdvice.record) {
-    primaryAction.textContent = primaryAdvice.title === "综合检查"
+    primaryAction.textContent = primaryAdvice.title.includes("综合检查")
       ? "开始综合检查"
       : `从${primaryAdvice.title}开始`;
   } else if (primaryAdvice.record.completed) {
@@ -330,9 +464,16 @@ function applyNextStepAdvice() {
   }
 }
 
-function resetQuizProgress() {
+function resetQuizProgress(scope = "all") {
   try {
-    localStorage.removeItem(QUIZ_PROGRESS_KEY);
+    if (scope === "all") {
+      localStorage.removeItem(QUIZ_PROGRESS_KEY);
+    } else {
+      const progress = readQuizProgress();
+      const finalId = scope === "2" ? "final2" : "final";
+      [...VOLUME_PROGRESS_IDS[scope], finalId].forEach((id) => delete progress[id]);
+      localStorage.setItem(QUIZ_PROGRESS_KEY, JSON.stringify(progress));
+    }
   } catch (error) {
     return false;
   }
@@ -343,27 +484,44 @@ function resetQuizProgress() {
 }
 
 function setupProgressReset() {
-  const resetButton = document.querySelector("#resetProgressButton");
+  const resetButtons = document.querySelectorAll("[data-reset-progress]");
   const resetStatus = document.querySelector("#resetProgressStatus");
-  if (!resetButton) return;
+  if (!resetButtons.length) return;
 
-  resetButton.addEventListener("click", () => {
+  resetButtons.forEach((resetButton) => resetButton.addEventListener("click", () => {
+    const requestedScope = resetButton.dataset.resetProgress;
+    const scope = requestedScope === "active" ? getActiveHomeVolume() : "all";
     const hasProgress = Object.keys(readQuizProgress()).length > 0;
     if (!hasProgress) {
       if (resetStatus) resetStatus.textContent = "当前已经是未检查状态。";
       return;
     }
 
-    const confirmed = window.confirm("确定要清空所有章节和综合检查的提交记录吗？");
+    const scopeLabel = scope === "all" ? "上下册全部" : `${scope === "1" ? "上" : "下"}册`;
+    const confirmed = window.confirm(`确定要清空${scopeLabel}章节和综合检查的提交记录吗？`);
     if (!confirmed) return;
 
-    const didReset = resetQuizProgress();
+    const didReset = resetQuizProgress(scope);
     if (resetStatus) {
-      resetStatus.textContent = didReset ? "已清空检查记录。" : "清空失败，请检查浏览器存储权限。";
+      resetStatus.textContent = didReset ? `已清空${scopeLabel}检查记录。` : "清空失败，请检查浏览器存储权限。";
     }
+  }));
+}
+
+function setupHomeVolumeSwitch() {
+  document.querySelectorAll("[data-home-volume]").forEach((button) => {
+    button.addEventListener("click", () => {
+      try {
+        localStorage.setItem(ACTIVE_VOLUME_KEY, button.dataset.homeVolume);
+      } catch (error) {
+        // Recommendation still updates for browsers that block persistence.
+      }
+      applyNextStepAdvice();
+    });
   });
 }
 
 applyHomeProgress();
 applyNextStepAdvice();
 setupProgressReset();
+setupHomeVolumeSwitch();

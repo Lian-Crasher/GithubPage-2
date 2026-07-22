@@ -2,21 +2,23 @@
 
 ## 项目目标
 
-为“人教版八年级物理上册”制作一个适合初中生预习和期末前查漏补缺的静态网页站点。站点需要图文并茂、便于探索，每章独立页面，包含知识讲解、互动体验、章节检查，并通过 GitHub Pages 对外访问。
+为“人教版八年级物理”制作一个覆盖上、下学期的预习与查漏补缺静态站点。站点需要图文并茂、便于探索，每章独立页面，包含知识讲解、互动体验、章节检查，并通过 GitHub Pages 对外访问；首页和导航既要明确区分上下册，也要保持全年连续的学习路径。
 
-当前内容重点不只是覆盖教材六章，也要对接深圳南山区 2025-2026 学年八年级上学期期末物理试卷中暴露出的考察方式：图像分析、光路作图、实验步骤、误差判断、项目化应用题和阅读信息题。
+上册内容重点不只是覆盖教材六章，也对接深圳南山区 2025-2026 学年八年级上学期期末物理试卷中暴露出的考察方式：图像分析、光路作图、实验步骤、误差判断、项目化应用题和阅读信息题。下册已依据人教版八年级物理下册扩展第七至第十二章，强调力、压强、浮力、功和机械能、简单机械等知识的可视化与可操作理解。
 
 ## 当前进展
 
-项目位于 `/Users/lianliu/Documents/GithubPage 2`。目前已完成原生静态网页版本，包含首页、第一至第六章页面、独立综合检查页、章节导航、阶段检查和综合检查入口。代码结构仍保持每章独立 HTML、每章独立 JS、公共样式集中在 `styles/main.css`。
+项目位于 `/Users/lianliu/Documents/GithubPage 2`。目前已完成原生静态网页版本，包含首页、第一至第十二章页面、上下册各自的综合检查页、全年章节导航、阶段检查和综合检查入口。代码结构保持每章独立 HTML；上册沿用每章独立 JS，下册六章共享 `scripts/chapter-volume2.js`，公共样式集中在 `styles/main.css`。
 
 GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-截至 2026-07-17，最近一次功能更新已成功推送到 GitHub，GitHub Pages 线上发布也已恢复成功。更新本文档前，本地 `main` 与 `origin/main` 对齐，最新提交为：
+截至 2026-07-22，本轮下册扩展正在 `codex/volume2-expansion-preview` 分支完成最终发布检查。更新本文档前，该分支与本地 `main`、`origin/main` 共同基于：
 
-- `56d2dd4 Improve accessibility and motion preferences`
+- `965cd27 Improve final check progress and accessibility`
+
+本轮计划在测试通过后提交预览分支，快进合并到 `main` 并推送。发布完成后的准确提交号以 `git log --oneline --decorate -5` 为准；仍需分别核对 GitHub 主分支同步和 GitHub Pages 部署状态。
 
 最近一次 Pages 验证中，线上首页已指向 `chapters/final-check.html`，独立综合检查页返回 HTTP 200。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
@@ -34,6 +36,13 @@ https://lian-crasher.github.io/GithubPage-2/
 - `chapters/chapter5-lenses.html`
 - `chapters/chapter6-density.html`
 - `chapters/final-check.html`
+- `chapters/chapter7-force.html`
+- `chapters/chapter8-motion-force.html`
+- `chapters/chapter9-pressure.html`
+- `chapters/chapter10-buoyancy.html`
+- `chapters/chapter11-work-energy.html`
+- `chapters/chapter12-simple-machines.html`
+- `chapters/final-check-volume2.html`
 - `scripts/chapter1-motion.js`
 - `scripts/chapter2-sound.js`
 - `scripts/chapter3-states.js`
@@ -41,6 +50,8 @@ https://lian-crasher.github.io/GithubPage-2/
 - `scripts/chapter5-lenses.js`
 - `scripts/chapter6-density.js`
 - `scripts/final-check.js`
+- `scripts/chapter-volume2.js`
+- `scripts/final-check-volume2.js`
 - `scripts/quiz.js`
 - `scripts/common.js`
 - `styles/main.css`
@@ -57,6 +68,23 @@ https://lian-crasher.github.io/GithubPage-2/
 - `assets/chapter4-light-hero.jpg`
 - `assets/chapter5-lenses-hero.jpg`
 - `assets/chapter6-density-hero.jpg`
+- `assets/chapter7-force-hero.jpg`
+- `assets/chapter8-motion-force-hero.jpg`
+- `assets/chapter9-pressure-hero.jpg`
+- `assets/chapter10-buoyancy-hero.jpg`
+- `assets/chapter11-work-energy-hero.jpg`
+- `assets/chapter12-simple-machines-hero.jpg`
+
+下册扩展重点：
+
+- 首页新增上下册切换与第七至第十二章学习地图，同时保持检查进度、错题回看和清空记录能力。
+- 第七章补充力的三要素、弹力、重力和力的示意图互动，并统一力箭头为细线、尖角箭头。
+- 第八章补充牛顿第一定律、惯性、二力平衡、摩擦力和同一直线上二力合成的互动演示。
+- 第九章系统覆盖固体压强、液体压强、连通器、船闸、大气压、托里拆利实验、气压随海拔变化、活塞式抽水机和流体压强。最近一次复审重做了测压管方向、深度标尺、船闸四阶段、玻璃管倾斜、抽水机阀门与水流、纸条和机翼互动。
+- 第十章覆盖浮力方向、称重法、阿基米德原理、物体浮沉、轮船、潜水艇、气球飞艇和密度计；溢水实验已明确先浸没、稳定后再比较排液质量，弹簧测力计和力箭头按真实结构重画。
+- 第十一章覆盖功、功率、动能、重力势能和机械能转化；互动图已修正物体高度基准、绳物连接、小车车轮与斜面的接触关系，并量化动能和势能。
+- 第十二章覆盖杠杆平衡条件、生活杠杆、托盘天平、杆秤、定滑轮、动滑轮、滑轮组和机械效率。
+- 新增下册综合检查 `chapters/final-check-volume2.html`，与上册综合检查分开保存与展示，避免上下册学习记录混淆。
 
 近期重点变更：
 
@@ -161,9 +189,9 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 更新本文档前，`git status -sb` 显示 `## main...origin/main`，本轮 10-12 项发布维护优化和本文档更新尚待提交。
-- 更新本文档前，`HEAD` 与 `origin/main` 都指向 `56d2dd4 Improve accessibility and motion preferences`；提交本交接文档后，以 `git log --oneline --decorate -5` 的最新结果为准。
-- 之前的历史不一致已经通过 `git fetch origin main` 后将本地新增提交 rebase 到最新 `origin/main` 上解决；不要再假设本地必然 ahead 多个提交。
+- 更新本文档前，当前分支为 `codex/volume2-expansion-preview`，本轮下册扩展、全站关键词标注和交互修正尚待提交。
+- 更新本文档前，当前分支、本地 `main` 与 `origin/main` 都基于 `965cd27 Improve final check progress and accessibility`；提交并合并后，以 `git log --oneline --decorate -5` 的最新结果为准。
+- 不要假设本地和远端必然同步。每次发布都应核对 `git status -sb`、`HEAD`、`origin/main` 和 Pages 部署结果。
 
 GitHub 发布注意事项：
 
@@ -197,6 +225,8 @@ node --check scripts/chapter4-light.js
 node --check scripts/chapter5-lenses.js
 node --check scripts/chapter6-density.js
 node --check scripts/final-check.js
+node --check scripts/chapter-volume2.js
+node --check scripts/final-check-volume2.js
 node --check scripts/common.js
 node --check scripts/quiz.js
 ```
@@ -224,6 +254,11 @@ python3 -m http.server 8002
 - `http://localhost:8000/chapters/chapter5-lenses.html#real-virtual-image`
 - `http://localhost:8000/chapters/chapter5-lenses.html#lens-practice`
 - `http://localhost:8000/chapters/final-check.html`
+- `http://localhost:8000/chapters/chapter9-pressure.html`
+- `http://localhost:8000/chapters/chapter10-buoyancy.html`
+- `http://localhost:8000/chapters/chapter11-work-energy.html`
+- `http://localhost:8000/chapters/chapter12-simple-machines.html`
+- `http://localhost:8000/chapters/final-check-volume2.html`
 
 线上访问：
 
@@ -232,6 +267,9 @@ python3 -m http.server 8002
 - https://lian-crasher.github.io/GithubPage-2/chapters/chapter4-light.html#ray-drawing
 - https://lian-crasher.github.io/GithubPage-2/chapters/chapter5-lenses.html#image-rule
 - https://lian-crasher.github.io/GithubPage-2/chapters/final-check.html
+- https://lian-crasher.github.io/GithubPage-2/chapters/chapter9-pressure.html
+- https://lian-crasher.github.io/GithubPage-2/chapters/chapter10-buoyancy.html
+- https://lian-crasher.github.io/GithubPage-2/chapters/final-check-volume2.html
 
 远端验证：
 
@@ -287,6 +325,11 @@ sed -n '1,40p' /tmp/ghpage-hero-headers.txt
 - 第六章 `#density-errors`：误差方向表述是否准确；误差方向诊断中红豆总体积偏大和量筒读数偏大应判密度偏小，石块带水称质量应判密度偏大，正确单位换算应基本不变。
 - 第六章首图：天平测质量、量筒排水法测体积、`ρ = m / V` 三者是否形成清楚的实验链条。
 - 独立页面 `chapters/final-check.html`：综合检查应有 20 张题卡，其中后 12 题为混合题型。正确填写后应显示 `上册预习非常稳：20/20`；内嵌 SVG 图像题的坐标轴和标注应清楚；移动端 390px 宽度不应横向溢出。
+- 首页：上下册切换、十二章学习地图和上下册综合检查入口应能正确显示；切换学期后地址参数和当前状态一致。
+- 第九章：测压管方向和深度变化应自洽；船闸四阶段、托里拆利倾斜实验、海拔气压、抽水机阀门与流向、纸条和机翼互动应符合物理规律。
+- 第十章：称重法应满足 `F浮 = G - F示`；溢水实验应在物体浸入并稳定后显示排液；浮沉状态、排水量和密度计读数应相互一致。
+- 第十一章：物体位于地面时高度为 0，绳子与物体连接；斜面小车车轮接触斜面，动能和势能量化结果与控件同步。
+- 下册综合检查 `chapters/final-check-volume2.html`：题目、反馈、错题回看和下册进度保存应完整，且不覆盖上册综合检查记录。
 
 ## 下一步建议
 

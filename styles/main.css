@@ -58,15 +58,50 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+  gap: 6px 20px;
   min-height: 64px;
   padding: 10px clamp(18px, 4vw, 54px);
   background: rgba(255, 255, 255, 0.86);
   border-bottom: 1px solid rgba(19, 34, 56, 0.08);
   backdrop-filter: blur(16px);
+}
+
+.semester-nav {
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  background: #edf4f7;
+  border: 1px solid #d8e5eb;
+  border-radius: 8px;
+}
+
+.semester-nav a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 6px 13px;
+  color: #526b7d;
+  font-size: 14px;
+  font-weight: 900;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.semester-nav a:hover,
+.semester-nav a:focus-visible {
+  color: var(--teal);
+  background: #fff;
+}
+
+.semester-nav a.is-active {
+  color: #fff;
+  background: var(--ink);
 }
 
 .brand {
@@ -97,6 +132,8 @@ a {
   min-width: 0;
   max-width: 100%;
   overflow-x: auto;
+  grid-column: 1 / -1;
+  justify-self: center;
 }
 
 .chapter-nav a {
@@ -135,7 +172,7 @@ a {
 
 .hero {
   position: relative;
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 112px);
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -302,6 +339,26 @@ section {
   background: #fbfcff;
 }
 
+.volume-two-band {
+  background: #f2faf6;
+  border-top: 1px solid #d9ebe2;
+}
+
+.volume-progress {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  margin-left: 8px;
+  padding: 4px 9px;
+  color: #0b665e;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.2;
+  background: #e4f7f3;
+  border: 1px solid #a9ddd3;
+  border-radius: 999px;
+}
+
 .quest-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -420,6 +477,47 @@ section {
 .reset-progress-button:focus-visible {
   color: #7d3d27;
   background: #ffefe2;
+}
+
+.home-volume-switch,
+.progress-reset-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.home-volume-switch {
+  margin-top: 18px;
+}
+
+.home-volume-switch button {
+  min-width: 116px;
+  padding: 0 14px;
+  color: var(--teal);
+  font-weight: 900;
+  background: #fff;
+  border: 1px solid #a9d8d2;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.home-volume-switch button.is-active {
+  color: #fff;
+  background: var(--teal);
+}
+
+.progress-reset-actions {
+  margin-top: 16px;
+}
+
+.progress-reset-actions .reset-progress-button {
+  margin-top: 0;
+}
+
+.reset-progress-button.secondary {
+  color: #526b7d;
+  background: #f6fafc;
+  border-color: #cfdee6;
 }
 
 .reset-progress-status {
@@ -606,6 +704,10 @@ section {
   margin: 0;
 }
 
+.buoyancy-state-guide .focus-guide-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .focus-guide-item {
   min-width: 0;
   padding: 12px 18px 18px;
@@ -737,6 +839,30 @@ input[type="range"] {
   margin: 14px 0 0;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.scenario-constraint {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  color: var(--muted);
+  background: #eef7f4;
+  border-left: 4px solid var(--teal);
+  border-radius: 6px;
+}
+
+.scenario-constraint[hidden] {
+  display: none;
+}
+
+.scenario-constraint strong {
+  color: var(--teal);
+  font-size: 22px;
+  white-space: nowrap;
 }
 
 .reference-lab {
@@ -1090,6 +1216,10 @@ th {
 
 .exam-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.exam-grid.buoyancy-app-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .rule-grid {
@@ -1702,7 +1832,7 @@ th {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   box-shadow: 0 10px 28px rgba(35, 65, 90, 0.06);
-  scroll-margin-top: 76px;
+  scroll-margin-top: 126px;
 }
 
 .chapter-toc-inner {
@@ -1792,7 +1922,7 @@ th {
 }
 
 main > section[id]:not(.chapter-showcase) {
-  scroll-margin-top: 78px;
+  scroll-margin-top: 132px;
 }
 
 .motion-showcase,
@@ -1800,8 +1930,104 @@ main > section[id]:not(.chapter-showcase) {
 .states-showcase,
 .light-showcase,
 .lenses-showcase,
-.density-showcase {
+.density-showcase,
+.volume-two-showcase {
   background: #f7fbfd;
+}
+
+.volume-two-showcase {
+  border-color: #cee5d9;
+}
+
+.knowledge-bridge {
+  background: #edf8f2;
+  border-top: 1px solid #d4e9dd;
+  border-bottom: 1px solid #d4e9dd;
+}
+
+.bridge-links {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 12px;
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.bridge-links > a,
+.bridge-links > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 130px;
+  padding: 18px;
+  color: inherit;
+  text-decoration: none;
+  background: #fff;
+  border: 1px solid #cfe3d8;
+  border-radius: 8px;
+}
+
+.bridge-links > a:hover,
+.bridge-links > a:focus-visible {
+  border-color: #78ba9a;
+  box-shadow: 0 10px 24px rgba(35, 90, 65, 0.1);
+}
+
+.bridge-links span:not(.bridge-arrow) {
+  color: #42725e;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.bridge-links strong {
+  margin-top: 6px;
+  color: var(--ink);
+  font-size: 19px;
+}
+
+.bridge-links small {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.bridge-arrow {
+  align-self: center;
+  color: var(--teal);
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.metric-result {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.metric-result > span {
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.metric-result > strong,
+.metric-result > span strong {
+  color: var(--teal);
+  font-size: 30px;
+}
+
+.metric-result.split {
+  align-items: stretch;
+}
+
+.metric-result.split > span {
+  display: grid;
+  gap: 6px;
 }
 
 .sound-grid,
@@ -2838,7 +3064,7 @@ main > section[id]:not(.chapter-showcase) {
 
 .quiz-progress {
   position: sticky;
-  top: 74px;
+  top: 125px;
   z-index: 12;
   grid-column: 1 / -1;
   display: grid;
@@ -3473,10 +3699,1179 @@ main > section[id]:not(.chapter-showcase) {
   white-space: nowrap;
 }
 
+.physics-diagram {
+  width: 100%;
+  margin: 14px 0 18px;
+  overflow: hidden;
+  background: #f6fbfd;
+  border: 1px solid #cfe1e9;
+  border-radius: 8px;
+}
+
+.physics-diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.physics-diagram svg [hidden] {
+  display: none;
+}
+
+.concept-diagram-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.75fr);
+  align-items: center;
+  gap: 24px;
+  width: min(980px, 100%);
+  margin: 20px auto 26px;
+}
+
+.concept-diagram-row .physics-diagram {
+  margin: 0;
+}
+
+.diagram-caption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.diagram-caption strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.diagram-caption.compact {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.diagram-caption.compact strong {
+  display: inline;
+  margin: 0;
+}
+
+.diagram-text,
+.diagram-note {
+  fill: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  letter-spacing: 0;
+}
+
+.diagram-text {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.diagram-note {
+  fill: #53677b;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.teal-text {
+  fill: var(--teal);
+}
+
+.coral-text {
+  fill: #c44e42;
+}
+
+.teal-fill {
+  fill: var(--teal);
+}
+
+.coral-fill {
+  fill: var(--coral);
+}
+
+.teal-stroke {
+  stroke: var(--teal);
+}
+
+.coral-stroke {
+  stroke: var(--coral);
+}
+
+.force-arrow,
+.measure-line,
+.water-jet,
+.pulley-rope,
+.pull-arrow {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.force-arrow {
+  stroke-width: 8;
+  transition: x1 180ms ease, x2 180ms ease, y1 180ms ease, y2 180ms ease;
+}
+
+.force-arrow.sharp-force-vector,
+.pull-arrow.sharp-force-vector,
+.resultant-arrow.sharp-force-vector {
+  stroke-width: 4;
+  stroke-linecap: butt;
+}
+
+.force-arrowhead {
+  stroke: none;
+  shape-rendering: geometricPrecision;
+  transition: d 180ms ease;
+}
+
+.measure-line {
+  stroke: #607d8b;
+  stroke-width: 3;
+  stroke-dasharray: 8 7;
+  transition: x1 180ms ease, x2 180ms ease;
+}
+
+.apparatus-line,
+.rope-line,
+.spring-line,
+.ground-line,
+.ground-surface,
+.lever-beam,
+.ramp-line {
+  stroke: #5f7486;
+}
+
+.apparatus-line,
+.rope-line {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.spring-line {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ground-line {
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.ground-surface {
+  fill: #d9e6eb;
+  stroke-width: 0;
+}
+
+.diagram-object,
+.pressure-block,
+.immersed-object,
+.work-object,
+.load-block {
+  fill: #ffd166;
+  stroke: #b98612;
+  stroke-width: 4;
+}
+
+.diagram-center {
+  fill: var(--ink);
+}
+
+.cart-body {
+  fill: #ffd166;
+  stroke: #9f7110;
+  stroke-width: 4;
+}
+
+.cart-wheel {
+  fill: #394c5f;
+  stroke: #f6fbfd;
+  stroke-width: 5;
+}
+
+.ghost-object {
+  fill: #dfe9ed;
+  stroke: #8fa3ae;
+  stroke-width: 3;
+  stroke-dasharray: 8 6;
+}
+
+.pressure-block,
+.immersed-object,
+.work-object {
+  transition: x 180ms ease, y 180ms ease, width 180ms ease, height 180ms ease;
+}
+
+.pressure-meter-bg,
+.power-meter-bg,
+.energy-bar-bg {
+  fill: #d9e7ec;
+}
+
+.pressure-meter-fill,
+.power-meter-fill,
+.potential-bar,
+.kinetic-bar {
+  transition: y 180ms ease, height 180ms ease;
+}
+
+.pressure-meter-fill,
+.power-meter-fill,
+.kinetic-bar {
+  fill: var(--coral);
+}
+
+.potential-bar {
+  fill: var(--teal);
+}
+
+.liquid-vessel {
+  fill: none;
+  stroke: #7da9bb;
+  stroke-width: 9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.liquid-fill {
+  fill: #8bd8e7;
+  opacity: 0.78;
+  transition: fill 180ms ease;
+}
+
+.liquid-surface-line {
+  stroke: #1aa6b7;
+  stroke-width: 4;
+}
+
+.liquid-hole {
+  fill: #1b6d8d;
+}
+
+.water-jet {
+  stroke: #1aa6b7;
+  stroke-width: 7;
+}
+
+.state-diagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  width: min(980px, 100%);
+  margin: 20px auto 26px;
+}
+
+.state-diagram {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.state-diagram small {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.state-water {
+  position: relative;
+  display: block;
+  height: 132px;
+  overflow: hidden;
+  background: linear-gradient(to bottom, transparent 22%, #a2dfeb 22%);
+  border: 4px solid #7da9bb;
+  border-top: 0;
+  border-radius: 0 0 8px 8px;
+}
+
+.state-water::before {
+  position: absolute;
+  top: 22%;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: #26a8bb;
+  content: "";
+}
+
+.state-object {
+  position: absolute;
+  left: 50%;
+  width: 58px;
+  height: 58px;
+  background: var(--yellow);
+  border: 3px solid #a8750c;
+  border-radius: 8px;
+  transform: translateX(-50%);
+}
+
+.state-object.floats {
+  top: 8%;
+}
+
+.state-object.suspends {
+  top: 48%;
+  transform: translate(-50%, -50%);
+}
+
+.state-object.sinks {
+  bottom: 0;
+}
+
+.energy-explorer {
+  width: min(980px, 100%);
+  margin: 22px auto 28px;
+}
+
+.energy-ramp {
+  fill: #dfe9ed;
+  stroke: none;
+}
+
+.ramp-line {
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+#energyCart {
+  transition: transform 180ms ease;
+}
+
+.lever-beam {
+  stroke-width: 13;
+  stroke-linecap: round;
+}
+
+.lever-fulcrum {
+  fill: #8bd8e7;
+  stroke: #397b91;
+  stroke-width: 4;
+}
+
+.pulley-wheel {
+  fill: #e8f3f6;
+  stroke: #397b91;
+  stroke-width: 9;
+}
+
+.pulley-fixed-wheel {
+  fill: #ffe0a0;
+  stroke: #9f7110;
+}
+
+.pulley-moving-wheel {
+  fill: #dcd4f1;
+  stroke: #675b86;
+}
+
+.pulley-rope {
+  stroke: #d69b1b;
+  stroke-width: 7;
+}
+
+.pull-arrow {
+  stroke: var(--coral);
+  stroke-width: 8;
+}
+
+.rope-anchor {
+  fill: #a87527;
+  stroke: #f6fbfd;
+  stroke-width: 3;
+}
+
+.moving-block-link {
+  fill: none;
+  stroke: #5f7486;
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.support-segment-labels circle {
+  fill: #ffffff;
+  stroke: var(--teal);
+  stroke-width: 3;
+}
+
+.support-segment-labels text {
+  fill: var(--teal);
+  font-size: 16px;
+  font-weight: 900;
+  text-anchor: middle;
+}
+
+.metric-result.metric-trio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.metric-result.metric-trio > span {
+  display: grid;
+  gap: 6px;
+}
+
+.metric-result.metric-trio strong {
+  font-size: 23px;
+}
+
+.pulley-lab-diagram .diagram-text {
+  font-size: 23px;
+}
+
+.pulley-lab-diagram .diagram-note {
+  font-size: 18px;
+}
+
+.force-learning-grid {
+  align-items: start;
+  margin-top: 22px;
+}
+
+.force-cart-body {
+  fill: #ffd166;
+  stroke: #9f7110;
+  stroke-width: 5;
+}
+
+.force-point {
+  fill: #fff;
+  stroke: #718696;
+  stroke-width: 4;
+  transition: fill 160ms ease, stroke 160ms ease, r 160ms ease;
+}
+
+.force-point.is-selected {
+  fill: var(--coral);
+  stroke: #9f3f36;
+  r: 13px;
+}
+
+.vector-legend {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: -4px 0 14px;
+}
+
+.vector-legend span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  color: #44596d;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+  background: #f3f8fa;
+  border: 1px solid #d7e5eb;
+  border-radius: 6px;
+}
+
+.vector-legend i {
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.legend-tail {
+  width: 11px;
+  height: 11px;
+  background: var(--coral);
+  border-radius: 50%;
+}
+
+.legend-direction {
+  width: 22px;
+  height: 0;
+  border-top: 3px solid var(--coral);
+  border-right: 7px solid transparent;
+}
+
+.legend-length {
+  width: 28px;
+  height: 5px;
+  background: var(--coral);
+  border-radius: 3px;
+}
+
+.control-group-label,
+.control-label {
+  display: block;
+  margin: 14px 0 8px;
+  color: #30465a;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.force-choice-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.force-choice-row button {
+  width: 100%;
+}
+
+.control-select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 14px;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 750;
+  background: #fff;
+  border: 1px solid #b8ccd6;
+  border-radius: 8px;
+}
+
+.concept-compare {
+  display: grid;
+  gap: 0;
+  margin: 0 0 24px;
+}
+
+.concept-compare div {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.concept-compare dt {
+  color: var(--teal);
+  font-weight: 900;
+}
+
+.concept-compare dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.spring-scale,
+.spring-scale-marks line {
+  stroke: #64798a;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.spring-scale-marks line {
+  stroke-width: 3;
+}
+
+.spring-lab-coil {
+  fill: none;
+  stroke: var(--teal);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.spring-lab-block {
+  fill: #ffd166;
+  stroke: #a8750c;
+  stroke-width: 5;
+  transition: y 180ms ease;
+}
+
+.spring-indicator {
+  stroke: var(--coral);
+  stroke-width: 7;
+  stroke-linecap: round;
+  transition: y1 180ms ease, y2 180ms ease;
+}
+
+.gravity-location-diagram {
+  --gravity-ground: #74c69d;
+  --gravity-sky: #edf8fb;
+}
+
+.gravity-sky {
+  fill: var(--gravity-sky);
+  transition: fill 180ms ease;
+}
+
+.gravity-ground {
+  fill: var(--gravity-ground);
+  transition: fill 180ms ease;
+}
+
+.gravity-object {
+  fill: #ffd166;
+  stroke: #9f7110;
+  stroke-width: 5;
+}
+
+.chapter8-learning-grid {
+  align-items: start;
+  margin-top: 22px;
+}
+
+.reasoning-steps {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding-left: 24px;
+  color: #41576a;
+  line-height: 1.7;
+}
+
+.reasoning-steps li::marker {
+  color: var(--teal);
+  font-weight: 900;
+}
+
+.lab-note {
+  margin: 18px 0 0;
+  padding: 13px 15px;
+  color: #3d5366;
+  line-height: 1.7;
+  background: #eef8f5;
+  border-left: 4px solid #75bca7;
+  border-radius: 0 6px 6px 0;
+}
+
+.lab-note.compact {
+  margin-top: 14px;
+  padding-block: 10px;
+  font-size: 13px;
+}
+
+.balance-condition-guide .focus-guide-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.inertia-ramp {
+  fill: #dfe9ed;
+  stroke: none;
+}
+
+.inertia-surface,
+.friction-surface {
+  transition: fill 180ms ease, stroke 180ms ease;
+}
+
+.surface-cloth,
+.surface-rough {
+  fill: #f0b5aa;
+  stroke: #c85d50;
+  stroke-width: 3;
+  stroke-dasharray: 4 5;
+}
+
+.surface-board {
+  fill: #d9b477;
+  stroke: #a87527;
+  stroke-width: 3;
+}
+
+.surface-smooth {
+  fill: #c9e2e8;
+  stroke: #76a6b6;
+  stroke-width: 2;
+}
+
+.surface-ideal {
+  fill: #c7eee7;
+  stroke: #4ca58f;
+  stroke-width: 3;
+  stroke-dasharray: 12 7;
+}
+
+.inertia-start-cart rect {
+  fill: #dce7eb;
+  stroke: #879aa5;
+  stroke-width: 4;
+}
+
+.inertia-start-cart circle {
+  fill: #718492;
+  stroke: #f6fbfd;
+  stroke-width: 4;
+}
+
+.inertia-cart {
+  transition: transform 240ms ease;
+}
+
+.inertia-cart rect {
+  fill: #ffd166;
+  stroke: #9f7110;
+  stroke-width: 4;
+}
+
+.inertia-cart circle {
+  fill: #394c5f;
+  stroke: #f6fbfd;
+  stroke-width: 4;
+}
+
+.stop-marker {
+  stroke: var(--coral);
+  stroke-width: 4;
+  stroke-dasharray: 7 6;
+  transition: x1 240ms ease, x2 240ms ease;
+}
+
+.resultant-axis {
+  stroke: #c7d6dd;
+  stroke-width: 3;
+  stroke-dasharray: 7 7;
+}
+
+.resultant-arrow {
+  fill: none;
+  stroke: #26394d;
+  stroke-width: 9;
+  stroke-linecap: round;
+  transition: x2 180ms ease;
+}
+
+.resultant-fill,
+.resultant-zero {
+  fill: #26394d;
+}
+
+.resultant-text {
+  fill: #26394d;
+}
+
+.pressure-indent {
+  fill: rgba(239, 111, 97, 0.3);
+  transition: x 180ms ease, width 180ms ease, height 180ms ease;
+}
+
+.liquid-surface-line {
+  stroke: #279daf;
+  stroke-width: 4;
+}
+
+.pressure-probe {
+  fill: #ffd166;
+  stroke: #9f7110;
+  stroke-width: 5;
+}
+
+.probe-membrane {
+  stroke: #c44e42;
+  stroke-width: 6;
+  stroke-linecap: round;
+  transition: x1 180ms ease, x2 180ms ease, y1 180ms ease, y2 180ms ease;
+}
+
+#liquidDepthMeasure,
+#liquidDepthTick {
+  transition: y1 180ms ease, y2 180ms ease;
+}
+
+.probe-tube,
+.u-tube {
+  fill: none;
+  stroke: #657b8b;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#liquidPressureProbe {
+  transition: cy 180ms ease;
+}
+
+.u-tube-liquid {
+  fill: #ef6f61;
+  transition: y 180ms ease, height 180ms ease;
+}
+
+.pressure-direction-row,
+.ship-lock-controls,
+.pump-phase-controls {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.flow-mode-controls {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.chapter-wide-lab {
+  margin-top: 28px;
+}
+
+.lock-water {
+  fill: #8bd8e7;
+  opacity: 0.78;
+  transition: y 240ms ease, height 240ms ease;
+}
+
+.lock-bank,
+.lock-wall,
+.lock-channel {
+  fill: none;
+  stroke: #718696;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lock-gate {
+  stroke: #42596c;
+  stroke-width: 14;
+  transition: opacity 180ms ease, stroke-dasharray 180ms ease;
+}
+
+.lock-gate.is-open {
+  opacity: 0.28;
+  stroke-dasharray: 12 12;
+}
+
+.lock-boat {
+  fill: #ffd166;
+  stroke: #9f7110;
+  stroke-width: 4;
+}
+
+.lock-mast {
+  stroke: #42596c;
+  stroke-width: 5;
+}
+
+.lock-sail {
+  fill: #ef8b80;
+}
+
+#shipLockBoat {
+  transition: transform 240ms ease;
+}
+
+.altitude-mountain {
+  fill: #b8d8c4;
+  stroke: #5a9a72;
+  stroke-width: 4;
+}
+
+.altitude-sun {
+  fill: #ffd166;
+}
+
+.altitude-scale {
+  stroke: #7a8f9f;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.altitude-lab-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+  align-items: center;
+  gap: 24px;
+}
+
+.altitude-lab-layout .physics-diagram {
+  margin-bottom: 0;
+}
+
+.mercury-reservoir {
+  fill: #d5dde2;
+  stroke: #718696;
+  stroke-width: 6;
+}
+
+.mercury-surface {
+  stroke: #b85e55;
+  stroke-width: 5;
+}
+
+.torricelli-tube {
+  fill: none;
+  stroke: #8aa0af;
+  stroke-width: 24;
+  stroke-linecap: round;
+  opacity: 0.55;
+  transition: d 180ms ease;
+}
+
+.torricelli-mercury {
+  fill: none;
+  stroke: #c6655b;
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: d 180ms ease;
+}
+
+.torricelli-point {
+  fill: #c6655b;
+  transition: cx 180ms ease;
+}
+
+.observer-line {
+  stroke: #26394d;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+#altitudeObserver {
+  transition: transform 180ms ease;
+}
+
+.pump-chamber {
+  fill: #f7fbfd;
+  stroke: #718696;
+  stroke-width: 7;
+}
+
+.pump-water {
+  fill: #8bd8e7;
+  opacity: 0.76;
+  transition: y 180ms ease, height 180ms ease;
+}
+
+.pump-piston,
+.pump-rod,
+.pump-inlet,
+.pump-outlet {
+  fill: none;
+  stroke: #42596c;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: y1 180ms ease, y2 180ms ease;
+}
+
+.pump-valve {
+  stroke: #26394d;
+  stroke-width: 4;
+  transition: fill 160ms ease, cy 180ms ease;
+}
+
+.pump-valve.is-open {
+  fill: #75c8a1;
+}
+
+.pump-valve.is-closed {
+  fill: #ef8b80;
+}
+
+.pump-flow-path {
+  fill: none;
+  stroke: #1aa6b7;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 10 10;
+  opacity: 0.25;
+}
+
+.pump-flow-path.is-flowing {
+  opacity: 1;
+  animation: pump-flow 700ms linear infinite;
+}
+
+@keyframes pump-flow {
+  to { stroke-dashoffset: -20; }
+}
+
+.flow-paper {
+  fill: none;
+  stroke: #f2b544;
+  stroke-width: 14;
+  stroke-linecap: round;
+  transition: d 180ms ease;
+}
+
+.flow-streamline {
+  fill: none;
+  stroke: #55b7c4;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.flow-streamline.fast {
+  stroke-dasharray: 16 8;
+}
+
+.flow-streamline.slow {
+  stroke: #78a9b7;
+  stroke-dasharray: 10 12;
+}
+
+.airfoil-shape {
+  fill: #ffd166;
+  stroke: #9f7110;
+  stroke-width: 5;
+}
+
+.spring-meter {
+  fill: #ffffff;
+  stroke: #718696;
+  stroke-width: 5;
+}
+
+.spring-meter-ring,
+.spring-hook {
+  fill: none;
+  stroke: #5f7486;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.spring-meter-scale line {
+  stroke: #8aa0af;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.spring-meter-pointer {
+  stroke: #c44e42;
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: y1 180ms ease, y2 180ms ease;
+}
+
+.spring-meter-unit {
+  fill: #53677b;
+  font-size: 13px;
+  font-weight: 800;
+  text-anchor: middle;
+}
+
+.suspension-thread {
+  fill: none;
+  stroke: #40576a;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.tension-fill {
+  fill: #3f6f91;
+}
+
+.tension-stroke {
+  stroke: #3f6f91;
+}
+
+.tension-text {
+  fill: #315d7c;
+}
+
+.overflow-spout,
+.collection-cup {
+  fill: none;
+  stroke: #718696;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.evidence-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.evidence-pair > div {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  text-align: center;
+}
+
+.evidence-pair span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.evidence-pair > span {
+  color: var(--ink);
+  font-size: 24px;
+}
+
+.evidence-pair strong {
+  color: var(--teal);
+  font-size: 28px;
+}
+
+.floating-lab-object {
+  fill: #ffd166;
+  stroke: #a8750c;
+  stroke-width: 5;
+  transition: y 220ms ease;
+}
+
+.hydrometer-stem {
+  fill: #ffffff;
+  stroke: #5f7486;
+  stroke-width: 3;
+}
+
+.hydrometer-scale line {
+  stroke: var(--teal);
+  stroke-width: 2;
+}
+
+.hydrometer-float {
+  fill: #ffd166;
+  stroke: #a8750c;
+  stroke-width: 5;
+}
+
+.hydrometer-ballast {
+  fill: #42596c;
+  stroke: #26394d;
+  stroke-width: 3;
+}
+
+#microHydrometerInstrument {
+  transition: transform 180ms ease;
+}
+
+.steelyard-beam {
+  stroke: #a87527;
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.steelyard-pan {
+  fill: #f3d58c;
+  stroke: #9f7110;
+  stroke-width: 5;
+}
+
+.steelyard-weight {
+  fill: #8bd8e7;
+  stroke: #397b91;
+  stroke-width: 5;
+  transition: cx 180ms ease;
+}
+
+.steelyard-ticks line {
+  stroke: #5f7486;
+  stroke-width: 3;
+}
+
+#steelyardWeightLine {
+  transition: x1 180ms ease, x2 180ms ease;
+}
+
+#usefulWorkBar,
+#extraWorkBar,
+#totalWorkBar {
+  transition: y 180ms ease, height 180ms ease;
+}
+
 @media (max-width: 920px) {
   .topbar {
-    align-items: flex-start;
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 8px;
   }
 
@@ -3486,7 +4881,7 @@ main > section[id]:not(.chapter-showcase) {
 
   .chapter-toc {
     padding-inline: 18px;
-    scroll-margin-top: 112px;
+    scroll-margin-top: 142px;
   }
 
   .chapter-toc-inner {
@@ -3500,6 +4895,10 @@ main > section[id]:not(.chapter-showcase) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .altitude-lab-layout {
+    grid-template-columns: 1fr;
+  }
+
   .chapter-toc-link {
     justify-content: center;
     min-height: 44px;
@@ -3507,7 +4906,7 @@ main > section[id]:not(.chapter-showcase) {
   }
 
   .quiz-progress {
-    top: 108px;
+    top: 142px;
     grid-template-columns: 1fr;
     gap: 10px;
   }
@@ -3521,11 +4920,11 @@ main > section[id]:not(.chapter-showcase) {
   }
 
   .quiz-card {
-    scroll-margin-top: 270px;
+    scroll-margin-top: 292px;
   }
 
   main > section[id]:not(.chapter-showcase) {
-    scroll-margin-top: 118px;
+    scroll-margin-top: 146px;
   }
 
   .hero {
@@ -3565,8 +4964,36 @@ main > section[id]:not(.chapter-showcase) {
   .ray-practice-layout,
   .concept-grid,
   .water-cycle-layout,
-  .reflection-surface-layout {
+    .reflection-surface-layout {
     grid-template-columns: 1fr;
+  }
+
+  .bridge-links {
+    grid-template-columns: 1fr;
+  }
+
+  .balance-condition-guide .focus-guide-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .balance-condition-guide .focus-guide-item + .focus-guide-item {
+    border-top: 0;
+    border-left: 1px solid var(--line);
+  }
+
+  .balance-condition-guide .focus-guide-item:nth-child(3) {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
+  .balance-condition-guide .focus-guide-item:nth-child(4) {
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+  }
+
+  .bridge-arrow {
+    justify-self: center;
+    transform: rotate(90deg);
   }
 
   .instrument-chain {
@@ -3592,6 +5019,14 @@ main > section[id]:not(.chapter-showcase) {
   }
 
   .focus-guide-list {
+    grid-template-columns: 1fr;
+  }
+
+  .buoyancy-state-guide .focus-guide-list {
+    grid-template-columns: 1fr;
+  }
+
+  .exam-grid.buoyancy-app-grid {
     grid-template-columns: 1fr;
   }
 
@@ -3635,9 +5070,58 @@ main > section[id]:not(.chapter-showcase) {
   .error-cases {
     grid-template-columns: 1fr;
   }
+
+  .concept-diagram-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 560px) {
+  body[data-page="pressure"] .interactive-panel {
+    padding-inline: 14px;
+  }
+
+  body[data-page="pressure"] .panel-topline {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  body[data-page="pressure"] .diagram-text {
+    font-size: 22px;
+  }
+
+  body[data-page="pressure"] .diagram-note {
+    font-size: 18px;
+  }
+
+  .pressure-direction-row,
+  .ship-lock-controls,
+  .pump-phase-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric-result.metric-trio {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .evidence-pair > span {
+    justify-self: center;
+    line-height: 1;
+  }
+
+  .balance-condition-guide .focus-guide-list {
+    grid-template-columns: 1fr;
+  }
+
+  .balance-condition-guide .focus-guide-item + .focus-guide-item {
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
+
   .hero {
     min-height: 820px;
   }
@@ -3752,6 +5236,36 @@ main > section[id]:not(.chapter-showcase) {
 
   .balance-pan.right {
     right: 7%;
+  }
+
+  .physics-diagram {
+    margin-block: 10px 16px;
+  }
+
+  .diagram-text {
+    font-size: 18px;
+  }
+
+  .diagram-note {
+    font-size: 15px;
+  }
+
+  .state-diagram-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .state-water {
+    height: 116px;
+  }
+
+  .vector-legend span {
+    gap: 4px;
+    padding-inline: 4px;
+    font-size: 12px;
+  }
+
+  .concept-compare div {
+    grid-template-columns: 56px minmax(0, 1fr);
   }
 }
 

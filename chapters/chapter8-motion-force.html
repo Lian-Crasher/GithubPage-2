@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="八年级物理下册运动和力预习：牛顿第一定律、惯性、二力平衡、摩擦力和二力合成。" />
+    <title>第八章 运动和力 - 八年级物理预习站</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles/main.css?v=36" />
+  </head>
+  <body data-page="motion-force">
+    <header class="topbar">
+      <a class="brand" href="../index.html#top" aria-label="回到首页"><span class="brand-mark">v</span><span>物理预习站</span></a>
+      <nav class="chapter-nav"><a href="../index.html#volume2">下册地图</a></nav>
+    </header>
+    <main id="top">
+      <section class="chapter-showcase volume-two-showcase" id="chapter-motion-force" aria-labelledby="motion-force-title">
+        <img src="../assets/chapter8-motion-force-hero.jpg" alt="小车在直轨道上通过滑轮连接两侧砝码，前方放有粗糙垫面的实验场景" />
+        <div class="showcase-copy">
+          <p class="eyebrow">下册 · 第八章 · 运动和力</p>
+          <h1 id="motion-force-title">力改变运动，不负责维持运动</h1>
+          <p>牛顿第一定律纠正直觉，二力平衡解释运动状态为何不变，摩擦力与二力合成则帮助我们分析真实运动。</p>
+        </div>
+      </section>
+
+      <section class="learning-band knowledge-bridge" id="motion-force-bridge" aria-labelledby="motion-force-bridge-title">
+        <div class="section-head compact">
+          <p class="eyebrow">知识桥梁</p>
+          <h2 id="motion-force-bridge-title">上册描述“怎样运动”，下册追问“为什么改变”</h2>
+          <p>速度和参照物描述运动状态；本章进一步判断，物体的运动状态是否因为受力而改变。</p>
+        </div>
+        <div class="bridge-links">
+          <a href="chapter1-motion.html#motion-graph"><span>上册基础</span><strong>速度与运动状态</strong><small>先描述快慢和方向</small></a>
+          <span class="bridge-arrow" aria-hidden="true">→</span>
+          <div><span>本章新知</span><strong>受力与状态改变</strong><small>合力不为零才会改变状态</small></div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="inertia" aria-labelledby="inertia-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 1 节</p>
+          <h2 id="inertia-title">牛顿第一定律与惯性</h2>
+          <p>不受力时，原来静止的物体保持静止，原来运动的物体保持匀速直线运动。</p>
+        </div>
+        <div class="focus-guide">
+          <p class="focus-guide-title">本节抓手</p>
+          <dl class="focus-guide-list">
+            <div class="focus-guide-item" data-focus-type="term"><dt>核心概念</dt><dd><mark class="key-term">惯性</mark></dd></div>
+            <div class="focus-guide-item" data-focus-type="rule"><dt>关键规律</dt><dd><strong class="key-rule">力是改变运动状态的原因</strong></dd></div>
+            <div class="focus-guide-item" data-focus-type="caution"><dt>易错提醒</dt><dd><strong class="key-caution">不能说“受到惯性”</strong></dd></div>
+          </dl>
+        </div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel">
+            <h3>从实验事实到理想推理</h3>
+            <ol class="reasoning-steps">
+              <li><strong>控制起点：</strong>小车从同一斜面、同一高度由静止滑下。</li>
+              <li><strong>改变阻力：</strong>依次换用棉布、木板等不同接触面。</li>
+              <li><strong>观察事实：</strong>阻力越小，小车速度减小得越慢，运动越远。</li>
+              <li><strong>继续推理：</strong>若阻力为 0，小车将一直做匀速直线运动。</li>
+            </ol>
+            <p class="lab-note"><strong>惯性</strong>是物体保持原来运动状态的性质，一切物体都有，与是否受力、是否运动无关。</p>
+          </div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>阻力越小，小车滑多远？</h3><span class="tag">保持释放高度相同</span></div>
+            <div class="physics-diagram inertia-diagram" id="inertiaDiagram" data-surface="board" role="img" aria-label="小车从同一高度滑下，在木板上受到较小阻力，滑行距离较远">
+              <svg viewBox="0 0 620 300" aria-hidden="true">
+                <path d="M38 58 L184 226 H38 Z" class="inertia-ramp" />
+                <line x1="42" y1="58" x2="186" y2="226" class="ramp-line" />
+                <rect id="inertiaSurface" x="180" y="226" width="400" height="22" rx="5" class="inertia-surface surface-board" />
+                <g class="inertia-start-cart" transform="translate(22 8) rotate(49 96 120)">
+                  <rect x="62" y="91" width="72" height="36" rx="8" />
+                  <circle cx="79" cy="132" r="10" /><circle cx="118" cy="132" r="10" />
+                </g>
+                <g id="inertiaCart" class="inertia-cart" transform="translate(250 0)">
+                  <rect x="0" y="180" width="76" height="40" rx="8" />
+                  <circle cx="18" cy="226" r="11" /><circle cx="59" cy="226" r="11" />
+                </g>
+                <line id="inertiaDistanceLine" x1="194" y1="270" x2="288" y2="270" class="measure-line" />
+                <line id="inertiaStopMarker" x1="326" y1="176" x2="326" y2="250" class="stop-marker" />
+                <text x="72" y="38" class="diagram-note">同一高度释放</text>
+                <text id="inertiaSurfaceLabel" x="380" y="212" text-anchor="middle" class="diagram-text">木板</text>
+                <text id="inertiaDistanceLabel" x="241" y="294" text-anchor="middle" class="diagram-note">滑行较远</text>
+              </svg>
+            </div>
+            <span class="control-group-label">选择水平接触面</span>
+            <div class="choice-row force-choice-row" role="group" aria-label="选择小车接触面">
+              <button type="button" data-inertia-surface="cloth" aria-pressed="false">棉布</button>
+              <button type="button" class="is-active" data-inertia-surface="board" aria-pressed="true">木板</button>
+              <button type="button" data-inertia-surface="ideal" aria-pressed="false">理想光滑面</button>
+            </div>
+            <p class="feedback" id="inertiaFeedback">木板阻力较小，小车速度减小得较慢，因此比在棉布上滑得更远。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band" id="balance" aria-labelledby="balance-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 2 节</p>
+          <h2 id="balance-title">二力平衡：受力不等于运动状态一定改变</h2>
+          <p>物体只受两个力并保持静止或匀速直线运动时，这两个力必须满足四个条件。</p>
+        </div>
+        <div class="focus-guide balance-condition-guide" aria-label="二力平衡四个条件">
+          <p class="focus-guide-title">四条件缺一不可</p>
+          <dl class="focus-guide-list">
+            <div class="focus-guide-item" data-focus-type="term"><dt>同物</dt><dd>同一物体</dd></div>
+            <div class="focus-guide-item" data-focus-type="rule"><dt>等大</dt><dd>大小相等</dd></div>
+            <div class="focus-guide-item" data-focus-type="caution"><dt>反向</dt><dd>方向相反</dd></div>
+            <div class="focus-guide-item" data-focus-type="term"><dt>共线</dt><dd>同一直线</dd></div>
+          </dl>
+        </div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel">
+            <h3>先分清两组“成对的力”</h3>
+            <dl class="concept-compare">
+              <div><dt>平衡力</dt><dd>作用在同一个物体上，使物体的运动状态保持不变。</dd></div>
+              <div><dt>相互作用力</dt><dd>分别作用在两个物体上，同时产生、同时消失。</dd></div>
+              <div><dt>判断口令</dt><dd>先找研究对象，再检查同物、等大、反向、共线。</dd></div>
+            </dl>
+            <p class="lab-note"><strong class="key-caution">合力为 0 不等于没有受力</strong>，而是各力的作用效果相互抵消。</p>
+          </div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>小车能保持平衡吗？</h3><span class="tag">本图已固定同物、反向、共线</span></div>
+            <div class="physics-diagram" id="balanceDiagram" role="img" aria-label="小车受到左右各四牛、方向相反的拉力，水平方向二力平衡">
+              <svg viewBox="0 0 620 280" aria-hidden="true">
+                <line x1="54" y1="208" x2="566" y2="208" class="ground-line" />
+                <rect x="252" y="128" width="116" height="62" rx="11" class="cart-body" />
+                <circle cx="280" cy="201" r="18" class="cart-wheel" /><circle cx="340" cy="201" r="18" class="cart-wheel" />
+                <line id="balanceLeftArrow" x1="252" y1="154" x2="146" y2="154" class="force-arrow sharp-force-vector coral-stroke" data-force-head="balanceArrowLeft" data-force-tip-x="146" data-force-tip-y="154" />
+                <path id="balanceArrowLeft" class="force-arrowhead coral-fill" />
+                <line id="balanceRightArrow" x1="368" y1="154" x2="474" y2="154" class="force-arrow sharp-force-vector teal-stroke" data-force-head="balanceArrowRight" data-force-tip-x="474" data-force-tip-y="154" />
+                <path id="balanceArrowRight" class="force-arrowhead teal-fill" />
+                <text id="balanceLeftLabel" x="136" y="126" text-anchor="middle" class="diagram-text coral-text">左拉力 4 N</text>
+                <text id="balanceRightLabel" x="484" y="126" text-anchor="middle" class="diagram-text teal-text">右拉力 4 N</text>
+                <text id="balanceDiagramState" x="310" y="258" text-anchor="middle" class="diagram-note">合力 0 N · 平衡</text>
+              </svg>
+            </div>
+            <label class="slider-label" for="balanceLeftSlider">左拉力 <output id="balanceLeftOutput">4 N</output></label>
+            <input id="balanceLeftSlider" type="range" min="1" max="8" value="4" step="1" />
+            <label class="slider-label" for="balanceRightSlider">右拉力 <output id="balanceRightOutput">4 N</output></label>
+            <input id="balanceRightSlider" type="range" min="1" max="8" value="4" step="1" />
+            <div class="metric-result"><span>水平方向判断</span><strong id="balanceResult">平衡</strong></div>
+            <p class="feedback" id="balanceFeedback">两个力大小相等、方向相反，小车在水平方向受力平衡。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="friction" aria-labelledby="friction-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 3 节</p>
+          <h2 id="friction-title">摩擦力：阻碍的是相对运动</h2>
+          <p>滑动摩擦力的大小与压力、接触面的粗糙程度和材料有关，方向与相对运动方向相反。</p>
+        </div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel">
+            <h3>控制变量探究</h3>
+            <ul class="clean-list">
+              <li>研究压力影响时，应保持接触面材料和粗糙程度不变。</li>
+              <li>研究粗糙程度影响时，应保持压力不变。</li>
+              <li>物体做匀速直线运动时，测力计拉力与滑动摩擦力平衡。</li>
+              <li><strong class="key-rule">压力越大、接触面越粗糙，滑动摩擦力通常越大</strong>。</li>
+            </ul>
+            <dl class="concept-compare">
+              <div><dt>增大</dt><dd>增大压力、使接触面更粗糙，例如鞋底花纹和刹车。</dd></div>
+              <div><dt>减小</dt><dd>减小压力、使接触面更光滑，或用滚动代替滑动。</dd></div>
+            </dl>
+          </div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>压力和粗糙程度怎样影响摩擦？</h3><span class="tag">匀速拉动 · 趋势模型</span></div>
+            <div class="physics-diagram friction-diagram" id="frictionDiagram" data-surface="board" role="img" aria-label="木块在普通木板上匀速向右滑动，压力八牛，滑动摩擦力约二点四牛">
+              <svg viewBox="0 0 620 300" aria-hidden="true">
+                <rect id="frictionSurface" x="46" y="218" width="528" height="30" rx="5" class="friction-surface surface-board" />
+                <rect x="248" y="120" width="124" height="98" rx="9" class="diagram-object" />
+                <text id="frictionPressureLabel" x="310" y="174" text-anchor="middle" class="diagram-text">压力 8 N</text>
+                <line id="frictionForceArrow" x1="248" y1="190" x2="170" y2="190" class="force-arrow sharp-force-vector coral-stroke" data-force-head="frictionArrowLeft" data-force-tip-x="170" data-force-tip-y="190" />
+                <path id="frictionArrowLeft" class="force-arrowhead coral-fill" />
+                <line id="frictionPullArrow" x1="372" y1="154" x2="450" y2="154" class="force-arrow sharp-force-vector teal-stroke" data-force-head="frictionArrowRight" data-force-tip-x="450" data-force-tip-y="154" />
+                <path id="frictionArrowRight" class="force-arrowhead teal-fill" />
+                <text id="frictionForceLabel" x="160" y="170" text-anchor="middle" class="diagram-note coral-text">摩擦力 2.4 N</text>
+                <text id="frictionPullLabel" x="460" y="134" text-anchor="middle" class="diagram-note teal-text">拉力 2.4 N</text>
+                <text id="frictionSurfaceLabel" x="310" y="278" text-anchor="middle" class="diagram-note">普通木板</text>
+              </svg>
+            </div>
+            <span class="control-group-label">接触面</span>
+            <div class="choice-row force-choice-row" role="group" aria-label="选择木块接触面">
+              <button type="button" data-friction-surface="smooth" aria-pressed="false">光滑木板</button>
+              <button type="button" class="is-active" data-friction-surface="board" aria-pressed="true">普通木板</button>
+              <button type="button" data-friction-surface="rough" aria-pressed="false">粗糙毛巾</button>
+            </div>
+            <label class="slider-label" for="frictionPressureSlider">压力 <output id="frictionPressureOutput">8 N</output></label>
+            <input id="frictionPressureSlider" type="range" min="2" max="12" value="8" step="1" />
+            <div class="metric-result"><span>滑动摩擦力趋势估算</span><strong id="frictionResult">约 2.4 N</strong></div>
+            <p class="lab-note compact">数值仅用于比较变化趋势；实验中应让木块匀速运动，再读取测力计示数。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band" id="resultant" aria-labelledby="resultant-title">
+        <div class="section-head compact">
+          <p class="eyebrow">第 4 节</p>
+          <h2 id="resultant-title">同一直线上二力的合成</h2>
+          <p>如果一个力产生的作用效果与几个力共同作用的效果相同，这个力就是那几个力的合力。</p>
+        </div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel">
+            <h3>先看方向，再做运算</h3>
+            <ul class="clean-list">
+              <li><strong>同向：</strong>合力大小等于两力之和，方向与两个力相同。</li>
+              <li><strong>反向：</strong>合力大小等于两力之差，方向跟较大的力一致。</li>
+              <li>大小相等、方向相反时，合力为 0。</li>
+              <li><strong class="key-caution">合力是等效替代，不是物体额外受到的第三个力</strong>。</li>
+            </ul>
+          </div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>两个力怎样合成一个力？</h3><span class="tag">箭头长度表示大小</span></div>
+            <div class="physics-diagram" id="resultantDiagram" role="img" aria-label="物体受到向右六牛和向右四牛的两个力，合力为向右十牛">
+              <svg viewBox="0 0 620 310" aria-hidden="true">
+                <rect x="270" y="104" width="80" height="82" rx="10" class="diagram-object" />
+                <text x="310" y="153" text-anchor="middle" class="diagram-text">物体</text>
+                <line id="resultantF1Arrow" x1="350" y1="122" x2="458" y2="122" class="force-arrow sharp-force-vector teal-stroke" data-force-head="resultantF1Head" data-force-tip-x="458" data-force-tip-y="122" />
+                <path id="resultantF1Head" class="force-arrowhead teal-fill" />
+                <line id="resultantF2Arrow" x1="350" y1="168" x2="434" y2="168" class="force-arrow sharp-force-vector coral-stroke" data-force-head="resultantF2Head" data-force-tip-x="434" data-force-tip-y="168" />
+                <path id="resultantF2Head" class="force-arrowhead coral-fill" />
+                <text id="resultantF1Label" x="468" y="102" text-anchor="middle" class="diagram-note teal-text">F₁ 6 N</text>
+                <text id="resultantF2Label" x="444" y="202" text-anchor="middle" class="diagram-note coral-text">F₂ 4 N</text>
+                <line x1="70" y1="226" x2="550" y2="226" class="resultant-axis" />
+                <line id="resultantForceArrow" x1="310" y1="250" x2="470" y2="250" class="resultant-arrow sharp-force-vector" data-force-head="resultantForceHead" data-force-tip-x="470" data-force-tip-y="250" />
+                <path id="resultantForceHead" class="force-arrowhead resultant-fill" />
+                <circle id="resultantZeroMark" cx="310" cy="250" r="9" class="resultant-zero" hidden />
+                <text id="resultantDiagramLabel" x="390" y="292" text-anchor="middle" class="diagram-text resultant-text">合力 10 N · 向右</text>
+              </svg>
+            </div>
+            <label class="slider-label" for="resultantF1Slider">F₁（向右） <output id="resultantF1Output">6 N</output></label>
+            <input id="resultantF1Slider" type="range" min="1" max="10" value="6" step="1" />
+            <label class="slider-label" for="resultantF2Slider">F₂ 大小 <output id="resultantF2Output">4 N</output></label>
+            <input id="resultantF2Slider" type="range" min="1" max="10" value="4" step="1" />
+            <span class="control-group-label">F₂ 方向</span>
+            <div class="choice-row" role="group" aria-label="选择第二个力的方向">
+              <button type="button" class="is-active" data-resultant-direction="same" aria-pressed="true">向右 · 同向</button>
+              <button type="button" data-resultant-direction="opposite" aria-pressed="false">向左 · 反向</button>
+            </div>
+            <div class="metric-result"><span>等效合力</span><strong id="resultantResult">10 N · 向右</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="check-band" id="motion-force-check" aria-labelledby="motion-force-check-title">
+        <div class="section-head"><p class="eyebrow">第八章检查</p><h2 id="motion-force-check-title">能从受力判断运动了吗？</h2><p>完成 6 题，检查惯性、平衡、摩擦和合力。</p></div>
+        <form class="quiz" id="volume2Quiz">
+          <fieldset class="quiz-card"><legend>1. 牛顿第一定律说明，物体不受力时会怎样？</legend><label><input type="radio" name="m1" value="a" /> 保持静止或匀速直线运动</label><label><input type="radio" name="m1" value="b" /> 一定停止</label><label><input type="radio" name="m1" value="c" /> 一定加速</label></fieldset>
+          <fieldset class="quiz-card"><legend>2. 关于惯性，正确的是？</legend><label><input type="radio" name="m2" value="a" /> 一切物体都有惯性</label><label><input type="radio" name="m2" value="b" /> 运动物体才有惯性</label><label><input type="radio" name="m2" value="c" /> 受力越大惯性越大</label></fieldset>
+          <fieldset class="quiz-card"><legend>3. 两个力成为平衡力，必须作用在哪里？</legend><label><input type="radio" name="m3" value="a" /> 同一个物体上</label><label><input type="radio" name="m3" value="b" /> 两个物体上</label><label><input type="radio" name="m3" value="c" /> 任意位置</label></fieldset>
+          <fieldset class="quiz-card"><legend>4. 增大滑动摩擦力的可行方法是？</legend><label><input type="radio" name="m4" value="a" /> 增大压力或使接触面更粗糙</label><label><input type="radio" name="m4" value="b" /> 减小压力并加润滑油</label><label><input type="radio" name="m4" value="c" /> 让物体离开接触面</label></fieldset>
+          <fieldset class="quiz-card"><legend>5. 同一直线上两个同向力分别为 8 N 和 5 N，合力多大？</legend><label class="quiz-text-row">F = <input class="quiz-text-input" name="m5" inputmode="decimal" autocomplete="off" /><span>N</span></label></fieldset>
+          <fieldset class="quiz-card"><legend>6. 匀速直线行驶的汽车水平方向受力情况是？</legend><label><input type="radio" name="m6" value="a" /> 牵引力与阻力平衡</label><label><input type="radio" name="m6" value="b" /> 只受牵引力</label><label><input type="radio" name="m6" value="c" /> 不受任何力</label></fieldset>
+          <button class="primary-action quiz-submit" type="submit">提交第八章检查</button>
+          <div class="quiz-result" id="volume2QuizResult" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+    <footer class="footer"><p>八年级物理下册预习 · 第八章 运动和力</p></footer>
+    <script src="../scripts/common.js?v=11"></script>
+    <script src="../scripts/quiz.js?v=4"></script>
+    <script src="../scripts/chapter-volume2.js?v=16"></script>
+  </body>
+</html>

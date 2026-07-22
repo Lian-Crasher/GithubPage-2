@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="八年级物理下册力的预习：学习力的作用效果、三要素、弹力、弹簧测力计和重力。" />
+    <title>第七章 力 - 八年级物理预习站</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles/main.css?v=36" />
+  </head>
+  <body data-page="force">
+    <header class="topbar">
+      <a class="brand" href="../index.html#top" aria-label="回到首页"><span class="brand-mark">v</span><span>物理预习站</span></a>
+      <nav class="chapter-nav" aria-label="下册章节导航"><a href="../index.html#volume2">下册地图</a></nav>
+    </header>
+    <main id="top">
+      <section class="chapter-showcase volume-two-showcase" id="chapter-force" aria-labelledby="force-title">
+        <img src="../assets/chapter7-force-hero.jpg" alt="弹簧测力计悬挂金属块，旁边放有压缩弹簧的力学实验场景" />
+        <div class="showcase-copy">
+          <p class="eyebrow">下册 · 第七章 · 力</p>
+          <h1 id="force-title">看见作用，也要找准施力物体</h1>
+          <p>从“推、拉、吸引”中抽象出力，学习用大小、方向和作用点描述它，再用弹簧测力计和重力公式把作用变成可测量的数据。</p>
+        </div>
+      </section>
+
+      <section class="learning-band knowledge-bridge" id="force-bridge" aria-labelledby="force-bridge-title">
+        <div class="section-head compact"><p class="eyebrow">知识桥梁</p><h2 id="force-bridge-title">从上册的质量，走到下册的重力</h2><p>质量表示物体所含物质的多少，重力是地球对物体的吸引作用。二者有关，但不是同一个物理量。</p></div>
+        <div class="bridge-links">
+          <a href="chapter6-density.html#mass"><span>上册基础</span><strong>质量 m</strong><small>单位 kg，位置改变时通常不变</small></a>
+          <span class="bridge-arrow" aria-hidden="true">→</span>
+          <div><span>本章新知</span><strong>重力 G = mg</strong><small>单位 N，方向竖直向下</small></div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="force-basics" aria-labelledby="force-basics-title">
+        <div class="section-head compact"><p class="eyebrow">第 1 节</p><h2 id="force-basics-title">力：物体对物体的作用</h2><p>力不能离开物体单独存在。一个物体施力时，必须同时找到受力物体。</p></div>
+        <div class="focus-guide" aria-labelledby="force-focus-title">
+          <p class="focus-guide-title" id="force-focus-title">本节抓手</p>
+          <dl class="focus-guide-list">
+            <div class="focus-guide-item" data-focus-type="term"><dt>核心概念</dt><dd><mark class="key-term">施力物体</mark><span aria-hidden="true"> · </span><mark class="key-term">受力物体</mark></dd></div>
+            <div class="focus-guide-item" data-focus-type="rule"><dt>关键规律</dt><dd><strong class="key-rule">力的作用是相互的</strong></dd></div>
+            <div class="focus-guide-item" data-focus-type="caution"><dt>易错提醒</dt><dd><strong class="key-caution">相互作用力作用在两个物体上</strong></dd></div>
+          </dl>
+        </div>
+        <div class="two-column force-learning-grid">
+          <div class="knowledge-panel">
+            <h3>先把力说完整</h3>
+            <ul class="clean-list">
+              <li>力用字母 <strong>F</strong> 表示，单位是<strong>牛顿（N）</strong>。</li>
+              <li>托起两枚鸡蛋所用的力大约是 <strong>1 N</strong>，可以帮助建立量感。</li>
+              <li>力可以改变物体的形状，也可以改变物体的运动状态。</li>
+              <li><strong class="key-caution">画力的示意图时，箭尾、箭头和长度都有含义</strong>。</li>
+            </ul>
+          </div>
+          <div class="interactive-panel" id="forceVectorLab">
+            <div class="panel-topline"><h3>力的三要素观察器</h3><span class="tag">先改变条件，再读箭头</span></div>
+            <div class="physics-diagram" id="forceVectorDiagram" role="img" aria-label="六十牛的力从小车中心水平向右作用">
+              <svg viewBox="0 0 620 300" aria-hidden="true">
+                <line x1="58" y1="232" x2="562" y2="232" class="ground-line" />
+                <rect x="198" y="124" width="224" height="92" rx="16" class="force-cart-body" />
+                <circle cx="244" cy="224" r="22" class="cart-wheel" /><circle cx="376" cy="224" r="22" class="cart-wheel" />
+                <circle id="forcePointLeft" cx="234" cy="170" r="9" class="force-point" />
+                <circle id="forcePointCenter" cx="310" cy="170" r="9" class="force-point is-selected" />
+                <circle id="forcePointRight" cx="386" cy="170" r="9" class="force-point" />
+                <line id="forceVectorArrow" x1="310" y1="170" x2="450" y2="170" class="force-arrow sharp-force-vector coral-stroke" data-force-head="forceVectorArrowHead" data-force-tip-x="450" data-force-tip-y="170" />
+                <path id="forceVectorArrowHead" class="force-arrowhead coral-fill" />
+                <text id="forceVectorValue" x="380" y="146" text-anchor="middle" class="diagram-text coral-text">F = 60 N</text>
+                <text x="310" y="270" text-anchor="middle" class="diagram-note">小车</text>
+              </svg>
+            </div>
+            <div class="vector-legend" aria-label="力的示意图读图提示"><span><i class="legend-tail"></i>箭尾：作用点</span><span><i class="legend-direction"></i>箭头：方向</span><span><i class="legend-length"></i>长度：大小</span></div>
+            <label class="slider-label" for="forceVectorSizeSlider">力的大小 <output id="forceVectorSizeOutput">60 N</output></label>
+            <input id="forceVectorSizeSlider" type="range" min="20" max="100" value="60" step="10" />
+            <div class="control-group-label">力的方向</div>
+            <div class="choice-row force-choice-row" role="group" aria-label="选择力的方向">
+              <button type="button" class="is-active" aria-pressed="true" data-force-direction="right">向右</button>
+              <button type="button" aria-pressed="false" data-force-direction="up-right">斜向上</button>
+              <button type="button" aria-pressed="false" data-force-direction="left">向左</button>
+            </div>
+            <div class="control-group-label">力的作用点</div>
+            <div class="choice-row force-choice-row" role="group" aria-label="选择力的作用点">
+              <button type="button" aria-pressed="false" data-force-point="left">左侧</button>
+              <button type="button" class="is-active" aria-pressed="true" data-force-point="center">中心</button>
+              <button type="button" aria-pressed="false" data-force-point="right">右侧</button>
+            </div>
+            <p class="feedback" id="forceVectorFeedback" aria-live="polite">箭尾在中心，箭头水平向右，箭头长度表示 60 N。</p>
+          </div>
+        </div>
+        <div class="exam-grid">
+          <article class="exam-card"><span class="tag">作用效果</span><h3>改变形状</h3><p>按橡皮泥、拉弹簧都说明力可以使物体发生形变。</p></article>
+          <article class="exam-card"><span class="tag">作用效果</span><h3>改变运动状态</h3><p>速度大小或运动方向发生改变，都属于运动状态改变。</p></article>
+          <article class="exam-card"><span class="tag">相互作用</span><h3>同时发生，作用在两物体上</h3><p>两个力大小相等、方向相反，但受力物体不同，不能相互抵消。</p></article>
+        </div>
+      </section>
+
+      <section class="learning-band" id="elastic-force" aria-labelledby="elastic-force-title">
+        <div class="section-head compact"><p class="eyebrow">第 2 节</p><h2 id="elastic-force-title">弹力：形变后想恢复原状</h2><p>先判断物体发生的是弹性形变还是塑性形变，再判断是否会产生弹力。</p></div>
+        <div class="two-column">
+          <div class="knowledge-panel">
+            <h3>弹性、塑性与弹力</h3>
+            <dl class="concept-compare">
+              <div><dt>弹性</dt><dd>撤去力后，物体能够恢复原状。</dd></div>
+              <div><dt>塑性</dt><dd>撤去力后，物体不能自动恢复原状。</dd></div>
+              <div><dt>弹力</dt><dd>发生弹性形变的物体，为恢复原状而对接触它的物体产生的力。</dd></div>
+            </dl>
+            <h3>弹簧测力计四步</h3>
+            <ol class="step-list"><li>看量程和分度值。</li><li>检查指针并调零。</li><li>沿弹簧轴线拉动，不超过量程。</li><li>示数稳定后垂直刻度面读数。</li></ol>
+          </div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>弹簧伸长观察器</h3><span class="tag">只讨论弹性限度内</span></div>
+            <div class="physics-diagram" id="springDiagram" role="img" aria-label="弹簧受到二点五牛拉力，产生中等程度的示意伸长">
+              <svg viewBox="0 0 620 340" aria-hidden="true">
+                <line x1="128" y1="42" x2="492" y2="42" class="apparatus-line" />
+                <line x1="112" y1="72" x2="112" y2="286" class="spring-scale" />
+                <g class="spring-scale-marks"><line x1="96" y1="82" x2="112" y2="82" /><line x1="96" y1="122" x2="112" y2="122" /><line x1="96" y1="162" x2="112" y2="162" /><line x1="96" y1="202" x2="112" y2="202" /><line x1="96" y1="242" x2="112" y2="242" /><line x1="96" y1="282" x2="112" y2="282" /></g>
+                <text x="74" y="88" class="diagram-note">0</text><text x="74" y="128" class="diagram-note">1</text><text x="74" y="168" class="diagram-note">2</text><text x="74" y="208" class="diagram-note">3</text><text x="74" y="248" class="diagram-note">4</text><text x="74" y="288" class="diagram-note">5</text>
+                <path id="springLabPath" d="M310 42 L310 62 L280 72 L340 82 L280 92 L340 102 L280 112 L340 122 L280 132 L340 142 L310 152" class="spring-lab-coil" />
+                <rect id="springLabBlock" x="260" y="152" width="100" height="70" rx="12" class="spring-lab-block" />
+                <line id="springScaleIndicator" x1="96" y1="182" x2="132" y2="182" class="spring-indicator" />
+                <text id="springDiagramValue" x="310" y="194" text-anchor="middle" class="diagram-text">2.5 N</text>
+                <text x="430" y="302" text-anchor="middle" class="diagram-note">拉力越大，伸长越明显</text>
+              </svg>
+            </div>
+            <label class="slider-label" for="springForceSlider">拉力 <output id="springForceOutput">2.5 N</output></label>
+            <input id="springForceSlider" type="range" min="0" max="5" value="2.5" step="0.5" />
+            <div class="metric-result"><span>示意伸长程度</span><strong id="springExtensionOutput">50%</strong></div>
+            <p class="feedback">这里的百分比只表示变化趋势；超过弹性限度后，弹簧可能不能恢复原状。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="gravity" aria-labelledby="gravity-title">
+        <div class="section-head compact"><p class="eyebrow">第 3 节</p><h2 id="gravity-title">重力：质量不变，重力会随 g 改变</h2><p>质量是物体本身的属性；重力是地球等天体对物体的吸引，大小由质量和所在地的 g 共同决定。</p></div>
+        <div class="two-column">
+          <div class="knowledge-panel">
+            <h3>公式、方向与重心</h3>
+            <ul class="clean-list">
+              <li><strong class="key-rule">G = mg</strong>，G 的单位是 N，m 的单位是 kg。</li>
+              <li>地球附近 g 约为 9.8 N/kg，粗略计算常取 10 N/kg。</li>
+              <li>重力方向始终<strong>竖直向下</strong>，不是“垂直于接触面向下”。</li>
+              <li>重力在物体上的等效作用点叫<strong>重心</strong>。</li>
+            </ul>
+          </div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>不同地点的重力</h3><span class="tag">质量保持不变</span></div>
+            <div class="physics-diagram gravity-location-diagram" id="gravityDiagram" data-location="earth" role="img" aria-label="质量二千克的物体在地球教材近似条件下受到二十牛竖直向下的重力">
+              <svg viewBox="0 0 620 330" aria-hidden="true">
+                <rect x="0" y="0" width="620" height="330" class="gravity-sky" />
+                <circle cx="310" cy="126" r="42" class="gravity-object" />
+                <circle cx="310" cy="126" r="6" class="diagram-center" />
+                <line id="gravityArrow" x1="310" y1="134" x2="310" y2="224" class="force-arrow sharp-force-vector coral-stroke" data-force-head="gravityArrowHead" data-force-tip-x="310" data-force-tip-y="224" />
+                <path id="gravityArrowHead" class="force-arrowhead coral-fill" />
+                <text id="gravityDiagramValue" x="334" y="214" class="diagram-text coral-text">G = 20.0 N</text>
+                <path d="M0 286 Q310 188 620 286 V330 H0 Z" class="gravity-ground" />
+                <text id="gravityLocationName" x="310" y="305" text-anchor="middle" class="diagram-note">地球 · 教材近似</text>
+              </svg>
+            </div>
+            <label class="control-label" for="gravityLocationSelect">所在地点</label>
+            <select class="control-select" id="gravityLocationSelect">
+              <option value="earth" data-g="10">地球 · 教材近似 g = 10 N/kg</option>
+              <option value="moon" data-g="1.6">月球 · g = 1.6 N/kg</option>
+              <option value="mars" data-g="3.7">火星 · g = 3.7 N/kg</option>
+            </select>
+            <label class="slider-label" for="forceMassSlider">质量 m <output id="forceMassOutput">2.0 kg</output></label>
+            <input id="forceMassSlider" type="range" min="0.2" max="10" value="2" step="0.2" />
+            <div class="metric-result split"><span>g <strong id="gravityGOutput">10 N/kg</strong></span><span>重力 G <strong id="gravityOutput">20.0 N</strong></span></div>
+            <p class="feedback" id="gravityFeedback">地点改变时质量仍为 2.0 kg；地球教材近似条件下，重力为 20.0 N。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="check-band" id="force-check" aria-labelledby="force-check-title">
+        <div class="section-head"><p class="eyebrow">第七章检查</p><h2 id="force-check-title">能分清“谁对谁”了吗？</h2><p>完成 6 题，检查力的概念、作用效果、弹力和重力。</p></div>
+        <form class="quiz" id="volume2Quiz">
+          <fieldset class="quiz-card"><legend>1. 磁体吸引铁钉时，铁钉受到的力的施力物体是谁？</legend><label><input type="radio" name="f1" value="a" /> 磁体</label><label><input type="radio" name="f1" value="b" /> 铁钉</label><label><input type="radio" name="f1" value="c" /> 地面</label></fieldset>
+          <fieldset class="quiz-card"><legend>2. 用力把橡皮泥压扁，主要说明力可以怎样？</legend><label><input type="radio" name="f2" value="a" /> 改变物体形状</label><label><input type="radio" name="f2" value="b" /> 改变物体质量</label><label><input type="radio" name="f2" value="c" /> 产生新物质</label></fieldset>
+          <fieldset class="quiz-card"><legend>3. 力的三要素包括什么？</legend><label><input type="radio" name="f3" value="a" /> 大小、方向、作用点</label><label><input type="radio" name="f3" value="b" /> 质量、体积、密度</label><label><input type="radio" name="f3" value="c" /> 路程、时间、速度</label></fieldset>
+          <fieldset class="quiz-card"><legend>4. 使用弹簧测力计前，首先需要检查什么？</legend><label><input type="radio" name="f4" value="a" /> 量程、分度值和是否指零</label><label><input type="radio" name="f4" value="b" /> 物体颜色</label><label><input type="radio" name="f4" value="c" /> 室内温度</label></fieldset>
+          <fieldset class="quiz-card"><legend>5. 质量为 3 kg 的物体，g 取 10 N/kg，重力是多少？</legend><label class="quiz-text-row">G = <input class="quiz-text-input" type="text" name="f5" inputmode="decimal" autocomplete="off" /><span>N</span></label></fieldset>
+          <fieldset class="quiz-card"><legend>6. 关于相互作用力，下列说法正确的是？</legend><label><input type="radio" name="f6" value="a" /> 同时产生，分别作用在两个物体上</label><label><input type="radio" name="f6" value="b" /> 只作用在受力较小的物体上</label><label><input type="radio" name="f6" value="c" /> 必须接触才会产生</label></fieldset>
+          <button class="primary-action quiz-submit" type="submit">提交第七章检查</button><div class="quiz-result" id="volume2QuizResult" aria-live="polite"></div>
+        </form>
+      </section>
+    </main>
+    <footer class="footer"><p>八年级物理下册预习 · 第七章 力</p></footer>
+    <script src="../scripts/common.js?v=11"></script><script src="../scripts/quiz.js?v=4"></script><script src="../scripts/chapter-volume2.js?v=16"></script>
+  </body>
+</html>

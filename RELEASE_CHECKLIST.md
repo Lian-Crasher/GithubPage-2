@@ -26,13 +26,15 @@ node --check scripts/chapter4-light.js
 node --check scripts/chapter5-lenses.js
 node --check scripts/chapter6-density.js
 node --check scripts/final-check.js
+node --check scripts/chapter-volume2.js
+node --check scripts/final-check-volume2.js
 ```
 
 Confirm that every HTML page includes a description and favicon:
 
 ```bash
-rg -L '<meta name="description"' index.html chapters/*.html
-rg -L 'rel="icon"' index.html chapters/*.html
+rg --files-without-match '<meta name="description"' index.html chapters/*.html
+rg --files-without-match 'rel="icon"' index.html chapters/*.html
 ```
 
 Both commands should return no files.
@@ -51,6 +53,11 @@ Open:
 - `http://localhost:8000/chapters/chapter5-lenses.html#lens-practice`
 - `http://localhost:8000/chapters/chapter6-density.html#density-errors`
 - `http://localhost:8000/chapters/final-check.html`
+- `http://localhost:8000/chapters/chapter9-pressure.html`
+- `http://localhost:8000/chapters/chapter10-buoyancy.html`
+- `http://localhost:8000/chapters/chapter11-work-energy.html`
+- `http://localhost:8000/chapters/chapter12-simple-machines.html`
+- `http://localhost:8000/chapters/final-check-volume2.html`
 
 Check:
 
@@ -59,6 +66,11 @@ Check:
 - Wrong answers show useful feedback and review links.
 - Drawing and ordering interactions still respond on mobile.
 - Browser console has no missing favicon, image, stylesheet, or script requests.
+- Home semester switch, chapter map, and both final-check entries show the correct volume.
+- Force arrows use thin shafts and pointed heads; their directions and points of application are physically meaningful.
+- Chapter 9 pressure interactions keep depth, pressure, valve state, water level, and airflow direction consistent.
+- Chapter 10 buoyancy interactions keep spring-scale readings, displaced liquid, buoyancy, and floating state consistent.
+- Chapter 11 height baselines, rope connections, cart contact, and energy values remain synchronized.
 
 ## 4. Commit
 
@@ -105,5 +117,8 @@ Open GitHub Pages after it refreshes:
 
 - `https://lian-crasher.github.io/GithubPage-2/`
 - `https://lian-crasher.github.io/GithubPage-2/chapters/final-check.html`
+- `https://lian-crasher.github.io/GithubPage-2/chapters/chapter9-pressure.html`
+- `https://lian-crasher.github.io/GithubPage-2/chapters/chapter10-buoyancy.html`
+- `https://lian-crasher.github.io/GithubPage-2/chapters/final-check-volume2.html`
 
 If CSS or JavaScript changes do not appear online, bump the query string version in HTML references.

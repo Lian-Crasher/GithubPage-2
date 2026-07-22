@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="八年级物理下册压强预习：固体压强、液体压强、大气压强、活塞式抽水机和流体压强。" />
+    <title>第九章 压强 - 八年级物理预习站</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles/main.css?v=39" />
+  </head>
+  <body data-page="pressure">
+    <header class="topbar"><a class="brand" href="../index.html#top"><span class="brand-mark">v</span><span>物理预习站</span></a><nav class="chapter-nav"><a href="../index.html#volume2">下册地图</a></nav></header>
+    <main id="top">
+      <section class="chapter-showcase volume-two-showcase" id="chapter-pressure" aria-labelledby="pressure-title">
+        <img src="../assets/chapter9-pressure-hero.jpg" alt="透明液体压强容器、U形管和活塞式抽水装置组成的实验场景" />
+        <div class="showcase-copy"><p class="eyebrow">下册 · 第九章 · 压强</p><h1 id="pressure-title">同样的力，为什么效果差很多？</h1><p>压强把压力与受力面积联系起来；液体、大气和流动的气体又让“压力如何传递”变得更丰富。</p></div>
+      </section>
+
+      <section class="learning-band knowledge-bridge" id="pressure-bridge" aria-labelledby="pressure-bridge-title">
+        <div class="section-head compact"><p class="eyebrow">知识桥梁</p><h2 id="pressure-bridge-title">先辨认压力，再比较作用效果</h2><p>压力是垂直作用在接触面上的力，可能来自重力，也可能与重力大小不同。</p></div>
+        <div class="bridge-links"><a href="chapter7-force.html#force-basics"><span>前章基础</span><strong>力 F</strong><small>先找施力与受力物体</small></a><span class="bridge-arrow">→</span><div><span>本章新知</span><strong>压强 p = F / S</strong><small>比较单位面积所受压力</small></div></div>
+      </section>
+
+      <section class="learning-band alt" id="solid-pressure" aria-labelledby="solid-pressure-title">
+        <div class="section-head compact"><p class="eyebrow">第 1 节</p><h2 id="solid-pressure-title">压强：压力作用效果的比较</h2><p>压力一定时，受力面积越小，压强越大；受力面积一定时，压力越大，压强越大。</p></div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel"><h3>公式、单位与生活策略</h3><ul class="clean-list"><li>物体所受压力与受力面积之比叫作压强，<strong class="key-rule">p = F / S</strong>。</li><li>压强单位是帕斯卡，<strong class="key-rule">1 Pa = 1 N/m²</strong>。</li><li><strong class="key-caution">面积必须换成 m² 后再代入</strong>。</li><li>刀刃和图钉尖通过减小面积增大压强；履带和宽肩带通过增大面积减小压强。</li></ul><p class="lab-note"><strong>控制变量：</strong>比较压力影响时保持受力面积不变；比较面积影响时保持压力不变。</p></div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>压力和面积怎样改变作用效果？</h3><span class="tag">箭头看压力 · 底面看面积</span></div>
+            <div class="physics-diagram" id="pressureDiagram" role="img" aria-label="物体受到二百牛向下压力，受力面积零点零二平方米，压强一万帕">
+              <svg viewBox="0 0 620 290" aria-hidden="true"><rect x="60" y="220" width="500" height="18" rx="9" class="ground-surface" /><rect id="pressureIndent" x="250" y="220" width="120" height="8" rx="4" class="pressure-indent" /><rect id="pressureBlock" x="250" y="118" width="120" height="102" rx="8" class="pressure-block" /><line id="pressureForceArrow" x1="310" y1="38" x2="310" y2="108" class="force-arrow sharp-force-vector coral-stroke" data-force-head="pressureArrowDown" data-force-tip-x="310" data-force-tip-y="108" /><path id="pressureArrowDown" class="force-arrowhead coral-fill" /><text id="pressureForceLabel" x="330" y="58" class="diagram-text coral-text">F = 200 N</text><line id="contactMeasure" x1="250" y1="254" x2="370" y2="254" class="measure-line" /><text id="pressureAreaLabel" x="310" y="278" text-anchor="middle" class="diagram-note">S = 0.020 m²</text><rect x="486" y="76" width="36" height="128" rx="8" class="pressure-meter-bg" /><rect id="pressureMeterFill" x="486" y="154" width="36" height="50" rx="8" class="pressure-meter-fill" /><text x="504" y="62" text-anchor="middle" class="diagram-note">压强</text></svg>
+            </div>
+            <label class="slider-label" for="pressureForceSlider">压力 F <output id="pressureForceOutput">200 N</output></label><input id="pressureForceSlider" type="range" min="50" max="600" value="200" step="10" />
+            <label class="slider-label" for="pressureAreaSlider">受力面积 S <output id="pressureAreaOutput">0.020 m²</output></label><input id="pressureAreaSlider" type="range" min="0.005" max="0.1" value="0.02" step="0.005" />
+            <div class="metric-result"><span>压强 p</span><strong id="pressureOutput">10 000 Pa</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band" id="liquid-pressure" aria-labelledby="liquid-pressure-title">
+        <div class="section-head compact"><p class="eyebrow">第 2 节</p><h2 id="liquid-pressure-title">液体压强：深度和密度共同决定</h2><p>液体内部向各个方向都有压强；同种液体越深压强越大，同一深度液体密度越大压强越大。</p></div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel"><h3>实验判断的三个落点</h3><ul class="clean-list"><li>深度从<strong>自由液面</strong>向下量，不是离容器底的距离。</li><li>同种液体、同一深度，各方向压强相等。</li><li>比较液体密度时必须保持探头深度相同。</li><li><strong class="key-rule">p = ρ液gh</strong></li></ul><p class="lab-note"><strong>连通器：</strong>装同种液体且液体静止时，各容器液面保持在同一水平面。</p></div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>探头越深，U形管怎样变化？</h3><span class="tag">压强差用液面高度差表示</span></div>
+            <div class="physics-diagram" id="liquidPressureDiagram" role="img" aria-label="压强计探头位于水下二米，液体压强约两万帕">
+              <svg viewBox="0 0 680 330" aria-hidden="true"><path d="M48 50 V286 H330 V50" class="liquid-vessel" /><rect id="liquidPressureTank" x="56" y="78" width="266" height="200" class="liquid-fill" /><line x1="56" y1="78" x2="322" y2="78" class="liquid-surface-line" /><line id="liquidDepthMeasure" x1="116" y1="78" x2="116" y2="174" class="measure-line" /><line id="liquidDepthTick" x1="106" y1="174" x2="126" y2="174" class="measure-line" /><circle id="liquidPressureProbe" cx="214" cy="174" r="18" class="pressure-probe" /><line id="liquidProbeMembrane" x1="202" y1="192" x2="226" y2="192" class="probe-membrane" /><path id="liquidProbeTube" d="M232 174 H354 Q390 174 390 176" class="probe-tube" /><path d="M390 176 V270 Q390 294 414 294 H504 Q528 294 528 270 V128" class="u-tube" /><rect id="uTubeLeftLiquid" x="397" y="210" width="26" height="78" rx="12" class="u-tube-liquid" /><rect id="uTubeRightLiquid" x="495" y="174" width="26" height="114" rx="12" class="u-tube-liquid" /><line id="uTubeDeltaLine" x1="548" y1="174" x2="548" y2="210" class="measure-line" /><text x="170" y="64" text-anchor="middle" class="diagram-note">自由液面</text><text id="liquidPressureDepthLabel" x="104" y="132" text-anchor="end" class="diagram-note">h = 2.0 m</text><text x="458" y="78" text-anchor="middle" class="diagram-text">U形管压强计</text><text id="uTubeDeltaLabel" x="560" y="196" class="diagram-note">Δh</text></svg>
+            </div>
+            <span class="control-group-label">探头橡皮膜方向</span><div class="choice-row pressure-direction-row" role="group" aria-label="选择压强计探头方向"><button type="button" class="is-active" data-probe-direction="down" aria-pressed="true">向下</button><button type="button" data-probe-direction="up" aria-pressed="false">向上</button><button type="button" data-probe-direction="left" aria-pressed="false">向左</button><button type="button" data-probe-direction="right" aria-pressed="false">向右</button></div>
+            <label class="control-label" for="liquidPressureType">液体种类</label><select class="control-select" id="liquidPressureType"><option value="oil" data-density="800">食用油 · 800 kg/m³</option><option value="water" data-density="1000" selected>水 · 1000 kg/m³</option><option value="salt" data-density="1200">浓盐水 · 1200 kg/m³</option></select>
+            <label class="slider-label" for="liquidDepthSlider">探头深度 <output id="liquidDepthOutput">2.0 m</output></label><input id="liquidDepthSlider" type="range" min="0.5" max="4" value="2" step="0.5" />
+            <div class="metric-result"><span>液体压强</span><strong id="liquidPressureOutput">20.0 kPa</strong></div>
+            <p class="feedback" id="liquidPressureFeedback">水中深度增大，U形管液面高度差随之增大。</p>
+          </div>
+        </div>
+        <div class="interactive-panel chapter-wide-lab" id="communicating-vessels-lab">
+          <div class="panel-topline"><h3>船闸怎样利用连通器改变水位？</h3><span class="tag">先平水位，再开闸门</span></div>
+          <div class="physics-diagram" id="shipLockDiagram" role="img" aria-label="船闸连接上游，进水阀打开，闸室水位正在升高"><svg viewBox="0 0 780 300" aria-hidden="true"><rect x="24" y="70" width="190" height="190" class="lock-water" /><line x1="24" y1="70" x2="214" y2="70" class="liquid-surface-line" /><rect x="566" y="210" width="190" height="50" class="lock-water" /><line x1="566" y1="210" x2="756" y2="210" class="liquid-surface-line" /><path d="M24 40 V264 H214 M566 264 H756 V180" class="lock-bank" /><path d="M278 40 V264 H502 V40" class="lock-wall" /><rect id="shipLockWater" x="287" y="132" width="206" height="128" class="lock-water" /><line id="shipLockSurface" x1="287" y1="132" x2="493" y2="132" class="liquid-surface-line" /><path d="M214 244 H278 M502 244 H566" class="lock-channel" /><line id="shipLockUpperGate" x1="278" y1="58" x2="278" y2="254" class="lock-gate" /><line id="shipLockLowerGate" x1="502" y1="58" x2="502" y2="254" class="lock-gate" /><circle id="shipLockValveA" cx="246" cy="244" r="13" class="pump-valve is-open" /><circle id="shipLockValveB" cx="534" cy="244" r="13" class="pump-valve is-closed" /><text x="246" y="250" text-anchor="middle" class="diagram-note">A</text><text x="534" y="250" text-anchor="middle" class="diagram-note">B</text><g id="shipLockBoat" transform="translate(0 62)"><path d="M338 66 H442 L425 92 H355 Z" class="lock-boat" /><line x1="390" y1="42" x2="390" y2="67" class="lock-mast" /><path d="M392 44 L424 58 H392 Z" class="lock-sail" /></g><text x="118" y="288" text-anchor="middle" class="diagram-note">上游</text><text x="390" y="288" text-anchor="middle" class="diagram-note">闸室</text><text x="662" y="288" text-anchor="middle" class="diagram-note">下游</text><text id="shipLockStateLabel" x="390" y="28" text-anchor="middle" class="diagram-text">连接上游 · 水位上升</text></svg></div>
+          <div class="choice-row ship-lock-controls" role="group" aria-label="选择船闸工作阶段"><button type="button" class="is-active" data-lock-phase="fill" aria-pressed="true">上游注水</button><button type="button" data-lock-phase="upper" aria-pressed="false">上游通航</button><button type="button" data-lock-phase="drain" aria-pressed="false">下游放水</button><button type="button" data-lock-phase="lower" aria-pressed="false">下游通航</button></div>
+          <p class="feedback" id="shipLockFeedback">关闭两侧闸门，打开上游阀门 A，闸室与上游构成连通器，水位逐渐升高。</p>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="atmospheric-pressure" aria-labelledby="atmospheric-pressure-title">
+        <div class="section-head compact"><p class="eyebrow">第 3 节</p><h2 id="atmospheric-pressure-title">大气压强：空气也有重量</h2><p>托里拆利实验首次准确测出大气压；标准大气压约为 1.013 × 10⁵ Pa，并随海拔升高而减小。</p></div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel"><h3>读懂 760 mm 水银柱</h3><ol class="reasoning-steps"><li>玻璃管装满水银后倒插入水银槽。</li><li>管内水银面上方接近真空，槽面受到大气压。</li><li>平衡时 <strong>p₀ = ρ水银gh</strong>。</li><li>h 是管内外水银面的<strong>竖直高度差</strong>，不是管长。</li></ol><p class="lab-note"><strong class="key-caution">吸管、吸盘和抽水机不是把物体“吸”上来</strong>，而是内外压强差产生推动作用。</p><p class="lab-note"><strong>气压计：</strong>水银气压计较准确；无液气压计利用真空金属盒形变测量气压。</p></div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>玻璃管倾斜，为什么读数不变？</h3><span class="tag">看竖直高度差，不看水银柱长度</span></div>
+            <div class="physics-diagram" id="torricelliDiagram" role="img" aria-label="托里拆利实验中玻璃管竖直，管内外水银面竖直高度差为七百六十毫米">
+              <svg viewBox="0 0 620 330" aria-hidden="true"><rect x="72" y="250" width="466" height="52" rx="8" class="mercury-reservoir" /><line x1="72" y1="250" x2="538" y2="250" class="mercury-surface" /><path id="torricelliTube" d="M260 258 L260 34" class="torricelli-tube" /><path id="torricelliMercury" d="M260 258 L260 76" class="torricelli-mercury" /><circle id="torricelliTopPoint" cx="260" cy="76" r="6" class="torricelli-point" /><line x1="470" y1="76" x2="470" y2="250" class="measure-line" /><line x1="458" y1="76" x2="482" y2="76" class="measure-line" /><line x1="458" y1="250" x2="482" y2="250" class="measure-line" /><text id="torricelliHeightLabel" x="490" y="168" class="diagram-text">h = 760 mm</text><text id="torricelliVacuumLabel" x="290" y="62" class="diagram-note">近似真空</text><text x="118" y="286" class="diagram-note">水银槽</text><text x="530" y="46" text-anchor="middle" class="diagram-note teal-text">p₀ = ρ水银gh</text></svg>
+            </div>
+            <label class="slider-label" for="torricelliTiltSlider">玻璃管倾斜角 <output id="torricelliTiltOutput">0°</output></label><input id="torricelliTiltSlider" type="range" min="0" max="35" value="0" step="5" />
+            <div class="metric-result split"><span>竖直高度差 <strong id="torricelliHeightOutput">760 mm</strong></span><span>水银柱长度 <strong id="torricelliLengthOutput">760 mm</strong></span></div>
+            <p class="feedback" id="torricelliFeedback">玻璃管竖直时，水银柱长度与竖直高度差相同。</p>
+          </div>
+        </div>
+        <div class="interactive-panel chapter-wide-lab altitude-lab">
+          <div class="panel-topline"><h3>海拔升高时，大气压怎样变化？</h3><span class="tag">3000 m 内：每升高 10 m，约减小 100 Pa</span></div>
+          <div class="altitude-lab-layout"><div class="physics-diagram" id="atmosphereDiagram" role="img" aria-label="海拔零米，大气压约一百零一点三千帕"><svg viewBox="0 0 620 300" aria-hidden="true"><path d="M50 250 L260 70 V250 Z" class="altitude-mountain" /><circle cx="92" cy="62" r="25" class="altitude-sun" /><g id="altitudeObserver" transform="translate(0 0)"><circle cx="82" cy="190" r="12" class="diagram-center" /><line x1="82" y1="202" x2="82" y2="230" class="observer-line" /><line x1="66" y1="212" x2="98" y2="212" class="observer-line" /></g><line x1="304" y1="244" x2="304" y2="54" class="altitude-scale" /><line x1="294" y1="244" x2="314" y2="244" class="altitude-scale" /><line x1="294" y1="54" x2="314" y2="54" class="altitude-scale" /><text x="326" y="248" class="diagram-note">0 m</text><text x="326" y="60" class="diagram-note">3000 m</text><rect x="408" y="54" width="68" height="190" rx="10" class="pressure-meter-bg" /><rect id="atmosphereMeterFill" x="408" y="54" width="68" height="190" rx="10" class="pressure-meter-fill" /><text x="442" y="276" text-anchor="middle" class="diagram-note">大气压</text><text id="altitudeDiagramLabel" x="536" y="126" text-anchor="middle" class="diagram-text">海拔 0 m</text><text id="atmosphereDiagramValue" x="536" y="164" text-anchor="middle" class="diagram-note">101.3 kPa</text></svg></div><div class="altitude-controls"><label class="slider-label" for="altitudeSlider">海拔高度 <output id="altitudeOutput">0 m</output></label><input id="altitudeSlider" type="range" min="0" max="3000" value="0" step="100" /><div class="metric-result"><span>近似大气压</span><strong id="atmosphereOutput">101.3 kPa</strong></div><p class="feedback" id="atmosphereFeedback">海拔升高，空气柱变短，大气压减小；水的沸点也会降低。</p></div></div>
+        </div>
+      </section>
+
+      <section class="learning-band" id="pump" aria-labelledby="pump-title">
+        <div class="section-head compact"><p class="eyebrow">第 4 节 · 跨学科实践</p><h2 id="pump-title">活塞式抽水机：压强差推动水流</h2><p>装置保持密封，活塞往复运动产生压强差，再由两个只能向上开启的阀门控制水流方向。</p></div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel"><h3>一次抽水循环</h3><dl class="concept-compare"><div><dt>提起</dt><dd>下腔压强减小，A 关闭、B 打开，大气压把水推入泵筒。</dd></div><div><dt>压下</dt><dd>B 关闭、A 打开，下腔的水穿过活塞进入上腔。</dd></div><div><dt>再提</dt><dd>A 关闭，上腔的水被活塞提升并流出；同时 B 打开，下腔再次进水。</dd></div></dl><p class="lab-note"><strong>设计关键：</strong>泵筒密封、活塞贴合筒壁、两个阀门只能向上开启。标准大气压理论上最多支持约 10.3 m 水柱，实际提升高度会更小。</p></div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>按顺序观察阀门和水流</h3><span class="tag">绿色为开 · 红色为关</span></div>
+            <div class="physics-diagram pump-diagram" id="pumpDiagram" data-phase="ready" role="img" aria-label="抽水机循环起点，活塞位于下方，下腔已有水，两个阀门关闭">
+              <svg viewBox="0 0 620 360" aria-hidden="true"><defs><marker id="pumpFlowArrow" markerUnits="userSpaceOnUse" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" class="teal-fill" /></marker></defs><rect x="210" y="42" width="200" height="244" rx="12" class="pump-chamber" /><rect id="pumpUpperWater" x="220" y="70" width="180" height="0" rx="4" class="pump-water" /><rect id="pumpLowerWater" x="220" y="158" width="180" height="118" rx="4" class="pump-water" /><line id="pumpPiston" x1="224" y1="158" x2="396" y2="158" class="pump-piston" /><line id="pumpRod" x1="310" y1="26" x2="310" y2="158" class="pump-rod" /><path d="M210 240 H130 V320" class="pump-inlet" /><path d="M410 70 H526 V34" class="pump-outlet" /><path id="pumpFlowPath" d="M130 310 V240 H210 H260 V190" class="pump-flow-path" marker-end="url(#pumpFlowArrow)" /><path id="pumpFlowPathSecondary" d="M310 224 V120" class="pump-flow-path" marker-end="url(#pumpFlowArrow)" /><circle cx="310" cy="158" r="19" id="pumpValveA" class="pump-valve is-closed" /><circle cx="210" cy="240" r="19" id="pumpValveB" class="pump-valve is-closed" /><text id="pumpValveALabel" x="310" y="166" text-anchor="middle" class="diagram-note">A</text><text x="210" y="248" text-anchor="middle" class="diagram-note">B</text><text x="76" y="340" class="diagram-note">低处水源</text><text x="438" y="30" class="diagram-note">出水口</text><text id="pumpPhaseLabel" x="310" y="326" text-anchor="middle" class="diagram-text">循环起点 · A 关 · B 关</text></svg>
+            </div>
+            <div class="choice-row pump-phase-controls" role="group" aria-label="选择抽水机工作阶段"><button type="button" class="is-active" data-pump-phase="ready" aria-pressed="true">循环起点</button><button type="button" data-pump-phase="lift" aria-pressed="false">上提进水</button><button type="button" data-pump-phase="press" aria-pressed="false">下压过阀</button><button type="button" data-pump-phase="outlet" aria-pressed="false">再提出水</button></div>
+            <p class="feedback" id="pumpFeedback">活塞位于下方，下腔已有水；静止时 A、B 两阀都关闭。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="flow-pressure" aria-labelledby="flow-pressure-title">
+        <div class="section-head compact"><p class="eyebrow">第 5 节</p><h2 id="flow-pressure-title">流速越大，压强越小</h2><p>气体和液体统称流体。流动速度不同会形成压强差，从而产生可观察的力。</p></div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel"><h3>从压强差解释现象</h3><ul class="clean-list"><li>两张纸中间气流加快，中间压强减小，外侧大气压把纸压向中间。</li><li>机翼上方气流较快、压强较小，下方压强较大，形成升力。</li><li>列车高速通过时，人和列车之间空气流速大、压强小，因此要站在安全线外。</li><li><strong class="key-caution">不是气流把纸“吸”到一起，而是外侧压强更大</strong>。</li></ul></div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3 id="flowLabTitle">吹气时，两张纸为什么靠拢？</h3><span class="tag" id="flowLabTag">比较纸张内外压强</span></div>
+            <div class="choice-row flow-mode-controls" role="group" aria-label="选择流体压强观察场景"><button type="button" class="is-active" data-flow-mode="paper" aria-pressed="true">两张纸</button><button type="button" data-flow-mode="wing" aria-pressed="false">机翼升力</button></div>
+            <div class="physics-diagram" id="flowPressureDiagram" role="img" aria-label="两张纸中间气流速度为五级，纸张在外侧大气压作用下靠拢">
+              <svg viewBox="0 0 620 300" aria-hidden="true"><defs><marker id="airflowArrowDown" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M0 0 L12 6 L0 12 Z" class="teal-fill" /></marker></defs><g id="flowPaperScene"><line x1="184" y1="42" x2="184" y2="78" class="apparatus-line" /><line x1="436" y1="42" x2="436" y2="78" class="apparatus-line" /><path id="flowPaperLeft" d="M184 78 Q196 170 258.5 260" class="flow-paper" /><path id="flowPaperRight" d="M436 78 Q424 170 361.5 260" class="flow-paper" /><text id="airflowStateLabel" x="310" y="38" text-anchor="middle" class="diagram-note teal-text">向下吹气</text><line id="airflowArrow" x1="310" y1="54" x2="310" y2="162" class="force-arrow teal-stroke" marker-end="url(#airflowArrowDown)" /><text id="flowOuterLabelLeft" x="92" y="174" class="diagram-note">外侧 p 较大</text><text id="flowOuterLabelRight" x="438" y="174" class="diagram-note">外侧 p 较大</text><text id="flowInnerLabel" x="310" y="278" text-anchor="middle" class="diagram-text">中间 p 较小</text></g><g id="flowWingScene" hidden><path d="M84 112 Q222 84 512 128" class="flow-streamline fast" /><path d="M84 156 Q246 124 512 150" class="flow-streamline fast" /><path d="M84 210 Q270 222 512 194" class="flow-streamline slow" /><path d="M84 246 Q276 258 512 220" class="flow-streamline slow" /><path d="M154 190 Q302 92 466 184 Q330 222 154 190 Z" class="airfoil-shape" /><line id="wingLiftArrow" x1="310" y1="186" x2="310" y2="126" class="force-arrow sharp-force-vector teal-stroke" data-force-head="wingLiftHead" data-force-tip-x="310" data-force-tip-y="126" /><path id="wingLiftHead" class="force-arrowhead teal-fill" /><text id="wingUpperLabel" x="310" y="58" text-anchor="middle" class="diagram-note teal-text">上方：v 较大，p 较小</text><text id="wingLowerLabel" x="310" y="282" text-anchor="middle" class="diagram-note">下方：v 较小，p 较大</text><text id="wingLiftLabel" x="350" y="130" class="diagram-text teal-text">升力</text></g></svg>
+            </div>
+            <label class="slider-label" for="airflowSlider"><span id="airflowSliderLabel">中间气流速度</span> <output id="airflowOutput">5 级</output></label><input id="airflowSlider" type="range" min="0" max="10" value="5" step="1" />
+            <div class="metric-result"><span id="flowMetricLabel">纸张间距</span><strong id="paperGapOutput">逐渐减小</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="check-band" id="pressure-check"><div class="section-head"><p class="eyebrow">第九章检查</p><h2>能从压力差解释完整的压强现象了吗？</h2><p>完成 10 题，检查固体、液体、大气、抽水机和流体压强。</p></div><form class="quiz" id="volume2Quiz">
+        <fieldset class="quiz-card"><legend>1. 压强的计算公式是？</legend><label><input type="radio" name="p1" value="a" /> p = F / S</label><label><input type="radio" name="p1" value="b" /> p = F × S</label><label><input type="radio" name="p1" value="c" /> p = S / F</label></fieldset>
+        <fieldset class="quiz-card"><legend>2. 压力不变时，怎样增大压强？</legend><label><input type="radio" name="p2" value="a" /> 减小受力面积</label><label><input type="radio" name="p2" value="b" /> 增大受力面积</label><label><input type="radio" name="p2" value="c" /> 与面积无关</label></fieldset>
+        <fieldset class="quiz-card"><legend>3. 同种液体内部，压强随深度怎样变化？</legend><label><input type="radio" name="p3" value="a" /> 深度越大，压强越大</label><label><input type="radio" name="p3" value="b" /> 深度越大，压强越小</label><label><input type="radio" name="p3" value="c" /> 始终相等</label></fieldset>
+        <fieldset class="quiz-card"><legend>4. 标准大气压约为多少？</legend><label><input type="radio" name="p4" value="a" /> 1.013 × 10⁵ Pa</label><label><input type="radio" name="p4" value="b" /> 10 Pa</label><label><input type="radio" name="p4" value="c" /> 1 Pa</label></fieldset>
+        <fieldset class="quiz-card"><legend>5. 300 N 的压力作用在 0.03 m² 面积上，压强是多少？</legend><label class="quiz-text-row">p = <input class="quiz-text-input" name="p5" inputmode="decimal" autocomplete="off" /><span>Pa</span></label></fieldset>
+        <fieldset class="quiz-card"><legend>6. 流体流速较大的位置，压强通常怎样？</legend><label><input type="radio" name="p6" value="a" /> 较小</label><label><input type="radio" name="p6" value="b" /> 较大</label><label><input type="radio" name="p6" value="c" /> 一定为零</label></fieldset>
+        <fieldset class="quiz-card"><legend>7. 水下 1.5 m 处的液体压强是多少？ρ水 = 1.0×10³ kg/m³，g 取 10 N/kg。</legend><label class="quiz-text-row">p = <input class="quiz-text-input" name="p7" inputmode="decimal" autocomplete="off" /><span>Pa</span></label></fieldset>
+        <fieldset class="quiz-card"><legend>8. 连通器内装同种液体且液体静止时，各部分液面怎样？</legend><label><input type="radio" name="p8" value="a" /> 保持在同一水平面</label><label><input type="radio" name="p8" value="b" /> 管越细液面越高</label><label><input type="radio" name="p8" value="c" /> 始终与容器底等距</label></fieldset>
+        <fieldset class="quiz-card"><legend>9. 托里拆利实验中玻璃管倾斜，但管口仍浸在水银中，哪一个量不变？</legend><label><input type="radio" name="p9" value="a" /> 管内外水银面的竖直高度差</label><label><input type="radio" name="p9" value="b" /> 管内水银柱的长度</label><label><input type="radio" name="p9" value="c" /> 玻璃管与桌面的夹角</label></fieldset>
+        <fieldset class="quiz-card"><legend>10. 活塞式抽水机提起活塞、下腔进水时，两个阀门的状态是？</legend><label><input type="radio" name="p10" value="a" /> A 关闭，B 打开</label><label><input type="radio" name="p10" value="b" /> A 打开，B 关闭</label><label><input type="radio" name="p10" value="c" /> A、B 都打开</label></fieldset>
+        <button class="primary-action quiz-submit" type="submit">提交第九章检查</button><div class="quiz-result" id="volume2QuizResult" aria-live="polite"></div>
+      </form></section>
+    </main>
+    <footer class="footer"><p>八年级物理下册预习 · 第九章 压强</p></footer>
+    <script src="../scripts/common.js?v=11"></script><script src="../scripts/quiz.js?v=4"></script><script src="../scripts/chapter-volume2.js?v=19"></script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="八年级物理下册浮力预习：浮力、阿基米德原理、浮沉条件及轮船潜水艇和密度计。" />
+    <title>第十章 浮力 - 八年级物理预习站</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" /><link rel="stylesheet" href="../styles/main.css?v=37" />
+  </head>
+  <body data-page="buoyancy">
+    <header class="topbar"><a class="brand" href="../index.html#top"><span class="brand-mark">v</span><span>物理预习站</span></a><nav class="chapter-nav"><a href="../index.html#volume2">下册地图</a></nav></header>
+    <main id="top">
+      <section class="chapter-showcase volume-two-showcase" id="chapter-buoyancy" aria-labelledby="buoyancy-title"><img src="../assets/chapter10-buoyancy-hero.jpg" alt="金属圆柱浸没在溢水杯中并由弹簧测力计悬挂，旁边收集排出水的实验场景" /><div class="showcase-copy"><p class="eyebrow">下册 · 第十章 · 浮力</p><h1 id="buoyancy-title">物体浸入越多，排开的液体越多</h1><p>从称重法感受浮力，用阿基米德原理验证浮力，再比较浮力和重力判断上浮、悬浮、下沉或漂浮。</p></div></section>
+
+      <section class="learning-band knowledge-bridge" id="buoyancy-bridge" aria-labelledby="buoyancy-bridge-title"><div class="section-head compact"><p class="eyebrow">知识桥梁</p><h2 id="buoyancy-bridge-title">密度、液体压强与浮力在这里会合</h2><p>液体上下表面的压强差产生浮力；物体与液体的平均密度关系帮助判断浮沉。</p></div><div class="bridge-links"><a href="chapter6-density.html#density-formula"><span>上册基础</span><strong>密度 ρ = m / V</strong><small>比较质量和体积</small></a><span class="bridge-arrow">+</span><a href="chapter9-pressure.html#liquid-pressure"><span>前章基础</span><strong>液体压强</strong><small>深处压强更大</small></a><span class="bridge-arrow">→</span><div><span>本章新知</span><strong>浮力与浮沉</strong><small>比较 F浮 与 G</small></div></div></section>
+
+      <section class="learning-band alt" id="buoyancy-force" aria-labelledby="buoyancy-force-title">
+        <div class="section-head compact"><p class="eyebrow">第 1 节</p><h2 id="buoyancy-force-title">浮力：测力计示数为什么会减小？</h2><p>浸在液体或气体中的物体受到竖直向上的浮力；称重法把“托力”转化成可测量的示数差。</p></div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel"><h3>称重法的受力链</h3><ul class="clean-list"><li>先在空气中测出物体重力 G。</li><li>物体浸入液体后，受到向上的拉力 F示 和浮力 F浮。</li><li>静止时 <strong class="key-rule">F浮 + F示 = G</strong>，所以 F浮 = G - F示。</li><li>液体密度越大、V排越大，浮力越大。</li><li><strong class="key-caution">完全浸没后继续加深，V排不变，浮力通常不再变化</strong>。</li></ul><p class="lab-note">“浸在液体中”既包括部分浸入，也包括完全浸没；正在下沉的物体同样受到浮力。</p></div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>浸得越多，测力计示数怎样变化？</h3><span class="tag">物重 5 N · 体积 400 cm³</span></div>
+            <div class="physics-diagram" id="buoyancyWeightDiagram" role="img" aria-label="弹簧测力计通过竖直细线悬挂物体，物体百分之七十浸入水中；重力五牛，拉力二点二牛，浮力二点八牛">
+              <svg viewBox="0 0 640 350" aria-hidden="true">
+                <path d="M604 18 V172 M408 18 H604" class="apparatus-line" />
+                <circle cx="408" cy="22" r="11" class="spring-meter-ring" />
+                <rect x="366" y="34" width="84" height="112" rx="15" class="spring-meter" />
+                <path id="buoyancySpringCoil" d="M408 43 L399 49 L417 55 L399 61 L417 67 L399 73 L417 79 L408 85" class="spring-line" />
+                <g class="spring-meter-scale"><line x1="382" y1="52" x2="392" y2="52" /><line x1="382" y1="68" x2="388" y2="68" /><line x1="382" y1="84" x2="392" y2="84" /><line x1="382" y1="100" x2="388" y2="100" /><line x1="382" y1="116" x2="392" y2="116" /></g>
+                <line id="buoyancySpringPointer" x1="388" y1="78" x2="436" y2="78" class="spring-meter-pointer" />
+                <text x="420" y="132" text-anchor="middle" class="spring-meter-unit">N</text>
+                <path d="M408 146 V151 C408 163 393 163 393 151" class="spring-hook" />
+                <path id="buoyancySuspensionLine" d="M408 163 V225" class="suspension-thread" />
+                <text x="350" y="64" text-anchor="end" class="diagram-note">弹簧测力计</text>
+                <text id="buoyancySpringReading" x="470" y="66" class="diagram-note tension-text">示数 2.2 N</text>
+                <path d="M250 205 V344 H570 V205" class="liquid-vessel" />
+                <rect id="buoyancyWeightLiquid" x="258" y="250" width="304" height="86" class="liquid-fill" />
+                <line x1="258" y1="250" x2="562" y2="250" class="liquid-surface-line" />
+                <rect id="buoyancyWeightObject" x="360" y="225" width="96" height="84" rx="9" class="immersed-object" />
+                <line id="buoyancyTensionArrow" x1="382" y1="267" x2="382" y2="234" class="force-arrow sharp-force-vector tension-stroke" />
+                <path id="buoyancyTensionArrowHead" d="M382 225 L375 237 L389 237 Z" class="force-arrowhead tension-fill" />
+                <line id="buoyancyWeightArrow" x1="434" y1="267" x2="434" y2="230" class="force-arrow sharp-force-vector teal-stroke" />
+                <path id="buoyancyWeightArrowHead" d="M434 221 L427 233 L441 233 Z" class="force-arrowhead teal-fill" />
+                <line id="buoyancyGravityArrow" x1="408" y1="267" x2="408" y2="306" class="force-arrow sharp-force-vector coral-stroke" />
+                <path id="buoyancyGravityArrowHead" d="M408 315 L401 303 L415 303 Z" class="force-arrowhead coral-fill" />
+                <text id="buoyancyTensionLabel" x="348" y="240" text-anchor="end" class="diagram-note tension-text">F示 2.2 N</text>
+                <text id="buoyancyWeightForceLabel" x="468" y="259" class="diagram-note teal-text">F浮 2.8 N</text>
+                <text id="buoyancyGravityLabel" x="432" y="303" class="diagram-note coral-text">G 5.0 N</text>
+                <text id="buoyancyWeightLiquidLabel" x="278" y="326" class="diagram-text">水</text>
+              </svg>
+            </div>
+            <span class="control-group-label">液体</span><div class="choice-row force-choice-row" role="group" aria-label="选择浮力实验液体"><button type="button" data-buoyancy-liquid="oil" aria-pressed="false">食用油</button><button type="button" class="is-active" data-buoyancy-liquid="water" aria-pressed="true">水</button><button type="button" data-buoyancy-liquid="salt" aria-pressed="false">浓盐水</button></div>
+            <label class="slider-label" for="immersionSlider">浸入体积比例 <output id="immersionOutput">70%</output></label><input id="immersionSlider" type="range" min="0" max="100" value="70" step="5" />
+            <div class="metric-result split"><span>浮力 <strong id="buoyancyWeightOutput">2.8 N</strong></span><span>测力计示数 <strong id="springReadingOutput">2.2 N</strong></span></div>
+          </div>
+        </div>
+        <div class="energy-explorer interactive-panel" id="buoyancy-cause"><div class="panel-topline"><h3>上下表面的压力为什么不同？</h3><span class="tag">同一物体完全浸没</span></div><div class="physics-diagram" id="buoyancyPressureDiagram" role="img" aria-label="物体上表面深零点四米，水向下压力四十牛，下表面压力五十牛，压力差形成十牛浮力"><svg viewBox="0 0 620 320" aria-hidden="true"><path d="M76 42 V294 H544 V42" class="liquid-vessel" /><rect x="84" y="58" width="452" height="228" class="liquid-fill" /><line x1="84" y1="58" x2="536" y2="58" class="liquid-surface-line" /><rect id="buoyancyPressureObject" x="266" y="94" width="88" height="68" rx="9" class="immersed-object" /><line id="buoyancyTopPressureArrow" x1="310" y1="38" x2="310" y2="86" class="force-arrow sharp-force-vector coral-stroke" /><path id="buoyancyPressureHeadCoral" class="force-arrowhead coral-fill" /><line id="buoyancyBottomPressureArrow" x1="310" y1="223" x2="310" y2="170" class="force-arrow sharp-force-vector teal-stroke" /><path id="buoyancyPressureHeadTeal" class="force-arrowhead teal-fill" /><text id="buoyancyTopPressureLabel" x="370" y="70" class="diagram-note coral-text">F上 = 40 N</text><text id="buoyancyBottomPressureLabel" x="370" y="202" class="diagram-note teal-text">F下 = 50 N</text><text x="104" y="272" class="diagram-note">侧面同深度压力相互抵消</text></svg></div><label class="slider-label" for="buoyancyPressureDepthSlider">物体上表面深度 h上 <output id="buoyancyPressureDepthOutput">0.4 m</output></label><input id="buoyancyPressureDepthSlider" type="range" min="0.2" max="1" value="0.4" step="0.1" /><div class="metric-result metric-trio"><span>上表面向下压力<strong id="buoyancyTopPressureOutput">40 N</strong></span><span>下表面向上压力<strong id="buoyancyBottomPressureOutput">50 N</strong></span><span>压力差形成浮力<strong id="buoyancyPressureDifferenceOutput">10 N</strong></span></div><p class="diagram-caption compact">模型取水的密度 1.0×10³ kg/m³、物体高度 0.1 m、表面积 0.01 m²。继续加深时两侧压力都增大，但压力差保持不变。</p></div>
+      </section>
+
+      <section class="learning-band" id="archimedes" aria-labelledby="archimedes-title">
+        <div class="section-head compact"><p class="eyebrow">第 2 节</p><h2 id="archimedes-title">阿基米德原理：同时比较两组差值</h2><p><strong class="key-rule">F浮 = G排 = ρ液gV排</strong>。实验必须等溢流停止并稳定读数，才能正确比较。</p></div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel"><h3>验证步骤</h3><ol class="reasoning-steps"><li>测物体重力 G 和空桶重力 G桶。</li><li>物体浸入溢水杯，计算 F浮 = G - F示。</li><li>收集排开的液体，计算 G排 = G桶和液 - G桶。</li><li>比较 F浮 与 G排，多次改变 V排 或液体密度。</li></ol><p class="lab-note"><strong class="key-caution">V排是物体排开液体的体积</strong>，部分浸入时小于物体体积，完全浸没时才等于物体体积。</p></div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>排开液体的重力有多大？</h3><span class="tag">物体积 400 cm³ · 初始液面到溢水口</span></div>
+            <div class="physics-diagram" id="archimedesDiagram" role="img" aria-label="弹簧测力计悬挂物体，物体排开三百立方厘米水并由正对溢水口的收集桶收集；排开水的质量零点三千克，浮力和排开水的重力都为三牛">
+              <svg viewBox="0 0 660 390" aria-hidden="true">
+                <path d="M330 16 H188 M330 16 V164" class="apparatus-line" />
+                <circle cx="188" cy="22" r="10" class="spring-meter-ring" />
+                <rect x="158" y="32" width="60" height="88" rx="13" class="spring-meter" />
+                <path id="archimedesSpringCoil" d="M188 42 L180 49 L196 56 L180 63 L196 70 L180 77 L196 84 L188 91" class="spring-line" />
+                <g class="spring-meter-scale"><line x1="166" y1="52" x2="175" y2="52" /><line x1="166" y1="68" x2="172" y2="68" /><line x1="166" y1="84" x2="175" y2="84" /><line x1="166" y1="100" x2="172" y2="100" /></g>
+                <line id="archimedesSpringPointer" x1="172" y1="81" x2="206" y2="81" class="spring-meter-pointer" />
+                <text x="190" y="112" text-anchor="middle" class="spring-meter-unit">N</text>
+                <path d="M188 120 V126 C188 136 176 136 176 126" class="spring-hook" />
+                <path id="archimedesSuspensionLine" d="M188 138 V198" class="suspension-thread" />
+                <text id="archimedesSpringReading" x="232" y="88" class="diagram-note tension-text">F示 2.0 N</text>
+                <path d="M44 176 V354 H342 V176" class="liquid-vessel" />
+                <rect id="archimedesLiquid" x="52" y="220" width="282" height="126" class="liquid-fill" />
+                <line x1="52" y1="220" x2="334" y2="220" class="liquid-surface-line" />
+                <path d="M342 220 H430 V246" class="overflow-spout" />
+                <rect id="archimedesObject" x="147" y="198" width="82" height="88" rx="9" class="immersed-object" />
+                <text id="archimedesImmersionLabel" x="136" y="188" text-anchor="end" class="diagram-note">浸入 75%</text>
+                <text x="188" y="326" text-anchor="middle" class="diagram-note">G物 5.0 N</text>
+                <path d="M390 252 V358 H610 V252" class="collection-cup" />
+                <rect id="displacedLiquid" x="398" y="285.5" width="204" height="64.5" class="liquid-fill" />
+                <text x="188" y="378" text-anchor="middle" class="diagram-note">溢水杯</text>
+                <text x="500" y="378" text-anchor="middle" class="diagram-note">收集桶</text>
+                <text id="archimedesEqualityLabel" x="496" y="38" text-anchor="middle" class="diagram-text teal-text">F浮 = G排 = 3.0 N</text>
+                <text id="archimedesVolumeLabel" x="496" y="82" text-anchor="middle" class="diagram-note">V排 = 300 cm³</text>
+                <text id="archimedesMassLabel" x="496" y="108" text-anchor="middle" class="diagram-note">m排 = 0.30 kg</text>
+                <text id="archimedesWeightLabel" x="496" y="134" text-anchor="middle" class="diagram-note">G排 = 3.0 N</text>
+              </svg>
+            </div>
+            <p class="diagram-caption compact">实验开始前，应先让液面达到溢水口并等待停止滴水；再缓慢浸入物体，最后读取稳定示数。</p>
+            <label class="control-label" for="archimedesLiquidType">液体种类</label><select class="control-select" id="archimedesLiquidType"><option value="oil" data-density="800">食用油 · 800 kg/m³</option><option value="water" data-density="1000" selected>水 · 1000 kg/m³</option><option value="salt" data-density="1200">浓盐水 · 1200 kg/m³</option></select>
+            <label class="slider-label" for="displacedVolumeSlider">排开体积 <output id="displacedVolumeOutput">300 cm³</output></label><input id="displacedVolumeSlider" type="range" min="50" max="400" value="300" step="50" />
+            <div class="evidence-pair"><div><span>称重法得到 F浮</span><strong id="archimedesForceOutput">3.0 N</strong></div><span aria-hidden="true">=</span><div><span>收集法得到 G排</span><strong id="displacedWeightOutput">3.0 N</strong></div></div>
+            <p class="feedback" id="archimedesConversion">换算：300 cm³ 水的质量为 0.30 kg，G排 = 0.30 × 10 = 3.0 N。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="learning-band alt" id="floating" aria-labelledby="floating-title">
+        <div class="section-head compact"><p class="eyebrow">第 3 节</p><h2 id="floating-title">浮沉条件：比较力，也可以比较平均密度</h2><p>完全浸没后松手，ρ物 与 ρ液 的关系决定物体先上浮、悬浮还是下沉；达到最终平衡后还要重新分析受力。</p></div>
+        <div class="focus-guide buoyancy-state-guide"><p class="focus-guide-title">四种状态</p><dl class="focus-guide-list"><div class="focus-guide-item" data-focus-type="term"><dt>上浮</dt><dd>F浮 &gt; G，物体向上运动</dd></div><div class="focus-guide-item" data-focus-type="rule"><dt>漂浮</dt><dd>F浮 = G，V排 &lt; V物</dd></div><div class="focus-guide-item" data-focus-type="rule"><dt>悬浮</dt><dd>F浮 = G，V排 = V物</dd></div><div class="focus-guide-item" data-focus-type="caution"><dt>下沉</dt><dd>F浮 &lt; G，沉底后还有支持力</dd></div></dl></div>
+        <div class="two-column chapter8-learning-grid">
+          <div class="knowledge-panel"><h3>状态判断不能停在“松手瞬间”</h3><ul class="clean-list"><li>ρ物 &lt; ρ液：物体先上浮，最终通常漂浮，且 F浮 = G。</li><li>ρ物 = ρ液：物体可悬浮，完全浸没且 F浮 = G。</li><li>ρ物 &gt; ρ液：物体下沉；沉底后还受到支持力。</li><li><strong class="key-caution">空心物体应比较整体平均密度，不能只看材料密度</strong>。</li></ul></div>
+          <div class="interactive-panel">
+            <div class="panel-topline"><h3>改变密度，物体最终停在哪里？</h3><span class="tag">完全浸没后松手</span></div>
+            <div class="physics-diagram" id="floatingLabDiagram" role="img" aria-label="物体密度零点八克每立方厘米，小于水的密度，物体上浮后漂浮">
+              <svg viewBox="0 0 620 330" aria-hidden="true"><path d="M78 44 V294 H542 V44" class="liquid-vessel" /><rect id="floatingLiquid" x="86" y="86" width="448" height="200" class="liquid-fill" /><line x1="86" y1="86" x2="534" y2="86" class="liquid-surface-line" /><rect id="floatingObject" x="266" y="66" width="88" height="88" rx="10" class="floating-lab-object" /><text id="floatingObjectDensityLabel" x="310" y="118" text-anchor="middle" class="diagram-note">ρ物 0.80</text><text id="floatingLiquidDensityLabel" x="110" y="266" class="diagram-note">ρ液 1.00 g/cm³</text><text id="floatingStateDiagramLabel" x="310" y="316" text-anchor="middle" class="diagram-text">上浮后漂浮</text></svg>
+            </div>
+            <label class="slider-label" for="objectDensitySlider">物体平均密度 <output id="objectDensityOutput">0.80 g/cm³</output></label><input id="objectDensitySlider" type="range" min="0.5" max="1.5" value="0.8" step="0.05" />
+            <label class="slider-label" for="floatingLiquidDensitySlider">液体密度 <output id="floatingLiquidDensityOutput">1.00 g/cm³</output></label><input id="floatingLiquidDensitySlider" type="range" min="0.8" max="1.3" value="1" step="0.05" />
+            <div class="metric-result"><span>最终状态</span><strong id="floatingStateOutput">上浮后漂浮</strong></div>
+            <p class="feedback" id="floatingFeedback">ρ物 &lt; ρ液，物体先上浮；漂浮时约有 80% 体积浸入液体。</p>
+          </div>
+        </div>
+        <div class="exam-grid buoyancy-app-grid"><article class="exam-card"><span class="tag">轮船</span><h3>空心结构增大排水体积</h3><p>排水量是满载时排开水的质量；漂浮时，它等于船和货物的总质量。</p></article><article class="exam-card"><span class="tag">潜水艇</span><h3>改变自身重力</h3><p>水舱进水使重力增大而下潜，排水使重力减小而上浮。</p></article><article class="exam-card"><span class="tag">气球和飞艇</span><h3>空气也会产生浮力</h3><p>内部气体的平均密度小于空气，且空气浮力大于总重力时可以升空。</p></article><article class="exam-card"><span class="tag">密度计</span><h3>液体越密，露出越多</h3><p>密度计始终漂浮，浮力不变；液体越密，所需 V排 越小。</p></article></div>
+      </section>
+
+      <section class="learning-band" id="micro-density-meter" aria-labelledby="micro-density-meter-title"><div class="section-head compact"><p class="eyebrow">第 4 节 · 跨学科实践</p><h2 id="micro-density-meter-title">制作微型密度计：让小瓶酒精也能测</h2><p>密度计漂浮时 F浮 = G，因此 V排 = m / ρ液。质量决定排开体积，细标度杆把很小的体积变化放大成容易观察的液面高度变化。</p></div><div class="two-column chapter8-learning-grid"><div class="knowledge-panel"><h3>结构与设计约束</h3><ul class="clean-list"><li><strong>标度杆：</strong>直径约 3 mm，越细越容易分辨密度变化。</li><li><strong>浮子：</strong>增大可排开液体的体积，使装置能够漂浮。</li><li><strong>配重：</strong>放在最下方，让密度计保持竖直稳定。</li><li><strong>总质量：</strong>约 1 g，避免在小瓶中排开过多酒精。</li><li>消毒酒精密度在 0.86～0.88 g/cm³ 可作为合格范围。</li></ul><p class="lab-note"><strong class="key-caution">密度越小，密度计需要排开更多液体，因此下沉更深</strong>；读数前要等待它停止晃动。</p></div><div class="interactive-panel"><div class="panel-topline"><h3>哪些设计更容易分辨密度？</h3><span class="tag">简化设计模型</span></div><div class="physics-diagram" id="microDensityDiagram" role="img" aria-label="一克微型密度计漂浮在密度零点八七克每立方厘米的酒精中，排开一点一五立方厘米液体，标度杆浸入约三点五厘米"><svg viewBox="0 0 620 330" aria-hidden="true"><path d="M70 58 V304 H550 V58" class="liquid-vessel" /><rect id="microDensityLiquid" x="78" y="110" width="464" height="186" class="liquid-fill" /><line x1="78" y1="110" x2="542" y2="110" class="liquid-surface-line" /><g id="microHydrometerInstrument"><rect id="microHydrometerStem" x="302.5" y="32" width="15" height="136" rx="5" class="hydrometer-stem" /><g class="hydrometer-scale"><line x1="304" y1="58" x2="316" y2="58" /><line x1="304" y1="78" x2="316" y2="78" /><line x1="304" y1="98" x2="316" y2="98" /><line x1="304" y1="118" x2="316" y2="118" /></g><ellipse cx="310" cy="175" rx="46" ry="30" class="hydrometer-float" /><rect x="294" y="198" width="32" height="38" rx="8" class="hydrometer-ballast" /></g><line id="microImmersionLine" x1="238" y1="110" x2="238" y2="145" class="measure-line" /><text id="microImmersionDiagramLabel" x="222" y="132" text-anchor="end" class="diagram-note">浸入 3.5 cm</text><text id="microDensityDiagramLabel" x="102" y="274" class="diagram-note">ρ液 0.87 g/cm³</text><text id="microDensityStatusLabel" x="468" y="274" text-anchor="middle" class="diagram-text teal-text">合格范围</text></svg></div><label class="slider-label" for="microLiquidDensitySlider">酒精密度 <output id="microLiquidDensityOutput">0.87 g/cm³</output></label><input id="microLiquidDensitySlider" type="range" min="0.82" max="0.92" value="0.87" step="0.01" /><label class="slider-label" for="microHydrometerMassSlider">密度计质量 <output id="microHydrometerMassOutput">1.00 g</output></label><input id="microHydrometerMassSlider" type="range" min="0.95" max="1.05" value="1" step="0.05" /><label class="slider-label" for="microStemDiameterSlider">标度杆直径 <output id="microStemDiameterOutput">3.0 mm</output></label><input id="microStemDiameterSlider" type="range" min="2.5" max="4" value="3" step="0.5" /><div class="metric-result metric-trio"><span>排开液体体积<strong id="microDisplacedVolumeOutput">1.15 cm³</strong></span><span>标度杆浸入长度<strong id="microImmersionOutput">3.52 cm</strong></span><span>酒精判断<strong id="microDensityVerdict">合格范围</strong></span></div><p class="feedback" id="microDensityFeedback">密度接近 0.87 g/cm³；较细的标度杆能把密度差异显示得更明显。</p></div></div></section>
+
+      <section class="check-band" id="buoyancy-check"><div class="section-head"><p class="eyebrow">第十章检查</p><h2>会用排开液体判断浮力了吗？</h2><p>完成 8 题，检查浮力方向、压力差、计算、浮沉与密度计设计。</p></div><form class="quiz" id="volume2Quiz">
+        <fieldset class="quiz-card"><legend>1. 浮力的方向是？</legend><label><input type="radio" name="b1" value="a" /> 竖直向上</label><label><input type="radio" name="b1" value="b" /> 竖直向下</label><label><input type="radio" name="b1" value="c" /> 沿运动方向</label></fieldset>
+        <fieldset class="quiz-card"><legend>2. 弹簧测力计示数由 8 N 变为 5 N，物体受到的浮力多大？</legend><label><input type="radio" name="b2" value="a" /> 3 N</label><label><input type="radio" name="b2" value="b" /> 5 N</label><label><input type="radio" name="b2" value="c" /> 13 N</label></fieldset>
+        <fieldset class="quiz-card"><legend>3. 阿基米德原理说明浮力等于什么？</legend><label><input type="radio" name="b3" value="a" /> 排开液体的重力</label><label><input type="radio" name="b3" value="b" /> 物体质量</label><label><input type="radio" name="b3" value="c" /> 液体总体积</label></fieldset>
+        <fieldset class="quiz-card"><legend>4. 物体漂浮时，浮力与重力关系是？</legend><label><input type="radio" name="b4" value="a" /> F浮 = G</label><label><input type="radio" name="b4" value="b" /> F浮 &gt; G</label><label><input type="radio" name="b4" value="c" /> F浮 &lt; G</label></fieldset>
+        <fieldset class="quiz-card"><legend>5. 水中排开 0.003 m³ 的水，g 取 10 N/kg，浮力是多少？</legend><label class="quiz-text-row">F浮 = <input class="quiz-text-input" name="b5" inputmode="decimal" autocomplete="off" /><span>N</span></label></fieldset>
+        <fieldset class="quiz-card"><legend>6. 密度计从较稀液体移到较密液体并保持漂浮，会怎样？</legend><label><input type="radio" name="b6" value="a" /> 排开体积变小，露出更多</label><label><input type="radio" name="b6" value="b" /> 排开体积变大</label><label><input type="radio" name="b6" value="c" /> 浮力一定变大</label></fieldset>
+        <fieldset class="quiz-card"><legend>7. 浸没物体上表面受到 5 N 向下压力，下表面受到 13 N 向上压力，浮力是多少？</legend><label><input type="radio" name="b7" value="a" /> 8 N</label><label><input type="radio" name="b7" value="b" /> 18 N</label><label><input type="radio" name="b7" value="c" /> 5 N</label></fieldset>
+        <fieldset class="quiz-card"><legend>8. 微型密度计使用较细的标度杆，主要作用是什么？</legend><label><input type="radio" name="b8" value="a" /> 让相同体积变化对应更明显的液面位置变化</label><label><input type="radio" name="b8" value="b" /> 让密度计不再受到浮力</label><label><input type="radio" name="b8" value="c" /> 使所有液体中的浸入深度相同</label></fieldset>
+        <button class="primary-action quiz-submit" type="submit">提交第十章检查</button><div class="quiz-result" id="volume2QuizResult" aria-live="polite"></div>
+      </form></section>
+    </main>
+    <footer class="footer"><p>八年级物理下册预习 · 第十章 浮力</p></footer><script src="../scripts/common.js?v=11"></script><script src="../scripts/quiz.js?v=4"></script><script src="../scripts/chapter-volume2.js?v=18"></script>
+  </body>
+</html>
