@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理质量与密度预习：学习天平量筒使用、密度公式、排水法测体积和实验误差判断。" />
     <title>第六章 质量与密度 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=26" />
+    <link rel="stylesheet" href="../styles/main.css?v=42" />
   </head>
   <body data-page="density">
     <header class="topbar">
@@ -330,7 +330,7 @@
         <div class="section-head">
           <p class="eyebrow">第六章检查</p>
           <h2 id="density-check-title">你能用密度判断物质了吗？</h2>
-          <p>完成下面 9 题，检查质量、天平、密度公式、实验方法、生活应用和误差方向。</p>
+          <p>完成下面 11 题，检查天平量筒、密度计算、实验设计和误差方向。</p>
         </div>
         <form class="quiz" id="densityQuiz">
           <fieldset class="quiz-card">
@@ -361,7 +361,7 @@
           </fieldset>
           <fieldset class="quiz-card">
             <legend>5. 用量筒排水法测不规则小石块体积：量筒中原有水的体积为 V1，把小石块完全浸没且没有气泡后，水面升到 V2。小石块的体积等于什么？</legend>
-            <p class="quiz-help">小石块排开的水的体积，就是水面升高对应的体积。</p>
+            <p class="quiz-help">比较放入小石块前后的两次量筒读数。</p>
             <label><input type="radio" name="d5" value="a" /> V2 - V1</label>
             <label><input type="radio" name="d5" value="b" /> V1 + V2</label>
             <label><input type="radio" name="d5" value="c" /> m / V</label>
@@ -392,6 +392,21 @@
             <label><input type="radio" name="d9" value="b" /> 空气不再受到重力</label>
             <label><input type="radio" name="d9" value="c" /> 气囊颜色变深</label>
           </fieldset>
+          <fieldset class="quiz-card">
+            <legend>10. 测某液体密度时，测得空烧杯质量 40 g，烧杯和液体总质量 90 g，液体体积 50 cm³。哪些判断正确？（多选）</legend>
+            <label><input type="checkbox" name="d10" value="mass" /> 液体质量为 50 g</label>
+            <label><input type="checkbox" name="d10" value="density" /> 液体密度为 1.0 g/cm³</label>
+            <label><input type="checkbox" name="d10" value="total-mass" /> 计算密度时应把 90 g 直接作为液体质量</label>
+            <label><input type="checkbox" name="d10" value="ignore-volume" /> 只测质量也能确定液体密度</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>11. 用电子秤测鸭蛋密度：鸭蛋质量 m0 = 120 g；烧杯和水的质量 m1 = 500 g；用外部细线把鸭蛋完全浸没在水中且不接触烧杯，电子秤示数 m2 = 580 g；取出鸭蛋后另测得 m3 = 495 g。ρ水 = 1.0 g/cm³。哪些判断正确？（多选）</legend>
+            <p class="quiz-help">鸭蛋浸没时，电子秤增加的示数来自鸭蛋对水的作用力，其大小等于鸭蛋受到的浮力。</p>
+            <label><input type="checkbox" name="d11" value="three-readings" /> 计算鸭蛋密度只需使用 m0、m1、m2</label>
+            <label><input type="checkbox" name="d11" value="water-mass" /> m2 - m1 = 80 g，等于鸭蛋排开水的质量</label>
+            <label><input type="checkbox" name="d11" value="density" /> 鸭蛋密度为 1.5 g/cm³</label>
+            <label><input type="checkbox" name="d11" value="need-m3" /> 必须把 m3 代入才能求出鸭蛋密度</label>
+          </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第六章检查</button>
           <div class="quiz-result" id="densityQuizResult" aria-live="polite"></div>
         </form>
@@ -404,8 +419,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=11"></script>
-    <script src="../scripts/quiz.js?v=4"></script>
-    <script src="../scripts/chapter6-density.js?v=5"></script>
+    <script src="../scripts/common.js?v=12"></script>
+    <script src="../scripts/quiz.js?v=10"></script>
+    <script src="../scripts/chapter6-density.js?v=8"></script>
   </body>
 </html>

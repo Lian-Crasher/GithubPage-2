@@ -207,10 +207,16 @@ function checkBoilingOrder() {
   boilingOrderFeedback.textContent = `还要调整第 ${wrongIndexes.join("、")} 步。关键是先搭好装置，再加热观察，最后分析数据和现象。`;
 }
 
-setupQuiz({
+setupLayeredQuiz({
   formSelector: "#statesQuiz",
   resultSelector: "#statesQuizResult",
   quizId: "chapter3",
+  levels: createChapterLayers({
+    basic: ["p1", "p3", "p6"],
+    application: ["p5", "p8", "p9"],
+    inquiry: ["p2", "p4", "p7"],
+    challenge: ["p10", "p11"],
+  }),
   answers: {
     p1: "a",
     p2: "b",
@@ -220,12 +226,21 @@ setupQuiz({
     p6: "a",
     p7: ["lamp", "beaker", "thermometer"],
     p8: "a",
+    p9: { dew: "liquefaction", clothes: "sublimation", iron: "solidification" },
+    p10: ["melting-point", "absorbing"],
+    p11: ["dew", "frost", "dry-ice"],
   },
   questionTypes: {
     p7: "order",
+    p9: "match",
+    p10: "multi",
+    p11: "multi",
   },
   answerDetails: {
     p7: "实验逻辑：酒精灯高度不易调，先定热源，再让烧杯处在外焰加热位置，最后让温度计玻璃泡浸入水中且不碰底和壁。",
+    p9: "先判断物质变化前后的状态：气变液是液化，固体直接变气是升华，液变固是凝固。",
+    p10: "晶体熔化时继续吸热，但温度保持在熔点；平台对应的 60 ℃ 是熔点。",
+    p11: "熔化、汽化、升华吸热；凝固、液化、凝华放热。",
   },
   hints: {
     p1: "第 1 题回看“温度”：温度表示物体的冷热程度。",
@@ -236,6 +251,9 @@ setupQuiz({
     p6: "第 6 题回看“升华和凝华”：霜通常是水蒸气凝华形成。",
     p7: "第 7 题回看“水的沸腾实验”：先定酒精灯，再按外焰高度安装陶土网和烧杯，最后悬挂温度计。",
     p8: "第 8 题回看“热胀冷缩”：同长同升温时，线膨胀系数越大，伸长量越大。",
+    p9: "判断物态变化时，先写出变化前后的物态。",
+    p10: "温度不变不等于停止吸热，晶体熔化阶段会出现吸热平台。",
+    p11: "从更聚集的状态变得更自由通常吸热，反向变化通常放热。",
   },
   reviewLinks: {
     p1: { href: "#temperature", label: "回看温度概念" },
@@ -246,6 +264,9 @@ setupQuiz({
     p6: { href: "#state-change", label: "回看升华和凝华" },
     p7: { href: "#boiling-exam", label: "回看沸腾实验" },
     p8: { href: "#thermal-expansion", label: "回看热胀冷缩" },
+    p9: { href: "#state-change", label: "回看六种物态变化" },
+    p10: { href: "#state-change", label: "回看熔化图像" },
+    p11: { href: "#state-change", label: "回看吸热与放热" },
   },
   badges: (score) => score >= 7 ? "第三章掌握很稳" : score >= 5 ? "第三章基本过关" : "建议回看物态变化地图",
   successMessage: "很好。你已经能把温度、状态变化、吸热放热和生活现象联系起来。",
@@ -255,6 +276,10 @@ setupQuiz({
   formSelector: "#halfQuiz",
   resultSelector: "#halfQuizResult",
   quizId: "half",
+  diagnosticLevels: [
+    { id: "basic", title: "基础", description: "声音、温度和物态概念需要巩固", questionKeys: ["h1", "h2", "h5", "h6"], passScore: 3 },
+    { id: "application", title: "应用", description: "声音特性、利用和生活现象需要巩固", questionKeys: ["h3", "h4", "h7", "h8"], passScore: 3 },
+  ],
   answers: {
     h1: "a",
     h2: "b",

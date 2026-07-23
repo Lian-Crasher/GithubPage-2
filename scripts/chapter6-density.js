@@ -124,10 +124,16 @@ densityLifeButtons.forEach((button) => {
   button.addEventListener("click", () => setDensityLifeScenario(button.dataset.densityLife));
 });
 
-setupQuiz({
+setupLayeredQuiz({
   formSelector: "#densityQuiz",
   resultSelector: "#densityQuizResult",
   quizId: "chapter6",
+  levels: createChapterLayers({
+    basic: ["d1", "d2", "d3"],
+    application: ["d4", "d6", "d9"],
+    inquiry: ["d5", "d8", "d10"],
+    challenge: ["d7", "d11"],
+  }),
   answers: {
     d1: "a",
     d2: "a",
@@ -138,16 +144,22 @@ setupQuiz({
     d7: ["bean-gap", "big-volume"],
     d8: "a",
     d9: "a",
+    d10: ["mass", "density"],
+    d11: ["three-readings", "water-mass", "density"],
   },
   questionTypes: {
     d4: "text",
     d7: "multi",
+    d10: "multi",
+    d11: "multi",
   },
   answerDetails: {
     d4: "计算过程：ρ = m / V = 80 g ÷ 10 cm³ = 8 g/cm³。",
     d5: "判断方法：小石块完全浸没后，水面从 V1 升到 V2，升高的体积 V2 - V1 就是小石块排开水的体积，也就是小石块体积。",
     d7: "判断方法：体积 V 偏大或质量 m 偏小会让密度偏小；石块带水会让质量偏大，所以密度偏大。",
     d9: "判断方法：球内空气受热后平均密度减小，与外界空气的密度差使热气球更容易上升。",
+    d10: "液体质量等于总质量减空烧杯质量，即 50 g；再除以 50 cm³ 得 1.0 g/cm³。",
+    d11: "电子秤增加的 80 g 对应排开水的质量，因此鸭蛋体积为 80 cm³；ρ = 120 g ÷ 80 cm³ = 1.5 g/cm³。m3 不参与计算。",
   },
   hints: {
     d1: "第 1 题回看“质量”：质量表示物体所含物质的多少。",
@@ -159,6 +171,8 @@ setupQuiz({
     d7: "第 7 题回看“误差方向”：体积偏大或质量偏小会让密度 ρ = m / V 偏小。",
     d8: "第 8 题回看“天平调平”：指针偏左说明左侧重，平衡螺母向右调。",
     d9: "第 9 题回看“密度与社会生活”：热空气平均密度较小，热气球更容易上升。",
+    d10: "先从总质量中扣除容器质量，再用液体质量除以体积。",
+    d11: "先由 m2 - m1 得到排开水的质量，再利用水的密度换算鸭蛋体积；取出后的 m3 是干扰数据。",
   },
   reviewLinks: {
     d1: { href: "#mass", label: "回看质量" },
@@ -170,6 +184,8 @@ setupQuiz({
     d7: { href: "#density-errors", label: "回看误差方向" },
     d8: { href: "#mass", label: "回看天平调平" },
     d9: { href: "#density-life", label: "回看密度与社会生活" },
+    d10: { href: "#measure-density", label: "回看液体密度实验" },
+    d11: { href: "#measure-density", label: "回看浸没法测体积" },
   },
   badges: (score) => score >= 8 ? "第六章掌握很稳" : score >= 6 ? "第六章基本过关" : "建议回看密度实验",
   successMessage: "很好。你已经能用质量、体积和密度解释材料差异与生活现象。",

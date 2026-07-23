@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理下册压强预习：固体压强、液体压强、大气压强、活塞式抽水机和流体压强。" />
     <title>第九章 压强 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=39" />
+    <link rel="stylesheet" href="../styles/main.css?v=42" />
   </head>
   <body data-page="pressure">
     <header class="topbar"><a class="brand" href="../index.html#top"><span class="brand-mark">v</span><span>物理预习站</span></a><nav class="chapter-nav"><a href="../index.html#volume2">下册地图</a></nav></header>
@@ -112,21 +112,59 @@
         </div>
       </section>
 
-      <section class="check-band" id="pressure-check"><div class="section-head"><p class="eyebrow">第九章检查</p><h2>能从压力差解释完整的压强现象了吗？</h2><p>完成 10 题，检查固体、液体、大气、抽水机和流体压强。</p></div><form class="quiz" id="volume2Quiz">
-        <fieldset class="quiz-card"><legend>1. 压强的计算公式是？</legend><label><input type="radio" name="p1" value="a" /> p = F / S</label><label><input type="radio" name="p1" value="b" /> p = F × S</label><label><input type="radio" name="p1" value="c" /> p = S / F</label></fieldset>
-        <fieldset class="quiz-card"><legend>2. 压力不变时，怎样增大压强？</legend><label><input type="radio" name="p2" value="a" /> 减小受力面积</label><label><input type="radio" name="p2" value="b" /> 增大受力面积</label><label><input type="radio" name="p2" value="c" /> 与面积无关</label></fieldset>
-        <fieldset class="quiz-card"><legend>3. 同种液体内部，压强随深度怎样变化？</legend><label><input type="radio" name="p3" value="a" /> 深度越大，压强越大</label><label><input type="radio" name="p3" value="b" /> 深度越大，压强越小</label><label><input type="radio" name="p3" value="c" /> 始终相等</label></fieldset>
-        <fieldset class="quiz-card"><legend>4. 标准大气压约为多少？</legend><label><input type="radio" name="p4" value="a" /> 1.013 × 10⁵ Pa</label><label><input type="radio" name="p4" value="b" /> 10 Pa</label><label><input type="radio" name="p4" value="c" /> 1 Pa</label></fieldset>
-        <fieldset class="quiz-card"><legend>5. 300 N 的压力作用在 0.03 m² 面积上，压强是多少？</legend><label class="quiz-text-row">p = <input class="quiz-text-input" name="p5" inputmode="decimal" autocomplete="off" /><span>Pa</span></label></fieldset>
-        <fieldset class="quiz-card"><legend>6. 流体流速较大的位置，压强通常怎样？</legend><label><input type="radio" name="p6" value="a" /> 较小</label><label><input type="radio" name="p6" value="b" /> 较大</label><label><input type="radio" name="p6" value="c" /> 一定为零</label></fieldset>
-        <fieldset class="quiz-card"><legend>7. 水下 1.5 m 处的液体压强是多少？ρ水 = 1.0×10³ kg/m³，g 取 10 N/kg。</legend><label class="quiz-text-row">p = <input class="quiz-text-input" name="p7" inputmode="decimal" autocomplete="off" /><span>Pa</span></label></fieldset>
-        <fieldset class="quiz-card"><legend>8. 连通器内装同种液体且液体静止时，各部分液面怎样？</legend><label><input type="radio" name="p8" value="a" /> 保持在同一水平面</label><label><input type="radio" name="p8" value="b" /> 管越细液面越高</label><label><input type="radio" name="p8" value="c" /> 始终与容器底等距</label></fieldset>
-        <fieldset class="quiz-card"><legend>9. 托里拆利实验中玻璃管倾斜，但管口仍浸在水银中，哪一个量不变？</legend><label><input type="radio" name="p9" value="a" /> 管内外水银面的竖直高度差</label><label><input type="radio" name="p9" value="b" /> 管内水银柱的长度</label><label><input type="radio" name="p9" value="c" /> 玻璃管与桌面的夹角</label></fieldset>
-        <fieldset class="quiz-card"><legend>10. 活塞式抽水机提起活塞、下腔进水时，两个阀门的状态是？</legend><label><input type="radio" name="p10" value="a" /> A 关闭，B 打开</label><label><input type="radio" name="p10" value="b" /> A 打开，B 关闭</label><label><input type="radio" name="p10" value="c" /> A、B 都打开</label></fieldset>
-        <button class="primary-action quiz-submit" type="submit">提交第九章检查</button><div class="quiz-result" id="volume2QuizResult" aria-live="polite"></div>
-      </form></section>
+      <section class="check-band layered-check-band" id="pressure-check">
+        <div class="section-head"><p class="eyebrow">第九章分层检测</p><h2>不是只看总分，而是看哪种能力需要补强</h2><p>按层完成，错题会返回对应知识点；挑战层选做。</p></div>
+        <form class="quiz layered-quiz" id="volume2Quiz">
+          <div class="layered-quiz-toolbar">
+            <div class="layered-quiz-summary" id="layeredQuizSummary" aria-live="polite">主线已通过 0/3 层</div>
+            <div class="layered-quiz-tabs" role="tablist" aria-label="检测层级">
+              <button id="pressure-basic-tab" type="button" role="tab" data-layer-tab="basic" aria-controls="pressure-basic-panel"><strong>基础</strong><span>概念、单位与规律</span><small data-layer-tab-status>未开始</small></button>
+              <button id="pressure-application-tab" type="button" role="tab" data-layer-tab="application" aria-controls="pressure-application-panel"><strong>应用</strong><span>公式计算与解释</span><small data-layer-tab-status>未开始</small></button>
+              <button id="pressure-inquiry-tab" type="button" role="tab" data-layer-tab="inquiry" aria-controls="pressure-inquiry-panel"><strong>探究</strong><span>实验现象与装置</span><small data-layer-tab-status>未开始</small></button>
+              <button id="pressure-challenge-tab" type="button" role="tab" data-layer-tab="challenge" aria-controls="pressure-challenge-panel"><strong>挑战</strong><span>综合迁移（选做）</span><small data-layer-tab-status>未开始</small></button>
+            </div>
+          </div>
+
+          <section class="layered-quiz-panel" id="pressure-basic-panel" role="tabpanel" aria-labelledby="pressure-basic-tab" data-layer-panel="basic">
+            <div class="layered-quiz-panel-head"><div><h3>先确认概念和规律没有混淆</h3><p>4 题中答对 3 题即可通过本层。</p></div><strong data-layer-answer-count="basic">已完成 0/4</strong></div>
+            <fieldset class="quiz-card"><legend>1. 压强的计算公式是？</legend><label><input type="radio" name="p1" value="a" /> p = F × S</label><label><input type="radio" name="p1" value="b" /> p = F / S</label><label><input type="radio" name="p1" value="c" /> p = S / F</label></fieldset>
+            <fieldset class="quiz-card"><legend>2. 压力不变时，怎样增大压强？</legend><label><input type="radio" name="p2" value="a" /> 增大受力面积</label><label><input type="radio" name="p2" value="b" /> 与受力面积无关</label><label><input type="radio" name="p2" value="c" /> 减小受力面积</label></fieldset>
+            <fieldset class="quiz-card"><legend>3. 同种液体内部，压强随深度怎样变化？</legend><label><input type="radio" name="p3" value="a" /> 始终相等</label><label><input type="radio" name="p3" value="b" /> 深度越大，压强越大</label><label><input type="radio" name="p3" value="c" /> 深度越大，压强越小</label></fieldset>
+            <fieldset class="quiz-card"><legend>4. 标准大气压约为多少？</legend><label><input type="radio" name="p4" value="a" /> 1.013 × 10⁵ Pa</label><label><input type="radio" name="p4" value="b" /> 1 Pa</label><label><input type="radio" name="p4" value="c" /> 10 Pa</label></fieldset>
+            <button class="primary-action layered-submit" type="button" data-layer-submit="basic">提交基础层</button><div class="quiz-result" data-layer-result="basic" aria-live="polite"></div>
+          </section>
+
+          <section class="layered-quiz-panel" id="pressure-application-panel" role="tabpanel" aria-labelledby="pressure-application-tab" data-layer-panel="application" hidden>
+            <div class="layered-quiz-panel-head"><div><h3>把规律用于计算和生活现象</h3><p>3 题中答对 2 题即可通过本层。</p></div><strong data-layer-answer-count="application">已完成 0/3</strong></div>
+            <fieldset class="quiz-card"><legend>5. 300 N 的压力作用在 0.03 m² 面积上，压强是多少？</legend><label class="quiz-text-row">p = <input class="quiz-text-input" name="p5" inputmode="decimal" autocomplete="off" /><span>Pa</span></label></fieldset>
+            <fieldset class="quiz-card"><legend>6. 向两张平行纸片中间吹气时，纸片中间的气流更快，压强通常怎样？</legend><label><input type="radio" name="p6" value="a" /> 与外侧相等</label><label><input type="radio" name="p6" value="b" /> 比外侧大</label><label><input type="radio" name="p6" value="c" /> 比外侧小</label></fieldset>
+            <fieldset class="quiz-card"><legend>7. 水下 1.5 m 处的液体压强是多少？ρ水 = 1.0×10³ kg/m³，g 取 10 N/kg。</legend><label class="quiz-text-row">p = <input class="quiz-text-input" name="p7" inputmode="decimal" autocomplete="off" /><span>Pa</span></label></fieldset>
+            <button class="primary-action layered-submit" type="button" data-layer-submit="application">提交应用层</button><div class="quiz-result" data-layer-result="application" aria-live="polite"></div>
+          </section>
+
+          <section class="layered-quiz-panel" id="pressure-inquiry-panel" role="tabpanel" aria-labelledby="pressure-inquiry-tab" data-layer-panel="inquiry" hidden>
+            <div class="layered-quiz-panel-head"><div><h3>读懂实验现象和装置工作过程</h3><p>3 题中答对 2 题即可通过本层。</p></div><strong data-layer-answer-count="inquiry">已完成 0/3</strong></div>
+            <fieldset class="quiz-card"><legend>8. 连通器内装同种液体且液体静止时，各部分液面怎样？</legend><label><input type="radio" name="p8" value="a" /> 管越细液面越高</label><label><input type="radio" name="p8" value="b" /> 保持在同一水平面</label><label><input type="radio" name="p8" value="c" /> 始终与容器底等距</label></fieldset>
+            <fieldset class="quiz-card"><legend>9. 托里拆利实验中玻璃管倾斜，但管口仍浸在水银中，哪一个量不变？</legend><label><input type="radio" name="p9" value="a" /> 玻璃管与桌面的夹角</label><label><input type="radio" name="p9" value="b" /> 管内水银柱的长度</label><label><input type="radio" name="p9" value="c" /> 管内外水银面的竖直高度差</label></fieldset>
+            <fieldset class="quiz-card"><legend>10. 活塞式抽水机提起活塞、下腔进水时，两个阀门的状态是？</legend><p class="quiz-help">A 是活塞上的阀门，B 是泵筒底部与低处水源相连的进水阀门。</p><label><input type="radio" name="p10" value="a" /> A 打开，B 关闭</label><label><input type="radio" name="p10" value="b" /> A 关闭，B 打开</label><label><input type="radio" name="p10" value="c" /> A、B 都打开</label></fieldset>
+            <button class="primary-action layered-submit" type="button" data-layer-submit="inquiry">提交探究层</button><div class="quiz-result" data-layer-result="inquiry" aria-live="polite"></div>
+          </section>
+
+          <section class="layered-quiz-panel" id="pressure-challenge-panel" role="tabpanel" aria-labelledby="pressure-challenge-tab" data-layer-panel="challenge" hidden>
+            <div class="layered-quiz-panel-head"><div><h3>在新情境中组合使用多个规律</h3><p>本层选做，3 题中答对 2 题即可获得挑战通过。</p></div><strong data-layer-answer-count="challenge">已完成 0/3</strong></div>
+            <fieldset class="quiz-card"><legend>11. 探究“同种液体同一深度向各方向的压强是否相等”时，哪些操作是正确的？（多选）</legend><label><input type="checkbox" name="p11" value="a" /> 改变探头方向时保持探头深度不变</label><label><input type="checkbox" name="p11" value="b" /> 每改变一次方向，同时改变探头深度</label><label><input type="checkbox" name="p11" value="c" /> 依次让探头朝上、朝下和朝侧面</label><label><input type="checkbox" name="p11" value="d" /> 每个方向都换用不同种类的液体</label></fieldset>
+            <fieldset class="quiz-card"><legend>12. 船从上游驶向下游时，船闸操作的合理顺序是什么？</legend><div class="quiz-select-stack">
+              <label>第 1 步<select data-order-group="p12"><option value="">请选择</option><option value="outer">关闭两侧闸门，打开上游进水阀，使闸室水位升至与上游相平</option><option value="inner">关闭进水阀，打开上游闸门让船进入，再关闭上游闸门</option><option value="gate">打开下游放水阀，水位相平后关闭阀门并打开下游闸门</option></select></label>
+              <label>第 2 步<select data-order-group="p12"><option value="">请选择</option><option value="outer">关闭两侧闸门，打开上游进水阀，使闸室水位升至与上游相平</option><option value="inner">关闭进水阀，打开上游闸门让船进入，再关闭上游闸门</option><option value="gate">打开下游放水阀，水位相平后关闭阀门并打开下游闸门</option></select></label>
+              <label>第 3 步<select data-order-group="p12"><option value="">请选择</option><option value="outer">关闭两侧闸门，打开上游进水阀，使闸室水位升至与上游相平</option><option value="inner">关闭进水阀，打开上游闸门让船进入，再关闭上游闸门</option><option value="gate">打开下游放水阀，水位相平后关闭阀门并打开下游闸门</option></select></label>
+            </div></fieldset>
+            <fieldset class="quiz-card"><legend>13. 两个U形管压强计的一端通过T形管连接同一密闭气室，另一端都与大气相通。管内分别装液体C、D，稳定时液面高度差 hC = 4 cm、hD = 6 cm。哪些判断正确？（多选）</legend><p class="quiz-help">两套装置承受相同的气体压强差，可用 Δp = ρgh 比较管内液体。</p><label><input type="checkbox" name="p13" value="same-pressure" /> 两个压强计测得的压强差相同</label><label><input type="checkbox" name="p13" value="not-communicating" /> 单个压强计有一端连接密闭气室，因此不属于上端均开口的连通器</label><label><input type="checkbox" name="p13" value="density-ratio" /> ρC/ρD = hD/hC = 1.5</label><label><input type="checkbox" name="p13" value="d-denser" /> 液体D的密度更大</label></fieldset>
+            <button class="primary-action layered-submit" type="button" data-layer-submit="challenge">提交挑战层</button><div class="quiz-result" data-layer-result="challenge" aria-live="polite"></div>
+          </section>
+        </form>
+      </section>
     </main>
     <footer class="footer"><p>八年级物理下册预习 · 第九章 压强</p></footer>
-    <script src="../scripts/common.js?v=11"></script><script src="../scripts/quiz.js?v=4"></script><script src="../scripts/chapter-volume2.js?v=19"></script>
+    <script src="../scripts/common.js?v=12"></script><script src="../scripts/quiz.js?v=10"></script><script src="../scripts/chapter-volume2.js?v=23"></script>
   </body>
 </html>

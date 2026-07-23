@@ -358,10 +358,16 @@ reflectionSurfaceButtons.forEach((button) => {
 });
 checkRayPracticeButton?.addEventListener("click", checkRayPractice);
 
-setupQuiz({
+setupLayeredQuiz({
   formSelector: "#lightQuiz",
   resultSelector: "#lightQuizResult",
   quizId: "chapter4",
+  levels: createChapterLayers({
+    basic: ["l1", "l3", "l6"],
+    application: ["l2", "l4", "l5"],
+    inquiry: ["l7", "l8", "l9"],
+    challenge: ["l10", "l11"],
+  }),
   answers: {
     l1: "a",
     l2: "b",
@@ -375,12 +381,21 @@ setupQuiz({
       waterAir: "away",
     },
     l8: "a",
+    l9: ["same", "position", "screen"],
+    l10: ["normal", "angle", "reflection"],
+    l11: ["fish", "toward", "normal"],
   },
   questionTypes: {
     l7: "match",
+    l9: "multi",
+    l10: "order",
+    l11: "multi",
   },
   answerDetails: {
     l7: "作图顺序：先画法线；反射看角度相等，折射看进入更密或更疏的介质后靠近或远离法线。",
+    l9: "相同蜡烛用于比较像与物大小；未点燃蜡烛的位置用于标记像；光屏不能承接虚像。",
+    l10: "反射作图必须先有法线，入射角和反射角都以法线为基准。",
+    l11: "从空气斜射入更密介质通常靠近法线；垂直入射时方向不偏折。",
   },
   hints: {
     l1: "第 1 题回看“光的直线传播”：同种均匀介质中光沿直线传播。",
@@ -391,6 +406,9 @@ setupQuiz({
     l6: "第 6 题回看“色散”：三棱镜把白光分解成彩色光带叫色散。",
     l7: "第 7 题回看“光路作图”：反射角等于入射角；空气到水靠近法线，水到空气远离法线。",
     l8: "第 8 题回看“平面镜实验”：玻璃板透光，便于确定像的位置。",
+    l9: "实验中的替代物、重合位置和光屏分别对应大小、位置和虚实三个问题。",
+    l10: "入射角是入射光线与法线的夹角，不是与镜面的夹角。",
+    l11: "先判断光从哪种介质进入哪种介质，再比较折射光线与法线的距离。",
   },
   reviewLinks: {
     l1: { href: "#straight-light", label: "回看直线传播" },
@@ -401,6 +419,9 @@ setupQuiz({
     l6: { href: "#refraction", label: "回看光的色散" },
     l7: { href: "#ray-drawing", label: "回看折射作图" },
     l8: { href: "#ray-drawing", label: "回看平面镜实验" },
+    l9: { href: "#reflection", label: "回看平面镜成像实验" },
+    l10: { href: "#ray-drawing", label: "回看反射作图" },
+    l11: { href: "#refraction", label: "回看折射规律" },
   },
   badges: (score) => score >= 7 ? "第四章掌握很稳" : score >= 5 ? "第四章基本过关" : "建议回看光路图",
   successMessage: "很好。你已经能用光路解释影子、镜面成像、折射和彩虹等现象。",

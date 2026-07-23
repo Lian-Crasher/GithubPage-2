@@ -123,10 +123,16 @@ frequencyBandButtons.forEach((button) => {
   button.addEventListener("click", () => setFrequencyBand(Number(button.dataset.frequencyBand)));
 });
 
-setupQuiz({
+setupLayeredQuiz({
   formSelector: "#soundQuiz",
   resultSelector: "#soundQuizResult",
   quizId: "chapter2",
+  levels: createChapterLayers({
+    basic: ["s1", "s2", "s3"],
+    application: ["s4", "s6", "s7"],
+    inquiry: ["s5", "s8", "s9"],
+    challenge: ["s10", "s11"],
+  }),
   answers: {
     s1: "a",
     s2: "b",
@@ -134,12 +140,27 @@ setupQuiz({
     s4: "a",
     s5: ["b-ultrasound", "sonar"],
     s6: "b",
+    s7: ["68", "68m", "68米"],
+    s8: ["amplitude", "short-high"],
+    s9: { low: "infra", middle: "audible", high: "ultra" },
+    s10: ["steel-first", "medium"],
+    s11: ["450", "450m", "450米"],
   },
   questionTypes: {
     s5: "multi",
+    s7: "text",
+    s8: "multi",
+    s9: "match",
+    s10: "multi",
+    s11: "text",
   },
   answerDetails: {
     s5: "判断方法：能帮助测距、成像、定位的多是传递信息；能清洗、碎石、推动物体运动的多是传递能量。",
+    s7: "回声走过的是人与山崖距离的两倍，因此距离为 340 m/s × 0.40 s ÷ 2 = 68 m。",
+    s8: "控制拨动幅度相同，再改变钢尺伸出长度，可把观察重点放在振动快慢和音调上。",
+    s9: "通常把低于 20 Hz 的声称为次声波，20～20000 Hz 为人耳可听范围，高于 20000 Hz 为超声波。",
+    s10: "表格说明声速与介质有关；相同距离下，速度越大，传播时间越短。",
+    s11: "声波往返一次走过两倍水深，所以 h = 1500 m/s × 0.60 s ÷ 2 = 450 m。",
   },
   hints: {
     s1: "第 1 题回看“声音的产生”：声音由物体振动产生。",
@@ -148,6 +169,11 @@ setupQuiz({
     s4: "第 4 题回看“响度”：振幅越大，响度通常越大。",
     s5: "第 5 题回看“声与信息”：B 超和声呐主要利用声传递信息，超声清洗和碎石更突出声传递能量。",
     s6: "第 6 题回看“噪声控制”：隔音板是在传播过程中减弱噪声。",
+    s7: "回声传播路程是人与山崖距离的两倍。",
+    s8: "研究音调时应控制拨动幅度等条件，只改变影响频率的因素。",
+    s9: "人耳通常能听到 20～20000 Hz 的声音。",
+    s10: "用 s = vt 比较相同距离下不同介质中的传播时间。",
+    s11: "声呐测深也要除以 2，因为给出的是往返时间。",
   },
   reviewLinks: {
     s1: { href: "#sound-origin", label: "回看声音的产生" },
@@ -156,6 +182,11 @@ setupQuiz({
     s4: { href: "#sound-origin", label: "回看响度" },
     s5: { href: "#sound-use", label: "回看声的利用" },
     s6: { href: "#sound-use", label: "回看噪声控制" },
+    s7: { href: "#sound-use", label: "回看回声测距" },
+    s8: { href: "#sound-origin", label: "回看音调实验" },
+    s9: { href: "#sound-range", label: "回看频率范围" },
+    s10: { href: "#sound-range", label: "回看不同介质中的声速" },
+    s11: { href: "#sound-use", label: "回看声呐测距" },
   },
   badges: (score) => score === 6 ? "第二章掌握很稳" : score >= 4 ? "第二章基本过关" : "建议回看声音实验",
   successMessage: "很好。你已经能用振动、介质、频率、振幅和噪声控制来解释声现象。",

@@ -312,6 +312,11 @@ function readQuizProgress() {
 
 function formatProgress(record) {
   if (!record) return "未检查";
+  if (record.layered && record.layers) {
+    const required = record.requiredLevels || [];
+    const passed = required.filter((levelId) => record.layers[levelId]?.passed).length;
+    return record.completed ? `分层通过 ${passed}/${required.length}` : `分层进度 ${passed}/${required.length}`;
+  }
   if (record.completed) return `已掌握 ${record.score}/${record.total}`;
   return `待巩固 ${record.score}/${record.total}`;
 }
@@ -337,6 +342,11 @@ function applyHomeProgress() {
 }
 
 function getProgressRatio(record) {
+  if (record?.layered && record.layers) {
+    const required = record.requiredLevels || [];
+    if (!required.length) return 0;
+    return required.filter((levelId) => record.layers[levelId]?.passed).length / required.length;
+  }
   if (!record || !record.total) return 0;
   return record.score / record.total;
 }

@@ -334,10 +334,16 @@ opticalInstrumentButtons.forEach((button) => {
 });
 checkLensPracticeButton?.addEventListener("click", checkLensPractice);
 
-setupQuiz({
+setupLayeredQuiz({
   formSelector: "#lensesQuiz",
   resultSelector: "#lensesQuizResult",
   quizId: "chapter5",
+  levels: createChapterLayers({
+    basic: ["e1", "e2", "e3"],
+    application: ["e4", "e5", "e6"],
+    inquiry: ["e7", "e8", "e10"],
+    challenge: ["e9", "e11"],
+  }),
   answers: {
     e1: "a",
     e2: "a",
@@ -353,10 +359,11 @@ setupQuiz({
     e8: "a",
     e9: "a",
     e10: "a",
-    e11: "a",
+    e11: ["hyperopia", "weak", "convex"],
   },
   questionTypes: {
     e7: "match",
+    e11: "multi",
   },
   answerDetails: {
     e7: "作图口诀：平行过焦点，过焦点变平行，过光心不偏折。",

@@ -3,6 +3,12 @@ setupQuiz({
   resultSelector: "#finalQuizResult",
   quizId: "final",
   showProgress: true,
+  diagnosticLevels: [
+    { id: "basic", title: "基础", description: "核心概念和基本规律需要巩固", questionKeys: ["f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8"], passScore: 6 },
+    { id: "application", title: "应用", description: "公式、图像和情境判断需要巩固", questionKeys: ["f9", "f10", "f11", "f19"], passScore: 3 },
+    { id: "inquiry", title: "探究", description: "实验步骤、作图和误差分析需要巩固", questionKeys: ["f12", "f13", "f14", "f18"], passScore: 3 },
+    { id: "challenge", title: "挑战", description: "综合分析和信息迁移需要巩固", questionKeys: ["f15", "f16", "f17", "f20"], passScore: 3 },
+  ],
   answers: {
     f1: "a",
     f2: "a",

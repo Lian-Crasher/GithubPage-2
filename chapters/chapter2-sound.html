@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理声现象预习：理解声音的产生与传播、音调响度音色、声的利用和噪声控制。" />
     <title>第二章 声现象 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=26" />
+    <link rel="stylesheet" href="../styles/main.css?v=42" />
   </head>
   <body data-page="sound">
     <header class="topbar">
@@ -179,7 +179,7 @@
         <div class="section-head">
           <p class="eyebrow">第二章检查</p>
           <h2 id="sound-check-title">你能听懂声音背后的物理了吗？</h2>
-          <p>完成下面 6 题，检查自己是否抓住“振动、介质、特性、利用和噪声控制”这条主线。</p>
+          <p>完成下面 11 题，检查振动、介质、声音特性、声速、频率范围和声的利用。</p>
         </div>
         <form class="quiz" id="soundQuiz">
           <fieldset class="quiz-card">
@@ -220,6 +220,36 @@
             <label><input type="radio" name="s6" value="b" /> 阻断噪声传播</label>
             <label><input type="radio" name="s6" value="c" /> 防止噪声进入耳朵</label>
           </fieldset>
+          <fieldset class="quiz-card">
+            <legend>7. 小明面向山崖喊话，0.40 s 后听到回声。空气中声速取 340 m/s，他到山崖的距离是多少？</legend>
+            <label class="quiz-text-row">距离 <input class="quiz-text-input" name="s7" inputmode="decimal" autocomplete="off" /><span>m</span></label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>8. 探究音调与频率的关系时，让钢尺伸出桌面的长度不同，并用相同幅度拨动。哪些做法或判断正确？（多选）</legend>
+            <label><input type="checkbox" name="s8" value="amplitude" /> 用相同幅度拨动是为了尽量控制响度因素</label>
+            <label><input type="checkbox" name="s8" value="short-high" /> 钢尺伸出越短，振动通常越快，音调越高</label>
+            <label><input type="checkbox" name="s8" value="material" /> 实验中应同时更换不同材料的钢尺</label>
+            <label><input type="checkbox" name="s8" value="loudness" /> 该实验主要研究响度与距离的关系</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>9. 配对：把振动频率和正确类别连起来。</legend>
+            <div class="quiz-select-stack">
+              <label>10 Hz<select data-match-group="s9" data-match-key="low"><option value="">请选择</option><option value="infra">次声波</option><option value="audible">人耳可听声</option><option value="ultra">超声波</option></select></label>
+              <label>1000 Hz<select data-match-group="s9" data-match-key="middle"><option value="">请选择</option><option value="infra">次声波</option><option value="audible">人耳可听声</option><option value="ultra">超声波</option></select></label>
+              <label>40000 Hz<select data-match-group="s9" data-match-key="high"><option value="">请选择</option><option value="infra">次声波</option><option value="audible">人耳可听声</option><option value="ultra">超声波</option></select></label>
+            </div>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>10. 同温条件下，声音在空气、水、钢中的速度约为 340 m/s、1500 m/s、5200 m/s。哪些推断正确？（多选）</legend>
+            <label><input type="checkbox" name="s10" value="steel-first" /> 同样距离下，声音在钢中传播所需时间最短</label>
+            <label><input type="checkbox" name="s10" value="medium" /> 声速与传播介质有关</label>
+            <label><input type="checkbox" name="s10" value="vacuum" /> 由表中数据可推断真空中的声速更大</label>
+            <label><input type="checkbox" name="s10" value="fixed" /> 声音在任何介质中的速度都相同</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>11. 声呐从船底向海底发出声波，0.60 s 后收到回波。海水中声速取 1500 m/s，海水深度是多少？</legend>
+            <label class="quiz-text-row">深度 <input class="quiz-text-input" name="s11" inputmode="decimal" autocomplete="off" /><span>m</span></label>
+          </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第二章检查</button>
           <div class="quiz-result" id="soundQuizResult" aria-live="polite"></div>
         </form>
@@ -232,8 +262,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=11"></script>
-    <script src="../scripts/quiz.js?v=4"></script>
-    <script src="../scripts/chapter2-sound.js?v=3"></script>
+    <script src="../scripts/common.js?v=12"></script>
+    <script src="../scripts/quiz.js?v=10"></script>
+    <script src="../scripts/chapter2-sound.js?v=5"></script>
   </body>
 </html>

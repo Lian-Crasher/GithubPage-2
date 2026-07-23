@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理机械运动预习：学习长度和时间测量、参照物、速度、路程-时间图像与平均速度实验。" />
     <title>第一章 机械运动 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=26" />
+    <link rel="stylesheet" href="../styles/main.css?v=42" />
   </head>
   <body data-page="motion">
     <header class="topbar">
@@ -293,7 +293,7 @@
         <div class="section-head">
           <p class="eyebrow">第一章检查</p>
           <h2 id="check-title">你真的准备好进入课堂了吗？</h2>
-          <p>完成下面 7 题。答错也没关系，反馈会告诉你该回到哪里再看一眼。</p>
+          <p>完成下面 12 题，依次检查概念、计算、实验方法和图表迁移。</p>
         </div>
         <form class="quiz" id="quiz">
           <fieldset class="quiz-card">
@@ -341,6 +341,36 @@
             <label><input type="radio" name="q7" value="b" /> 相对甲静止</label>
             <label><input type="radio" name="q7" value="c" /> 相对甲向后运动</label>
           </fieldset>
+          <fieldset class="quiz-card">
+            <legend>8. 小车前 10 s 通过 60 m，接着 10 s 通过 40 m。全程平均速度是多少？</legend>
+            <label class="quiz-text-row">平均速度 <input class="quiz-text-input" name="q8" inputmode="decimal" autocomplete="off" /><span>m/s</span></label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>9. 排序：用斜面和小车测量平均速度时，基本步骤怎样更合理？</legend>
+            <div class="quiz-select-stack">
+              <label>第 1 步<select data-order-group="q9"><option value="">请选择</option><option value="distance">测出小车通过的路程</option><option value="time">让小车运动并测出所用时间</option><option value="calculate">用路程除以时间计算平均速度</option></select></label>
+              <label>第 2 步<select data-order-group="q9"><option value="">请选择</option><option value="distance">测出小车通过的路程</option><option value="time">让小车运动并测出所用时间</option><option value="calculate">用路程除以时间计算平均速度</option></select></label>
+              <label>第 3 步<select data-order-group="q9"><option value="">请选择</option><option value="distance">测出小车通过的路程</option><option value="time">让小车运动并测出所用时间</option><option value="calculate">用路程除以时间计算平均速度</option></select></label>
+            </div>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>10. 某物体的 s-t 数据为：0 s 对应 0 m，2 s 对应 4 m，4 s 对应 8 m，6 s 仍对应 8 m。哪些判断正确？（多选）</legend>
+            <label><input type="checkbox" name="q10" value="first-speed" /> 0～4 s 内平均速度为 2 m/s</label>
+            <label><input type="checkbox" name="q10" value="stop" /> 4～6 s 内物体静止</label>
+            <label><input type="checkbox" name="q10" value="whole" /> 0～6 s 内平均速度约为 1.33 m/s</label>
+            <label><input type="checkbox" name="q10" value="back" /> 4～6 s 内物体返回出发点</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>11. 甲、乙同地同向同时出发，速度分别为 4 m/s 和 6 m/s。10 s 后乙在甲前方多少米？</legend>
+            <label class="quiz-text-row">相距 <input class="quiz-text-input" name="q11" inputmode="decimal" autocomplete="off" /><span>m</span></label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>12. 测量小车从 A 点到 C 点的平均速度。小车经过 A 点时正常开始计时，但已经越过 C 点 0.30 s 后才停止计时。哪些判断正确？（多选）</legend>
+            <label><input type="checkbox" name="q12" value="distance-same" /> 测量所用的路程仍是 A、C 两点间距离</label>
+            <label><input type="checkbox" name="q12" value="time-large" /> 记录的时间比小车实际通过 A、C 间的时间偏大</label>
+            <label><input type="checkbox" name="q12" value="speed-small" /> 由这组数据算出的平均速度偏小</label>
+            <label><input type="checkbox" name="q12" value="speed-large" /> 由这组数据算出的平均速度偏大</label>
+          </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交检查</button>
           <div class="quiz-result" id="quizResult" aria-live="polite"></div>
         </form>
@@ -353,8 +383,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=11"></script>
-    <script src="../scripts/quiz.js?v=4"></script>
-    <script src="../scripts/chapter1-motion.js?v=3"></script>
+    <script src="../scripts/common.js?v=12"></script>
+    <script src="../scripts/quiz.js?v=10"></script>
+    <script src="../scripts/chapter1-motion.js?v=6"></script>
   </body>
 </html>

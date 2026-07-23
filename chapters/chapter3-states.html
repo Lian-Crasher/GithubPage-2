@@ -6,7 +6,7 @@
     <meta name="description" content="八年级物理物态变化预习：学习温度计使用、六种物态变化、吸热放热、沸腾实验和温度图像。" />
     <title>第三章 物态变化 - 八年级物理预习站</title>
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../styles/main.css?v=26" />
+    <link rel="stylesheet" href="../styles/main.css?v=42" />
   </head>
   <body data-page="states">
     <header class="topbar">
@@ -469,7 +469,7 @@
         <div class="section-head">
           <p class="eyebrow">第三章检查</p>
           <h2 id="states-check-title">你能判断物态变化和吸放热了吗？</h2>
-          <p>完成下面 8 题，检查自己是否能用温度、状态变化、实验方法和吸放热解释生活现象。</p>
+          <p>完成下面 11 题，检查温度、六种物态变化、实验数据和吸放热判断。</p>
         </div>
         <form class="quiz" id="statesQuiz">
           <fieldset class="quiz-card">
@@ -481,7 +481,7 @@
           <fieldset class="quiz-card">
             <legend>2. 使用实验室温度计读数时，视线应该怎样？</legend>
             <label><input type="radio" name="p2" value="a" /> 从上方俯视</label>
-            <label><input type="radio" name="p2" value="b" /> 与液面相平</label>
+            <label><input type="radio" name="p2" value="b" /> 与温度计液柱上表面相平</label>
             <label><input type="radio" name="p2" value="c" /> 从下方仰视</label>
           </fieldset>
           <fieldset class="quiz-card">
@@ -545,6 +545,28 @@
             <label><input type="radio" name="p8" value="a" /> 伸长更多</label>
             <label><input type="radio" name="p8" value="b" /> 伸长更少</label>
             <label><input type="radio" name="p8" value="c" /> 一定不伸长</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>9. 配对：把生活现象和物态变化连起来。</legend>
+            <div class="quiz-select-stack">
+              <label>清晨草叶上的露珠<select data-match-group="p9" data-match-key="dew"><option value="">请选择</option><option value="liquefaction">液化</option><option value="sublimation">升华</option><option value="solidification">凝固</option></select></label>
+              <label>冰冻衣物在低温下逐渐变干<select data-match-group="p9" data-match-key="clothes"><option value="">请选择</option><option value="liquefaction">液化</option><option value="sublimation">升华</option><option value="solidification">凝固</option></select></label>
+              <label>熔化的铁水冷却成固态<select data-match-group="p9" data-match-key="iron"><option value="">请选择</option><option value="liquefaction">液化</option><option value="sublimation">升华</option><option value="solidification">凝固</option></select></label>
+            </div>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>10. 某晶体加热数据为：0、2、4、6、8、10 min 时温度依次为 20、40、60、60、60、80 ℃。哪些判断正确？（多选）</legend>
+            <label><input type="checkbox" name="p10" value="melting-point" /> 该晶体的熔点约为 60 ℃</label>
+            <label><input type="checkbox" name="p10" value="absorbing" /> 4～8 min 可能正在熔化，并继续吸热</label>
+            <label><input type="checkbox" name="p10" value="stop-heat" /> 4～8 min 温度不变，说明停止吸热</label>
+            <label><input type="checkbox" name="p10" value="amorphous" /> 数据能证明它是非晶体</label>
+          </fieldset>
+          <fieldset class="quiz-card">
+            <legend>11. 关于物态变化中的吸热和放热，哪些说法正确？（多选）</legend>
+            <label><input type="checkbox" name="p11" value="dew" /> 水蒸气液化成露珠时放热</label>
+            <label><input type="checkbox" name="p11" value="frost" /> 水蒸气凝华成霜时放热</label>
+            <label><input type="checkbox" name="p11" value="dry-ice" /> 干冰升华时吸热</label>
+            <label><input type="checkbox" name="p11" value="freeze" /> 水凝固成冰时吸热</label>
           </fieldset>
           <button class="primary-action quiz-submit" type="submit">提交第三章检查</button>
           <div class="quiz-result" id="statesQuizResult" aria-live="polite"></div>
@@ -617,8 +639,8 @@
       <p>八年级物理上册预习站 · 内容依据人教版八年级物理上册章节结构整理</p>
     </footer>
 
-    <script src="../scripts/common.js?v=11"></script>
-    <script src="../scripts/quiz.js?v=4"></script>
-    <script src="../scripts/chapter3-states.js?v=6"></script>
+    <script src="../scripts/common.js?v=12"></script>
+    <script src="../scripts/quiz.js?v=10"></script>
+    <script src="../scripts/chapter3-states.js?v=8"></script>
   </body>
 </html>

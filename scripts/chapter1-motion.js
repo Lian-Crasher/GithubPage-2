@@ -119,10 +119,16 @@ function updateTable() {
     : `${countText}平均速度的平均值约为 ${average.toFixed(2)} m/s。数据接近，说明实验比较稳定。`;
 }
 
-setupQuiz({
+setupLayeredQuiz({
   formSelector: "#quiz",
   resultSelector: "#quizResult",
   quizId: "chapter1",
+  levels: createChapterLayers({
+    basic: ["q1", "q2", "q4"],
+    application: ["q3", "q7", "q8"],
+    inquiry: ["q5", "q6", "q9", "q12"],
+    challenge: ["q10", "q11"],
+  }),
   answers: {
     q1: "b",
     q2: "a",
@@ -131,14 +137,29 @@ setupQuiz({
     q5: "b",
     q6: ["静止", "处于静止", "静止状态", "不动"],
     q7: "a",
+    q8: ["5", "5m/s", "5米每秒"],
+    q9: ["distance", "time", "calculate"],
+    q10: ["first-speed", "stop", "whole"],
+    q11: ["20", "20m", "20米"],
+    q12: ["distance-same", "time-large", "speed-small"],
   },
   questionTypes: {
     q3: "text",
     q6: "text",
+    q8: "text",
+    q9: "order",
+    q10: "multi",
+    q11: "text",
+    q12: "multi",
   },
   answerDetails: {
     q3: "计算过程：v = s / t = 48 m ÷ 8 s = 6 m/s。",
     q6: "判断方法：横轴时间在变，纵轴路程不变，所以物体没有继续前进。",
+    q8: "全程平均速度要用总路程除以总时间：(60 m + 40 m) ÷ (10 s + 10 s) = 5 m/s。",
+    q9: "先确定测量路程，再测量通过这段路程的时间，最后代入速度公式。",
+    q10: "先分段读取路程变化，再分别计算分段和全程平均速度。",
+    q11: "同向运动的相对速度为 6 m/s - 4 m/s = 2 m/s，10 s 后相距 20 m。",
+    q12: "停止计时偏晚会使记录时间偏大。路程仍取 A、C 两点间距离，因此 v = s/t 的计算结果偏小。",
   },
   hints: {
     q1: "第 1 题回看“分度值”：它决定测量工具的精度。",
@@ -148,6 +169,11 @@ setupQuiz({
     q5: "第 5 题回看“误差”：多次测量取平均值能减小误差。",
     q6: "第 6 题回看 s-t 图像：水平线段表示路程不变，所以这一段处于静止状态。",
     q7: "第 7 题回看“相对运动”：同一直线同方向运动时，乙在相同时间内通过路程更多，说明乙速度更大，以甲为参照物乙向前运动。",
+    q8: "平均速度等于全程总路程除以全程总时间。",
+    q9: "测量平均速度需要路程和时间两个数据。",
+    q10: "路程不变的时间段表示静止；全程平均速度不能直接平均分段速度。",
+    q11: "同地同向运动时，先求两者速度差，再乘运动时间。",
+    q12: "先判断路程和时间各自是否偏大或偏小，再代入 v = s/t 判断平均速度误差方向。",
   },
   reviewLinks: {
     q1: { href: "#measure", label: "回看长度测量" },
@@ -157,6 +183,11 @@ setupQuiz({
     q5: { href: "#lab", label: "回看平均速度实验" },
     q6: { href: "#motion-graph", label: "回看 s-t 图像" },
     q7: { href: "#motion-graph", label: "回看相对运动与图像" },
+    q8: { href: "#speed", label: "回看全程平均速度" },
+    q9: { href: "#lab", label: "回看平均速度实验" },
+    q10: { href: "#motion-graph", label: "回看分段 s-t 数据" },
+    q11: { href: "#motion", label: "回看相对运动" },
+    q12: { href: "#lab", label: "回看平均速度实验误差" },
   },
   badges: (score) => score === 7 ? "预习完成度优秀" : score >= 5 ? "预习基本过关" : "建议再探索一次",
   successMessage: "很棒。你已经抓住机械运动这一章的预习重点，可以带着自己的问题去上课了。",
