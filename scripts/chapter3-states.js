@@ -71,9 +71,7 @@ function setState(state) {
 }
 
 function drawGraph(type = "crystal") {
-  const ctx = graphCanvas.getContext("2d");
-  const width = graphCanvas.width;
-  const height = graphCanvas.height;
+  const { ctx, width, height } = prepareHiDPICanvas(graphCanvas);
   const plot = {
     left: 62,
     right: width - 30,

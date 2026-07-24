@@ -30,9 +30,7 @@ function setFrequencyBand(frequency) {
 }
 
 function drawWave() {
-  const ctx = waveCanvas.getContext("2d");
-  const width = waveCanvas.width;
-  const height = waveCanvas.height;
+  const { ctx, width, height } = prepareHiDPICanvas(waveCanvas);
   const frequency = Number(frequencySlider.value);
   const amplitude = Number(amplitudeSlider.value);
   const waves = frequency / 115;

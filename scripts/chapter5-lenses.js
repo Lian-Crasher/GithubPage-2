@@ -32,9 +32,7 @@ function setOpticalInstrument(instrument) {
 }
 
 function drawLens(type = "convex") {
-  const ctx = lensCanvas.getContext("2d");
-  const width = lensCanvas.width;
-  const height = lensCanvas.height;
+  const { ctx, width, height } = prepareHiDPICanvas(lensCanvas);
   const centerX = width / 2;
   const centerY = height / 2;
   const focus = 138;
@@ -224,9 +222,7 @@ function expectedLensRule() {
 function drawLensPractice() {
   if (!lensPracticeCanvas) return;
 
-  const ctx = lensPracticeCanvas.getContext("2d");
-  const width = lensPracticeCanvas.width;
-  const height = lensPracticeCanvas.height;
+  const { ctx, width, height } = prepareHiDPICanvas(lensPracticeCanvas);
   const { centerX, centerY, focus } = drawLensPracticeBase(ctx, width, height);
   let incidentStart;
   let lensPoint;
@@ -339,10 +335,10 @@ setupLayeredQuiz({
   resultSelector: "#lensesQuizResult",
   quizId: "chapter5",
   levels: createChapterLayers({
-    basic: ["e1", "e2", "e3"],
+    basic: ["e1", "e2", "e3", "e10"],
     application: ["e4", "e5", "e6"],
-    inquiry: ["e7", "e8", "e10"],
-    challenge: ["e9", "e11"],
+    inquiry: ["e7", "e8", "e9"],
+    challenge: ["e11"],
   }),
   answers: {
     e1: "a",

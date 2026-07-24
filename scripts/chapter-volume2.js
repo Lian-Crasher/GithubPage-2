@@ -2,10 +2,10 @@ const volume2QuizConfigs = {
   force: {
     quizId: "chapter7",
     levels: createChapterLayers({
-      basic: ["f1", "f2", "f3"],
-      application: ["f5", "f6", "f7"],
-      inquiry: ["f4", "f8", "f9"],
-      challenge: ["f10", "f11"],
+      basic: ["f1", "f2", "f3", "f4"],
+      application: ["f5", "f6", "f7", "f11"],
+      inquiry: ["f8", "f9"],
+      challenge: ["f10"],
     }),
     answers: {
       f1: "a", f2: "a", f3: "a", f4: "a", f5: ["30", "30n", "30牛"], f6: "a", f7: "a",
@@ -34,11 +34,11 @@ const volume2QuizConfigs = {
     },
     reviewLinks: {
       f1: { href: "#force-basics", label: "回看施力与受力物体" }, f2: { href: "#force-basics", label: "回看力的作用效果" },
-      f3: { href: "#force-basics", label: "回看力的三要素" }, f4: { href: "#elastic-gravity", label: "回看测力计" },
-      f5: { href: "#elastic-gravity", label: "回看重力计算" }, f6: { href: "#force-basics", label: "回看相互作用" },
-      f7: { href: "#force-basics", label: "回看力的示意图" }, f8: { href: "#elastic-gravity", label: "回看弹簧实验" },
-      f9: { href: "#elastic-gravity", label: "回看测力计使用" }, f10: { href: "#force-basics", label: "回看相互作用力" },
-      f11: { href: "#elastic-gravity", label: "回看重力与质量" },
+      f3: { href: "#force-basics", label: "回看力的三要素" }, f4: { href: "#elastic-force", label: "回看测力计" },
+      f5: { href: "#gravity", label: "回看重力计算" }, f6: { href: "#force-basics", label: "回看相互作用" },
+      f7: { href: "#force-basics", label: "回看力的示意图" }, f8: { href: "#elastic-force", label: "回看弹簧实验" },
+      f9: { href: "#elastic-force", label: "回看测力计使用" }, f10: { href: "#force-basics", label: "回看相互作用力" },
+      f11: { href: "#gravity", label: "回看重力与质量" },
     },
     successMessage: "很好。你已经能从作用关系出发描述和计算力。",
   },
@@ -46,9 +46,9 @@ const volume2QuizConfigs = {
     quizId: "chapter8",
     levels: createChapterLayers({
       basic: ["m1", "m2", "m3"],
-      application: ["m4", "m5", "m6"],
-      inquiry: ["m7", "m8", "m9"],
-      challenge: ["m10", "m11"],
+      application: ["m4", "m5", "m6", "m9", "m11"],
+      inquiry: ["m7", "m8"],
+      challenge: ["m10"],
     }),
     answers: {
       m1: "a", m2: "a", m3: "a", m4: "a", m5: ["13", "13n", "13牛"], m6: "a",
@@ -170,10 +170,10 @@ const volume2QuizConfigs = {
   "work-energy": {
     quizId: "chapter11",
     levels: createChapterLayers({
-      basic: ["w1", "w2", "w3"],
-      application: ["w4", "w5", "w7"],
-      inquiry: ["w8", "w9", "w10", "w12"],
-      challenge: ["w6", "w11"],
+      basic: ["w1", "w2", "w3", "w4", "w6"],
+      application: ["w5", "w7", "w10"],
+      inquiry: ["w8", "w9", "w12"],
+      challenge: ["w11"],
     }),
     answers: {
       w1: "a", w2: "a", w3: "a", w4: "a", w5: ["300", "300j", "300焦", "300焦耳"], w6: "a",

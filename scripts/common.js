@@ -205,26 +205,82 @@ function setButtonPressedState(button, pressed) {
   button.setAttribute("aria-pressed", String(pressed));
 }
 
+function prepareHiDPICanvas(canvas) {
+  if (!canvas) return null;
+  const logicalWidth = Number(canvas.dataset.logicalWidth || canvas.getAttribute("width") || 300);
+  const logicalHeight = Number(canvas.dataset.logicalHeight || canvas.getAttribute("height") || 150);
+  const scale = Math.min(3, Math.max(1, window.devicePixelRatio || 1));
+  const targetWidth = Math.round(logicalWidth * scale);
+  const targetHeight = Math.round(logicalHeight * scale);
+
+  canvas.dataset.logicalWidth = String(logicalWidth);
+  canvas.dataset.logicalHeight = String(logicalHeight);
+  if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+    canvas.width = targetWidth;
+    canvas.height = targetHeight;
+  }
+  canvas.style.aspectRatio = `${logicalWidth} / ${logicalHeight}`;
+
+  const context = canvas.getContext("2d");
+  context.setTransform(scale, 0, 0, scale, 0, 0);
+  return { ctx: context, width: logicalWidth, height: logicalHeight, scale };
+}
+
 pressedStateButtons.forEach((button) => {
   button.setAttribute("aria-pressed", String(button.classList.contains("is-active")));
 });
 
 var QUIZ_PROGRESS_KEY = "physics-preview-quiz-progress";
 var ACTIVE_VOLUME_KEY = "physics-preview-active-volume";
+var QUIZ_VERSIONS = {
+  chapter1: 1,
+  chapter2: 1,
+  chapter3: 1,
+  half: 1,
+  chapter4: 2,
+  chapter5: 2,
+  chapter6: 1,
+  final: 1,
+  chapter7: 2,
+  chapter8: 2,
+  chapter9: 1,
+  chapter10: 1,
+  chapter11: 2,
+  chapter12: 1,
+  final2: 1,
+};
+
+function getQuizVersion(quizId) {
+  return QUIZ_VERSIONS[quizId] || 1;
+}
+
+function isQuizRecordCurrent(quizId, record) {
+  if (!record) return false;
+  return (record.version || 1) === getQuizVersion(quizId);
+}
+
+function getCurrentQuizProgress(progress) {
+  return Object.fromEntries(Object.entries(progress).filter(([quizId, record]) => {
+    return isQuizRecordCurrent(quizId, record);
+  }));
+}
 var QUIZ_META = {
   chapter1: {
     title: "机械运动",
     href: "chapters/chapter1-motion.html#check",
+    learnHref: "chapters/chapter1-motion.html#measure",
     focus: "速度计算、s-t 图像和参照物",
   },
   chapter2: {
     title: "声现象",
     href: "chapters/chapter2-sound.html#sound-check",
+    learnHref: "chapters/chapter2-sound.html#sound-origin",
     focus: "振动、介质、声音特性和声的利用",
   },
   chapter3: {
     title: "物态变化",
     href: "chapters/chapter3-states.html#states-check",
+    learnHref: "chapters/chapter3-states.html#temperature",
     focus: "温度计、吸放热和沸腾实验",
   },
   half: {
@@ -235,16 +291,19 @@ var QUIZ_META = {
   chapter4: {
     title: "光现象",
     href: "chapters/chapter4-light.html#light-check",
+    learnHref: "chapters/chapter4-light.html#straight-light",
     focus: "反射、折射、平面镜和光路作图",
   },
   chapter5: {
     title: "透镜及其应用",
     href: "chapters/chapter5-lenses.html#lenses-check",
+    learnHref: "chapters/chapter5-lenses.html#lens-basics",
     focus: "凸透镜成像、特殊光线和投影仪调试",
   },
   chapter6: {
     title: "质量与密度",
     href: "chapters/chapter6-density.html#density-check",
+    learnHref: "chapters/chapter6-density.html#mass",
     focus: "密度计算、排水法、生活应用和误差方向",
   },
   final: {
@@ -255,31 +314,37 @@ var QUIZ_META = {
   chapter7: {
     title: "力",
     href: "chapters/chapter7-force.html#force-check",
+    learnHref: "chapters/chapter7-force.html#force-bridge",
     focus: "力的作用效果、三要素、弹力和重力",
   },
   chapter8: {
     title: "运动和力",
     href: "chapters/chapter8-motion-force.html#motion-force-check",
+    learnHref: "chapters/chapter8-motion-force.html#motion-force-bridge",
     focus: "惯性、二力平衡、摩擦力和二力合成",
   },
   chapter9: {
     title: "压强",
     href: "chapters/chapter9-pressure.html#pressure-check",
+    learnHref: "chapters/chapter9-pressure.html#pressure-bridge",
     focus: "固体压强、液体压强、大气压和流体流速",
   },
   chapter10: {
     title: "浮力",
     href: "chapters/chapter10-buoyancy.html#buoyancy-check",
+    learnHref: "chapters/chapter10-buoyancy.html#buoyancy-bridge",
     focus: "阿基米德原理、浮沉条件和浮力应用",
   },
   chapter11: {
     title: "功和机械能",
     href: "chapters/chapter11-work-energy.html#work-energy-check",
+    learnHref: "chapters/chapter11-work-energy.html#work-energy-bridge",
     focus: "功、功率、动能势能和机械能转化",
   },
   chapter12: {
     title: "简单机械",
     href: "chapters/chapter12-simple-machines.html#machines-check",
+    learnHref: "chapters/chapter12-simple-machines.html#machines-bridge",
     focus: "杠杆、滑轮和机械效率",
   },
   final2: {
@@ -310,19 +375,42 @@ function readQuizProgress() {
   }
 }
 
+function getLayeredProgressState(record) {
+  const required = record?.requiredLevels || [];
+  const requiredRecords = required.map((levelId) => record?.layers?.[levelId]);
+  const passed = requiredRecords.filter((layer) => layer?.passed).length;
+  const remaining = requiredRecords.reduce((total, layer) => {
+    if (!layer) return total;
+    if (Array.isArray(layer.missed)) return total + layer.missed.length;
+    return total + Math.max(0, (layer.questionKeys?.length || 0) - (layer.score || 0));
+  }, 0);
+  const mainlinePassed = Boolean(required.length) && passed === required.length;
+  const mastered = mainlinePassed && requiredRecords.every((layer) => {
+    return Array.isArray(layer?.questionKeys) && layer.score === layer.questionKeys.length;
+  });
+  return { required, passed, remaining, mainlinePassed, mastered };
+}
+
+function isQuizMastered(record) {
+  if (!record) return false;
+  if (record.layered && record.layers) return getLayeredProgressState(record).mastered;
+  return Boolean(record.completed);
+}
+
 function formatProgress(record) {
   if (!record) return "未检查";
   if (record.layered && record.layers) {
-    const required = record.requiredLevels || [];
-    const passed = required.filter((levelId) => record.layers[levelId]?.passed).length;
-    return record.completed ? `分层通过 ${passed}/${required.length}` : `分层进度 ${passed}/${required.length}`;
+    const state = getLayeredProgressState(record);
+    if (state.mastered) return "全部掌握";
+    if (state.mainlinePassed) return `主线通过 · 待巩固 ${state.remaining}`;
+    return `分层进度 ${state.passed}/${state.required.length}`;
   }
   if (record.completed) return `已掌握 ${record.score}/${record.total}`;
   return `待巩固 ${record.score}/${record.total}`;
 }
 
 function applyHomeProgress() {
-  const progress = readQuizProgress();
+  const progress = getCurrentQuizProgress(readQuizProgress());
 
   document.querySelectorAll("[data-progress]").forEach((card) => {
     const record = progress[card.dataset.progress];
@@ -330,12 +418,12 @@ function applyHomeProgress() {
     if (!badge) return;
 
     badge.textContent = formatProgress(record);
-    badge.dataset.state = record?.completed ? "complete" : record ? "review" : "empty";
+    badge.dataset.state = isQuizMastered(record) ? "complete" : record ? "review" : "empty";
   });
 
   document.querySelectorAll("[data-volume-progress]").forEach((summary) => {
     const ids = VOLUME_PROGRESS_IDS[summary.dataset.volumeProgress] || [];
-    const mastered = ids.filter((id) => progress[id]?.completed).length;
+    const mastered = ids.filter((id) => isQuizMastered(progress[id])).length;
     const checked = ids.filter((id) => progress[id]).length;
     summary.textContent = checked ? `已掌握 ${mastered}/6 · 已检查 ${checked}/6` : "尚未开始检查";
   });
@@ -343,9 +431,9 @@ function applyHomeProgress() {
 
 function getProgressRatio(record) {
   if (record?.layered && record.layers) {
-    const required = record.requiredLevels || [];
-    if (!required.length) return 0;
-    return required.filter((levelId) => record.layers[levelId]?.passed).length / required.length;
+    const state = getLayeredProgressState(record);
+    if (!state.required.length) return 0;
+    return state.passed / state.required.length;
   }
   if (!record || !record.total) return 0;
   return record.score / record.total;
@@ -366,7 +454,8 @@ function getReviewTargets(record) {
     .slice(0, 3);
 }
 
-function getAdviceHref(defaultHref, record) {
+function getAdviceHref(defaultHref, record, learnHref = defaultHref) {
+  if (!record) return learnHref;
   return getReviewTargets(record)[0]?.href || defaultHref;
 }
 
@@ -381,10 +470,10 @@ function getAdviceCopy(focus, record) {
   return `${formatProgress(record)}。重点回看：${focus}。`;
 }
 
-function createAdviceCard({ title, href, focus, record, label }) {
+function createAdviceCard({ title, href, learnHref, focus, record, label }) {
   const card = document.createElement("a");
   card.className = "recommendation-card";
-  card.href = getAdviceHref(href, record);
+  card.href = getAdviceHref(href, record, learnHref);
 
   const tag = document.createElement("span");
   tag.className = "recommendation-tag";
@@ -406,7 +495,7 @@ function getAdviceItems(progress, volume) {
   const chapterIds = VOLUME_PROGRESS_IDS[volume];
   const finalId = volume === "2" ? "final2" : "final";
   const attemptedReviews = chapterIds
-    .filter((id) => progress[id] && !progress[id].completed)
+    .filter((id) => progress[id] && !isQuizMastered(progress[id]))
     .map((id) => [id, progress[id]])
     .sort((left, right) => getProgressRatio(left[1]) - getProgressRatio(right[1]));
 
@@ -446,7 +535,7 @@ function applyNextStepAdvice() {
   const grid = document.querySelector("#recommendationGrid");
   if (!grid) return;
 
-  const progress = readQuizProgress();
+  const progress = getCurrentQuizProgress(readQuizProgress());
   const volume = getActiveHomeVolume();
   const adviceItems = getAdviceItems(progress, volume);
   grid.replaceChildren(...adviceItems.map(createAdviceCard));
@@ -462,13 +551,13 @@ function applyNextStepAdvice() {
   const primaryAdvice = adviceItems[0];
   if (!primaryAction || !primaryAdvice) return;
 
-  primaryAction.href = getAdviceHref(primaryAdvice.href, primaryAdvice.record);
+  primaryAction.href = getAdviceHref(primaryAdvice.href, primaryAdvice.record, primaryAdvice.learnHref);
   if (!primaryAdvice.record) {
     primaryAction.textContent = primaryAdvice.title.includes("综合检查")
       ? "开始综合检查"
       : `从${primaryAdvice.title}开始`;
-  } else if (primaryAdvice.record.completed) {
-    primaryAction.textContent = "查看综合检查";
+  } else if (isQuizMastered(primaryAdvice.record)) {
+    primaryAction.textContent = primaryAdvice.title.includes("综合检查") ? "再次挑战综合检查" : `回顾${primaryAdvice.title}`;
   } else {
     primaryAction.textContent = `继续巩固：${primaryAdvice.title}`;
   }

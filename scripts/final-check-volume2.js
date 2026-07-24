@@ -40,7 +40,7 @@ setupQuiz({
   reviewLinks: {
     v1: { href: "chapter7-force.html#force-basics", label: "回看力的相互作用" },
     v2: { href: "chapter8-motion-force.html#inertia", label: "回看惯性" },
-    v3: { href: "chapter8-motion-force.html#balance-friction", label: "回看二力平衡" },
+    v3: { href: "chapter8-motion-force.html#balance", label: "回看二力平衡" },
     v4: { href: "chapter9-pressure.html#solid-pressure", label: "回看固体压强" },
     v5: { href: "chapter9-pressure.html#liquid-pressure", label: "回看液体压强" },
     v6: { href: "chapter10-buoyancy.html#floating", label: "回看浮沉条件" },
@@ -48,7 +48,7 @@ setupQuiz({
     v8: { href: "chapter11-work-energy.html#power", label: "回看功率" },
     v9: { href: "chapter11-work-energy.html#mechanical-energy", label: "回看机械能" },
     v10: { href: "chapter12-simple-machines.html#pulley", label: "回看滑轮" },
-    v11: { href: "chapter8-motion-force.html#balance-friction", label: "回看摩擦力" },
+    v11: { href: "chapter8-motion-force.html#friction", label: "回看摩擦力" },
     v12: { href: "chapter12-simple-machines.html#efficiency", label: "回看机械效率" },
     v13: { href: "chapter8-motion-force.html#friction", label: "回看摩擦力实验" },
     v14: { href: "chapter12-simple-machines.html#efficiency", label: "回看滑轮组效率" },

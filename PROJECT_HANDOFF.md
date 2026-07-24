@@ -14,11 +14,7 @@ GitHub 仓库为 `Lian-Crasher/GithubPage-2`。GitHub Pages 访问地址：
 
 https://lian-crasher.github.io/GithubPage-2/
 
-截至 2026-07-23，本轮全站分层检测扩展已在 `codex/layered-assessment-preview` 完成功能提交：
-
-- `71711ad Expand layered assessments across all chapters`
-
-本文档提交将紧随功能提交，并与其一起快进合并到 `main`。发布完成后仍需分别核对本地 `HEAD`、`origin/main`、GitHub 远端 `main` 和 Pages 线上内容，不能把“已提交”“已推送”和“已发布”视为同一状态。
+截至 2026-07-24，更新本文档前本地 `main` 与 `origin/main` 对齐在 `94ec9f1`。当前工作区正在收尾全站性能、分层检测和复习闭环优化；本文档将与功能改动一起提交并推送到 `main`。发布完成后仍需分别核对本地 `HEAD`、`origin/main`、GitHub 远端 `main` 和 Pages 线上内容，不能把“已提交”“已推送”和“已发布”视为同一状态。
 
 最近一次 Pages 验证中，线上首页已指向 `chapters/final-check.html`，独立综合检查页返回 HTTP 200。此前 `bea0f08` 对应的 Pages run #32 曾出现 build/artifact 成功但 deploy 失败，已通过后续提交触发重新部署解决。后续交接时仍建议区分“GitHub 已同步”和“GitHub Pages 已发布”。
 
@@ -59,21 +55,21 @@ https://lian-crasher.github.io/GithubPage-2/
 - `RELEASE_CHECKLIST.md`
 - `.nojekyll`
 
-章节配图已统一为轻量教学插画风格，资源包括：
+章节配图已统一为轻量教学插画风格；页面当前使用带固有尺寸的 WebP 首图，资源包括：
 
 - `assets/favicon.svg`
-- `assets/chapter1-motion-hero.jpg`
-- `assets/chapter2-sound-hero.jpg`
-- `assets/chapter3-states-hero.jpg`
-- `assets/chapter4-light-hero.jpg`
-- `assets/chapter5-lenses-hero.jpg`
-- `assets/chapter6-density-hero.jpg`
-- `assets/chapter7-force-hero.jpg`
-- `assets/chapter8-motion-force-hero.jpg`
-- `assets/chapter9-pressure-hero.jpg`
-- `assets/chapter10-buoyancy-hero.jpg`
-- `assets/chapter11-work-energy-hero.jpg`
-- `assets/chapter12-simple-machines-hero.jpg`
+- `assets/chapter1-motion-hero.webp`
+- `assets/chapter2-sound-hero.webp`
+- `assets/chapter3-states-hero.webp`
+- `assets/chapter4-light-hero.webp`
+- `assets/chapter5-lenses-hero.webp`
+- `assets/chapter6-density-hero.webp`
+- `assets/chapter7-force-hero.webp`
+- `assets/chapter8-motion-force-hero.webp`
+- `assets/chapter9-pressure-hero.webp`
+- `assets/chapter10-buoyancy-hero.webp`
+- `assets/chapter11-work-energy-hero.webp`
+- `assets/chapter12-simple-machines-hero.webp`
 
 下册扩展重点：
 
@@ -96,19 +92,30 @@ https://lian-crasher.github.io/GithubPage-2/
 - 参考用户提供的八年级物理试卷，首批加入六道优先级较高的期末卷式变式题：平均速度计时偏差、鸭蛋密度测量、双 U 形管液体密度、浮力控制变量、引体向上功率测量、地下车库机械效率与功率。
 - 本轮浏览器 QA 覆盖十二章四层切换、题目可见性、桌面与 390px 布局、挑战层真实提交、数值答案容错、旧进度失效、新进度刷新后保留和控制台错误检查。
 
+2026-07-24 全站优化收尾：
+
+- 十二章首图从 JPG 切换为 WebP，并补充固有宽高、异步解码和首屏加载优先级，降低传输体积和图片加载造成的布局偏移。
+- Canvas 互动图统一使用 `prepareHiDPICanvas` 适配高像素密度屏幕，声音波形、物态变化图像、反射作图和透镜光路在 Retina 屏幕上更清晰。
+- 新增 `scripts/physics-units.js`，填空题数值答案可按题目单位解析等值表达；新增 `scripts/validate-site.mjs` 和 `npm test`，统一检查页面、题库、脚本引用和单位换算。
+- 分层检测将“达到通过线”和“全部掌握”区分保存：首页会显示“主线通过 · 待巩固 n”或“全部掌握”，题库版本变化时忽略过期记录。
+- 综合检查提交后增加“只看错题”和按能力层筛选；移动端题号导航改为稳定网格，减少长横向滚动。
+- 多章重新校准基础、应用、探究和挑战层题目归属，并修复部分错题回看锚点。
+- 分层题卡按实际作答顺序动态显示连续题号，未完成跳转和错题回看使用相同编号；第一章现在依次显示基础 1-3、应用 4-6、探究 7-10、挑战 11-12。
+- 第一章第 9 题明确以斜面 A、B 两点为测量区间，以小车前端作为释放和计时基准，路程 `s` 与时间 `t` 对应同一段运动。
+
 近期重点变更：
 
 - 第一章新增“路程-时间图像”期末题型模块。
-  - 第一章首图和首页 hero 已切换为生成式位图 `assets/chapter1-motion-hero.jpg`，用斜面小车、刻度尺和秒表表现平均速度实验场景。
+  - 第一章首图和首页 hero 已切换为生成式位图 `assets/chapter1-motion-hero.webp`，用斜面小车、刻度尺和秒表表现平均速度实验场景。
   - 小图已标明横轴 `t/s`、纵轴 `s/m` 和原点 `0`。
   - 图线从原点出发，说明水平线段表示静止。
   - 强调 s-t 图像中斜率表示速度；同一时刻高度表示路程，若都从原点出发，较陡的线速度更大。
   - 修正机械运动检查第 7 题：补充“同一地点、同一直线、同方向、相同时间”的条件，并把正文相对运动讲解从图像“向上”改为实际“向前”，避免混淆图像方向和运动方向。
   - 审核后将“斜线向上”改为“倾斜直线向上”，避免把任意上升曲线误说成匀速直线运动。
   - 刻度尺读数说明已统一为“估读到分度值的下一位”：分度值为 1 mm 时记录到 0.1 mm，即 0.01 cm；互动读数和反馈同步保留估读位。
-- 第二章首图已切换为生成式位图 `assets/chapter2-sound-hero.jpg`，用音叉、水面波纹、扬声器和玻璃钟罩表现振动、传播和介质相关的声音实验场景。
+- 第二章首图已切换为生成式位图 `assets/chapter2-sound-hero.webp`，用音叉、水面波纹、扬声器和玻璃钟罩表现振动、传播和介质相关的声音实验场景。
 - 第三章新增水沸腾实验专项和热胀冷缩阅读题专项。
-  - 第三章首图已从旧 SVG 切换为生成式位图 `assets/chapter3-states-hero.jpg`，用冰块、清水、蒸汽、冷凝水珠和霜晶表现固态、液态和气态变化；六种物态变化的准确名称继续保留在正文交互模块中。
+  - 第三章首图已从旧 SVG 切换为生成式位图 `assets/chapter3-states-hero.webp`，用冰块、清水、蒸汽、冷凝水珠和霜晶表现固态、液态和气态变化；六种物态变化的准确名称继续保留在正文交互模块中。
   - 覆盖器材从下往上安装、沸腾现象判断、沸腾持续吸热、控制变量。
   - 补充线膨胀系数、双金属片温度计、图像判断和改进措施。
   - 新增“实验步骤排序”互动，用上移/下移按钮排列水的沸腾实验步骤，并即时反馈错误位置和正确实验逻辑。
@@ -116,7 +123,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - 修正温度计读数示意图：温度计管和玻璃泡已插入烧杯液体中，刻度保留在外侧便于读数，避免误示为在杯外测温。
   - 优化六种物态变化图：桌面端改为“固态-标签-液态-标签-气态”的稳定网格，移动端改为纵向阅读顺序，避免标签被圆形状态节点遮挡或显示不完整。
 - 第四章补强光现象作图与实验专项。
-  - 顶部首图已切换为生成式位图 `assets/chapter4-light-hero.jpg`，用灯光、镜面、玻璃块和屏幕表现光的传播、反射、折射和影子；正文互动仍负责更严格的直线传播和光路作图训练。
+  - 顶部首图已切换为生成式位图 `assets/chapter4-light-hero.webp`，用灯光、镜面、玻璃块和屏幕表现光的传播、反射、折射和影子；正文互动仍负责更严格的直线传播和光路作图训练。
   - “影子实验台”已从静态光锥改为动态 SVG 光路：挡板移动时，上下边界光线、被挡住的中间光线、挡板后阴影锥和屏上阴影大小同步更新。
   - 第四章页面已对 `styles/main.css` 和 `scripts/chapter4-light.js` 加查询版本号，避免线上/浏览器缓存旧版光路。
   - 反射、折射、平面镜实验卡片已从 CSS 线条改为 SVG 示意图，箭头方向、法线、界面和物像关系更清楚。
@@ -125,7 +132,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - 新增“小孔成像：倒立实像从哪里来”知识卡，用蜡烛、小孔板、光屏和交叉光线说明上端光线到下方、下端光线到上方；第四章检查第 2 题错题回看会跳转到该模块。
   - 新增“光路作图台”互动：可切换反射/折射，调整入射角，选择反射角相等、折射靠近法线或远离法线，并在检查后自动补出正确出射光线。
 - 第五章修正透镜应用互动。
-  - 顶部首图已切换为生成式位图 `assets/chapter5-lenses-hero.jpg`，用光具座、凸透镜、物体、光屏和倒立实像表现透镜成像场景。
+  - 顶部首图已切换为生成式位图 `assets/chapter5-lenses-hero.webp`，用光具座、凸透镜、物体、光屏和倒立实像表现透镜成像场景。
   - “透镜光路切换”中凸透镜平行光会聚、凹透镜发散和反向延长线示意已检查。
   - “透镜光路切换”已按薄透镜近似重画：入射平行光到透镜中心平面后再折向焦点；凹透镜实际光线发散，反向延长线过同侧虚焦点，且出射线不再被画布裁切。
   - “成像规律滑台”已改为按凸透镜公式 `1/f = 1/u + 1/v` 和统一比例计算像距。
@@ -138,7 +145,7 @@ https://lian-crasher.github.io/GithubPage-2/
   - “眼睛和光学仪器”已补强近视/远视专项：说明晶状体和角膜共同相当于凸透镜、视网膜相当于光屏；近视通常像落在视网膜前方，用凹透镜发散矫正；远视通常像落在视网膜后方，用凸透镜会聚矫正。
   - 第五章新增近视和远视 SVG 示意图，并加入“近视：前、凹、发散；远视：后、凸、会聚”的考试速记。
 - 第六章新增密度实验误差专项。
-  - 第六章首图已切换为生成式位图 `assets/chapter6-density-hero.jpg`，用电子天平、金属块、量筒排水法和不同材料样品表现质量、体积和密度测量。
+  - 第六章首图已切换为生成式位图 `assets/chapter6-density-hero.webp`，用电子天平、金属块、量筒排水法和不同材料样品表现质量、体积和密度测量。
   - 覆盖天平调平、砝码使用、容器质量扣除、排水法体积、红豆空隙导致密度偏小。
   - 修正第六章检查第 5 题：补充量筒原有水体积 `V1`、小石块完全浸没后水面体积 `V2` 的背景信息，说明 `V2 - V1` 来自排开水的体积。
   - 新增“误差方向诊断”互动，围绕红豆空隙、石块带水、量筒读数偏大、单位换算等情境判断密度偏大/偏小/基本不变，并逐项解释原因。
@@ -173,10 +180,10 @@ https://lian-crasher.github.io/GithubPage-2/
   - 综合检查第 19 题 SVG 的无障碍标题已改为中性数据描述，不再包含“二倍焦距”等解题提示。
 - 公共样式新增考试题型卡片、规则卡片、SVG 光路图、公式卡片、填空输入和下拉题样式，并修复窄屏导航可能撑宽页面的问题。
 - 已完成一轮 390px 移动端 QA，覆盖首页进度徽章、第三章排序练习、第四章光路作图台、第五章透镜作图台、第六章误差诊断、各章检查和综合检查。主体页面未发现非预期横向溢出；导航和表格保留局部横向滚动。检查题单选/多选项已增强为整行触控目标，主要触控高度约 40px 以上。
-- 首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=42`，`scripts/quiz.js` 升级到 `?v=10`，下册共享脚本 `scripts/chapter-volume2.js` 升级到 `?v=23`，上册各章脚本也已同步提升查询版本号，避免浏览器或 GitHub Pages 继续使用旧版检测架构和样式。
+- 首页和各章节页的 `styles/main.css` 引用已统一升级到 `?v=43`，`scripts/common.js` 升级到 `?v=14`，`scripts/quiz.js` 升级到 `?v=13`，下册共享脚本 `scripts/chapter-volume2.js` 升级到 `?v=25`，上册各章脚本也已同步提升查询版本号，避免浏览器或 GitHub Pages 继续使用旧版检测架构和样式。
 - 发布与页面元信息已完成一轮维护收尾。
   - 首页、六个章节页和综合检查页均补充独立 `meta description`，并统一显式引用 `assets/favicon.svg`。
-  - 已确认网页只使用六张 `*-hero.jpg` 章节首图，并删除 12 个不再引用的旧 PNG/SVG 首图资源。
+  - 已确认网页使用十二张 `*-hero.webp` 章节首图，并删除 12 个不再引用的旧 PNG/SVG 首图资源。
   - 发布检查增加页面描述、favicon 和静态资源加载核对，避免再次出现默认 `favicon.ico` 404 或文档列出已删除资源。
 - 首页已新增“下一步复习建议”区块，并已在 390px 移动端验证无横向溢出。
 - 已新增 `RELEASE_CHECKLIST.md`，固化发布前本地检查、移动端 QA、提交、推送、HTTP/1.1 fallback 和 GitHub Pages 验证步骤。
@@ -199,7 +206,7 @@ https://lian-crasher.github.io/GithubPage-2/
 
 本地 Git 状态：
 
-- 本文档更新时当前分支为 `codex/layered-assessment-preview`，功能提交为 `71711ad`；交接文档提交完成后将快进合并到 `main` 并推送。
+- 更新本文档前当前分支为 `main`，本地与 `origin/main` 对齐在 `94ec9f1`；本轮功能与交接文档将在同一提交中推送。
 - 发布完成后应重新核对本地 `HEAD`、`origin/main`、远端 `main` 和 Pages 部署结果，并以发布后的实际提交为准。
 - 不要假设本地和远端必然同步。每次发布都应核对 `git status -sb`、`HEAD`、`origin/main` 和 Pages 部署结果。
 
@@ -307,11 +314,11 @@ Pages 发布验证：
 ```bash
 curl -L -s -o /tmp/ghpage-index.html https://lian-crasher.github.io/GithubPage-2/index.html
 rg -n "chapter1-motion-hero\\.jpg" /tmp/ghpage-index.html
-curl -L -s -D /tmp/ghpage-hero-headers.txt -o /tmp/chapter1-motion-hero.jpg 'https://lian-crasher.github.io/GithubPage-2/assets/chapter1-motion-hero.jpg'
+curl -L -s -D /tmp/ghpage-hero-headers.txt -o /tmp/chapter1-motion-hero.webp 'https://lian-crasher.github.io/GithubPage-2/assets/chapter1-motion-hero.webp'
 sed -n '1,40p' /tmp/ghpage-hero-headers.txt
 ```
 
-预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion-hero.jpg` 和 `assets/favicon.svg`，对应资源均应返回 HTTP 200。若新资源返回 404，先检查 Pages Actions 的 deploy 状态，再判断是否为缓存或发布延迟。
+预期线上发布成功后，首页 HTML 应包含 `assets/chapter1-motion-hero.webp` 和 `assets/favicon.svg`，对应资源均应返回 HTTP 200。若新资源返回 404，先检查 Pages Actions 的 deploy 状态，再判断是否为缓存或发布延迟。
 
 浏览器验证重点：
 

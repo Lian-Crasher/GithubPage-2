@@ -1,0 +1,7 @@
+{
+  "name": "physics-preview-site",
+  "private": true,
+  "scripts": {
+    "test": "node scripts/validate-site.mjs"
+  }
+}

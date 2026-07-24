@@ -99,9 +99,7 @@ function updateShadow() {
 }
 
 function drawMirror() {
-  const ctx = mirrorCanvas.getContext("2d");
-  const width = mirrorCanvas.width;
-  const height = mirrorCanvas.height;
+  const { ctx, width, height } = prepareHiDPICanvas(mirrorCanvas);
   const angle = Number(angleSlider.value);
   const origin = { x: width / 2, y: height / 2 + 32 };
   const length = 210;
@@ -259,9 +257,7 @@ function drawAngleArc(ctx, origin, angle, side, label, normalSide = "up") {
 function drawRayPractice() {
   if (!rayPracticeCanvas) return;
 
-  const ctx = rayPracticeCanvas.getContext("2d");
-  const width = rayPracticeCanvas.width;
-  const height = rayPracticeCanvas.height;
+  const { ctx, width, height } = prepareHiDPICanvas(rayPracticeCanvas);
   const origin = { x: width / 2, y: height / 2 + 12 };
   const angle = Number(rayPracticeAngle.value);
   const incidentRad = (angle * Math.PI) / 180;
@@ -363,10 +359,10 @@ setupLayeredQuiz({
   resultSelector: "#lightQuizResult",
   quizId: "chapter4",
   levels: createChapterLayers({
-    basic: ["l1", "l3", "l6"],
-    application: ["l2", "l4", "l5"],
-    inquiry: ["l7", "l8", "l9"],
-    challenge: ["l10", "l11"],
+    basic: ["l1", "l3", "l4", "l6"],
+    application: ["l2", "l5", "l7"],
+    inquiry: ["l8", "l9", "l10"],
+    challenge: ["l11"],
   }),
   answers: {
     l1: "a",

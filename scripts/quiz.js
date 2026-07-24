@@ -22,6 +22,7 @@ function saveQuizAttempt(quizId, attempt) {
   const progress = readQuizProgress();
   progress[quizId] = {
     ...attempt,
+    version: typeof getQuizVersion === "function" ? getQuizVersion(quizId) : 1,
     updatedAt: new Date().toISOString(),
   };
   writeQuizProgress(progress);
@@ -33,11 +34,25 @@ function layerRecordMatches(level, record) {
     && record.questionKeys.every((key, index) => key === level.questionKeys[index]);
 }
 
+function getLayeredMasteryState(levels, layerRecords) {
+  const requiredLevels = levels.filter((level) => level.required !== false);
+  const requiredRecords = requiredLevels.map((level) => layerRecords[level.id]);
+  const mainlinePassed = requiredRecords.every((record) => record?.passed);
+  const remaining = requiredRecords.reduce((total, record) => total + (record?.missed?.length || 0), 0);
+  const mastered = mainlinePassed && requiredRecords.every((record, index) => {
+    return record.score === requiredLevels[index].questionKeys.length;
+  });
+  return { requiredLevels, mainlinePassed, mastered, remaining };
+}
+
 function saveLayeredQuizAttempt(quizId, levels, levelId, attempt) {
   if (!quizId) return null;
 
   const progress = readQuizProgress();
-  const previousQuiz = progress[quizId] || {};
+  const storedQuiz = progress[quizId];
+  const previousQuiz = typeof isQuizRecordCurrent === "function" && isQuizRecordCurrent(quizId, storedQuiz)
+    ? storedQuiz
+    : {};
   const previousLayers = previousQuiz.layers || {};
   const validPreviousLayers = Object.fromEntries(levels.flatMap((level) => {
     const record = previousLayers[level.id];
@@ -55,8 +70,7 @@ function saveLayeredQuizAttempt(quizId, levels, levelId, attempt) {
       updatedAt: new Date().toISOString(),
     },
   };
-  const requiredLevels = levels.filter((level) => level.required !== false);
-  const completed = requiredLevels.every((level) => layerRecords[level.id]?.passed);
+  const mastery = getLayeredMasteryState(levels, layerRecords);
   const attemptedRecords = levels.map((level) => layerRecords[level.id]).filter(Boolean);
   const missedReviews = attemptedRecords.flatMap((record) => record.missedReviews || []);
 
@@ -66,11 +80,14 @@ function saveLayeredQuizAttempt(quizId, levels, levelId, attempt) {
     total: levels.reduce((total, level) => total + level.questionKeys.length, 0),
     missed: attemptedRecords.flatMap((record) => record.missed || []),
     missedReviews,
-    completed,
+    completed: mastery.mainlinePassed,
+    mastered: mastery.mastered,
+    remaining: mastery.remaining,
+    version: typeof getQuizVersion === "function" ? getQuizVersion(quizId) : 1,
     layered: true,
     latestLayer: levelId,
     levelOrder: levels.map((level) => level.id),
-    requiredLevels: requiredLevels.map((level) => level.id),
+    requiredLevels: mastery.requiredLevels.map((level) => level.id),
     layers: layerRecords,
     updatedAt: new Date().toISOString(),
   };
@@ -141,28 +158,19 @@ function normalizeTextAnswer(value) {
     .replace(/。/g, "");
 }
 
-function parseQuizNumber(value) {
-  const superscripts = { "⁰": "0", "¹": "1", "²": "2", "³": "3", "⁴": "4", "⁵": "5", "⁶": "6", "⁷": "7", "⁸": "8", "⁹": "9", "⁻": "-" };
-  const compact = String(value ?? "")
-    .trim()
-    .toLowerCase()
-    .replace(/[，,]/g, "")
-    .replace(/[×x]/g, "*")
-    .replace(/[−–—]/g, "-")
-    .replace(/10([⁰¹²³⁴⁵⁶⁷⁸⁹⁻]+)/g, (_, exponent) => `10^${Array.from(exponent).map((character) => superscripts[character]).join("")}`)
-    .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]/g, (character) => superscripts[character])
-    .replace(/\s+/g, "")
-    .replace(/(米每秒|千克每立方米|克每立方厘米|牛顿|焦耳|瓦特|kg\/m(?:3|\^3)|g\/cm(?:3|\^3)|m\/s|pa|cm3|m3|n|j|w|cm|m|牛|焦|瓦|%|％)$/u, "");
-  const powerOfTen = compact.match(/^10\^([+-]?\d+)$/);
-  if (powerOfTen) {
-    const number = 10 ** Number(powerOfTen[1]);
-    return Number.isFinite(number) ? number : null;
-  }
-  const match = compact.match(/^([+-]?(?:\d+(?:\.\d*)?|\.\d+))(?:(?:\*10\^?([+-]?\d+))|(?:e([+-]?\d+)))?$/);
-  if (!match) return null;
-  const exponent = Number(match[2] ?? match[3] ?? 0);
-  const number = Number(match[1]) * (10 ** exponent);
-  return Number.isFinite(number) ? number : null;
+function getQuizAnswerUnit(form, key) {
+  const input = form.querySelector(`input[name="${key}"]`);
+  const unitText = input?.closest(".quiz-text-row")?.querySelector("span")?.textContent.trim() || "";
+  return unitText.split(/[，,；;\s]/)[0];
+}
+
+function getQuizNumericValues(value, fallbackUnit = "") {
+  if (typeof PhysicsUnits !== "object") return [];
+  const values = [
+    PhysicsUnits.parseNumber(value),
+    fallbackUnit ? PhysicsUnits.parseNumber(value, fallbackUnit) : null,
+  ].filter((number) => number !== null);
+  return [...new Set(values)];
 }
 
 function formatAnswerValue(value) {
@@ -272,14 +280,23 @@ function setQuestionIncomplete(form, key, incomplete) {
   });
 }
 
-function getQuestionNumber(key) {
-  return key.match(/\d+$/)?.[0] || key;
-}
-
 function getQuestionCard(form, key) {
   return form.querySelector(
     `[name="${key}"], [data-order-group="${key}"], [data-match-group="${key}"]`,
   )?.closest(".quiz-card");
+}
+
+function getQuestionNumber(key, form) {
+  return getQuestionCard(form, key)?.dataset.questionNumber
+    || key.match(/\d+$/)?.[0]
+    || key;
+}
+
+function getQuestionHint(form, key, hint = "") {
+  return hint.replace(
+    /^第\s*\d+\s*题/,
+    `第 ${getQuestionNumber(key, form)} 题`,
+  );
 }
 
 function jumpToQuizQuestion(form, key) {
@@ -300,12 +317,12 @@ function createQuestionJumpButton(form, key, className = "") {
   const button = document.createElement("button");
   button.type = "button";
   button.className = className;
-  button.textContent = getQuestionNumber(key);
+  button.textContent = getQuestionNumber(key, form);
   button.addEventListener("click", () => jumpToQuizQuestion(form, key));
   return button;
 }
 
-function setupQuizProgress(form, answers, questionTypes) {
+function setupQuizProgress(form, answers, questionTypes, diagnosticLevels = []) {
   const keys = Object.keys(answers);
   const panel = document.createElement("section");
   panel.className = "quiz-progress";
@@ -344,8 +361,58 @@ function setupQuizProgress(form, answers, questionTypes) {
     return [key, button];
   }));
 
-  panel.append(summary, track, navigator);
+  const reviewTools = document.createElement("div");
+  reviewTools.className = "quiz-review-tools";
+  reviewTools.hidden = true;
+
+  const missedToggle = document.createElement("label");
+  missedToggle.className = "quiz-review-toggle";
+  const missedCheckbox = document.createElement("input");
+  missedCheckbox.type = "checkbox";
+  const missedLabel = document.createElement("span");
+  missedLabel.textContent = "只看错题";
+  missedToggle.append(missedCheckbox, missedLabel);
+
+  const levelSelect = document.createElement("select");
+  levelSelect.className = "quiz-review-select";
+  levelSelect.setAttribute("aria-label", "按能力层筛选题目");
+  const allLevelsOption = document.createElement("option");
+  allLevelsOption.value = "all";
+  allLevelsOption.textContent = "全部能力层";
+  levelSelect.appendChild(allLevelsOption);
+  diagnosticLevels.forEach((level) => {
+    const option = document.createElement("option");
+    option.value = level.id;
+    option.textContent = `${level.title}层`;
+    levelSelect.appendChild(option);
+  });
+
+  const filterStatus = document.createElement("span");
+  filterStatus.className = "quiz-review-status";
+  filterStatus.setAttribute("aria-live", "polite");
+  reviewTools.append(missedToggle, levelSelect, filterStatus);
+
+  panel.append(summary, track, navigator, reviewTools);
   form.prepend(panel);
+  let missedKeys = new Set();
+
+  function applyReviewFilter() {
+    const selectedLevel = diagnosticLevels.find((level) => level.id === levelSelect.value);
+    const levelKeys = new Set(selectedLevel?.questionKeys || keys);
+    let visibleCount = 0;
+    keys.forEach((key) => {
+      const visible = levelKeys.has(key) && (!missedCheckbox.checked || missedKeys.has(key));
+      getQuestionCard(form, key)?.toggleAttribute("hidden", !visible);
+      buttons.get(key)?.toggleAttribute("hidden", !visible);
+      if (visible) visibleCount += 1;
+    });
+    filterStatus.textContent = visibleCount
+      ? `当前显示 ${visibleCount} 题`
+      : "当前筛选没有题目";
+  }
+
+  missedCheckbox.addEventListener("change", applyReviewFilter);
+  levelSelect.addEventListener("change", applyReviewFilter);
 
   function update(incompleteKeys = []) {
     const incompleteSet = new Set(incompleteKeys);
@@ -361,7 +428,7 @@ function setupQuizProgress(form, answers, questionTypes) {
       button.classList.toggle("is-incomplete", incompleteSet.has(key));
       button.setAttribute(
         "aria-label",
-        `第 ${getQuestionNumber(key)} 题，${incompleteSet.has(key) ? "未完成" : answered ? "已完成" : "未作答"}`,
+        `第 ${getQuestionNumber(key, form)} 题，${incompleteSet.has(key) ? "未完成" : answered ? "已完成" : "未作答"}`,
       );
     });
 
@@ -376,22 +443,31 @@ function setupQuizProgress(form, answers, questionTypes) {
   form.addEventListener("change", () => update());
   update();
 
-  return { update };
+  function setReviewMode(nextMissedKeys) {
+    missedKeys = new Set(nextMissedKeys);
+    reviewTools.hidden = false;
+    missedCheckbox.disabled = missedKeys.size === 0;
+    missedCheckbox.checked = missedKeys.size > 0;
+    applyReviewFilter();
+  }
+
+  return { update, setReviewMode };
 }
 
-function isQuizAnswerCorrect(actual, expected, type) {
+function isQuizAnswerCorrect(actual, expected, type, unit = "") {
   if (type === "multi") return arraysMatch(actual, expected, { sorted: true });
   if (type === "order") return arraysMatch(actual, expected);
   if (type === "match") return objectsMatch(actual, expected);
   if (type === "text") {
     const accepted = Array.isArray(expected) ? expected : [expected];
-    const actualNumber = parseQuizNumber(actual);
-    if (actualNumber !== null) {
+    const actualNumbers = getQuizNumericValues(actual, unit);
+    if (actualNumbers.length) {
       const numericMatch = accepted.some((value) => {
-        const expectedNumber = parseQuizNumber(value);
-        if (expectedNumber === null) return false;
-        const tolerance = Math.max(1e-9, Math.abs(expectedNumber) * 1e-6);
-        return Math.abs(actualNumber - expectedNumber) <= tolerance;
+        const expectedNumbers = getQuizNumericValues(value, unit);
+        return actualNumbers.some((actualNumber) => expectedNumbers.some((expectedNumber) => {
+          const tolerance = Math.max(1e-9, Math.abs(expectedNumber) * 1e-6);
+          return Math.abs(actualNumber - expectedNumber) <= tolerance;
+        }));
       });
       if (numericMatch) return true;
     }
@@ -466,7 +542,7 @@ function buildDiagnosticReport(diagnosticLevels, answers, attempts) {
   diagnosticLevels.forEach((level) => {
     const score = level.questionKeys.filter((key) => {
       const attempt = attempts[key];
-      return attempt && isQuizAnswerCorrect(attempt.actual, answers[key], attempt.type);
+      return attempt && isQuizAnswerCorrect(attempt.actual, answers[key], attempt.type, attempt.unit);
     }).length;
     const total = level.questionKeys.length;
     const passScore = level.passScore || Math.ceil(total * 0.7);
@@ -496,7 +572,7 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
 
   shuffleQuizChoices(form);
   result.setAttribute("tabindex", "-1");
-  const progress = showProgress ? setupQuizProgress(form, answers, questionTypes) : null;
+  const progress = showProgress ? setupQuizProgress(form, answers, questionTypes, diagnosticLevels) : null;
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -508,7 +584,7 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
     Object.keys(answers).forEach((key) => {
       const type = questionTypes[key] || "single";
       const actual = getQuizAnswer(form, key, type);
-      attempts[key] = { actual, type };
+      attempts[key] = { actual, type, unit: type === "text" ? getQuizAnswerUnit(form, key) : "" };
       const complete = isQuizAnswerComplete(actual, type);
       setQuestionIncomplete(form, key, !complete);
       if (!complete) incomplete.push(key);
@@ -528,8 +604,8 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
       jumpList.setAttribute("aria-label", "跳转到未完成题目");
       incomplete.forEach((key) => {
         const button = createQuestionJumpButton(form, key, "incomplete-question-link");
-        button.textContent = `第 ${getQuestionNumber(key)} 题`;
-        button.setAttribute("aria-label", `跳转到未完成的第 ${getQuestionNumber(key)} 题`);
+        button.textContent = `第 ${getQuestionNumber(key, form)} 题`;
+        button.setAttribute("aria-label", `跳转到未完成的第 ${getQuestionNumber(key, form)} 题`);
         jumpList.appendChild(button);
       });
 
@@ -539,8 +615,8 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
     }
 
     Object.keys(answers).forEach((key) => {
-      const { actual, type } = attempts[key];
-      if (isQuizAnswerCorrect(actual, answers[key], type)) {
+      const { actual, type, unit } = attempts[key];
+      if (isQuizAnswerCorrect(actual, answers[key], type, unit)) {
         score += 1;
       } else {
         missed.push(key);
@@ -572,6 +648,7 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
 
     const diagnostic = buildDiagnosticReport(diagnosticLevels, answers, attempts);
     if (diagnostic) result.appendChild(diagnostic.element);
+    progress?.setReviewMode(missed);
 
     saveQuizAttempt(quizId, {
       score,
@@ -585,7 +662,28 @@ function setupQuiz({ formSelector, resultSelector, answers, hints, badges, succe
   });
 }
 
+function numberLayeredQuizQuestions(form, levels) {
+  levels.flatMap((level) => level.questionKeys).forEach((key, index) => {
+    const card = getQuestionCard(form, key);
+    if (!card) return;
+
+    const number = String(index + 1);
+    card.dataset.questionNumber = number;
+    const legend = card.querySelector("legend");
+    const textNode = Array.from(legend?.childNodes || []).find((node) => {
+      return node.nodeType === Node.TEXT_NODE && /^\s*\d+[.、]\s*/.test(node.textContent);
+    });
+    if (textNode) {
+      textNode.textContent = textNode.textContent.replace(
+        /^\s*\d+[.、]\s*/,
+        `${number}. `,
+      );
+    }
+  });
+}
+
 function ensureLayeredQuizStructure(form, quizId, levels) {
+  numberLayeredQuizQuestions(form, levels);
   const existingSummary = form.querySelector(".layered-quiz-summary");
   if (form.querySelector("[data-layer-tab]")) return existingSummary;
 
@@ -700,10 +798,10 @@ function shuffleQuizChoices(form) {
 
 function createChapterLayers({ basic, application, inquiry, challenge }) {
   const definitions = [
-    { id: "basic", title: "基础", description: "概念、单位与基本规律", shortDescription: "概念与规律", heading: "先确认核心概念没有混淆", questionKeys: basic },
-    { id: "application", title: "应用", description: "计算、判断与生活解释", shortDescription: "计算与解释", heading: "把规律用于计算和具体情境", questionKeys: application },
-    { id: "inquiry", title: "探究", description: "实验、图像与方法分析", shortDescription: "实验与方法", heading: "读懂实验过程、图像和证据", questionKeys: inquiry },
-    { id: "challenge", title: "挑战", description: "综合分析与陌生迁移", shortDescription: "综合与迁移", heading: "在新情境中组合使用规律", questionKeys: challenge, required: false },
+    { id: "basic", title: "基础", description: "概念识别与直接判断", shortDescription: "概念与规律", heading: "先确认核心概念和基本规律", questionKeys: basic },
+    { id: "application", title: "应用", description: "具体情境与分步推理", shortDescription: "计算与解释", heading: "在具体情境中完成计算和解释", questionKeys: application },
+    { id: "inquiry", title: "探究", description: "变量控制、证据与方法", shortDescription: "实验与方法", heading: "分析实验方法、数据和证据", questionKeys: inquiry },
+    { id: "challenge", title: "挑战", description: "陌生情境与综合迁移", shortDescription: "综合与迁移", heading: "在陌生情境中组合使用规律", questionKeys: challenge, required: false },
   ];
   return definitions.map((level) => ({
     ...level,
@@ -724,7 +822,9 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
   const levelMap = new Map(levels.map((level) => [level.id, level]));
 
   function readRecord() {
-    return readQuizProgress()[quizId] || {};
+    const record = readQuizProgress()[quizId];
+    if (typeof isQuizRecordCurrent === "function" && !isQuizRecordCurrent(quizId, record)) return {};
+    return record || {};
   }
 
   function getLayerRecord(levelId) {
@@ -736,7 +836,10 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
   function getLayerStatus(levelId) {
     const record = getLayerRecord(levelId);
     if (!record) return { label: "未开始", state: "empty" };
-    if (record.passed) return { label: "已通过", state: "complete" };
+    if (record.passed && record.missed?.length) {
+      return { label: `已通过 · 待巩固 ${record.missed.length}`, state: "review" };
+    }
+    if (record.passed) return { label: "已掌握", state: "complete" };
     return { label: "待巩固", state: "review" };
   }
 
@@ -764,11 +867,16 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
   }
 
   function renderLayerState() {
-    const required = levels.filter((level) => level.required !== false);
+    const record = readRecord();
+    const validRecords = Object.fromEntries(levels.flatMap((level) => {
+      const layerRecord = record.layers?.[level.id];
+      return layerRecordMatches(level, layerRecord) ? [[level.id, layerRecord]] : [];
+    }));
+    const mastery = getLayeredMasteryState(levels, validRecords);
+    const required = mastery.requiredLevels;
     const optional = levels.filter((level) => level.required === false);
     const passedRequired = required.filter((level) => getLayerRecord(level.id)?.passed).length;
     const passedOptional = optional.filter((level) => getLayerRecord(level.id)?.passed).length;
-    const completed = passedRequired === required.length;
 
     tabs.forEach((tab) => {
       const status = getLayerStatus(tab.dataset.layerTab);
@@ -778,9 +886,12 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
     });
 
     if (summary) {
-      summary.dataset.state = completed ? "complete" : passedRequired ? "review" : "empty";
-      summary.textContent = completed
-        ? `主线 ${required.length} 层已通过 · ${passedOptional ? "挑战层已通过" : "挑战层可选"}`
+      summary.dataset.state = mastery.mastered ? "complete" : passedRequired ? "review" : "empty";
+      summary.classList.toggle("is-complete", mastery.mastered);
+      summary.textContent = mastery.mastered
+        ? `主线 ${required.length} 层全部掌握 · ${passedOptional ? "挑战层已通过" : "挑战层可选"}`
+        : mastery.mainlinePassed
+          ? `主线已通过 · 仍有 ${mastery.remaining} 题待巩固`
         : `主线已通过 ${passedRequired}/${required.length} 层`;
     }
     levels.forEach(updateLayerAnswerCount);
@@ -796,7 +907,7 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
     jumpList.className = "incomplete-question-links";
     incomplete.forEach((key) => {
       const button = createQuestionJumpButton(form, key, "incomplete-question-link");
-      button.textContent = `第 ${getQuestionNumber(key)} 题`;
+      button.textContent = `第 ${getQuestionNumber(key, form)} 题`;
       jumpList.appendChild(button);
     });
     result.replaceChildren(title, detail, jumpList);
@@ -813,7 +924,7 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
     level.questionKeys.forEach((key) => {
       const type = questionTypes[key] || "single";
       const actual = getQuizAnswer(form, key, type);
-      attempts[key] = { actual, type };
+      attempts[key] = { actual, type, unit: type === "text" ? getQuizAnswerUnit(form, key) : "" };
       const complete = isQuizAnswerComplete(actual, type);
       setQuestionIncomplete(form, key, !complete);
       if (!complete) incomplete.push(key);
@@ -825,12 +936,14 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
     }
 
     const missed = level.questionKeys.filter((key) => {
-      const { actual, type } = attempts[key];
-      return !isQuizAnswerCorrect(actual, answers[key], type);
+      const { actual, type, unit } = attempts[key];
+      return !isQuizAnswerCorrect(actual, answers[key], type, unit);
     });
     const score = level.questionKeys.length - missed.length;
     const passed = score >= level.passScore;
-    const missedReviews = missed.map((key) => buildMissedReview(key, hints[key], reviewLinks[key]));
+    const missedReviews = missed.map((key) => {
+      return buildMissedReview(key, getQuestionHint(form, key, hints[key]), reviewLinks[key]);
+    });
     const savedRecord = saveLayeredQuizAttempt(quizId, levels, level.id, {
       score,
       total: level.questionKeys.length,
@@ -847,7 +960,9 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
     const nextLevel = levels[currentIndex + 1];
     detail.textContent = passed
       ? nextLevel
-        ? `这一层已经达到目标，建议继续进入${nextLevel.title}层。`
+        ? missed.length
+          ? `这一层已达到通过标准，仍有 ${missed.length} 题待巩固；可以先回看，也可以继续进入${nextLevel.title}层。`
+          : `这一层已全部掌握，建议继续进入${nextLevel.title}层。`
         : savedRecord?.completed
           ? "主线三层已完成，挑战层也已通过，可以回到知识模块继续查漏补缺。"
           : "挑战层已通过；基础、应用和探究层仍可继续完成。"
@@ -860,7 +975,11 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
       missed.forEach((key) => {
         const { actual, type } = attempts[key];
         const diagnosis = getAnswerDiagnosis(form, key, actual, answers[key], type, answerDetails[key]);
-        list.appendChild(createReviewItem(hints[key], reviewLinks[key], diagnosis));
+        list.appendChild(createReviewItem(
+          getQuestionHint(form, key, hints[key]),
+          reviewLinks[key],
+          diagnosis,
+        ));
       });
       result.appendChild(list);
     }
@@ -878,12 +997,22 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
     }
 
     renderLayerState();
-    summary?.classList.toggle("is-complete", Boolean(savedRecord?.completed));
     result.focus({ preventScroll: true });
   }
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => activateLayer(tab.dataset.layerTab));
+    tab.addEventListener("keydown", (event) => {
+      const currentIndex = tabs.indexOf(tab);
+      let targetIndex = null;
+      if (event.key === "ArrowRight") targetIndex = (currentIndex + 1) % tabs.length;
+      if (event.key === "ArrowLeft") targetIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+      if (event.key === "Home") targetIndex = 0;
+      if (event.key === "End") targetIndex = tabs.length - 1;
+      if (targetIndex === null) return;
+      event.preventDefault();
+      activateLayer(tabs[targetIndex].dataset.layerTab, { focus: true });
+    });
   });
   form.querySelectorAll("[data-layer-submit]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -896,7 +1025,9 @@ function setupLayeredQuiz({ formSelector, summarySelector, answers, hints, quizI
   form.addEventListener("submit", (event) => event.preventDefault());
 
   const record = readRecord();
-  const initialLevel = levels.find((level) => !getLayerRecord(level.id)?.passed)?.id
+  const initialLevel = levels.find((level) => level.required !== false && !getLayerRecord(level.id)?.passed)?.id
+    || levels.find((level) => level.required !== false && getLayerRecord(level.id)?.missed?.length)?.id
+    || levels.find((level) => !getLayerRecord(level.id)?.passed)?.id
     || record.latestLayer
     || levels[0].id;
   activateLayer(initialLevel);
